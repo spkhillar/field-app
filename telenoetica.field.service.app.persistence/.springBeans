@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/spring-data-jpa-config.xml</config>
 		<config>src/main/resources/applicationContext-liquibase.xml</config>
+		<config>src/main/resources/applicationContext-property-initializer.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
