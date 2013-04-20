@@ -1,6 +1,5 @@
+/* Copyright (C) 2013 Telenoetica, Inc. All rights reserved */
 package com.telenoetica.jpa.entities;
-
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,57 +12,56 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * UserRole 
+ * UserRole
  */
 @Entity
 @Table(name = "user_role", catalog = "field_service_db")
 public class UserRole implements java.io.Serializable {
 
-	/**
+  /**
 	 * 
 	 */
-	private static final long serialVersionUID = 6247808108412977322L;
-	private Long id;
-	private User user;
-	private Role role;
+  private static final long serialVersionUID = 6247808108412977322L;
+  private Long id;
+  private User user;
+  private Role role;
 
-	public UserRole() {
-	}
+  public UserRole() {}
 
-	public UserRole(User user, Role role) {
-		this.user = user;
-		this.role = role;
-	}
+  public UserRole(User user, Role role) {
+    this.user = user;
+    this.role = role;
+  }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
-	public Long getId() {
-		return this.id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", unique = true, nullable = false)
+  public Long getId() {
+    return this.id;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	public User getUser() {
-		return this.user;
-	}
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  public User getUser() {
+    return this.user;
+  }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id")
-	public Role getRole() {
-		return this.role;
-	}
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "role_id")
+  public Role getRole() {
+    return this.role;
+  }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+  public void setRole(Role role) {
+    this.role = role;
+  }
 
 }

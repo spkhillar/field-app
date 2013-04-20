@@ -1,6 +1,5 @@
+/* Copyright (C) 2013 Telenoetica, Inc. All rights reserved */
 package com.telenoetica.jpa.entities;
-
-
 
 import java.util.Date;
 
@@ -15,116 +14,111 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 /**
- * Site 
+ * Site
  */
 @Entity
 @Table(name = "site", catalog = "field_service_db")
 public class Site implements java.io.Serializable {
 
-	/**
+  /**
 	 * 
 	 */
-	private static final long serialVersionUID = -8172399414155973257L;
-	private Long id;
-	private Integer version;
-	private String name;
-	private Date createdAt;
-	/*private Set routineVisits = new HashSet(0);
-	private Set callOutVisits = new HashSet(0);
-	private Set maintenanceVisits = new HashSet(0);
-	private Set dieselVisits = new HashSet(0);*/
+  private static final long serialVersionUID = -8172399414155973257L;
+  private Long id;
+  private Integer version;
+  private String name;
+  private Date createdAt;
 
-	public Site() {
-	}
+  /*
+   * private Set routineVisits = new HashSet(0); private Set callOutVisits = new
+   * HashSet(0); private Set maintenanceVisits = new HashSet(0); private Set
+   * dieselVisits = new HashSet(0);
+   */
 
-	public Site(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+  public Site() {}
 
-	public Site(String name, Date createdAt/*, Set routineVisits,
-			Set callOutVisits, Set maintenanceVisits, Set dieselVisits*/) {
-		this.name = name;
-		this.createdAt = createdAt;
-	/*	this.routineVisits = routineVisits;
-		this.callOutVisits = callOutVisits;
-		this.maintenanceVisits = maintenanceVisits;
-		this.dieselVisits = dieselVisits;*/
-	}
+  public Site(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
-	public Long getId() {
-		return this.id;
-	}
+  public Site(String name, Date createdAt/*
+                                          * , Set routineVisits, Set
+                                          * callOutVisits, Set
+                                          * maintenanceVisits, Set dieselVisits
+                                          */) {
+    this.name = name;
+    this.createdAt = createdAt;
+    /*
+     * this.routineVisits = routineVisits; this.callOutVisits = callOutVisits;
+     * this.maintenanceVisits = maintenanceVisits; this.dieselVisits =
+     * dieselVisits;
+     */
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", unique = true, nullable = false)
+  public Long getId() {
+    return this.id;
+  }
 
-	@Version
-	@Column(name = "version")
-	public Integer getVersion() {
-		return this.version;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
+  @Version
+  @Column(name = "version")
+  public Integer getVersion() {
+    return this.version;
+  }
 
-	@Column(name = "name", length = 250)
-	public String getName() {
-		return this.name;
-	}
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  @Column(name = "name", length = 250)
+  public String getName() {
+    return this.name;
+  }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", nullable = false, length = 19)
-	public Date getCreatedAt() {
-		return this.createdAt;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "created_at", nullable = false, length = 19)
+  public Date getCreatedAt() {
+    return this.createdAt;
+  }
 
-	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "site")
-	public Set getRoutineVisits() {
-		return this.routineVisits;
-	}
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-	public void setRoutineVisits(Set routineVisits) {
-		this.routineVisits = routineVisits;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "site")
-	public Set getCallOutVisits() {
-		return this.callOutVisits;
-	}
-
-	public void setCallOutVisits(Set callOutVisits) {
-		this.callOutVisits = callOutVisits;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "site")
-	public Set getMaintenanceVisits() {
-		return this.maintenanceVisits;
-	}
-
-	public void setMaintenanceVisits(Set maintenanceVisits) {
-		this.maintenanceVisits = maintenanceVisits;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "site")
-	public Set getDieselVisits() {
-		return this.dieselVisits;
-	}
-
-	public void setDieselVisits(Set dieselVisits) {
-		this.dieselVisits = dieselVisits;
-	}*/
+  /*
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "site") public Set
+   * getRoutineVisits() { return this.routineVisits; }
+   * 
+   * public void setRoutineVisits(Set routineVisits) { this.routineVisits =
+   * routineVisits; }
+   * 
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "site") public Set
+   * getCallOutVisits() { return this.callOutVisits; }
+   * 
+   * public void setCallOutVisits(Set callOutVisits) { this.callOutVisits =
+   * callOutVisits; }
+   * 
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "site") public Set
+   * getMaintenanceVisits() { return this.maintenanceVisits; }
+   * 
+   * public void setMaintenanceVisits(Set maintenanceVisits) {
+   * this.maintenanceVisits = maintenanceVisits; }
+   * 
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "site") public Set
+   * getDieselVisits() { return this.dieselVisits; }
+   * 
+   * public void setDieselVisits(Set dieselVisits) { this.dieselVisits =
+   * dieselVisits; }
+   */
 
 }

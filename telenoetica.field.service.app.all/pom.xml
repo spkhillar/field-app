@@ -1,15 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>telenoetica.field.service.app</groupId>
-  <artifactId>telenoetica.field.service.app.all</artifactId>
-  <version>1.0.0</version>
-  <packaging>pom</packaging>
-  
-  <modules>
-  <module>../telenoetica.field.service.app.persistence</module>
-  </modules>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>telenoetica.field.service.app</groupId>
+	<artifactId>telenoetica.field.service.app.all</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../telenoetica.field.service.app.persistence</module>
+	</modules>
+
+	<properties>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.framework.version>3.2.2.RELEASE</spring.framework.version>
@@ -17,7 +18,7 @@
 		<javax.validation.version>1.0.0.GA</javax.validation.version>
 		<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- Spring starts -->
 		<dependency>
@@ -85,6 +86,12 @@
 			<version>1.9.12</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+
 		<!-- utilities ends -->
 
 		<!-- Logging starts -->
@@ -119,5 +126,5 @@
 		<!-- Test Dependencies starts -->
 
 	</dependencies>
-  
+
 </project>

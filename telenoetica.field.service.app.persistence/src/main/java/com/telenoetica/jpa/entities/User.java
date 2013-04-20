@@ -1,6 +1,5 @@
+/* Copyright (C) 2013 Telenoetica, Inc. All rights reserved */
 package com.telenoetica.jpa.entities;
-
-
 
 import java.util.Date;
 import java.util.HashSet;
@@ -19,185 +18,177 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 /**
- * User 
+ * User
  */
 @Entity
 @Table(name = "user", catalog = "field_service_db")
 public class User implements java.io.Serializable {
 
-	/**
+  /**
 	 * 
 	 */
-	private static final long serialVersionUID = 3228774824582399072L;
-	private Long id;
-	private Integer version;
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private Boolean enabled;
-	private Date createdAt;
-	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
-	/*private Set callOutVisits = new HashSet(0);
-	private Set routineVisits = new HashSet(0);
-	private Set maintenanceVisits = new HashSet(0);
-	private Set dieselVisits = new HashSet(0);*/
+  private static final long serialVersionUID = 3228774824582399072L;
+  private Long id;
+  private Integer version;
+  private String username;
+  private String password;
+  private String firstName;
+  private String lastName;
+  private String email;
+  private Boolean enabled;
+  private Date createdAt;
+  private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
-	public User() {
-	}
+  /*
+   * private Set callOutVisits = new HashSet(0); private Set routineVisits = new
+   * HashSet(0); private Set maintenanceVisits = new HashSet(0); private Set
+   * dieselVisits = new HashSet(0);
+   */
 
-	public User(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+  public User() {}
 
-	public User(String username, String password, String firstName,
-			String lastName, String email, Boolean enabled, Date createdAt,
-			Set<UserRole> userRoles/*,Set callOutVisits, Set routineVisits,
-			Set maintenanceVisits, Set dieselVisits*/) {
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.enabled = enabled;
-		this.createdAt = createdAt;
-		this.userRoles = userRoles;
-		/*this.maintenanceVisits = maintenanceVisits;
-		this.dieselVisits = dieselVisits;
-		this.callOutVisits = callOutVisits;
-		this.routineVisits = routineVisits;*/
-	}
+  public User(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true, nullable = false)
-	public Long getId() {
-		return this.id;
-	}
+  public User(String username, String password, String firstName, String lastName, String email, Boolean enabled,
+      Date createdAt, Set<UserRole> userRoles/*
+                                              * ,Set callOutVisits, Set
+                                              * routineVisits, Set
+                                              * maintenanceVisits, Set
+                                              * dieselVisits
+                                              */) {
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.enabled = enabled;
+    this.createdAt = createdAt;
+    this.userRoles = userRoles;
+    /*
+     * this.maintenanceVisits = maintenanceVisits; this.dieselVisits =
+     * dieselVisits; this.callOutVisits = callOutVisits; this.routineVisits =
+     * routineVisits;
+     */
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id", unique = true, nullable = false)
+  public Long getId() {
+    return this.id;
+  }
 
-	@Version
-	@Column(name = "version")
-	public Integer getVersion() {
-		return this.version;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
+  @Version
+  @Column(name = "version")
+  public Integer getVersion() {
+    return this.version;
+  }
 
-	@Column(name = "username", length = 250)
-	public String getUsername() {
-		return this.username;
-	}
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+  @Column(name = "username", length = 250)
+  public String getUsername() {
+    return this.username;
+  }
 
-	@Column(name = "password", length = 250)
-	public String getPassword() {
-		return this.password;
-	}
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+  @Column(name = "password", length = 250)
+  public String getPassword() {
+    return this.password;
+  }
 
-	@Column(name = "first_name", length = 250)
-	public String getFirstName() {
-		return this.firstName;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+  @Column(name = "first_name", length = 250)
+  public String getFirstName() {
+    return this.firstName;
+  }
 
-	@Column(name = "last_name", length = 250)
-	public String getLastName() {
-		return this.lastName;
-	}
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+  @Column(name = "last_name", length = 250)
+  public String getLastName() {
+    return this.lastName;
+  }
 
-	@Column(name = "email", length = 250)
-	public String getEmail() {
-		return this.email;
-	}
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  @Column(name = "email", length = 250)
+  public String getEmail() {
+    return this.email;
+  }
 
-	@Column(name = "enabled")
-	public Boolean getEnabled() {
-		return this.enabled;
-	}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+  @Column(name = "enabled")
+  public Boolean getEnabled() {
+    return this.enabled;
+  }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", nullable = false, length = 19)
-	public Date getCreatedAt() {
-		return this.createdAt;
-	}
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+  @Temporal(TemporalType.TIMESTAMP)
+  @Column(name = "created_at", nullable = false, length = 19)
+  public Date getCreatedAt() {
+    return this.createdAt;
+  }
 
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<UserRole> getUserRoles() {
-		return this.userRoles;
-	}
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
 
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}
-/*
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getCallOutVisits() {
-		return this.callOutVisits;
-	}
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+  public Set<UserRole> getUserRoles() {
+    return this.userRoles;
+  }
 
-	public void setCallOutVisits(Set callOutVisits) {
-		this.callOutVisits = callOutVisits;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getRoutineVisits() {
-		return this.routineVisits;
-	}
-
-	public void setRoutineVisits(Set routineVisits) {
-		this.routineVisits = routineVisits;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getMaintenanceVisits() {
-		return this.maintenanceVisits;
-	}
-
-	public void setMaintenanceVisits(Set maintenanceVisits) {
-		this.maintenanceVisits = maintenanceVisits;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getDieselVisits() {
-		return this.dieselVisits;
-	}
-
-	public void setDieselVisits(Set dieselVisits) {
-		this.dieselVisits = dieselVisits;
-	}
-*/
+  public void setUserRoles(Set<UserRole> userRoles) {
+    this.userRoles = userRoles;
+  }
+  /*
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
+   * getCallOutVisits() { return this.callOutVisits; }
+   * 
+   * public void setCallOutVisits(Set callOutVisits) { this.callOutVisits =
+   * callOutVisits; }
+   * 
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
+   * getRoutineVisits() { return this.routineVisits; }
+   * 
+   * public void setRoutineVisits(Set routineVisits) { this.routineVisits =
+   * routineVisits; }
+   * 
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
+   * getMaintenanceVisits() { return this.maintenanceVisits; }
+   * 
+   * public void setMaintenanceVisits(Set maintenanceVisits) {
+   * this.maintenanceVisits = maintenanceVisits; }
+   * 
+   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
+   * getDieselVisits() { return this.dieselVisits; }
+   * 
+   * public void setDieselVisits(Set dieselVisits) { this.dieselVisits =
+   * dieselVisits; }
+   */
 }
