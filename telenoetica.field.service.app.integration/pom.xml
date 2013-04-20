@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>telenoetica.field.service.app.all</artifactId>
+    <groupId>telenoetica.field.service.app</groupId>
+    <version>1.0.0</version>
+  </parent>
+  <artifactId>telenoetica.field.service.app.integration</artifactId>
+  <dependencies>
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.9</version>
+	</dependency>
+	<dependency>
+		<groupId>telenoetica.field.service.app</groupId>
+		<artifactId>telenoetica.field.service.app.persistence</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+	<dependency>
+		<groupId>telenoetica.field.service.app</groupId>
+		<artifactId>telenoetica.field.service.app.persistence</artifactId>
+		<version>1.0.0</version>
+		<type>test-jar</type>
+		<scope>test</scope>
+	</dependency>
+	</dependencies>
+</project>
