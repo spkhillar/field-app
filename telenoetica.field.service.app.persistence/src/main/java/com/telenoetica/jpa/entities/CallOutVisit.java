@@ -21,7 +21,7 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "call_out_visit", catalog = "field_service_db")
-public class CallOutVisit implements java.io.Serializable {
+public class CallOutVisit implements BaseEntity, java.io.Serializable {
 
   /**
 	 * 
