@@ -21,7 +21,7 @@ import javax.persistence.Version;
  * MaintenanceVisit
  */
 @Entity
-@Table(name = "maintenance_visit", catalog = "field_service_db")
+@Table(name = "maintenance_visit")
 public class MaintenanceVisit implements java.io.Serializable {
 
   /**

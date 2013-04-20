@@ -17,7 +17,7 @@ import javax.persistence.Version;
  * Site
  */
 @Entity
-@Table(name = "site", catalog = "field_service_db")
+@Table(name = "site")
 public class Site implements java.io.Serializable {
 
   /**

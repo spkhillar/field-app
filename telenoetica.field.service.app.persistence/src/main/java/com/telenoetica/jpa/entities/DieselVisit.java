@@ -20,7 +20,7 @@ import javax.persistence.Version;
  * DieselVisit
  */
 @Entity
-@Table(name = "diesel_visit", catalog = "field_service_db")
+@Table(name = "diesel_visit")
 public class DieselVisit implements java.io.Serializable {
 
   /**

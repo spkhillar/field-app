@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * Permission
  */
 @Entity
-@Table(name = "permission", catalog = "field_service_db")
+@Table(name = "permission")
 public class Permission implements java.io.Serializable {
 
   /**

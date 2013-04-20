@@ -10,24 +10,23 @@ import com.telenoetica.service.CallOutVisitService;
 
 @Service("callOutVisitService")
 public class CallOutVisitServiceImpl implements CallOutVisitService {
-	
-	@Autowired
-	private CallOutVisitDAO callOutVisitDAO;
 
-	@Transactional
-	public CallOutVisit retrieve(Long id) {
-		this.callOutVisitDAO.findOne(id);
-		return null;
-	}
-	
-	@Transactional
-	public CallOutVisit saveAndUpdate(CallOutVisit callOutVisit) {
-		return this.callOutVisitDAO.save(callOutVisit);
-	}
-	
-	@Transactional
-	public void delete(CallOutVisit callOutVisit) {
-		this.callOutVisitDAO.delete(callOutVisit);
-	}
+  @Autowired
+  private CallOutVisitDAO callOutVisitDAO;
+
+  @Transactional
+  public CallOutVisit retrieve(Long id) {
+    return this.callOutVisitDAO.findOne(id);
+  }
+
+  @Transactional
+  public CallOutVisit saveAndUpdate(CallOutVisit callOutVisit) {
+    return this.callOutVisitDAO.save(callOutVisit);
+  }
+
+  @Transactional
+  public void delete(CallOutVisit callOutVisit) {
+    this.callOutVisitDAO.delete(callOutVisit);
+  }
 
 }

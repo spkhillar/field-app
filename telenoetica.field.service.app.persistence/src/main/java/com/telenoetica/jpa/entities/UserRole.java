@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * UserRole
  */
 @Entity
-@Table(name = "user_role", catalog = "field_service_db")
+@Table(name = "user_role")
 public class UserRole implements java.io.Serializable {
 
   /**

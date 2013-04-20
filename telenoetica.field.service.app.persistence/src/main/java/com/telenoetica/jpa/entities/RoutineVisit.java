@@ -20,7 +20,7 @@ import javax.persistence.Version;
  * RoutineVisit
  */
 @Entity
-@Table(name = "routine_visit", catalog = "field_service_db")
+@Table(name = "routine_visit")
 public class RoutineVisit implements java.io.Serializable {
 
   /**
