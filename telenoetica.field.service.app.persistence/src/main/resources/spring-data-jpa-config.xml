@@ -25,6 +25,13 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="persistenceXmlLocation" value="persistence.xml" />
 		<property name="persistenceUnitName" value="springJpaPersistenceUnit" />
+		 <property name="persistenceUnitPostProcessors">
+		<list>
+			<bean class="org.springframework.data.jpa.support.ClasspathScanningPersistenceUnitPostProcessor">
+				<constructor-arg value="com.telenoetica.jpa.entities" />
+			</bean>
+		</list>
+  </property>
 	</bean>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
