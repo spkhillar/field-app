@@ -19,11 +19,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 /**
  * User
  */
 @Entity
 @Table(name = "user")
+@JsonAutoDetect(JsonMethod.NONE)
 public class User implements BaseEntity,java.io.Serializable {
 
   /**

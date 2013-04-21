@@ -13,11 +13,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 /**
  * Site
  */
 @Entity
 @Table(name = "site")
+@JsonAutoDetect(JsonMethod.NONE)
 public class Site implements BaseEntity, java.io.Serializable {
 
   /**
