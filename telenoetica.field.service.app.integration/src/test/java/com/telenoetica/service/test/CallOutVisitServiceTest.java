@@ -40,13 +40,13 @@ public class CallOutVisitServiceTest extends BaseTest{
 	  callOutVisit.setTimeFaultReserved(new Date());
 	  callOutVisit.setTimeReachedToSite(new Date());
 	  
-	  callOutVisit = callOutVisitService.saveAndUpdate(callOutVisit);
+	  callOutVisit = callOutVisitService.saveOrUpdate(callOutVisit);
 	  
 	  System.err.println("...Saved..."+callOutVisit);
 	  
 	  callOutVisit.setAccessCode("BBBBB");
 	  
-	  callOutVisitService.saveAndUpdate(callOutVisit);
+	  callOutVisitService.saveOrUpdate(callOutVisit);
 	  
 	  callOutVisit = callOutVisitService.retrieve(callOutVisit.getId());
 	  

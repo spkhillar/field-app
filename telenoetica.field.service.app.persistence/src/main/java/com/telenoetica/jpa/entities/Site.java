@@ -18,7 +18,7 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "site")
-public class Site implements java.io.Serializable {
+public class Site implements BaseEntity, java.io.Serializable {
 
   /**
 	 * 

@@ -24,7 +24,7 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "user")
-public class User implements java.io.Serializable {
+public class User implements BaseEntity,java.io.Serializable {
 
   /**
 	 * 

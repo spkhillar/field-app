@@ -7,7 +7,7 @@ public interface BaseService<E extends BaseEntity>{
 
 	public E retrieve(Long id);
 	
-	public E saveAndUpdate(E baseEntity);
+	public E saveOrUpdate(E baseEntity);
 
 	public void delete(E baseEntity);
 }
