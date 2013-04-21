@@ -7,7 +7,7 @@
 
  <bean id="resourceLoader" class="org.springframework.core.io.DefaultResourceLoader" />
  
- <bean id="liquibaseportal" class="liquibase.integration.spring.SpringLiquibase">
+ <bean id="liquibaseFieldApp" class="liquibase.integration.spring.SpringLiquibase">
     <property name="dataSource" ref="dataSource"/>
     <property name="contexts" value="production"/>
     <property name="changeLog" value="classpath:liquibase/liquibase-changelog.xml" />

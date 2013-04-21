@@ -39,6 +39,7 @@
 	
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
    		<property name="order" value="2"/>
+   		<property name="ignoreAcceptHeader" value="true"></property>
 	 	 <property name="mediaTypes">
 	    	<map>
 	      		<entry key="json" value="application/json" />

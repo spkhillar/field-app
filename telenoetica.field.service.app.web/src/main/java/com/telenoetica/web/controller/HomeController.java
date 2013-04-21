@@ -43,7 +43,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/routine", method = RequestMethod.GET)
+	@RequestMapping(value = "/rt", method = RequestMethod.GET)
 	@ResponseBody
 	public CallOutVisit getRoutineVisit(){
 	  User user = new User();

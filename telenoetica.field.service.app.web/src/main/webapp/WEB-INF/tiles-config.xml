@@ -17,5 +17,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/jsp/home/home.jsp" />
 	</definition>
 	
+	<definition name="routine.create" extends="base.definition">
+		<put-attribute name="title" value="Routine Visit Form" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/routine/routine.jsp" />
+	</definition>
+	
 
 </tiles-definitions>
