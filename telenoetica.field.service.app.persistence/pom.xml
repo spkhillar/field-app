@@ -7,7 +7,6 @@
 	<packaging>jar</packaging>
 	<name>Persistence provider</name>
 	<parent>
-
 		<groupId>telenoetica.field.service.app</groupId>
 		<artifactId>telenoetica.field.service.app.all</artifactId>
 		<version>1.0.0</version>
