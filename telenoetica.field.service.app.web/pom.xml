@@ -13,7 +13,7 @@
 		<relativePath>../telenoetica.field.service.app.all</relativePath>
 	</parent>
 	<properties>
-		<tiles.version>2.2.2</tiles.version>
+		<tiles.version>3.0.1</tiles.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
