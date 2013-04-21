@@ -24,10 +24,17 @@ public class Site implements BaseEntity, java.io.Serializable {
 	 * 
 	 */
   private static final long serialVersionUID = -8172399414155973257L;
+  
+  @JsonProperty
   private Long id;
+  
   private Integer version;
+  
+  @JsonProperty
   private String name;
-  private Date createdAt;
+  
+  @JsonProperty
+  private Date createdAt=new Date();
 
   /*
    * private Set routineVisits = new HashSet(0); private Set callOutVisits = new

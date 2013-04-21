@@ -30,15 +30,34 @@ public class User implements BaseEntity,java.io.Serializable {
 	 * 
 	 */
   private static final long serialVersionUID = 3228774824582399072L;
+  
+  @JsonProperty
   private Long id;
+  
+  @JsonIgnore
   private Integer version;
+  
+  @JsonProperty
   private String username;
+  
   private String password;
+  
+  @JsonProperty
   private String firstName;
+  
+  @JsonProperty
   private String lastName;
+  
+  @JsonProperty
   private String email;
+  
+  @JsonProperty
   private Boolean enabled;
-  private Date createdAt;
+  
+  @JsonProperty
+  private Date createdAt=new Date();
+  
+  @JsonIgnore
   private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
   /*

@@ -16,36 +16,79 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 /**
  * 
  */
 @Entity
 @Table(name = "call_out_visit")
+@JsonAutoDetect(JsonMethod.NONE)
 public class CallOutVisit implements BaseEntity, java.io.Serializable {
 
   /**
 	 * 
 	 */
   private static final long serialVersionUID = -1043305759290140709L;
+  
+  @JsonProperty
   private Long id;
   private Integer version;
+  
+  @JsonProperty
   private User user;
+  
+  @JsonProperty
   private Site site;
+  
+  @JsonProperty
   private String accessCode;
+  
+  @JsonProperty
   private String callOutCsrOrTtNumber;
+  
+  @JsonProperty
   private Date timeComplainReceived;
+  
+  @JsonProperty
   private Date timeReachedToSite;
+  
+  @JsonProperty
   private Date timeFaultReserved;
+  
+  @JsonProperty
   private String customer1Impacted;
+  
+  @JsonProperty
   private String customer2Impacted;
+  
+  @JsonProperty
   private String customer3Impacted;
+  
+  @JsonProperty
   private String customer4Impacted;
+  
+  @JsonProperty
   private String mainCategoryOfFault;
+  
+  @JsonProperty
   private String equipmentComponentCausedFault;
+  
+  @JsonProperty
   private String equipmentComponentRepaired;
+  
+  @JsonProperty
   private String equipmentComponentReplaced;
+  
+  @JsonProperty
   private String fixResolutionTemporaryOrPermanent;
+  
+  @JsonProperty
   private String actionsRequiredForPermanentResolution;
+  
+  @JsonProperty
   private Date createdAt;
 
   public CallOutVisit() {}

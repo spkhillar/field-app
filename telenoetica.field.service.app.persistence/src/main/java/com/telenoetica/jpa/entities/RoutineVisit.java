@@ -16,41 +16,94 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonMethod;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 /**
  * RoutineVisit
  */
 @Entity
 @Table(name = "routine_visit")
+@JsonAutoDetect(JsonMethod.NONE)
 public class RoutineVisit implements java.io.Serializable {
 
   /**
 	 * 
 	 */
   private static final long serialVersionUID = -8940474556363138173L;
+  
+  @JsonProperty
   private Long id;
+  
   private Integer version;
+  
+  @JsonProperty
   private User user;
+  
+  @JsonProperty
   private Site site;
+  
+  @JsonProperty
   private Long accessCode;
+  
+  @JsonProperty
   private Long dieselLevelT1;
+  
+  @JsonProperty
   private Long dieselLevelT2;
+  
+  @JsonProperty
   private Long runHourGen1;
+  
+  @JsonProperty
   private Long runHourGen2;
+  
+  @JsonProperty
   private Long voltageNrVolts;
+  
+  @JsonProperty
   private Long voltageNyVolts;
+  
+  @JsonProperty
   private Long voltageNbVolts;
+  
+  @JsonProperty
   private Long loadRPhaseAmps;
+  
+  @JsonProperty
   private Long loadYPhaseAmps;
+  
+  @JsonProperty
   private Long loadBPhaseAmps;
+  
+  @JsonProperty
   private Long rectifierOpVoltage;
+  
+  @JsonProperty
   private Long rectifierOpCurrentAmp;
+  
+  @JsonProperty
   private Long batteryCapcityV;
+  
+  @JsonProperty
   private Long batteryCapcityAh;
+  
+  @JsonProperty
   private Boolean atsFunctional;
+  
+  @JsonProperty
   private Boolean atsSysncronising;
+  
+  @JsonProperty
   private Boolean drnBookAtSite;
+  
+  @JsonProperty
   private Boolean dieselLogBookMaintained;
-  private Date createdAt;
+  
+  @JsonProperty
+  private Date createdAt=new Date();
 
   public RoutineVisit() {}
 

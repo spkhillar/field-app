@@ -2,12 +2,14 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+<script type="text/javascript" src="resources/js/application.js"></script>
 </head>
+
 <body>
-<h1>
-	Hello world!  
-</h1>
+<button id="btn1">hello</button>
+<div id="div1">
+<div> Field App Div</div>
+</div>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
