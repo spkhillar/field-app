@@ -1,8 +1,10 @@
 /* Copyright (C) 2013 Telenoetica, Inc. All rights reserved */
 package com.telenoetica.jpa.entities;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -191,4 +193,81 @@ public class User implements java.io.Serializable {
    * public void setDieselVisits(Set dieselVisits) { this.dieselVisits =
    * dieselVisits; }
    */
+
+  
+  
+  @Override
+  public String toString() {
+    final int maxLen = 10;
+    StringBuilder builder = new StringBuilder();
+    builder.append("User [");
+    if (id != null)
+      builder.append("id=").append(id).append(", ");
+    if (version != null)
+      builder.append("version=").append(version).append(", ");
+    if (username != null)
+      builder.append("username=").append(username).append(", ");
+    if (password != null)
+      builder.append("password=").append(password).append(", ");
+    if (firstName != null)
+      builder.append("firstName=").append(firstName).append(", ");
+    if (lastName != null)
+      builder.append("lastName=").append(lastName).append(", ");
+    if (email != null)
+      builder.append("email=").append(email).append(", ");
+    if (enabled != null)
+      builder.append("enabled=").append(enabled).append(", ");
+    if (createdAt != null)
+      builder.append("createdAt=").append(createdAt).append(", ");
+    if (userRoles != null)
+      builder.append("userRoles=").append(toString(userRoles, maxLen));
+    builder.append("]");
+    return builder.toString();
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((email == null) ? 0 : email.hashCode());
+    result = prime * result + ((username == null) ? 0 : username.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    User other = (User) obj;
+    if (email == null) {
+      if (other.email != null)
+        return false;
+    } else if (!email.equals(other.email))
+      return false;
+    if (username == null) {
+      if (other.username != null)
+        return false;
+    } else if (!username.equals(other.username))
+      return false;
+    return true;
+  }
+
+  private String toString(Collection<?> collection, int maxLen) {
+    StringBuilder builder = new StringBuilder();
+    builder.append("[");
+    int i = 0;
+    for (Iterator<?> iterator = collection.iterator(); iterator.hasNext() && i < maxLen; i++) {
+      if (i > 0)
+        builder.append(", ");
+      builder.append(iterator.next());
+    }
+    builder.append("]");
+    return builder.toString();
+  }
+  
+  
 }

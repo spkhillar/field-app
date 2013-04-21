@@ -270,5 +270,101 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
+  
+  
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((accessCode == null) ? 0 : accessCode.hashCode());
+    result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
+    result = prime * result + ((site == null) ? 0 : site.hashCode());
+    result = prime * result + ((user == null) ? 0 : user.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    CallOutVisit other = (CallOutVisit) obj;
+    if (accessCode == null) {
+      if (other.accessCode != null)
+        return false;
+    } else if (!accessCode.equals(other.accessCode))
+      return false;
+    if (createdAt == null) {
+      if (other.createdAt != null)
+        return false;
+    } else if (!createdAt.equals(other.createdAt))
+      return false;
+    if (site == null) {
+      if (other.site != null)
+        return false;
+    } else if (!site.equals(other.site))
+      return false;
+    if (user == null) {
+      if (other.user != null)
+        return false;
+    } else if (!user.equals(other.user))
+      return false;
+    return true;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("CallOutVisit [");
+    if (id != null)
+      builder.append("id=").append(id).append(", ");
+    if (version != null)
+      builder.append("version=").append(version).append(", ");
+    if (user != null)
+      builder.append("user=").append(user).append(", ");
+    if (site != null)
+      builder.append("site=").append(site).append(", ");
+    if (accessCode != null)
+      builder.append("accessCode=").append(accessCode).append(", ");
+    if (callOutCsrOrTtNumber != null)
+      builder.append("callOutCsrOrTtNumber=").append(callOutCsrOrTtNumber).append(", ");
+    if (timeComplainReceived != null)
+      builder.append("timeComplainReceived=").append(timeComplainReceived).append(", ");
+    if (timeReachedToSite != null)
+      builder.append("timeReachedToSite=").append(timeReachedToSite).append(", ");
+    if (timeFaultReserved != null)
+      builder.append("timeFaultReserved=").append(timeFaultReserved).append(", ");
+    if (customer1Impacted != null)
+      builder.append("customer1Impacted=").append(customer1Impacted).append(", ");
+    if (customer2Impacted != null)
+      builder.append("customer2Impacted=").append(customer2Impacted).append(", ");
+    if (customer3Impacted != null)
+      builder.append("customer3Impacted=").append(customer3Impacted).append(", ");
+    if (customer4Impacted != null)
+      builder.append("customer4Impacted=").append(customer4Impacted).append(", ");
+    if (mainCategoryOfFault != null)
+      builder.append("mainCategoryOfFault=").append(mainCategoryOfFault).append(", ");
+    if (equipmentComponentCausedFault != null)
+      builder.append("equipmentComponentCausedFault=").append(equipmentComponentCausedFault).append(", ");
+    if (equipmentComponentRepaired != null)
+      builder.append("equipmentComponentRepaired=").append(equipmentComponentRepaired).append(", ");
+    if (equipmentComponentReplaced != null)
+      builder.append("equipmentComponentReplaced=").append(equipmentComponentReplaced).append(", ");
+    if (fixResolutionTemporaryOrPermanent != null)
+      builder.append("fixResolutionTemporaryOrPermanent=").append(fixResolutionTemporaryOrPermanent).append(", ");
+    if (actionsRequiredForPermanentResolution != null)
+      builder.append("actionsRequiredForPermanentResolution=").append(actionsRequiredForPermanentResolution)
+        .append(", ");
+    if (createdAt != null)
+      builder.append("createdAt=").append(createdAt);
+    builder.append("]");
+    return builder.toString();
+  }
+  
+  
 
 }

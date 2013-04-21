@@ -33,6 +33,9 @@
             </column>
             <column name="version" type="INT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-2">
         <createTable tableName="diesel_visit">
@@ -58,6 +61,9 @@
             </column>
             <column name="version" type="INT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-3">
         <createTable tableName="maintenance_visit">
@@ -87,6 +93,9 @@
             </column>
             <column name="version" type="INT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-4">
         <createTable tableName="permission">
@@ -95,6 +104,9 @@
             </column>
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-5">
         <createTable tableName="role">
@@ -103,6 +115,9 @@
             </column>
             <column name="name" type="VARCHAR(250)"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-6">
         <createTable tableName="role_permission">
@@ -112,6 +127,9 @@
             <column name="role_id" type="BIGINT"/>
             <column name="permission_id" type="BIGINT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-7">
         <createTable tableName="routine_visit">
@@ -144,6 +162,9 @@
             </column>
             <column name="version" type="INT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-8">
         <createTable tableName="site">
@@ -156,6 +177,9 @@
             </column>
             <column name="version" type="INT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-9">
         <createTable tableName="user">
@@ -173,6 +197,9 @@
             </column>
             <column name="version" type="INT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-10">
         <createTable tableName="user_role">
@@ -182,6 +209,9 @@
             <column name="user_id" type="BIGINT"/>
             <column name="role_id" type="BIGINT"/>
         </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
     <changeSet author="shiv prasad khillar" id="1366412359126-11">
         <addForeignKeyConstraint baseColumnNames="site_id" baseTableName="call_out_visit"  constraintName="call_out_visit_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="site"  referencesUniqueColumn="false"/>

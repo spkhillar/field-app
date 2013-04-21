@@ -95,6 +95,55 @@ public class Site implements java.io.Serializable {
     this.createdAt = createdAt;
   }
 
+  
+  
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
+    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Site other = (Site) obj;
+    if (createdAt == null) {
+      if (other.createdAt != null)
+        return false;
+    } else if (!createdAt.equals(other.createdAt))
+      return false;
+    if (name == null) {
+      if (other.name != null)
+        return false;
+    } else if (!name.equals(other.name))
+      return false;
+    return true;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("Site [");
+    if (id != null)
+      builder.append("id=").append(id).append(", ");
+    if (version != null)
+      builder.append("version=").append(version).append(", ");
+    if (name != null)
+      builder.append("name=").append(name).append(", ");
+    if (createdAt != null)
+      builder.append("createdAt=").append(createdAt);
+    builder.append("]");
+    return builder.toString();
+  }
+
   /*
    * @OneToMany(fetch = FetchType.LAZY, mappedBy = "site") public Set
    * getRoutineVisits() { return this.routineVisits; }
@@ -120,5 +169,7 @@ public class Site implements java.io.Serializable {
    * public void setDieselVisits(Set dieselVisits) { this.dieselVisits =
    * dieselVisits; }
    */
+  
+  
 
 }
