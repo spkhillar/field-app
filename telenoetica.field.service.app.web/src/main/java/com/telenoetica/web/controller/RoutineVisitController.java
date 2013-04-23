@@ -12,7 +12,8 @@ import com.telenoetica.jpa.entities.RoutineVisit;
 @RequestMapping(value="/routine")
 public class RoutineVisitController {
   
-  @RequestMapping(value="/save",method = RequestMethod.POST,headers="Accept=application/json")
+  @RequestMapping(value="/save",method = RequestMethod.POST,headers={"Accept=application/json"},consumes = {
+"application/json"})
   @ResponseBody
   public String save( @RequestBody RoutineVisit routineVisit){
     return "sucess";

@@ -46,7 +46,7 @@ public class RoutineVisit implements java.io.Serializable {
   private Site site;
   
   @JsonProperty
-  private Long accessCode;
+  private String accessCode;
   
   @JsonProperty
   private Long dieselLevelT1;
@@ -111,7 +111,7 @@ public class RoutineVisit implements java.io.Serializable {
     this.createdAt = createdAt;
   }
 
-  public RoutineVisit(User user, Site site, Long accessCode, Long dieselLevelT1, Long dieselLevelT2, Long runHourGen1,
+  public RoutineVisit(User user, Site site, String accessCode, Long dieselLevelT1, Long dieselLevelT2, Long runHourGen1,
       Long runHourGen2, Long voltageNrVolts, Long voltageNyVolts, Long voltageNbVolts, Long loadRPhaseAmps,
       Long loadYPhaseAmps, Long loadBPhaseAmps, Long rectifierOpVoltage, Long rectifierOpCurrentAmp,
       Long batteryCapcityV, Long batteryCapcityAh, Boolean atsFunctional, Boolean atsSysncronising,
@@ -182,11 +182,11 @@ public class RoutineVisit implements java.io.Serializable {
   }
 
   @Column(name = "access_code")
-  public Long getAccessCode() {
+  public String getAccessCode() {
     return this.accessCode;
   }
 
-  public void setAccessCode(Long accessCode) {
+  public void setAccessCode(String accessCode) {
     this.accessCode = accessCode;
   }
 

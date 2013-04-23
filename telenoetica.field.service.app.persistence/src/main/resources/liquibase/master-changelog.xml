@@ -249,4 +249,8 @@
     <changeSet author="shiv prasad khillar" id="1366412359126-22">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role"  constraintName="user_role_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"  referencesUniqueColumn="false"/>
     </changeSet>
+    
+    <changeSet author="shiv prasad khillar" id="1366412359126-23">
+    <modifyDataType tableName="routine_visit" columnName="access_code" newDataType="varchar(255)"/>
+    </changeSet>
 </databaseChangeLog>
