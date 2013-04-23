@@ -574,3 +574,73 @@ nav ul ul li a:hover {
 nav ul ul ul {
 	position: absolute; left: 100%; top:0;
 }
+
+form fieldset {
+  margin-bottom: 10px;
+}
+form legend {
+  padding: 0 2px;
+  font-weight: bold;
+}
+form label {
+  display: inline-block;
+  line-height: 1.8;
+  vertical-align: top;
+}
+form fieldset ol {
+  margin: 0;
+  padding: 0;
+}
+form fieldset li {
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+}
+form fieldset fieldset {
+  border: none;
+  margin: 3px 0 0;
+}
+form fieldset fieldset legend {
+  padding: 0 0 5px;
+  font-weight: normal;
+}
+form fieldset fieldset label {
+  display: block;
+  width: auto;
+}
+form em {
+  font-weight: bold;
+  font-style: normal;
+  color: #f00;
+}
+form label {
+  width: 120px; /* Width of labels */
+}
+form fieldset fieldset label {
+  margin-left: 123px; /* Width plus 3 (html space) */
+}
+
+
+.button_class {
+	-moz-box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	box-shadow:inset 0px 1px 0px 0px #c1ed9c;
+	background-color:#9dce2c;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #83c41a;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #689324;
+}.button_class:hover {
+	background-color:#8cb82b;
+}.button_class:active {
+	position:relative;
+	top:1px;
+}
