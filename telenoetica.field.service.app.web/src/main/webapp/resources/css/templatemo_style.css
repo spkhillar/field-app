@@ -620,6 +620,12 @@ form fieldset fieldset label {
   margin-left: 123px; /* Width plus 3 (html space) */
 }
 
+.error {
+	color:red;
+	width:223px;
+	margin: 3px;
+}
+
 
 .button_class {
 	-moz-box-shadow:inset 0px 1px 0px 0px #c1ed9c;

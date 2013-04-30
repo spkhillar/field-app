@@ -3,6 +3,14 @@
 <html>
 <head>
 <script type="text/javascript" src="resources/js/application.js"></script>
+
+<script type="text/javascript">
+$().ready(function() {	
+	$("#myForm").validate();	
+	
+});
+
+</script>
 </head>
 
 <body>
@@ -12,15 +20,14 @@
 	</div>
 
 	<P>The time on the server is ${serverTime}.</P>
-<form>
+<form method="post" id="myForm" name="myForm">
 	<fieldset>
 		<legend>Delivery Details</legend>
 		<ol>
-			<li><label for="name">Name<em>*</em></label> <input id="name" />
+			<li><label for="name">Name<em>*</em></label> <input id="name" class="required"/>
 			</li>
-			<li><label for="address1">Address<em>*</em></label> <input
-				id="address1" /></li>
-			<li><label for="address2">Address 2</label> <input id="address2" />
+			<li><label for="address1">Address<em>*</em></label> <input id="address1" class="required"/></li>
+			<li><label for="address2">Address 2</label> <input id="address2"  />
 			</li>
 			<li><label for="town-city">Town/City</label> <input
 				id="town-city" /></li>
@@ -38,7 +45,7 @@
 				</fieldset>
 			</li>
 		</ol>
-		<a href="#" class="button_class">Submit</a>
+		<input class="submit" type="submit" value="Submit"/>
 	</fieldset>
 </form>
 </body>

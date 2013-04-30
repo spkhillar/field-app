@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Field Service Application</title>
 <script type="text/javascript" src="resources/js/jquery.js"></script>
+<script type="text/javascript" src="resources/js/jquery.validate.min.js"></script>
 <link href="resources/css/templatemo_style.css" rel="stylesheet" type="text/css" />
 
 </head>
@@ -52,7 +53,7 @@
 			<ul>
 				<li><a href="#">Routine Visit</a>			
 					<ul>
-						<li><a href="#">Add</a></li>
+						<li><a href="routine/create" target="_self">Add</a></li>
 						<li><a href="#">Update</a></li>
 					</ul>
 					</li>

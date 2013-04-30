@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.telenoetica.jpa.entities.RoutineVisit;
 
 @Controller
-@RequestMapping(value="/routine")
+@RequestMapping(value = "/routine")
 public class RoutineVisitController {
-  
-  @RequestMapping(value="/save",method = RequestMethod.POST,headers={"Accept=application/json"},consumes = {
-"application/json"})
+
+  @RequestMapping(value = "/save", method = RequestMethod.POST, headers = { "Accept=application/json" }, consumes = { "application/json" })
   @ResponseBody
-  public String save( @RequestBody RoutineVisit routineVisit){
+  public String save(@RequestBody RoutineVisit routineVisit) {
     return "sucess";
   }
-  @RequestMapping(value="/create")
-  public String create(){
+
+  @RequestMapping(value = "/create")
+  public String create() {
     return "routine.create";
   }
 
