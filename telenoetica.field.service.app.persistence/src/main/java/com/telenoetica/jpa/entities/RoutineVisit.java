@@ -14,10 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -39,10 +39,10 @@ public class RoutineVisit implements java.io.Serializable {
   
   private Integer version;
   
-  @JsonProperty
+  //@JsonProperty
   private User user;
   
-  @JsonProperty
+  //@JsonProperty
   private Site site;
   
   @JsonProperty
@@ -104,13 +104,20 @@ public class RoutineVisit implements java.io.Serializable {
   
   @JsonProperty
   private Date createdAt=new Date();
+  
+  @Transient
+  private Long userId;
 
+  @Transient
+  private Long siteId;
   public RoutineVisit() {}
 
   public RoutineVisit(Date createdAt) {
     this.createdAt = createdAt;
   }
 
+  
+  
   public RoutineVisit(User user, Site site, String accessCode, Long dieselLevelT1, Long dieselLevelT2, Long runHourGen1,
       Long runHourGen2, Long voltageNrVolts, Long voltageNyVolts, Long voltageNbVolts, Long loadRPhaseAmps,
       Long loadYPhaseAmps, Long loadBPhaseAmps, Long rectifierOpVoltage, Long rectifierOpCurrentAmp,
@@ -169,6 +176,9 @@ public class RoutineVisit implements java.io.Serializable {
 
   public void setUser(User user) {
     this.user = user;
+    if(this.user != null){
+      this.userId = this.user.getId();
+    }
   }
 
   @ManyToOne(fetch = FetchType.LAZY)
@@ -179,6 +189,9 @@ public class RoutineVisit implements java.io.Serializable {
 
   public void setSite(Site site) {
     this.site = site;
+    if(this.site != null){
+      this.siteId = this.site.getId();
+    }
   }
 
   @Column(name = "access_code")
@@ -361,5 +374,23 @@ public class RoutineVisit implements java.io.Serializable {
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
+  public Long getSiteId() {
+    return siteId;
+  }
+
+  public void setSiteId(Long siteId) {
+    this.siteId = siteId;
+  }
+  
+  
 
 }

@@ -5,7 +5,9 @@
 <tiles-definitions>
 	<definition name="base.definition"
 		template="/WEB-INF/views/jsp/base/layout.jsp">
+		<put-attribute name="main-content" value="/WEB-INF/views/jsp/base/header.jsp" />
 		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/jsp/base/footer.jsp" />
 	</definition>
 
 	<definition name="home" extends="base.definition">
