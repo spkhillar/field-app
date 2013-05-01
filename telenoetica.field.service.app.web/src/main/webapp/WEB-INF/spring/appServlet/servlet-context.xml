@@ -33,7 +33,7 @@
 		<property name="prefix" value="/WEB-INF/views/" /> <property name="suffix" 
 		value=".jsp" /> </bean> -->
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"	value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="viewClass"	value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<property name="order" value="1" />
 	</bean>
 	
@@ -56,7 +56,7 @@
 	  </bean>
 	  
 	  <bean id="tilesConfigurer"
-		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
 				<value>/WEB-INF/tiles-config.xml</value>

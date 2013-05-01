@@ -12,8 +12,9 @@ $().ready(function() {
 
 </script>
 </head>
-
 <body>
+<div style="height: 400px;">
 	<P>The time on the server is ${serverTime}.</P>
+</div>
 </body>
 </html>
