@@ -20,8 +20,7 @@
 		    ignoreTitle : true,
 		    rules : {
 				"accessCode" : {
-		        required : true,
-		        siteIdCheck:true
+		        required : true
 		      },
 		      "callOutCsrOrTtNumber" : {
 		    	  required : true,
@@ -67,9 +66,10 @@ function submitcalloutData(){
 	if(saved == 'disabled'){
 		return;
 	}
-	
-	var actionUrl = "/${contextPath}/callout/save";
-	
+	console.log('.....webContextPath....'+webContextPath);
+	var actionUrl = webContextPath+"/callout/save";
+
+	console.log('..actionUrl-callout..',actionUrl);
 	var isValid = $("#calloutCreateForm").valid();
 	console.log('Form Valid...',isValid);
 	if(isValid){

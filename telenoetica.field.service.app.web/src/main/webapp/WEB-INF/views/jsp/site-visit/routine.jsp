@@ -133,8 +133,8 @@ function submitRoutineData(){
 		return;
 	}
 	
-	var actionUrl = "/${contextPath}/routine/save";
-	
+	var actionUrl = webContextPath+'/routine/save';
+	console.log('..actionUrl-routine..',actionUrl);
 	var isValid = $("#routineCreateForm").valid();
 	console.log('Form Valid...',isValid);
 	if(isValid){
