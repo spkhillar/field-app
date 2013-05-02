@@ -57,11 +57,7 @@
 						<li><a href="#">Delete</a></li>
 					</ul>
 				</li>
-				<li><a href="#">Call Out Visit</a>			
-					<ul>
-						<li><a href="#">Add</a></li>
-						<li><a href="#">Delete</a></li>
-					</ul>
+				<li><a href="${contextPath}/callout/new">Call Out Visit</a>			
 				</li>
 				<li><a href="#">Maintainance Visit</a>			
 					<ul>
