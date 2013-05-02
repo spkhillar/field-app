@@ -20,7 +20,8 @@
 		    ignoreTitle : true,
 		    rules : {
 				"accessCode" : {
-		        required : true
+		        required : true,
+		        siteIdCheck:true
 		      },
 		      "dieselLevelT1" : {
 		    	  required : true,
@@ -98,7 +99,8 @@
 		jQuery.validator.addMethod('siteIdCheck', 
 		    function (value) {
 			return value.match(/(^\d{2}(\/\d{2})(\/\d{3})?$)/);
-		    }, "Site should be in format xx/xx/nnn");
+		    }, 
+		    "Site should be in format xx/xx/nnn");
 		
 		
 	});
@@ -131,7 +133,7 @@ function submitRoutineData(){
 		return;
 	}
 	
-	var actionUrl = "/fieldapp/routine/save";
+	var actionUrl = "/${contextPath}/routine/save";
 	
 	var isValid = $("#routineCreateForm").valid();
 	console.log('Form Valid...',isValid);
@@ -177,7 +179,7 @@ function refreshRoutineData(){
 		<fieldset>
 				<p>
 					<label>Access Code <em>*</em> </label> 
-					<form:input path="accessCode" cssClass="required"/>
+					<form:input path="accessCode"/>
 				</p>
 				<p>
 					<label>Diesel Level T1</label> 

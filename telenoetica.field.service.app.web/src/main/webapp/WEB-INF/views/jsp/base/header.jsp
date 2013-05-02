@@ -18,8 +18,7 @@
 <body>
 	
 	<spring:url value="/" var="homeUrl" htmlEscape="true"/>
-	<spring:url value="routine/create" var="addRoutineUrl" htmlEscape="true"/>
-	
+	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
     
 		<div id="templatemo_header">
@@ -49,11 +48,8 @@
 		</li>
 		<li><a href="#">Site Visit</a>
 			<ul>
-				<li><a href="#">Routine Visit</a>			
-					<ul>
-						<li><a href="${addRoutineUrl}">Add</a></li>
-						<li><a href="#">Update</a></li>
-					</ul>
+				<li><a href="${contextPath}/routine/new">Routine Visit</a>			
+					
 					</li>
 				<li><a href="#">Diesel Visit</a>			
 					<ul>
