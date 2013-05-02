@@ -16,24 +16,90 @@
 	
 	$(document).ready(function() {	
 		$("#routineCreateForm").validate( {
-
 		    success : "valid",
 		    ignoreTitle : true,
 		    rules : {
 				"accessCode" : {
-		        required : true,
-		        accessCodecheck:true,
+		        required : true
 		      },
 		      "dieselLevelT1" : {
-		    	  number : true
+		    	  required : true,
+		    	  min: 1,
+		    	  max:6000
+		      },
+		      "dieselLevelT2" : {
+		    	  number : true,
+		    	  min: 1,
+		    	  max:6000
+		      },
+		      "runHourGen1":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:30000
+		      },
+		      "runHourGen2":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:30000
+		      },
+		      "voltageNrVolts":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:400
+		      },
+		      "voltageNyVolts":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:400
+		      },
+		      "voltageNbVolts":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:400
+		      },
+		      "loadRPhaseAmps":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:999
+		      },
+		      "loadYPhaseAmps":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:999
+		      },
+		      "loadBPhaseAmps":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:999
+		      },
+		      "rectifierOpVoltage":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:99
+		      },
+		      "rectifierOpCurrentAmp":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:999
+		      },
+		      "batteryCapcityV":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:50
+		      },
+		      "batteryCapcityAh":{
+		    	  number : true,
+		    	  min: 1,
+		    	  max:2000
 		      }
-		  }
+		    }
 		});
 		
-		jQuery.validator.addMethod('accessCodecheck', 
+		jQuery.validator.addMethod('siteIdCheck', 
 		    function (value) {
 			return value.match(/(^\d{2}(\/\d{2})(\/\d{3})?$)/);
-		    }, "Acces Code should be in format xx/xx/nnn");
+		    }, "Site should be in format xx/xx/nnn");
+		
 		
 	});
 	
@@ -52,34 +118,45 @@
 			equalTo: "Please enter the same value again.",
 			maxlength: $.validator.format("Please enter no more than {0} characters."),
 			minlength: $.validator.format("Please enter at least {0} characters."),
-			rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
-			range: $.validator.format("Please enter a value between {0} and {1}."),
+			range: $.validator.format("Please enter a value between {0} and {1} characters long."),
+			rangelength: $.validator.format("Please enter a value between {0} and {1}."),
 			max: $.validator.format("Please enter a value less than or equal to {0}."),
 			min: $.validator.format("Please enter a value greater than or equal to {0}.")
 		}
  */	}
 
 function submitRoutineData(){
+	 var saved = $("#save").attr("disabled");
+	if(saved == 'disabled'){
+		return;
+	}
 	
 	var actionUrl = "/fieldapp/routine/save";
 	
 	var isValid = $("#routineCreateForm").valid();
 	console.log('Form Valid...',isValid);
 	if(isValid){
-	var str = $("#routineCreateForm").serialize();
-	console.log('values...',str);
-	$.ajax({
-	    type:"post",
-	    data:str,
-	    url:actionUrl,
-	    async: false,
-	    success: function(){
-	       alert("success");
-	    }
-	});
-	
+		var str = $("#routineCreateForm").serialize();
+		console.log('values...',str);
+		$.ajax({
+		    type:"post",
+		    data:str,
+		    url:actionUrl,
+		    async: false,
+		    success: function(data, textStatus){
+		       alert(data+""+textStatus);
+		       $("#save").attr("disabled","disabled");
+		       $("#save").css("background-color","silver");
+		    },
+		    error: function(textStatus,errorThrown){
+			       alert(textStatus+""+errorThrown);
+			}
+		});
+	}
 }
-	
+
+function refreshRoutineData(){
+	location.reload();
 }
 
 </script>
@@ -177,8 +254,8 @@ function submitRoutineData(){
 				</p>
 		</fieldset>
 	</form:form>
-			<a class="button_class">Reset</a>
-			<a onclick="submitRoutineData();" class="button_class">Save</a>
+			<a class="button_class" onclick="refreshRoutineData();" id="reset">Reset</a>
+			<a onclick="submitRoutineData();" class="button_class" id ="save">Save</a>
 
 </body>
 </html>

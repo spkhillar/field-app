@@ -1,5 +1,6 @@
 package com.telenoetica.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.telenoetica.jpa.entities.RoutineVisit;
+import com.telenoetica.service.RoutineVisitService;
 
 @Controller
 @RequestMapping(value = "/routine")
@@ -15,6 +17,8 @@ import com.telenoetica.jpa.entities.RoutineVisit;
 @SessionAttributes("routineForm")
 public class RoutineVisitController {
 
+  @Autowired
+  private RoutineVisitService routineVisitService;
   
   @ModelAttribute("routineForm")
   public RoutineVisit createFormBean() {
@@ -24,7 +28,8 @@ public class RoutineVisitController {
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   @ResponseBody
   public String save(RoutineVisit routineVisit) {
-    return "sucess";
+    RoutineVisit savedRoutineVisit = routineVisitService.saveOrUpdate(routineVisit);
+    return "Saved Successfuly with id:"+savedRoutineVisit.getId();
   }
 
   @RequestMapping(value = "/create")

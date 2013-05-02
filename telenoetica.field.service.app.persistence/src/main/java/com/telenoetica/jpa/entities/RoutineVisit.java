@@ -27,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Entity
 @Table(name = "routine_visit")
 @JsonAutoDetect(JsonMethod.NONE)
-public class RoutineVisit implements java.io.Serializable {
+public class RoutineVisit implements java.io.Serializable,BaseEntity {
 
   /**
 	 * 
@@ -105,11 +105,10 @@ public class RoutineVisit implements java.io.Serializable {
   @JsonProperty
   private Date createdAt=new Date();
   
-  @Transient
   private Long userId;
 
-  @Transient
   private Long siteId;
+  
   public RoutineVisit() {}
 
   public RoutineVisit(Date createdAt) {
@@ -374,7 +373,8 @@ public class RoutineVisit implements java.io.Serializable {
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
-
+  
+  @Transient
   public Long getUserId() {
     return userId;
   }
@@ -383,6 +383,7 @@ public class RoutineVisit implements java.io.Serializable {
     this.userId = userId;
   }
 
+  @Transient
   public Long getSiteId() {
     return siteId;
   }
