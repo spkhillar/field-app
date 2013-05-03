@@ -4,19 +4,15 @@ import java.util.Date;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.telenoetica.jpa.entities.CallOutVisit;
 import com.telenoetica.jpa.entities.Site;
 import com.telenoetica.jpa.entities.User;
 import com.telenoetica.jpa.repositories.SiteDAO;
 import com.telenoetica.jpa.repositories.UserDAO;
-import com.telenoetica.jpa.test.BaseTest;
 import com.telenoetica.service.CallOutVisitService;
 
-@ContextConfiguration(locations = {
-		"classpath:applicationContext-service.xml" },inheritLocations=true)
-public class CallOutVisitServiceTest extends BaseTest{
+public class CallOutVisitServiceTest extends BaseServiceTest{
 
 	@Autowired
 	private CallOutVisitService callOutVisitService;
