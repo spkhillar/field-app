@@ -26,7 +26,7 @@ public class TestEmailService extends BaseServiceTest{
     toAddress.add("satyamit2001@gmail.com");
     EmailTemplate emailTemplate = new EmailTemplate(toAddress,"Test Email","Routine Visit");
     emailTemplate.setAttachmentFileName(f.getAbsolutePath());
-    emailService.sendEmail(emailTemplate);
+    //emailService.sendEmail(emailTemplate);
   }
   
 }

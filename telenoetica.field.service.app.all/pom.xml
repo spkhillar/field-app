@@ -9,6 +9,7 @@
 	<modules>
 		<module>../telenoetica.field.service.app.persistence</module>
 		<module>../telenoetica.field.service.app.integration</module>
+		<!-- <module>../telenoetica.field.service.app.scheduler</module> -->
 		<module>../telenoetica.field.service.app.web</module>
 	</modules>
 
