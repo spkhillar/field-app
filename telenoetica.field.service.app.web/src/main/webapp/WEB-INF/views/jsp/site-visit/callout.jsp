@@ -24,8 +24,7 @@
 		      },
 		      "callOutCsrOrTtNumber" : {
 		    	  required : true,
-		    	  min: 1,
-		    	  max:6000
+		    	  range:[1,600]
 		      }
 		    }
 		});

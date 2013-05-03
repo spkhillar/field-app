@@ -8,7 +8,7 @@
 <html>
 <head>
 <spring:url value="/resources/css/templatemo_style.css" var="resourceCssUrl"/>
-<spring:url value="/resources/js/jquery.js" var="resourceJqUrl"/>
+<spring:url value="/resources/js/jquery-1.9.1.min.js" var="resourceJqUrl"/>
 <spring:url value="/resources/js/jquery.validate.min.js" var="resourceJqvUrl"/>
 <spring:url value="/resources/js/application.js" var="resourceAppJsUrl"/>
 

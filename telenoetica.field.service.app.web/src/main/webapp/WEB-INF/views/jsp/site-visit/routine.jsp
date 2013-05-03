@@ -25,73 +25,59 @@
 		      },
 		      "dieselLevelT1" : {
 		    	  required : true,
-		    	  min: 1,
-		    	  max:6000
+		    	  range:[1,6000]
 		      },
 		      "dieselLevelT2" : {
 		    	  number : true,
-		    	  min: 1,
-		    	  max:6000
+		    	  range:[1,6000]
 		      },
 		      "runHourGen1":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:30000
+		    	  range:[1,30000]
 		      },
 		      "runHourGen2":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:30000
+		    	  range:[1,30000]
 		      },
 		      "voltageNrVolts":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:400
+		    	  range:[1,400]
 		      },
 		      "voltageNyVolts":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:400
+		    	  range:[1,400]
 		      },
 		      "voltageNbVolts":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:400
+		    	  range:[1,400]
 		      },
 		      "loadRPhaseAmps":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:999
+		    	  range:[1,999]
 		      },
 		      "loadYPhaseAmps":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:999
+		    	  range:[1,999]
 		      },
 		      "loadBPhaseAmps":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:999
+		    	  range:[1,999]
 		      },
 		      "rectifierOpVoltage":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:99
+		    	  range:[1,99]
 		      },
 		      "rectifierOpCurrentAmp":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:999
+		    	  range:[1,999]
 		      },
 		      "batteryCapcityV":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:50
+		    	  range:[1,50]
 		      },
 		      "batteryCapcityAh":{
 		    	  number : true,
-		    	  min: 1,
-		    	  max:2000
+		    	  range:[1,2000]
 		      }
 		    }
 		});
