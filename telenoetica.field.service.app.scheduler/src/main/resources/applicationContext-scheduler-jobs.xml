@@ -3,47 +3,65 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
-	
+
 	<bean id="routineVisitJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass" value="com.telenoetica.scheduler.job.RoutineVisitJob" />
+		<property name="requestsRecovery" value="false" />
+		<property name="volatility" value="true" />
 	</bean>
-	
+
 	<bean id="callOutVisitJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass" value="com.telenoetica.scheduler.job.CallOutVisitJob" />
+		<property name="requestsRecovery" value="false" />
+		<property name="volatility" value="true" />
 	</bean>
-	
+
 	<bean id="dieselVisitJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass" value="com.telenoetica.scheduler.job.DieselVisitJob" />
+		<property name="requestsRecovery" value="false" />
+		<property name="volatility" value="true" />
 	</bean>
-	
+
 	<bean id="maintenanceVisitJob" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass" value="com.telenoetica.scheduler.job.MaintenanceVisitJob" />
+		<property name="requestsRecovery" value="false" />
+		<property name="volatility" value="true" />
 	</bean>
-	
-	<bean id="routineVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-    <property name="jobDetail" ref="routineVisitJob" />
-    <!-- run every day 00:10  -->
-    <property name="cronExpression" value="0 10 0 1/1 * ? *" />
-    </bean>
-    
-    <bean id="callOutVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-    <property name="jobDetail" ref="callOutVisitJob" />
-    <!-- run every day 00:20  -->
-    <property name="cronExpression" value="0 20 0 1/1 * ? *" />
+
+	<bean id="routineVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="routineVisitJob" />
+	    <property name="volatility" value="true"/>    
+	    <property name="misfireInstructionName" value="MISFIRE_INSTRUCTION_DO_NOTHING"></property>
+		<!-- run every day 00:10 -->
+		<property name="cronExpression" value="0 10 0 1/1 * ? *" />
+		<!-- Every 1 minute Cron Expression -->
+		<!-- <property name="cronExpression" value="0 0/1 * 1/1 * ? *" /> -->
 	</bean>
-	
-	<bean id="dieselVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-    <property name="jobDetail" ref="dieselVisitJob" />
-    <!-- run every day 00:30  -->
-    <property name="cronExpression" value="0 30 0 1/1 * ? *" />
+
+	<bean id="callOutVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="callOutVisitJob" />
+	    <property name="volatility" value="true"/>    
+	    <property name="misfireInstructionName" value="MISFIRE_INSTRUCTION_DO_NOTHING"></property>
+		<!-- run every day 00:20 -->
+		<property name="cronExpression" value="0 20 0 1/1 * ? *" />
 	</bean>
-	
-	<bean id="maintenanceVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-    <property name="jobDetail" ref="maintenanceVisitJob" />
-    <!-- run every day 00:40  -->
-    <property name="cronExpression" value="0 40 0 1/1 * ? *" />
+
+	<bean id="dieselVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="dieselVisitJob" />
+	    <property name="volatility" value="true"/>    
+	    <property name="misfireInstructionName" value="MISFIRE_INSTRUCTION_DO_NOTHING"></property>
+		<!-- run every day 00:30 -->
+		<property name="cronExpression" value="0 30 0 1/1 * ? *" />
 	</bean>
-	
-	
+
+	<bean id="maintenanceVisitJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="maintenanceVisitJob" />
+	    <property name="volatility" value="true"/>    
+	    <property name="misfireInstructionName" value="MISFIRE_INSTRUCTION_DO_NOTHING"></property>
+		<!-- run every day 00:40 -->
+		<property name="cronExpression" value="0 40 0 1/1 * ? *" />
+	</bean>
+
+
 
 </beans>

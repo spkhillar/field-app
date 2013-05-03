@@ -254,11 +254,8 @@
     <modifyDataType tableName="routine_visit" columnName="access_code" newDataType="varchar(255)"/>
     </changeSet>
     
-    <changeSet author="shiv prasad khillar" id="1367582976614-1">
+     <changeSet author="shiv prasad khillar" id="1367592120329-1">
         <createTable tableName="QRTZ_BLOB_TRIGGERS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="TRIGGER_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
@@ -271,13 +268,10 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-2">
+    <changeSet author="shiv prasad khillar" id="1367592120329-2">
         <createTable tableName="QRTZ_CALENDARS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="CALENDAR_NAME" type="VARCHAR(200)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="CALENDAR" type="BLOB">
                 <constraints nullable="false"/>
@@ -287,11 +281,8 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-3">
+    <changeSet author="shiv prasad khillar" id="1367592120329-3">
         <createTable tableName="QRTZ_CRON_TRIGGERS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="TRIGGER_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
@@ -307,18 +298,18 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-4">
+    <changeSet author="shiv prasad khillar" id="1367592120329-4">
         <createTable tableName="QRTZ_FIRED_TRIGGERS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="ENTRY_ID" type="VARCHAR(95)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="TRIGGER_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="TRIGGER_GROUP" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_VOLATILE" type="VARCHAR(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="INSTANCE_NAME" type="VARCHAR(200)">
@@ -335,18 +326,15 @@
             </column>
             <column name="JOB_NAME" type="VARCHAR(200)"/>
             <column name="JOB_GROUP" type="VARCHAR(200)"/>
-            <column name="IS_NONCONCURRENT" type="VARCHAR(1)"/>
+            <column name="IS_STATEFUL" type="VARCHAR(1)"/>
             <column name="REQUESTS_RECOVERY" type="VARCHAR(1)"/>
         </createTable>
     <modifySql dbms="mysql">
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-5">
+    <changeSet author="shiv prasad khillar" id="1367592120329-5">
         <createTable tableName="QRTZ_JOB_DETAILS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="JOB_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
@@ -360,10 +348,10 @@
             <column name="IS_DURABLE" type="VARCHAR(1)">
                 <constraints nullable="false"/>
             </column>
-            <column name="IS_NONCONCURRENT" type="VARCHAR(1)">
+            <column name="IS_VOLATILE" type="VARCHAR(1)">
                 <constraints nullable="false"/>
             </column>
-            <column name="IS_UPDATE_DATA" type="VARCHAR(1)">
+            <column name="IS_STATEFUL" type="VARCHAR(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="REQUESTS_RECOVERY" type="VARCHAR(1)">
@@ -375,39 +363,46 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-6">
+    <changeSet author="shiv prasad khillar" id="1367592120329-6">
+        <createTable tableName="QRTZ_JOB_LISTENERS">
+            <column name="JOB_NAME" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JOB_GROUP" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JOB_LISTENER" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
+    </changeSet>
+    <changeSet author="shiv prasad khillar" id="1367592120329-7">
         <createTable tableName="QRTZ_LOCKS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="LOCK_NAME" type="VARCHAR(40)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
         </createTable>
     <modifySql dbms="mysql">
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-7">
+    <changeSet author="shiv prasad khillar" id="1367592120329-8">
         <createTable tableName="QRTZ_PAUSED_TRIGGER_GRPS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="TRIGGER_GROUP" type="VARCHAR(200)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
         </createTable>
     <modifySql dbms="mysql">
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-8">
+    <changeSet author="shiv prasad khillar" id="1367592120329-9">
         <createTable tableName="QRTZ_SCHEDULER_STATE">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="INSTANCE_NAME" type="VARCHAR(200)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="LAST_CHECKIN_TIME" type="BIGINT">
                 <constraints nullable="false"/>
@@ -420,11 +415,8 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-9">
+    <changeSet author="shiv prasad khillar" id="1367592120329-10">
         <createTable tableName="QRTZ_SIMPLE_TRIGGERS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="TRIGGER_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
@@ -445,39 +437,24 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-10">
-        <createTable tableName="QRTZ_SIMPROP_TRIGGERS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
+    <changeSet author="shiv prasad khillar" id="1367592120329-11">
+        <createTable tableName="QRTZ_TRIGGER_LISTENERS">
             <column name="TRIGGER_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
             <column name="TRIGGER_GROUP" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="STR_PROP_1" type="VARCHAR(512)"/>
-            <column name="STR_PROP_2" type="VARCHAR(512)"/>
-            <column name="STR_PROP_3" type="VARCHAR(512)"/>
-            <column name="INT_PROP_1" type="INT"/>
-            <column name="INT_PROP_2" type="INT"/>
-            <column name="LONG_PROP_1" type="BIGINT"/>
-            <column name="LONG_PROP_2" type="BIGINT"/>
-            <column name="DEC_PROP_1" type="DECIMAL(13,4)"/>
-            <column name="DEC_PROP_2" type="DECIMAL(13,4)"/>
-            <column name="BOOL_PROP_1" type="VARCHAR(1)"/>
-            <column name="BOOL_PROP_2" type="VARCHAR(1)"/>
+            <column name="TRIGGER_LISTENER" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
-        
     <modifySql dbms="mysql">
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-11">
+    <changeSet author="shiv prasad khillar" id="1367592120329-12">
         <createTable tableName="QRTZ_TRIGGERS">
-            <column name="SCHED_NAME" type="VARCHAR(120)">
-                <constraints nullable="false"/>
-            </column>
             <column name="TRIGGER_NAME" type="VARCHAR(200)">
                 <constraints nullable="false"/>
             </column>
@@ -488,6 +465,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="JOB_GROUP" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_VOLATILE" type="VARCHAR(1)">
                 <constraints nullable="false"/>
             </column>
             <column name="DESCRIPTION" type="VARCHAR(250)"/>
@@ -512,180 +492,82 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-12">
-        <addPrimaryKey columnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_BLOB_TRIGGERS" constraintName="pk_blb_triggers"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-13">
+        <addPrimaryKey columnNames="TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_BLOB_TRIGGERS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-13">
-        <addPrimaryKey columnNames="SCHED_NAME, CALENDAR_NAME" tableName="QRTZ_CALENDARS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-14">
+        <addPrimaryKey columnNames="TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_CRON_TRIGGERS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-14">
-        <addPrimaryKey columnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_CRON_TRIGGERS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-15">
+        <addPrimaryKey columnNames="JOB_NAME, JOB_GROUP" tableName="QRTZ_JOB_DETAILS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-15">
-        <addPrimaryKey columnNames="SCHED_NAME, ENTRY_ID" tableName="QRTZ_FIRED_TRIGGERS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-16">
+        <addPrimaryKey columnNames="JOB_NAME, JOB_GROUP, JOB_LISTENER" tableName="QRTZ_JOB_LISTENERS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-16">
-        <addPrimaryKey columnNames="SCHED_NAME, JOB_NAME, JOB_GROUP" tableName="QRTZ_JOB_DETAILS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-17">
+        <addPrimaryKey columnNames="TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_SIMPLE_TRIGGERS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-17">
-        <addPrimaryKey columnNames="SCHED_NAME, LOCK_NAME" tableName="QRTZ_LOCKS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-18">
+        <addPrimaryKey columnNames="TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_TRIGGERS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-18">
-        <addPrimaryKey columnNames="SCHED_NAME, TRIGGER_GROUP" tableName="QRTZ_PAUSED_TRIGGER_GRPS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-19">
+        <addPrimaryKey columnNames="TRIGGER_NAME, TRIGGER_GROUP, TRIGGER_LISTENER" tableName="QRTZ_TRIGGER_LISTENERS"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-19">
-        <addPrimaryKey columnNames="SCHED_NAME, INSTANCE_NAME" tableName="QRTZ_SCHEDULER_STATE"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-20">
+        <addForeignKeyConstraint baseColumnNames="TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_BLOB_TRIGGERS"  constraintName="QRTZ_BLOB_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS"  referencesUniqueColumn="false"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-20">
-        <addPrimaryKey columnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_SIMPLE_TRIGGERS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-21">
+        <addForeignKeyConstraint baseColumnNames="TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_CRON_TRIGGERS"  constraintName="QRTZ_CRON_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS"  referencesUniqueColumn="false"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-21">
-        <addPrimaryKey columnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_SIMPROP_TRIGGERS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-22">
+        <addForeignKeyConstraint baseColumnNames="JOB_NAME, JOB_GROUP" baseTableName="QRTZ_JOB_LISTENERS"  constraintName="QRTZ_JOB_LISTENERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_NAME, JOB_GROUP" referencedTableName="QRTZ_JOB_DETAILS"  referencesUniqueColumn="false"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-22">
-        <addPrimaryKey columnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" tableName="QRTZ_TRIGGERS"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-23">
+        <addForeignKeyConstraint baseColumnNames="TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_SIMPLE_TRIGGERS"  constraintName="QRTZ_SIMPLE_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS"  referencesUniqueColumn="false"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-23">
-        <addForeignKeyConstraint baseColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_BLOB_TRIGGERS" constraintName="QRTZ_BLOB_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS" referencedTableSchemaName="quartz" referencesUniqueColumn="false"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-24">
+        <addForeignKeyConstraint baseColumnNames="TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_TRIGGER_LISTENERS"  constraintName="QRTZ_TRIGGER_LISTENERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS"  referencesUniqueColumn="false"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-24">
-        <addForeignKeyConstraint baseColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_CRON_TRIGGERS" constraintName="QRTZ_CRON_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS" referencedTableSchemaName="quartz" referencesUniqueColumn="false"/>
+    <changeSet author="shiv prasad khillar" id="1367592120329-25">
+        <addForeignKeyConstraint baseColumnNames="JOB_NAME, JOB_GROUP" baseTableName="QRTZ_TRIGGERS"  constraintName="QRTZ_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="JOB_NAME, JOB_GROUP" referencedTableName="QRTZ_JOB_DETAILS"  referencesUniqueColumn="false"/>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-25">
-        <addForeignKeyConstraint baseColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_SIMPLE_TRIGGERS" constraintName="QRTZ_SIMPLE_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS" referencedTableSchemaName="quartz" referencesUniqueColumn="false"/>
+    <changeSet id="1367592120329-26" author="shiv prasad khillar">
+		<insert tableName="QRTZ_LOCKS">
+			<column name="LOCK_NAME" value="CALENDAR_ACCESS"></column>
+		</insert>
+		<insert tableName="QRTZ_LOCKS">
+			<column name="LOCK_NAME" value="JOB_ACCESS"></column>
+		</insert>
+		<insert tableName="QRTZ_LOCKS">
+			<column name="LOCK_NAME" value="MISFIRE_ACCESS"></column>
+		</insert>
+		<insert tableName="QRTZ_LOCKS">
+			<column name="LOCK_NAME" value="STATE_ACCESS"></column>
+		</insert>
+		<insert tableName="QRTZ_LOCKS">
+			<column name="LOCK_NAME" value="TRIGGER_ACCESS"></column>
+		</insert>
+	</changeSet>
+	
+	<changeSet author="shiv prasad khillar" id="1367592120329-27">
+        <createTable tableName="job_history">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="job_name" type="VARCHAR(250)">
+            <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)">
+            <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="start_time" type="TIMESTAMP"/>
+            <column name="end_time" type="TIMESTAMP"/>
+            <column name="version" type="INT"/>
+        </createTable>
+    <modifySql dbms="mysql">
+         <append value=" engine innodb"/>
+    </modifySql>
     </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-26">
-        <addForeignKeyConstraint baseColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" baseTableName="QRTZ_SIMPROP_TRIGGERS" constraintName="QRTZ_SIMPROP_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP" referencedTableName="QRTZ_TRIGGERS" referencedTableSchemaName="quartz" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-27">
-        <addForeignKeyConstraint baseColumnNames="SCHED_NAME, JOB_NAME, JOB_GROUP" baseTableName="QRTZ_TRIGGERS" constraintName="QRTZ_TRIGGERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SCHED_NAME, JOB_NAME, JOB_GROUP" referencedTableName="QRTZ_JOB_DETAILS" referencedTableSchemaName="quartz" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-28">
-        <createIndex indexName="IDX_QRTZ_FT_INST_JOB_REQ_RCVRY" tableName="QRTZ_FIRED_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="INSTANCE_NAME"/>
-            <column name="REQUESTS_RECOVERY"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-29">
-        <createIndex indexName="IDX_QRTZ_FT_JG" tableName="QRTZ_FIRED_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="JOB_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-30">
-        <createIndex indexName="IDX_QRTZ_FT_J_G" tableName="QRTZ_FIRED_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="JOB_NAME"/>
-            <column name="JOB_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-31">
-        <createIndex indexName="IDX_QRTZ_FT_TG" tableName="QRTZ_FIRED_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-32">
-        <createIndex indexName="IDX_QRTZ_FT_TRIG_INST_NAME" tableName="QRTZ_FIRED_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="INSTANCE_NAME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-33">
-        <createIndex indexName="IDX_QRTZ_FT_T_G" tableName="QRTZ_FIRED_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_NAME"/>
-            <column name="TRIGGER_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-34">
-        <createIndex indexName="IDX_QRTZ_J_GRP" tableName="QRTZ_JOB_DETAILS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="JOB_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-35">
-        <createIndex indexName="IDX_QRTZ_J_REQ_RECOVERY" tableName="QRTZ_JOB_DETAILS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="REQUESTS_RECOVERY"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-36">
-        <createIndex indexName="IDX_QRTZ_T_C" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="CALENDAR_NAME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-37">
-        <createIndex indexName="IDX_QRTZ_T_G" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-38">
-        <createIndex indexName="IDX_QRTZ_T_JG" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="JOB_GROUP"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-39">
-        <createIndex indexName="IDX_QRTZ_T_NEXT_FIRE_TIME" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="NEXT_FIRE_TIME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-40">
-        <createIndex indexName="IDX_QRTZ_T_NFT_MISFIRE" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="MISFIRE_INSTR"/>
-            <column name="NEXT_FIRE_TIME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-41">
-        <createIndex indexName="IDX_QRTZ_T_NFT_ST" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_STATE"/>
-            <column name="NEXT_FIRE_TIME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-42">
-        <createIndex indexName="IDX_QRTZ_T_NFT_ST_MISFIRE" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="MISFIRE_INSTR"/>
-            <column name="NEXT_FIRE_TIME"/>
-            <column name="TRIGGER_STATE"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-43">
-        <createIndex indexName="IDX_QRTZ_T_NFT_ST_MISFIRE_GRP" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="MISFIRE_INSTR"/>
-            <column name="NEXT_FIRE_TIME"/>
-            <column name="TRIGGER_GROUP"/>
-            <column name="TRIGGER_STATE"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-44">
-        <createIndex indexName="IDX_QRTZ_T_N_G_STATE" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_GROUP"/>
-            <column name="TRIGGER_STATE"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-45">
-        <createIndex indexName="IDX_QRTZ_T_N_STATE" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_NAME"/>
-            <column name="TRIGGER_GROUP"/>
-            <column name="TRIGGER_STATE"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="shiv prasad khillar" id="1367582976614-46">
-        <createIndex indexName="IDX_QRTZ_T_STATE" tableName="QRTZ_TRIGGERS" unique="false">
-            <column name="SCHED_NAME"/>
-            <column name="TRIGGER_STATE"/>
-        </createIndex>
-    </changeSet>
-    
+        
 </databaseChangeLog>
