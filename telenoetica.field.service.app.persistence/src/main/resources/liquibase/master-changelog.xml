@@ -569,5 +569,11 @@
          <append value=" engine innodb"/>
     </modifySql>
     </changeSet>
+    
+    <changeSet author="shiv prasad khillar" id="1367592120329-28">
+	    <addColumn tableName="role">
+	    <column name="description" type="varchar(250)"></column>
+	    </addColumn>
+    </changeSet>
         
 </databaseChangeLog>

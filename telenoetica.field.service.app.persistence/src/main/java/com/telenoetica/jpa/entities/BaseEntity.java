@@ -2,6 +2,8 @@
 
 package com.telenoetica.jpa.entities;
 
-public interface BaseEntity {
+import java.io.Serializable;
+
+public interface BaseEntity extends Serializable{
 
 }

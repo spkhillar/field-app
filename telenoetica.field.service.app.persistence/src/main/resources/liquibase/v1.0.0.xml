@@ -16,5 +16,31 @@
 			<column name="enabled" valueNumeric="1"></column>
 		</insert>
 	</changeSet>
+	
+	<changeSet id="1466412359126-2" author="Shiv">
+		<insert tableName="role">
+			<column name="name" value="Admin"></column>
+			<column name="description" value="TELENOETICA I.T  Dept. Administrator"></column>
+		</insert>
+		<insert tableName="role">
+			<column name="name" value="Ops Manager"></column>
+			<column name="description" value="TELENOETICA Operations Dept. Managers"></column>
+		</insert>
+		<insert tableName="role">
+			<column name="name" value="FSE"></column>
+			<column name="description" value="Field Service Engineer"></column>
+		</insert>
+		<insert tableName="role">
+			<column name="name" value="CSOE"></column>
+			<column name="description" value="Customer Service Operations Engineer"></column>
+		</insert>
+	</changeSet>
+	
+	<changeSet id="1466412359126-3" author="Shiv">
+		<insert tableName="user_role">
+			<column name="user_id" value="1"></column>
+			<column name="role_id" value="1"></column>
+		</insert>
+	</changeSet>
 
 </databaseChangeLog>

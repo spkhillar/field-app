@@ -8,14 +8,29 @@
 <html>
 <head>
 <spring:url value="/resources/css/templatemo_style.css" var="resourceCssUrl"/>
+<spring:url value="/resources/css/cupertino/jquery-ui-1.10.2.custom.min.css" var="resourceJqUiCssUrl"/>
+<spring:url value="/resources/css/ui.jqgrid.css" var="resourceJqGridCssUrl"/>
+
 <spring:url value="/resources/js/jquery-1.9.1.min.js" var="resourceJqUrl"/>
 <spring:url value="/resources/js/jquery.validate.min.js" var="resourceJqvUrl"/>
 <spring:url value="/resources/js/application.js" var="resourceAppJsUrl"/>
+<spring:url value="/resources/js/jquery-ui-1.10.2.custom.js" var="resourceJqUiUrl"/>
+<spring:url value="/resources/js/grid.locale-en.js" var="resourceJqGridLocaleUrl"/>
+<spring:url value="/resources/js/jquery.jqGrid.min.js" var="resourceJqGridUrl"/>
+
 
 <script type="text/javascript" src="${resourceJqUrl}"></script>
 <script type="text/javascript" src="${resourceAppJsUrl}"></script>
 <script type="text/javascript" src="${resourceJqvUrl}"></script>
-<link href="${resourceCssUrl}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${resourceJqUiUrl}"></script>
+<script type="text/javascript" src="${resourceJqGridLocaleUrl}"></script>
+<script type="text/javascript" src="${resourceJqGridUrl}"></script>
+
+
+<link rel="stylesheet" type="text/css" href="${resourceCssUrl}"/>
+<link rel="stylesheet" type="text/css" href="${resourceJqUiCssUrl}"/>
+<link rel="stylesheet" type="text/css" href="${resourceJqGridCssUrl}" />
+
 <script type="text/javascript">
 webContextPath="${pageContext.request.contextPath}";
 </script>
@@ -29,19 +44,15 @@ webContextPath="${pageContext.request.contextPath}";
 		<div id="templatemo_header">
         	<div id="site_title"><h1>Field Service Application</h1></div>
         </div>
-        
+        <div>
         <nav>
 	<ul>
 		<li><a href="${homeUrl}">Home</a></li>
 		<li><a href="#">Administration</a>
 			<ul>
-				<li><a href="#">User Management</a>				
-					<ul>
-						<li><a href="#">Add</a></li>
-						<li><a href="#">Update</a></li>
-						<li><a href="#">Delete</a></li>
-					</ul>
-					</li>
+				<li>
+					<a href="${contextPath}/user/list">User Management</a>				
+				</li>
 				<li><a href="#">Phone/Device Management</a>			
 					<ul>
 						<li><a href="#">Add</a></li>
@@ -75,7 +86,7 @@ webContextPath="${pageContext.request.contextPath}";
 		<li><a href="#">Site Statistics</a>
 			<ul>
 				<li><a href="#">Routine Visit</a></li>
-				<li><a href="#">Diesel Visit</a></li>
+				<li><a href="#" >Diesel Visit</a></li>
 				<li><a href="#">Call Out Visit</a></li>
 				<li><a href="#">Maintainance Visit</a></li>
 			</ul>

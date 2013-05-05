@@ -35,6 +35,16 @@
 		    }, 
 		    "Site should be in format xx/xx/nnn");
 		
+		$( "#dialog").dialog({
+			autoOpen: false,
+			width: 300,
+			height:150,
+			resizable: false,
+			draggable: false
+		});
+		$("#save").button();
+		$("#reset").button();
+		
 		
 	});
 	
@@ -61,10 +71,7 @@
  */	}
 
 function submitcalloutData(){
-	 var saved = $("#save").attr("disabled");
-	if(saved == 'disabled'){
-		return;
-	}
+	 
 	console.log('.....webContextPath....'+webContextPath);
 	var actionUrl = webContextPath+"/callout/save";
 
@@ -80,9 +87,8 @@ function submitcalloutData(){
 		    url:actionUrl,
 		    async: false,
 		    success: function(data, textStatus){
-		       alert(data+""+textStatus);
-		       $("#save").attr("disabled","disabled");
-		       $("#save").css("background-color","silver");
+			$( "#dialog").append(data);
+		    $( "#dialog" ).dialog( "open" );
 		    },
 		    error: function(textStatus,errorThrown){
 			       alert(textStatus+""+errorThrown);
@@ -121,8 +127,11 @@ function refreshcalloutData(){
 				</p>
 		</fieldset>
 	</form:form>
-			<a class="button_class" onclick="refreshcalloutData();" id="reset">Reset</a>
-			<a onclick="submitcalloutData();" class="button_class" id ="save">Save</a>
+	<div id="dialog" title="Message">
+	
+	</div>
+	<button id="save" onclick="submitcalloutData();">Save</button>
+	<button id="reset" onclick="refreshcalloutData();">Reset</button>
 
 </body>
 </html>

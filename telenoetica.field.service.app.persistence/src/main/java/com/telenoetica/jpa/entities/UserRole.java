@@ -64,4 +64,27 @@ public class UserRole implements java.io.Serializable {
     this.role = role;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("UserRole [");
+    if (id != null) {
+      builder.append("id=");
+      builder.append(id);
+      builder.append(", ");
+    }
+   /* if (user != null) {
+      builder.append("user=");
+      builder.append(user);
+      builder.append(", ");
+    }*/
+    if (role != null) {
+      builder.append("role=");
+      builder.append(role);
+    }
+    builder.append("]");
+    return builder.toString();
+  }
+
+  
 }

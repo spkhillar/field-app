@@ -1,11 +1,7 @@
 /* Copyright (C) 2013 Telenoetica, Inc. All rights reserved */
 package com.telenoetica.jpa.entities;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
@@ -30,41 +27,44 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Entity
 @Table(name = "user")
 @JsonAutoDetect(JsonMethod.NONE)
-public class User implements BaseEntity,java.io.Serializable {
+public class User implements BaseEntity, java.io.Serializable {
 
   /**
 	 * 
 	 */
   private static final long serialVersionUID = 3228774824582399072L;
-  
+
   @JsonProperty
   private Long id;
-  
+
   @JsonIgnore
   private Integer version;
-  
+
   @JsonProperty
-  private String username;
-  
+  private String userName;
+
   private String password;
-  
+
   @JsonProperty
   private String firstName;
-  
+
   @JsonProperty
   private String lastName;
-  
+
   @JsonProperty
   private String email;
-  
+
   @JsonProperty
   private Boolean enabled;
-  
+
   @JsonProperty
-  private Date createdAt=new Date();
-  
+  private Date createdAt = new Date();
+
   @JsonIgnore
-  private Set<UserRole> userRoles = new HashSet<UserRole>(0);
+  private UserRole userRole;
+
+  @JsonProperty
+  private Long roleId;
 
   /*
    * private Set callOutVisits = new HashSet(0); private Set routineVisits = new
@@ -79,25 +79,34 @@ public class User implements BaseEntity,java.io.Serializable {
   }
 
   public User(String username, String password, String firstName, String lastName, String email, Boolean enabled,
-      Date createdAt, Set<UserRole> userRoles/*
-                                              * ,Set callOutVisits, Set
-                                              * routineVisits, Set
-                                              * maintenanceVisits, Set
-                                              * dieselVisits
-                                              */) {
-    this.username = username;
+      Date createdAt, UserRole userRole/*
+                                        * ,Set callOutVisits, Set routineVisits,
+                                        * Set maintenanceVisits, Set
+                                        * dieselVisits
+                                        */) {
+    this.userName = username;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.enabled = enabled;
     this.createdAt = createdAt;
-    this.userRoles = userRoles;
+    this.userRole = userRole;
     /*
      * this.maintenanceVisits = maintenanceVisits; this.dieselVisits =
      * dieselVisits; this.callOutVisits = callOutVisits; this.routineVisits =
      * routineVisits;
      */
+  }
+
+  public User(String userName, String password, String firstName, String lastName, String email, Boolean enabled) {
+    super();
+    this.userName = userName;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.enabled = enabled;
   }
 
   @Id
@@ -123,11 +132,11 @@ public class User implements BaseEntity,java.io.Serializable {
 
   @Column(name = "username", length = 250)
   public String getUsername() {
-    return this.username;
+    return this.userName;
   }
 
   public void setUsername(String username) {
-    this.username = username;
+    this.userName = username;
   }
 
   @Column(name = "password", length = 250)
@@ -185,14 +194,18 @@ public class User implements BaseEntity,java.io.Serializable {
     this.createdAt = createdAt;
   }
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-  public Set<UserRole> getUserRoles() {
-    return this.userRoles;
+  @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
+  public UserRole getUserRole() {
+    return this.userRole;
   }
 
-  public void setUserRoles(Set<UserRole> userRoles) {
-    this.userRoles = userRoles;
+  public void setUserRole(UserRole userRole) {
+    this.userRole = userRole;
+    if (userRole != null) {
+      this.roleId = userRole.getRole().getId();
+    }
   }
+
   /*
    * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
    * getCallOutVisits() { return this.callOutVisits; }
@@ -219,19 +232,25 @@ public class User implements BaseEntity,java.io.Serializable {
    * dieselVisits; }
    */
 
-  
-  
+  @Transient
+  public Long getRoleId() {
+    return roleId;
+  }
+
+  public void setRoleId(Long roleId) {
+    this.roleId = roleId;
+  }
+
   @Override
   public String toString() {
-    final int maxLen = 10;
     StringBuilder builder = new StringBuilder();
     builder.append("User [");
     if (id != null)
       builder.append("id=").append(id).append(", ");
     if (version != null)
       builder.append("version=").append(version).append(", ");
-    if (username != null)
-      builder.append("username=").append(username).append(", ");
+    if (userName != null)
+      builder.append("username=").append(userName).append(", ");
     if (password != null)
       builder.append("password=").append(password).append(", ");
     if (firstName != null)
@@ -244,8 +263,10 @@ public class User implements BaseEntity,java.io.Serializable {
       builder.append("enabled=").append(enabled).append(", ");
     if (createdAt != null)
       builder.append("createdAt=").append(createdAt).append(", ");
-    if (userRoles != null)
-      builder.append("userRoles=").append(toString(userRoles, maxLen));
+    if (roleId != null)
+      builder.append("roleId=").append(roleId).append(", ");
+    if (userRole != null)
+      builder.append("userRole=").append(userRole);
     builder.append("]");
     return builder.toString();
   }
@@ -255,7 +276,7 @@ public class User implements BaseEntity,java.io.Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((email == null) ? 0 : email.hashCode());
-    result = prime * result + ((username == null) ? 0 : username.hashCode());
+    result = prime * result + ((userName == null) ? 0 : userName.hashCode());
     return result;
   }
 
@@ -273,26 +294,12 @@ public class User implements BaseEntity,java.io.Serializable {
         return false;
     } else if (!email.equals(other.email))
       return false;
-    if (username == null) {
-      if (other.username != null)
+    if (userName == null) {
+      if (other.userName != null)
         return false;
-    } else if (!username.equals(other.username))
+    } else if (!userName.equals(other.userName))
       return false;
     return true;
   }
 
-  private String toString(Collection<?> collection, int maxLen) {
-    StringBuilder builder = new StringBuilder();
-    builder.append("[");
-    int i = 0;
-    for (Iterator<?> iterator = collection.iterator(); iterator.hasNext() && i < maxLen; i++) {
-      if (i > 0)
-        builder.append(", ");
-      builder.append(iterator.next());
-    }
-    builder.append("]");
-    return builder.toString();
-  }
-  
-  
 }
