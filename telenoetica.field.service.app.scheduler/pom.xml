@@ -1,13 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<artifactId>telenoetica.field.service.app.scheduler</artifactId>
 
 	<parent>
 		<groupId>telenoetica.field.service.app</groupId>
 		<artifactId>telenoetica.field.service.app.all</artifactId>
 		<version>1.0.0</version>
+		<relativePath>../telenoetica.field.service.app.all</relativePath>
 	</parent>
-	<artifactId>telenoetica.field.service.app.scheduler</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
