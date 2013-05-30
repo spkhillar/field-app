@@ -21,7 +21,7 @@
 		   		{name:'lastName',index:'lastName', width:100, editable:true, editrules:{required:false}, editoptions:{size:20}},
 		   		{name:'email',index:'email', width:100, editable:true, editrules:{required:true}, editoptions:{size:20}},
 		   		{name:'enabled',index:'enabled', width:50, editable:true, editrules:{required:true},
-		   			edittype:"checkbox",editoptions:{value:"True:False"}},
+		   			edittype:"checkbox",editoptions:{value:"true:false"}},
 		   		{name:'roleId',index:'roleId', width:50, editable:true, editrules:{required:true}, 
 		   			edittype:"select", formatter:'select', stype: 'select', 
 		   			editoptions:{value:roles},
