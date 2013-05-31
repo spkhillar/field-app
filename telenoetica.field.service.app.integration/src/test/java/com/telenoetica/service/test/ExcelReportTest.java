@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.junit.Test;
@@ -20,8 +19,6 @@ import com.telenoetica.service.util.ExcelWriter;
 import com.telenoetica.service.util.ServiceUtil;
 
 public class ExcelReportTest extends BaseServiceTest {
-
-  private static final Logger logger = Logger.getLogger(ExcelReportTest.class);
 
   @Autowired
   private UserService userService;

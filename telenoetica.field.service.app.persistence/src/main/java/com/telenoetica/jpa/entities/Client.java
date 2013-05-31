@@ -18,16 +18,18 @@ import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * Site
+ * Client
  */
 @Entity
-@Table(name = "site")
+@Table(name = "client")
 @JsonAutoDetect(JsonMethod.NONE)
-public class Site implements BaseEntity, java.io.Serializable {
+public class Client implements BaseEntity, java.io.Serializable {
+  
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -2252865704700104403L;
 
-  
-  private static final long serialVersionUID = -8172399414155973257L;
-  
   @JsonProperty
   private Long id;
   
@@ -37,21 +39,17 @@ public class Site implements BaseEntity, java.io.Serializable {
   private String name;
   
   @JsonProperty
-  private String state;
-  
-  @JsonProperty
   private Date createdAt=new Date();
 
-  public Site() {}
+  public Client() {}
 
-  public Site(Date createdAt) {
+  public Client(Date createdAt) {
     this.createdAt = createdAt;
   }
 
-  public Site(String name,String state, Date createdAt) {
+  public Client(String name, Date createdAt) {
     this.name = name;
     this.createdAt = createdAt;
-    this.state=state;
   }
 
   @Id
@@ -83,15 +81,6 @@ public class Site implements BaseEntity, java.io.Serializable {
   public void setName(String name) {
     this.name = name;
   }
-  
-  @Column(name = "state", length = 100)
-  public String getState() {
-    return state;
-  }
-
-  public void setState(String state) {
-    this.state = state;
-  }
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_at", nullable = false, length = 19)
@@ -120,7 +109,7 @@ public class Site implements BaseEntity, java.io.Serializable {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Site other = (Site) obj;
+    Client other = (Client) obj;
     if (createdAt == null) {
       if (other.createdAt != null)
         return false;
@@ -144,8 +133,6 @@ public class Site implements BaseEntity, java.io.Serializable {
       builder.append("version=").append(version).append(", ");
     if (name != null)
       builder.append("name=").append(name).append(", ");
-    if (state != null)
-      builder.append("state=").append(state).append(", ");
     if (createdAt != null)
       builder.append("createdAt=").append(createdAt);
     builder.append("]");
