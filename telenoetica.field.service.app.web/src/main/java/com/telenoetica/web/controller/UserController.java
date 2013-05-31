@@ -2,6 +2,8 @@ package com.telenoetica.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -51,12 +53,26 @@ public class UserController {
 
   @RequestMapping(value = "/create", method = RequestMethod.POST)
   @ResponseBody
-  public RestResponse create(@RequestParam String userName, @RequestParam String password, @RequestParam String firstName,
-      @RequestParam String lastName, @RequestParam String email, @RequestParam boolean enabled, @RequestParam Long roleId) {
+  public RestResponse create(@RequestParam String userName, @RequestParam String password,
+      @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+      @RequestParam boolean enabled, @RequestParam Long roleId) {
     User user = new User(userName, password, firstName, lastName, email, enabled);
     user.setRoleId(roleId);
     user = userService.saveOrUpdate(user);
-    String message = "Saved Successfully with Id"+user.getId();
+    String message = "Saved Successfully with Id" + user.getId();
+    RestResponse response = new RestResponse(0, message);
+    return response;
+  }
+
+  @RequestMapping(value = "/update", method = RequestMethod.POST)
+  @ResponseBody
+  public RestResponse update(@RequestParam String userName, @RequestParam String password,
+      @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
+      @RequestParam boolean enabled, @RequestParam Long roleId) {
+    User user = new User(userName, password, firstName, lastName, email, enabled);
+    user.setRoleId(roleId);
+    // user = userService.saveOrUpdate(user);
+    String message = "Saved Successfully with Id" + user.getId();
     RestResponse response = new RestResponse(0, message);
     return response;
   }
@@ -71,6 +87,17 @@ public class UserController {
     }
     String roles = sb.substring(0, sb.length() - 1);
     return roles;
+  }
+
+  @RequestMapping(value = "/export")
+  public void export(@RequestParam("_search") Boolean search,
+      @RequestParam(value = "filters", required = false) String filters,
+      @RequestParam(value = "page", required = false) Integer page,
+      @RequestParam(value = "rows", required = false) Integer rows,
+      @RequestParam(value = "sidx", required = false) String sidx,
+      @RequestParam(value = "sord", required = false) String sord,HttpServletResponse httpServletResponse) {
+    
+    userService.exportUsers(httpServletResponse, "users.xls");
   }
 
 }

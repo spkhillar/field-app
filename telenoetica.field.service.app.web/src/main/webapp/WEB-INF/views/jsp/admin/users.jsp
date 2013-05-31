@@ -53,7 +53,7 @@
 		});
 
 		$("#grid").jqGrid('navGrid','#pager',
-				{edit:false, add:false, del:false, search:false},
+				{edit:false, add:false, del:false, search:false,excel: true},
 				{}, {}, {}, 
 				{ 	/* // search
 					sopt:['cn', 'eq', 'ne', 'lt', 'gt', 'bw', 'ew'],
@@ -73,9 +73,37 @@
 				} 
 		);
 		
+		$("#grid").navButtonAdd('#pager',
+				{ 	caption:"Edit", 
+			buttonicon:"ui-icon-pencil", 
+			onClickButton: editRow,
+			position: "last", 
+			title:"", 
+			cursor: "pointer"
+			} 
+		);
+		
+		$("#grid").navButtonAdd('#pager',
+				{ 	caption:"Export", 
+					buttonicon:"ui-icon-newwin", 
+					onClickButton: exportExcel,
+					position: "last", 
+					title:"", 
+					cursor: "pointer"
+				} 
+		);
+		
 		
 		$("#grid").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : true, defaultSearch:"cn"});
 	});
+	
+	function exportExcel(){
+		alert
+		 jQuery("#grid").jqGrid('excelExport', {
+             tag: 'excel',
+             url: webContextPath+'/user/export'
+         });
+	}
 	
 	function getRoles(){
 		var rolesUrl = webContextPath+"/user/roles";
@@ -93,6 +121,7 @@
 		console.log('role response..',roleResponse);
 		return roleResponse;
 	}
+	
 	function addRow(){
 
    		//$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:false, size:10}});
@@ -141,6 +170,64 @@
 
    		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
 	}
+	
+	function editRow() {
+	$("#grid").jqGrid('setColProp', 'userName', {editoptions:{readonly:true, size:10}});
+		$("#grid").jqGrid('setColProp', 'password', {hidden: true});
+		$("#grid").jqGrid('setColProp', 'password', {editrules:{required:false}});
+		
+	// Get the currently selected row
+	var row = $('#grid').jqGrid('getGridParam','selrow');
+	
+	if( row != null ) {
+	
+		$('#grid').jqGrid('editGridRow', row,
+			{	url: webContextPath+'/user/update', 
+				editData: {},
+		        recreateForm: true,
+		        beforeShowForm: function(form) {
+		            $('#pData').hide();  
+		            $('#nData').hide();
+		        },
+				beforeInitData: function(form) {},
+				closeAfterEdit: true,
+				reloadAfterSubmit:true,
+				afterSubmit : function(response, postdata) 
+				{ 
+
+			        //var result = eval('(' + response.responseText + ')');
+			        if(response.statusCode == 0){
+			        	$('#msgbox').text(response.message);
+						$('#msgbox').dialog( 
+								{	title: 'Success',
+									modal: true,
+									buttons: {"Ok": function()  {
+										$(this).dialog("close");} 
+									}
+								});
+					}else{
+						
+					}
+			    	// only used for adding new records
+			    	var newId = null;
+			    	
+					return ["false", "", newId];
+				}
+			});
+	} else {
+		$('#msgbox').text('You must select a record first!');
+		$('#msgbox').dialog( 
+				{	title: 'Error',
+					modal: true,
+					buttons: {"Ok": function()  {
+						$(this).dialog("close");} 
+					}
+				});
+	}
+}
+	
+	
+	
 	</script>
 </head>
 <body>

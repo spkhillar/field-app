@@ -2,6 +2,8 @@ package com.telenoetica.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.data.domain.Page;
 
 import com.telenoetica.jpa.entities.Role;
@@ -16,7 +18,10 @@ public interface UserService extends BaseService<User> {
   Page<User> findByEnabled(Boolean enabled, int page,int rows);
   Page<User> findByRole(Long role, int page,int rows);
   Page<User> findALL(int page, int rows);
+  List<User> findALL();
   
   List<Role> listRoles();
+  
+  void exportUsers(HttpServletResponse httpServletResponse,String attachmentFileName);
 
 }
