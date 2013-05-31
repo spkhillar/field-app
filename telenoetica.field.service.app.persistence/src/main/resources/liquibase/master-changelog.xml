@@ -727,5 +727,57 @@
 		</modifySql>
 	</changeSet>
 	
+	<changeSet author="shiv prasad khillar" id="1367592120329-33">
+		<addColumn tableName="diesel_visit">
+			<column name="hybrid_or_piu_hr_per_day" type="BIGINT"></column>
+		</addColumn>
+		<addColumn tableName="diesel_visit">
+			<column name="hybrid_or_piu_installed" type="BIT"></column>
+		</addColumn>
+		<addColumn tableName="diesel_visit">
+			<column name="phcn_hr_per_day" type="BIGINT"></column>
+		</addColumn>
+		<addColumn tableName="diesel_visit">
+			<column name="phcn_installed" type="BIT"></column>
+		</addColumn>
+		<modifySql dbms="mysql">
+			<append value=" after diesel_log_book_maintained" />
+		</modifySql>
+	</changeSet>
+	
+	<changeSet author="shiv prasad khillar" id="1367592120329-34">
+		<createTable tableName="maintenance_visit_category">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="name" type="VARCHAR(250)" />
+			<column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at"
+				type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="version" type="INT" />
+		</createTable>
+		<modifySql dbms="mysql">
+			<append value=" engine innodb" />
+		</modifySql>
+	</changeSet>
+	
+	<changeSet author="shiv prasad khillar" id="1367592120329-35">
+		<addColumn tableName="routine_visit">
+			<column name="aircon_shelter4_cooling" type="VARCHAR(25)"></column>
+		</addColumn>
+		<addColumn tableName="routine_visit">
+			<column name="aircon_shelter3_cooling" type="VARCHAR(25)"></column>
+		</addColumn>
+		<addColumn tableName="routine_visit">
+			<column name="aircon_shelter2_cooling" type="VARCHAR(25)"></column>
+		</addColumn>
+		<addColumn tableName="routine_visit">
+			<column name="aircon_shelter1_cooling" type="VARCHAR(25)"></column>
+		</addColumn>
+		<modifySql dbms="mysql">
+			<append value=" after diesel_log_book_maintained" />
+		</modifySql>
+	</changeSet>
 
 </databaseChangeLog>

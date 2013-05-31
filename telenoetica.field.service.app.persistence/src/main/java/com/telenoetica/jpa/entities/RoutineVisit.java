@@ -27,101 +27,111 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Entity
 @Table(name = "routine_visit")
 @JsonAutoDetect(JsonMethod.NONE)
-public class RoutineVisit implements java.io.Serializable,BaseEntity {
+public class RoutineVisit implements java.io.Serializable, BaseEntity {
 
   /**
 	 * 
 	 */
   private static final long serialVersionUID = -8940474556363138173L;
-  
+
   @JsonProperty
   private Long id;
-  
+
   private Integer version;
-  
-  //@JsonProperty
+
+  // @JsonProperty
   private User user;
-  
-  //@JsonProperty
+
+  // @JsonProperty
   private Site site;
-  
+
   @JsonProperty
   private String accessCode;
-  
+
   @JsonProperty
   private Long dieselLevelT1;
-  
+
   @JsonProperty
   private Long dieselLevelT2;
-  
+
   @JsonProperty
   private Long runHourGen1;
-  
+
   @JsonProperty
   private Long runHourGen2;
-  
+
   @JsonProperty
   private Long voltageNrVolts;
-  
+
   @JsonProperty
   private Long voltageNyVolts;
-  
+
   @JsonProperty
   private Long voltageNbVolts;
-  
+
   @JsonProperty
   private Long loadRPhaseAmps;
-  
+
   @JsonProperty
   private Long loadYPhaseAmps;
-  
+
   @JsonProperty
   private Long loadBPhaseAmps;
-  
+
   @JsonProperty
   private Long rectifierOpVoltage;
-  
+
   @JsonProperty
   private Long rectifierOpCurrentAmp;
-  
+
   @JsonProperty
   private Long batteryCapcityV;
-  
+
   @JsonProperty
   private Long batteryCapcityAh;
-  
+
   @JsonProperty
   private Boolean atsFunctional;
-  
+
   @JsonProperty
   private Boolean atsSysncronising;
-  
+
   @JsonProperty
   private Boolean drnBookAtSite;
-  
+
   @JsonProperty
   private Boolean dieselLogBookMaintained;
-  
-  @JsonProperty
-  private Date createdAt=new Date();
-  
-  private Long userId;
 
-  private Long siteId;
-  
+  @JsonProperty
+  private String airconShelter1Cooling;
+
+  @JsonProperty
+  private String airconShelter2Cooling;
+
+  @JsonProperty
+  private String airconShelter3Cooling;
+
+  @JsonProperty
+  private String airconShelter4Cooling;
+
+  @JsonProperty
+  private Date createdAt = new Date();
+
+  private String userId;
+
+  private String siteId;
+
   public RoutineVisit() {}
 
   public RoutineVisit(Date createdAt) {
     this.createdAt = createdAt;
   }
 
-  
-  
-  public RoutineVisit(User user, Site site, String accessCode, Long dieselLevelT1, Long dieselLevelT2, Long runHourGen1,
-      Long runHourGen2, Long voltageNrVolts, Long voltageNyVolts, Long voltageNbVolts, Long loadRPhaseAmps,
-      Long loadYPhaseAmps, Long loadBPhaseAmps, Long rectifierOpVoltage, Long rectifierOpCurrentAmp,
-      Long batteryCapcityV, Long batteryCapcityAh, Boolean atsFunctional, Boolean atsSysncronising,
-      Boolean drnBookAtSite, Boolean dieselLogBookMaintained, Date createdAt) {
+  public RoutineVisit(User user, Site site, String accessCode, Long dieselLevelT1, Long dieselLevelT2,
+      Long runHourGen1, Long runHourGen2, Long voltageNrVolts, Long voltageNyVolts, Long voltageNbVolts,
+      Long loadRPhaseAmps, Long loadYPhaseAmps, Long loadBPhaseAmps, Long rectifierOpVoltage,
+      Long rectifierOpCurrentAmp, Long batteryCapcityV, Long batteryCapcityAh, Boolean atsFunctional,
+      Boolean atsSysncronising, Boolean drnBookAtSite, Boolean dieselLogBookMaintained, Date createdAt) {
     this.user = user;
     this.site = site;
     this.accessCode = accessCode;
@@ -175,8 +185,8 @@ public class RoutineVisit implements java.io.Serializable,BaseEntity {
 
   public void setUser(User user) {
     this.user = user;
-    if(this.user != null){
-      this.userId = this.user.getId();
+    if (this.user != null) {
+      this.userId = this.user.getUsername();
     }
   }
 
@@ -188,8 +198,8 @@ public class RoutineVisit implements java.io.Serializable,BaseEntity {
 
   public void setSite(Site site) {
     this.site = site;
-    if(this.site != null){
-      this.siteId = this.site.getId();
+    if (this.site != null) {
+      this.siteId = this.site.getName();
     }
   }
 
@@ -363,6 +373,42 @@ public class RoutineVisit implements java.io.Serializable,BaseEntity {
   public void setDieselLogBookMaintained(Boolean dieselLogBookMaintained) {
     this.dieselLogBookMaintained = dieselLogBookMaintained;
   }
+  
+  
+  @Column(name = "aircon_shelter1_cooling")
+  public String getAirconShelter1Cooling() {
+    return airconShelter1Cooling;
+  }
+
+  public void setAirconShelter1Cooling(String airconShelter1Cooling) {
+    this.airconShelter1Cooling = airconShelter1Cooling;
+  }
+  @Column(name = "aircon_shelter2_cooling")
+  public String getAirconShelter2Cooling() {
+    return airconShelter2Cooling;
+  }
+
+  public void setAirconShelter2Cooling(String airconShelter2Cooling) {
+    this.airconShelter2Cooling = airconShelter2Cooling;
+  }
+  
+  @Column(name = "aircon_shelter3_cooling")
+  public String getAirconShelter3Cooling() {
+    return airconShelter3Cooling;
+  }
+
+  public void setAirconShelter3Cooling(String airconShelter3Cooling) {
+    this.airconShelter3Cooling = airconShelter3Cooling;
+  }
+  
+  @Column(name = "aircon_shelter4_cooling")
+  public String getAirconShelter4Cooling() {
+    return airconShelter4Cooling;
+  }
+
+  public void setAirconShelter4Cooling(String airconShelter4Cooling) {
+    this.airconShelter4Cooling = airconShelter4Cooling;
+  }
 
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_at", nullable = false, length = 19)
@@ -373,25 +419,23 @@ public class RoutineVisit implements java.io.Serializable,BaseEntity {
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
-  
+
   @Transient
-  public Long getUserId() {
+  public String getUserId() {
     return userId;
   }
 
-  public void setUserId(Long userId) {
+  public void setUserId(String userId) {
     this.userId = userId;
   }
 
   @Transient
-  public Long getSiteId() {
+  public String getSiteId() {
     return siteId;
   }
 
-  public void setSiteId(Long siteId) {
+  public void setSiteId(String siteId) {
     this.siteId = siteId;
   }
-  
-  
 
 }

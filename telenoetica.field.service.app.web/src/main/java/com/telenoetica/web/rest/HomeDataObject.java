@@ -2,6 +2,7 @@ package com.telenoetica.web.rest;
 
 import com.telenoetica.jpa.entities.Client;
 import com.telenoetica.jpa.entities.Fault;
+import com.telenoetica.jpa.entities.MaintenanceVisitCategory;
 import com.telenoetica.jpa.entities.Site;
 import com.telenoetica.jpa.entities.Spare;
 
@@ -27,14 +28,18 @@ public class HomeDataObject {
   @JsonProperty
   private List<Fault> faults = new ArrayList<Fault>(10);
 
+  @JsonProperty
+  List<MaintenanceVisitCategory> maintenanceCategories = new ArrayList<MaintenanceVisitCategory>(10);
+  
   public HomeDataObject() {}
 
-  public HomeDataObject(List<Site> sites, List<Spare> spares, List<Client> clients, List<Fault> faults) {
+  public HomeDataObject(List<Site> sites, List<Spare> spares, List<Client> clients, List<Fault> faults,List<MaintenanceVisitCategory> maintenanceCategories) {
     super();
     this.sites = sites;
     this.spares = spares;
     this.clients = clients;
     this.faults = faults;
+    this.maintenanceCategories = maintenanceCategories;
   }
 
   public List<Site> getSites() {
@@ -68,5 +73,15 @@ public class HomeDataObject {
   public void setFaults(List<Fault> faults) {
     this.faults = faults;
   }
+
+  public List<MaintenanceVisitCategory> getMaintenanceCategories() {
+    return maintenanceCategories;
+  }
+
+  public void setMaintenanceCategories(List<MaintenanceVisitCategory> maintenanceCategories) {
+    this.maintenanceCategories = maintenanceCategories;
+  }
+  
+  
 
 }

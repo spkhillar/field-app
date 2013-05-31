@@ -11,4 +11,6 @@ public interface SiteService extends BaseService<Site>{
 	public Page<Site> getSites(Integer pageNumber);
 	
 	List<Site> getSites();
+	
+	Site findSite(String name);
 }

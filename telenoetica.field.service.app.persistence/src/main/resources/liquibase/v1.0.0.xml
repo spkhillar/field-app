@@ -8830,4 +8830,56 @@
 			</insert>
 		</changeSet>
 
+		<changeSet author="Shiv" id="1370006636842-8">
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="1" />
+				<column name="name" value="PM DG1" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="2" />
+				<column name="name" value="PM DG2" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="3" />
+				<column name="name" value="PM Battery" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="4" />
+				<column name="name" value="PM ATS" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="5" />
+				<column name="name" value="PM Rectifier" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="6" />
+				<column name="name" value="CM DG1" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="7" />
+				<column name="name" value="CM DG2" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="8" />
+				<column name="name" value="CM Battery" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="9" />
+				<column name="name" value="CM ATS" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+			<insert tableName="maintenance_visit_category">
+				<column name="id" valueNumeric="10" />
+				<column name="name" value="CM Rectifier" />
+				<column name="version" valueNumeric="0" />
+			</insert>
+		</changeSet>
 	</databaseChangeLog>

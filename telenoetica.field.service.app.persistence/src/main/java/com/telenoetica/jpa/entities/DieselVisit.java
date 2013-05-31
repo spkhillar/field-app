@@ -21,7 +21,7 @@ import javax.persistence.Version;
  */
 @Entity
 @Table(name = "diesel_visit")
-public class DieselVisit implements java.io.Serializable {
+public class DieselVisit implements java.io.Serializable,BaseEntity {
 
   /**
 	 * 
@@ -43,6 +43,11 @@ public class DieselVisit implements java.io.Serializable {
   private Long runHourGen2;
   private Boolean drnBookAtSite;
   private Boolean dieselLogBookMaintained;
+  private Boolean phcnInstalled;
+  private Long phcnHrsPerDay;
+  private Boolean hybridOrPiuInstalled;
+  private Long hybridOrPiuHrsPerDay;
+
   private Date createdAt;
 
   public DieselVisit() {}
@@ -219,6 +224,42 @@ public class DieselVisit implements java.io.Serializable {
 
   public void setDieselLogBookMaintained(Boolean dieselLogBookMaintained) {
     this.dieselLogBookMaintained = dieselLogBookMaintained;
+  }
+
+  @Column(name = "phcn_installed")
+  public Boolean getPhcnInstalled() {
+    return phcnInstalled;
+  }
+
+  public void setPhcnInstalled(Boolean phcnInstalled) {
+    this.phcnInstalled = phcnInstalled;
+  }
+
+  @Column(name = "phcn_hr_per_day")
+  public Long getPhcnHrsPerDay() {
+    return phcnHrsPerDay;
+  }
+
+  public void setPhcnHrsPerDay(Long phcnHrsPerDay) {
+    this.phcnHrsPerDay = phcnHrsPerDay;
+  }
+
+  @Column(name = "hybrid_or_piu_installed")
+  public Boolean getHybridOrPiuInstalled() {
+    return hybridOrPiuInstalled;
+  }
+
+  public void setHybridOrPiuInstalled(Boolean hybridOrPiuInstalled) {
+    this.hybridOrPiuInstalled = hybridOrPiuInstalled;
+  }
+
+  @Column(name = "hybrid_or_piu_hr_per_day")
+  public Long getHybridOrPiuHrsPerDay() {
+    return hybridOrPiuHrsPerDay;
+  }
+
+  public void setHybridOrPiuHrsPerDay(Long hybridOrPiuHrsPerDay) {
+    this.hybridOrPiuHrsPerDay = hybridOrPiuHrsPerDay;
   }
 
   @Temporal(TemporalType.TIMESTAMP)

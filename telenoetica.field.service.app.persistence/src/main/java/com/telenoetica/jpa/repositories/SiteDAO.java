@@ -7,4 +7,5 @@ import com.telenoetica.jpa.entities.Site;
 
 public interface SiteDAO extends JpaRepository<Site, Long> {
 
+  Site findByName(String name);
 }

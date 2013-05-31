@@ -1,5 +1,7 @@
 package com.telenoetica.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,7 +44,7 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
     }
     
     if(routineVisit.getSite() == null){
-      Site site = siteService.retrieve(1L);
+      Site site = siteService.findSite(routineVisit.getSiteId());
       routineVisit.setSite(site);
     }
     
@@ -54,11 +56,16 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 
   }
 
-  public Page<RoutineVisit> getCallOutVisits(Integer pageNumber) {
+  public Page<RoutineVisit> getVisits(Integer pageNumber) {
 
     PageRequest request =
         new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.DESC, "createdAt");
     return routineVisitDAO.findAll(request);
+  }
+
+  @Override
+  public List<RoutineVisit> getVisits() {
+    return routineVisitDAO.findAll();
   }
 
 }

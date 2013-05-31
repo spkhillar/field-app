@@ -44,4 +44,9 @@ public class SiteServiceImpl implements SiteService {
     return siteDAO.findAll();
   }
 
+  @Override
+  public Site findSite(String name) {
+    return siteDAO.findByName(name);
+  }
+
 }
