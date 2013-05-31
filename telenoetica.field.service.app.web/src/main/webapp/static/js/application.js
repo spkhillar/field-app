@@ -1,6 +1,20 @@
 var webContextPath;
-
+var homeDataObject;
 $(document).ready(function(){
+	
+	$.ajax({
+	    type:"get",
+	    url:webContextPath+"/home",
+	    async: true,
+	    success: function(data, textStatus){
+	    	homeDataObject = data;
+	    	console.log('....data....',data);
+	    },
+	    error: function(textStatus,errorThrown){
+		       alert(textStatus+""+errorThrown);
+		}
+	});
+	
   $("#btn1").click(function(){
    	console.log('hello');
 	myFunction();

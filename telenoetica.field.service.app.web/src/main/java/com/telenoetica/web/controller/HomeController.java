@@ -2,10 +2,12 @@ package com.telenoetica.web.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.telenoetica.jpa.entities.CallOutVisit;
+import com.telenoetica.jpa.entities.Client;
+import com.telenoetica.jpa.entities.Fault;
 import com.telenoetica.jpa.entities.Site;
+import com.telenoetica.jpa.entities.Spare;
 import com.telenoetica.jpa.entities.User;
+import com.telenoetica.service.ClientService;
+import com.telenoetica.service.FaultService;
+import com.telenoetica.service.SiteService;
+import com.telenoetica.service.SpareService;
+import com.telenoetica.web.rest.HomeDataObject;
 
 /**
  * Handles requests for the application home page.
@@ -24,7 +34,17 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Autowired
+	private FaultService faultService;
 	
+	@Autowired
+	private SiteService siteService;
+	
+	@Autowired
+	private SpareService spareService;
+	
+	@Autowired
+	private ClientService clientService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -71,6 +91,16 @@ public class HomeController {
 	  return callOutVisit;
 	}
 	
+	@RequestMapping(value = "/home", method = RequestMethod.GET,produces="application/json")
+  @ResponseBody
+	private HomeDataObject homeObjects(){
+	  List<Fault> faults = faultService.getFaults();
+    List<Site> sites = siteService.getSites();
+    List<Client> clients = clientService.getClients();
+    List<Spare> spares = spareService.getSpares();
+    HomeDataObject homeDataObject = new HomeDataObject(sites, spares, clients, faults);
+    return homeDataObject;
+	}
 	
 	
 }
