@@ -12,14 +12,15 @@
 		   	url:actionUrl,
 			datatype: 'json',
 			mtype: 'GET',
-		   	colNames:['Id', 'Username', 'Password', 'First Name', 'Last Name',"Email","Enabled","Role"],
+		   	colNames:['Id', 'Username', 'Password', 'First Name', 'Last Name',"Phone","Email","Enabled","Role"],
 		   	colModel:[
 		   		{name:'id',index:'id', width:55, editable:false, editoptions:{readonly:true, size:10}, hidden:true},
 		   		{name:'userName',index:'userName', width:100, editable:true, editrules:{required:true}, editoptions:{size:20}},
 		   		{name:'password',index:'password', width:100, editable:true, editrules:{required:true}, editoptions:{size:20}, edittype:'password', hidden:true},
 		   		{name:'firstName',index:'firstName', width:100, editable:true, editrules:{required:true}, editoptions:{size:20}},
 		   		{name:'lastName',index:'lastName', width:100, editable:true, editrules:{required:false}, editoptions:{size:20}},
-		   		{name:'email',index:'email', width:100, editable:true, editrules:{required:true}, editoptions:{size:20}},
+		   		{name:'phone',index:'phone', width:100, editable:true, editrules:{required:true}, editoptions:{size:20}},
+		   		{name:'email',index:'email', width:100, editable:true, editrules:{required:true,email:true}, editoptions:{size:20}},
 		   		{name:'enabled',index:'enabled', width:50, editable:true, editrules:{required:true},
 		   			edittype:"checkbox",editoptions:{value:"true:false"}},
 		   		{name:'roleId',index:'roleId', width:50, editable:true, editrules:{required:true}, 
@@ -224,6 +225,7 @@
 					}
 				});
 	}
+	$("#grid").jqGrid('setColProp', 'userName', {editoptions:{readonly:false, size:10}});
 }
 	
 	

@@ -58,7 +58,7 @@ public class ExcelReportTest extends BaseServiceTest {
     List<List<Object>> targetValues = new ArrayList<List<Object>>();
     for (User user : userList) {
       List<Object> values = new ArrayList<Object>();
-      values.add(ServiceUtil.checkAndReturnValue(user.getUsername()));
+      values.add(ServiceUtil.checkAndReturnValue(user.getUserName()));
       values.add(ServiceUtil.checkAndReturnValue(user.getFirstName()));
       values.add(ServiceUtil.checkAndReturnValue(user.getLastName()));
       values.add(ServiceUtil.checkAndReturnValue(user.getEmail()));

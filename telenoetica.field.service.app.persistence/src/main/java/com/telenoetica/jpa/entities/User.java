@@ -56,6 +56,9 @@ public class User implements BaseEntity, java.io.Serializable {
 
   @JsonProperty
   private Boolean enabled;
+  
+  @JsonProperty
+  private String phone;
 
   @JsonProperty
   private Date createdAt = new Date();
@@ -66,12 +69,6 @@ public class User implements BaseEntity, java.io.Serializable {
   @JsonProperty
   private Long roleId;
 
-  /*
-   * private Set callOutVisits = new HashSet(0); private Set routineVisits = new
-   * HashSet(0); private Set maintenanceVisits = new HashSet(0); private Set
-   * dieselVisits = new HashSet(0);
-   */
-
   public User() {}
 
   public User(Date createdAt) {
@@ -79,11 +76,7 @@ public class User implements BaseEntity, java.io.Serializable {
   }
 
   public User(String username, String password, String firstName, String lastName, String email, Boolean enabled,
-      Date createdAt, UserRole userRole/*
-                                        * ,Set callOutVisits, Set routineVisits,
-                                        * Set maintenanceVisits, Set
-                                        * dieselVisits
-                                        */) {
+      Date createdAt, UserRole userRole,String phone) {
     this.userName = username;
     this.password = password;
     this.firstName = firstName;
@@ -92,14 +85,10 @@ public class User implements BaseEntity, java.io.Serializable {
     this.enabled = enabled;
     this.createdAt = createdAt;
     this.userRole = userRole;
-    /*
-     * this.maintenanceVisits = maintenanceVisits; this.dieselVisits =
-     * dieselVisits; this.callOutVisits = callOutVisits; this.routineVisits =
-     * routineVisits;
-     */
+    this.phone = phone;
   }
 
-  public User(String userName, String password, String firstName, String lastName, String email, Boolean enabled) {
+  public User(String userName, String password, String firstName, String lastName, String email, Boolean enabled,String phone) {
     super();
     this.userName = userName;
     this.password = password;
@@ -107,6 +96,7 @@ public class User implements BaseEntity, java.io.Serializable {
     this.lastName = lastName;
     this.email = email;
     this.enabled = enabled;
+    this.phone = phone;
   }
 
   @Id
@@ -119,24 +109,14 @@ public class User implements BaseEntity, java.io.Serializable {
   public void setId(Long id) {
     this.id = id;
   }
-
-  @Version
-  @Column(name = "version")
-  public Integer getVersion() {
-    return this.version;
-  }
-
-  public void setVersion(Integer version) {
-    this.version = version;
-  }
-
+  
   @Column(name = "username", length = 250)
-  public String getUsername() {
-    return this.userName;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUsername(String username) {
-    this.userName = username;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   @Column(name = "password", length = 250)
@@ -184,6 +164,15 @@ public class User implements BaseEntity, java.io.Serializable {
     this.enabled = enabled;
   }
 
+  @Column(name = "phone", length = 25)
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_at", nullable = false, length = 19)
   public Date getCreatedAt() {
@@ -192,6 +181,16 @@ public class User implements BaseEntity, java.io.Serializable {
 
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
+  }
+
+  @Version
+  @Column(name = "version")
+  public Integer getVersion() {
+    return this.version;
+  }
+
+  public void setVersion(Integer version) {
+    this.version = version;
   }
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
@@ -205,32 +204,6 @@ public class User implements BaseEntity, java.io.Serializable {
       this.roleId = userRole.getRole().getId();
     }
   }
-
-  /*
-   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
-   * getCallOutVisits() { return this.callOutVisits; }
-   * 
-   * public void setCallOutVisits(Set callOutVisits) { this.callOutVisits =
-   * callOutVisits; }
-   * 
-   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
-   * getRoutineVisits() { return this.routineVisits; }
-   * 
-   * public void setRoutineVisits(Set routineVisits) { this.routineVisits =
-   * routineVisits; }
-   * 
-   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
-   * getMaintenanceVisits() { return this.maintenanceVisits; }
-   * 
-   * public void setMaintenanceVisits(Set maintenanceVisits) {
-   * this.maintenanceVisits = maintenanceVisits; }
-   * 
-   * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set
-   * getDieselVisits() { return this.dieselVisits; }
-   * 
-   * public void setDieselVisits(Set dieselVisits) { this.dieselVisits =
-   * dieselVisits; }
-   */
 
   @Transient
   public Long getRoleId() {

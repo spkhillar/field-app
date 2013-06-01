@@ -117,8 +117,10 @@ public class RoutineVisit implements java.io.Serializable, BaseEntity {
   @JsonProperty
   private Date createdAt = new Date();
 
+  @JsonProperty
   private String userId;
 
+  @JsonProperty
   private String siteId;
 
   public RoutineVisit() {}
@@ -186,7 +188,7 @@ public class RoutineVisit implements java.io.Serializable, BaseEntity {
   public void setUser(User user) {
     this.user = user;
     if (this.user != null) {
-      this.userId = this.user.getUsername();
+      this.userId = this.user.getUserName();
     }
   }
 

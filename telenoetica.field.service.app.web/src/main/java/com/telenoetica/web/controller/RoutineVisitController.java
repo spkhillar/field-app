@@ -49,7 +49,7 @@ public class RoutineVisitController {
 
   @RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
   @ResponseBody
-  public RoutineVisit saveApi(@PathVariable Long id) {
+  public RoutineVisit retrieveApi(@PathVariable Long id) {
     RoutineVisit routineVisit = routineVisitService.retrieve(id);
     return routineVisit;
   }
