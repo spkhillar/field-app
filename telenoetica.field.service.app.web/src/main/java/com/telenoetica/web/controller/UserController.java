@@ -55,8 +55,8 @@ public class UserController {
   @ResponseBody
   public RestResponse create(@RequestParam String userName, @RequestParam String password,
       @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-      @RequestParam boolean enabled, @RequestParam Long roleId,@RequestParam String phone) {
-    User user = new User(userName, password, firstName, lastName, email, enabled,phone);
+      @RequestParam boolean enabled, @RequestParam Long roleId) {
+    User user = new User(userName, password, firstName, lastName, email, enabled);
     user.setRoleId(roleId);
     user = userService.saveOrUpdate(user);
     String message = "Saved Successfully with Id" + user.getId();
@@ -68,9 +68,10 @@ public class UserController {
   @ResponseBody
   public RestResponse update(@RequestParam String userName, @RequestParam String password,
       @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-      @RequestParam boolean enabled, @RequestParam Long roleId,@RequestParam String phone) {
-    User user = new User(userName, password, firstName, lastName, email, enabled,phone);
+      @RequestParam boolean enabled, @RequestParam Long roleId) {
+    User user = new User(userName, password, firstName, lastName, email, enabled);
     user.setRoleId(roleId);
+    // user = userService.saveOrUpdate(user);
     String message = "Saved Successfully with Id" + user.getId();
     RestResponse response = new RestResponse(0, message);
     return response;

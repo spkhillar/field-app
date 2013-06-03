@@ -78,7 +78,7 @@ public class HomeController {
     user.setEnabled(true);
     user.setFirstName("Shiv");
     user.setLastName("khillar");
-    user.setUserName("spkhillar");
+    user.setUsername("spkhillar");
     user.setId(1L);
 
     site.setName("Bellandur");
