@@ -1,6 +1,7 @@
 package com.telenoetica.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,18 +11,57 @@ import com.telenoetica.jpa.entities.Role;
 import com.telenoetica.jpa.entities.User;
 
 public interface UserService extends BaseService<User> {
-  
-  Page<User> findByUserNameLike(String userName, int page,int rows);
-  Page<User> findByFirstNameLike(String firstName, int page,int rows);
-  Page<User> findByLastNameLike(String lastName, int page,int rows);
-  Page<User> findByEmailLike(String email, int page,int rows);
-  Page<User> findByEnabled(Boolean enabled, int page,int rows);
-  Page<User> findByRole(Long role, int page,int rows);
-  Page<User> findALL(int page, int rows);
-  List<User> findALL();
-  
-  List<Role> listRoles();
-  
-  void exportUsers(HttpServletResponse httpServletResponse,String attachmentFileName);
-
-}
+	 
+	  /**
+	   * Find all.
+	   *
+	   * @param page the page
+	   * @param rows the rows
+	   * @param sortOrder the sort order
+	   * @param orderByField the order by field
+	   * @return the page
+	   */
+	  Page<User> findALL(int page, int rows, String sortOrder, String orderByField);
+	  
+	  /**
+	   * Find all.
+	   *
+	   * @return the list
+	   */
+	  List<User> findALL();
+	  
+	  /**
+	   * List roles.
+	   *
+	   * @return the list
+	   */
+	  List<Role> listRoles();
+	  
+	  /**
+	   * Export users.
+	   *
+	   * @param filterPredicate the filter predicate
+	   * @param paramObject the param object
+	   * @param httpServletResponse the http servlet response
+	   * @param attachmentFileName the attachment file name
+	   */
+	  void exportUsers(String filterPredicate, Map<String, Object> paramObject, HttpServletResponse httpServletResponse,String attachmentFileName);
+	  
+	  /**
+	   * Update.
+	   *
+	   * @param user the user
+	   * @return the user
+	   */
+	  User update(User user);
+	  
+	  /**
+	   * Find all.
+	   *
+	   * @param page the page
+	   * @param rows the rows
+	   * @param predicate the predicate
+	   * @param params the params
+	   * @return the page
+	   */
+	  Page<User> findALL(int page, int rows,String predicate,Map<String, Object> params);}

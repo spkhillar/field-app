@@ -9,12 +9,12 @@ import com.telenoetica.jpa.entities.BaseEntity;
 import com.telenoetica.jpa.entities.User;
 
 public class DomainObjectMapper {
-  
-  public static List<BaseEntity> listEntities(Page<User> pages){
-    List<BaseEntity> list = new ArrayList<BaseEntity>();
-    for (BaseEntity baseEntity : pages) {
-      list.add(baseEntity);
-    }
-    return list;
-  }
+
+	public static List<Object> listEntities(Page<?> pages) {
+		List<Object> list = new ArrayList<Object>();
+		for (Object baseEntity : pages) {
+			list.add(baseEntity);
+		}
+		return list;
+	}
 }

@@ -17,41 +17,41 @@ import com.telenoetica.web.rest.RestResponse;
 @Controller
 @RequestMapping(value = "/routine")
 @SessionAttributes("routineForm")
-public class RoutineVisitController {
+public class RoutineVisitController extends BaseController{
 
-  @Autowired
-  private RoutineVisitService routineVisitService;
+	@Autowired
+	private RoutineVisitService routineVisitService;
 
-  @ModelAttribute("routineForm")
-  public RoutineVisit createFormBean() {
-    return new RoutineVisit();
-  }
+	@ModelAttribute("routineForm")
+	public RoutineVisit createFormBean() {
+		return new RoutineVisit();
+	}
 
-  @RequestMapping(value = "/save", method = RequestMethod.POST)
-  @ResponseBody
-  public String save(RoutineVisit routineVisit) {
-    RoutineVisit savedRoutineVisit = routineVisitService.saveOrUpdate(routineVisit);
-    return "Saved Successfuly with id:" + savedRoutineVisit.getId();
-  }
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public String save(RoutineVisit routineVisit) {
+		RoutineVisit savedRoutineVisit = routineVisitService.saveOrUpdate(routineVisit);
+		return "Saved Successfuly with id:" + savedRoutineVisit.getId();
+	}
 
-  @RequestMapping(value = "/new")
-  public String create() {
-    return "routine.new";
-  }
+	@RequestMapping(value = "/new")
+	public String create() {
+		return "routine.new";
+	}
 
-  @RequestMapping(value = "/rest", method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
-  @ResponseBody
-  public RestResponse saveApi(@RequestBody RoutineVisit routineVisit) {
-    RoutineVisit savedRoutineVisit = routineVisitService.saveOrUpdate(routineVisit);
-    RestResponse response = new RestResponse(0, "Saved Successfuly with id:" + savedRoutineVisit.getId());
-    return response;
-  }
+	@RequestMapping(value = "/rest", method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
+	@ResponseBody
+	public RestResponse saveApi(@RequestBody RoutineVisit routineVisit) {
+		RoutineVisit savedRoutineVisit = routineVisitService.saveOrUpdate(routineVisit);
+		RestResponse response = new RestResponse(0, "Saved Successfuly with id:" + savedRoutineVisit.getId());
+		return response;
+	}
 
-  @RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
-  @ResponseBody
-  public RoutineVisit saveApi(@PathVariable Long id) {
-    RoutineVisit routineVisit = routineVisitService.retrieve(id);
-    return routineVisit;
-  }
+	@RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
+	@ResponseBody
+	public RoutineVisit saveApi(@PathVariable Long id) {
+		RoutineVisit routineVisit = routineVisitService.retrieve(id);
+		return routineVisit;
+	}
 
 }

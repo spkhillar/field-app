@@ -9,17 +9,17 @@ import java.util.ArrayList;
  * {"groupOp":"AND","rules":[{"field":"firstName","op":"eq","data":"John"}]}
  * </pre>
  */
-public class JqgridFilter {
+public class JqGridFilter {
 	
 	private String source;
 	private String groupOp;
 	private ArrayList<Rule> rules;
 	
-	public JqgridFilter() {
+	public JqGridFilter() {
 		super();
 	}
 	
-	public JqgridFilter(String source) {
+	public JqGridFilter(String source) {
 		super();
 		this.source = source;
 	}
@@ -93,6 +93,18 @@ public class JqgridFilter {
 		public void setData(String data) {
 			this.data = data;
 		}
+	}
+	
+
+
+	public enum RuleOperator{
+	  cn,
+	  eq,
+	  ne,
+	  lt,
+	  gt,
+	  bw,
+	  ew;
 	}
 
 	
