@@ -779,5 +779,13 @@
 			<append value=" after diesel_log_book_maintained" />
 		</modifySql>
 	</changeSet>
+	<changeSet author="shiv prasad khillar" id="1367592120329-36">
+		<addColumn tableName="user">
+			<column name="phone" type="VARCHAR(25)"></column>
+		</addColumn>
+		<modifySql dbms="mysql">
+			<append value=" after enabled" />
+		</modifySql>
+	</changeSet>
 
 </databaseChangeLog>
