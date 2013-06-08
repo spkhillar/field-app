@@ -7,6 +7,7 @@ var bulkOrTransferOption = "Bulk:Bulk;Site:Site";
 var jqgridUserRolesFilter;
 var htmlClientOptions='<option value=""></option>';
 var htmlFaultOptions='<option value=""></option>';
+var htmlEquipmentOptions='<option value=""></option>';
 $(document).ready(function() {
 
 	$.ajax({
@@ -41,6 +42,7 @@ $(document).ready(function() {
 
 	getClientsForDropDown();
 	getFaultsForDropDown();
+	getEquipmentForDropDown();
 
 });
 
@@ -79,4 +81,18 @@ function getFaultsForDropDown(){
 		
 	});
 	htmlFaultOptions += '</option>';
+	
+	
+}
+
+function getEquipmentForDropDown(){
+	var equipmentArray = homeDataObject.faults;
+	$.each(equipmentArray, function(index, value) {
+		htmlEquipmentOptions += '<option value="' + value.name + '">'
+		+ value.name + '</option>';
+		
+	});
+	htmlEquipmentOptions += '</option>';
+	
+	
 }

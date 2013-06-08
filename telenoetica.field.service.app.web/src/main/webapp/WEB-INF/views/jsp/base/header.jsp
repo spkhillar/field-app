@@ -17,6 +17,8 @@
 <spring:url value="/resources/js/jquery-ui-1.10.2.custom.js" var="resourceJqUiUrl"/>
 <spring:url value="/resources/js/grid.locale-en.js" var="resourceJqGridLocaleUrl"/>
 <spring:url value="/resources/js/jquery.jqGrid.min.js" var="resourceJqGridUrl"/>
+<spring:url value="/resources/js/jquery-ui-timepicker-addon.js" var="dateTimePicKerJs"/>
+<spring:url value="/resources/js/sliderAccess.js" var="sliderAccessJS"/>
 
 
 <script type="text/javascript" src="${resourceJqUrl}"></script>
@@ -25,6 +27,8 @@
 <script type="text/javascript" src="${resourceJqUiUrl}"></script>
 <script type="text/javascript" src="${resourceJqGridLocaleUrl}"></script>
 <script type="text/javascript" src="${resourceJqGridUrl}"></script>
+<script type="text/javascript" src="${dateTimePicKerJs}"></script>
+<script type="text/javascript" src="${sliderAccessJS}"></script>
 
 
 <link rel="stylesheet" type="text/css" href="${resourceCssUrl}"/>

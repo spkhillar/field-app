@@ -31,7 +31,15 @@
 		      }
 		    }
 		});
-		
+		var timeOptions={
+				dateFormat : "dd/mm/yy",
+				timeFormat: 'HH:mm:ss',
+				addSliderAccess: true,
+				sliderAccessArgs: { touchonly: false }
+			};
+		$('#timeComplainReceived').datetimepicker(timeOptions);
+		$('#timeReachedToSite').datetimepicker(timeOptions);
+		$('#timeFaultReserved').datetimepicker(timeOptions);
 		$( "#dialog").dialog({
 			autoOpen: false,
 			width: 300,
@@ -44,6 +52,9 @@
 		$('#customer3Impacted').html(htmlClientOptions);
 		$('#customer4Impacted').html(htmlClientOptions);
 		$('#mainCategoryOfFault').html(htmlFaultOptions);
+		$('#equipmentComponentCausedFault').html(htmlEquipmentOptions);
+		$('#equipmentComponentRepaired').html(htmlEquipmentOptions);
+		$('#equipmentComponentReplaced').html(htmlEquipmentOptions);
 		$("#save").button();
 		$("#reset").button();
 		
@@ -170,15 +181,18 @@ function refreshCalloutData(){
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.equipment.component.caused.fault"/></label> 
-					<form:input path="equipmentComponentCausedFault" />
+					<form:select id="equipmentComponentCausedFault" path="equipmentComponentCausedFault">
+					</form:select>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.equipment.componenet.repaired"/></label> 
-					<form:input path="equipmentComponentRepaired" />
+					<form:select id="equipmentComponentRepaired" path="equipmentComponentRepaired">
+					</form:select>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.equipment.componenet.replaced"/></label> 
-					<form:input path="equipmentComponentReplaced" />
+					<form:select id="equipmentComponentReplaced" path="equipmentComponentReplaced">
+					</form:select>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.fix.temporary.permanent"/> </label> 

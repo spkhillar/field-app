@@ -48,6 +48,7 @@ public class CallOutVisitServiceImpl implements CallOutVisitService {
 				throw new ApplicationServiceException("Site \""
 						+ callOutVisit.getSiteId() + "\" not found in system");
 			}
+			callOutVisit.setSite(site);
 		} else {
 			throw new ApplicationServiceException(
 					"Site is required for creating a Routine Visit");
