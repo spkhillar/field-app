@@ -230,12 +230,12 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 *            the http servlet response
 	 * @param attachmentFileName
 	 *            the attachment file name
-	 * @see com.telenoetica.service.RoutineVisitService#exportUsers(java.lang.String,
+	 * @see com.telenoetica.service.RoutineVisitService#exportReport(java.lang.String,
 	 *      java.util.Map, javax.servlet.http.HttpServletResponse,
 	 *      java.lang.String)
 	 */
 	@Override
-	public void exportUsers(String filterPredicate,
+	public void exportReport(String filterPredicate,
 			Map<String, Object> paramObject,
 			HttpServletResponse httpServletResponse, String attachmentFileName) {
 

@@ -14,33 +14,38 @@ import com.telenoetica.jpa.entities.RoutineVisit;
 
 /**
  * The Interface RoutineVisitService.
- *
- * @author  Shiv Prasad Khillar
+ * 
+ * @author Shiv Prasad Khillar
  */
 public interface RoutineVisitService extends BaseService<RoutineVisit> {
 
 	/**
 	 * Gets the visits.
-	 *
-	 * @param pageNumber the page number
+	 * 
+	 * @param pageNumber
+	 *            the page number
 	 * @return the visits
 	 */
 	public Page<RoutineVisit> getVisits(Integer pageNumber);
 
 	/**
 	 * Gets the visits.
-	 *
+	 * 
 	 * @return the visits
 	 */
 	List<RoutineVisit> getVisits();
 
 	/**
 	 * Find all.
-	 *
-	 * @param page the page
-	 * @param rows the rows
-	 * @param sortOrder the sort order
-	 * @param orderByField the order by field
+	 * 
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @param sortOrder
+	 *            the sort order
+	 * @param orderByField
+	 *            the order by field
 	 * @return the page
 	 */
 	Page<RoutineVisit> findALL(int page, int rows, String sortOrder,
@@ -48,11 +53,15 @@ public interface RoutineVisitService extends BaseService<RoutineVisit> {
 
 	/**
 	 * Find all.
-	 *
-	 * @param page the page
-	 * @param rows the rows
-	 * @param predicate the predicate
-	 * @param params the params
+	 * 
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @param predicate
+	 *            the predicate
+	 * @param params
+	 *            the params
 	 * @return the page
 	 */
 	Page<RoutineVisit> findALL(int page, int rows, String predicate,
@@ -60,13 +69,17 @@ public interface RoutineVisitService extends BaseService<RoutineVisit> {
 
 	/**
 	 * Export users.
-	 *
-	 * @param filterPredicate the filter predicate
-	 * @param paramObject the param object
-	 * @param httpServletResponse the http servlet response
-	 * @param attachmentFileName the attachment file name
+	 * 
+	 * @param filterPredicate
+	 *            the filter predicate
+	 * @param paramObject
+	 *            the param object
+	 * @param httpServletResponse
+	 *            the http servlet response
+	 * @param attachmentFileName
+	 *            the attachment file name
 	 */
-	void exportUsers(String filterPredicate, Map<String, Object> paramObject,
+	void exportReport(String filterPredicate, Map<String, Object> paramObject,
 			HttpServletResponse httpServletResponse, String attachmentFileName);
 
 }

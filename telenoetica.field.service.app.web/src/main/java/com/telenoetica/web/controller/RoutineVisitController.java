@@ -219,7 +219,7 @@ public class RoutineVisitController extends AbstractJqGridFilterController {
 			filterPredicate = getFilteredRecords(filters, sord, sidx,
 					paramObject, RoutineVisit.class);
 		}
-		routineVisitService.exportUsers(filterPredicate, paramObject,
+		routineVisitService.exportReport(filterPredicate, paramObject,
 				httpServletResponse, "routine-visit.xls");
 	}
 
