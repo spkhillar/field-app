@@ -24,7 +24,8 @@
 			        siteIdCheck:true
 			   },
 					"accessCode" : {
-			        required : true
+			        	number : true,
+						required : true
 		      },
 		      "dieselLevelT1" : {
 		    	  required : true,
@@ -84,6 +85,9 @@
 		      }
 		    }
 		});
+
+		$("#save").button();
+		$("#reset").button();
 	});
 	
 	function test(){

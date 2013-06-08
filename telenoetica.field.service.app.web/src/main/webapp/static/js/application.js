@@ -3,6 +3,7 @@ var homeDataObject;
 var homeSiteMap;
 var trueOrFalseOption = "true:true;false:false";
 var trueOrFalseNAOption = "true:true;false:false;Not Applicable:Not Applicable";
+var bulkOrTransferOption = "Bulk:Bulk;Site:Site";
 var jqgridUserRolesFilter;
 var htmlClientOptions='<option value=""></option>';
 var htmlFaultOptions='<option value=""></option>';
@@ -23,6 +24,10 @@ $(document).ready(function() {
 	});
 	jqgridUserRolesFilter = getRoles();
 	jQuery.validator.addMethod('siteIdCheck', function(inputValue) {
+		
+		if (inputValue.length == 0){
+			return true;
+		}
 		var found =false;
 		$.each(homeSiteMap, function(index, value) {
 			if(inputValue==value.name){

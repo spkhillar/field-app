@@ -20,6 +20,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.telenoetica.jpa.entities.CallOutVisit;
+import com.telenoetica.jpa.entities.DieselVisit;
+import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.jpa.entities.RoutineVisit;
 import com.telenoetica.jpa.entities.User;
 
@@ -44,6 +46,14 @@ public class ServiceUtil {
 
 		clazzName = RoutineVisit.class.getName();
 		field = getAllFields(RoutineVisit.class);
+		fieldMapping.put(clazzName, field);
+
+		clazzName = DieselVisit.class.getName();
+		field = getAllFields(DieselVisit.class);
+		fieldMapping.put(clazzName, field);
+
+		clazzName = MaintenanceVisit.class.getName();
+		field = getAllFields(MaintenanceVisit.class);
 		fieldMapping.put(clazzName, field);
 	}
 

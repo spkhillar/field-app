@@ -220,7 +220,7 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	}
 
 	/**
-	 * Export users.
+	 * Export Routine Visit.
 	 * 
 	 * @param filterPredicate
 	 *            the filter predicate

@@ -68,7 +68,7 @@ public interface RoutineVisitService extends BaseService<RoutineVisit> {
 			Map<String, Object> params);
 
 	/**
-	 * Export users.
+	 * Export Routine Visit.
 	 * 
 	 * @param filterPredicate
 	 *            the filter predicate

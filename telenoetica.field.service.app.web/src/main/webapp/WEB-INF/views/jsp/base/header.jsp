@@ -59,11 +59,7 @@ webContextPath="${pageContext.request.contextPath}";
 				<li><a href="${contextPath}/routine/new">Routine Visit</a>			
 					
 					</li>
-				<li><a href="#">Diesel Visit</a>			
-					<ul>
-						<li><a href="#">Add</a></li>
-						<li><a href="#">Delete</a></li>
-					</ul>
+				<li><a href="${contextPath}/diesel/new">Diesel Visit</a>
 				</li>
 				<li><a href="${contextPath}/callout/new">Call Out Visit</a>			
 				</li>
@@ -78,7 +74,7 @@ webContextPath="${pageContext.request.contextPath}";
 		<li><a href="#">Site Statistics</a>
 			<ul>
 				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
-				<li><a href="#" >Diesel Visit</a></li>
+				<li><a href="${contextPath}/diesel/list">Diesel Visit</a></li>
 				<li><a href="#">Call Out Visit</a></li>
 				<li><a href="#">Maintainance Visit</a></li>
 			</ul>
