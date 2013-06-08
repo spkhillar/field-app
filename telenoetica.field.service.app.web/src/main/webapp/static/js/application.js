@@ -4,12 +4,14 @@ var homeSiteMap;
 var trueOrFalseOption = "true:true;false:false";
 var trueOrFalseNAOption = "true:true;false:false;Not Applicable:Not Applicable";
 var jqgridUserRolesFilter;
+var htmlClientOptions='<option value=""></option>';
+var htmlFaultOptions='<option value=""></option>';
 $(document).ready(function() {
 
 	$.ajax({
 		type : "get",
 		url : webContextPath + "/home",
-		async : true,
+		async : false,
 		success : function(data, textStatus) {
 			homeDataObject = data;
 			homeSiteMap = homeDataObject.sites;
@@ -30,6 +32,10 @@ $(document).ready(function() {
 
 		return found;
 	}, "Site does not match sites available in the system");
+	
+
+	getClientsForDropDown();
+	getFaultsForDropDown();
 
 });
 
@@ -48,4 +54,24 @@ function getRoles(){
 	});
 	console.log('role response..',roleResponse);
 	return roleResponse;
+}
+
+function getClientsForDropDown(){
+	var clientArray = homeDataObject.clients;
+	$.each(clientArray, function(index, value) {
+		htmlClientOptions += '<option value="' + value.name + '">'
+		+ value.name + '</option>';
+		
+	});
+	htmlClientOptions += '</option>';
+}
+
+function getFaultsForDropDown(){
+	var faultArray = homeDataObject.faults;
+	$.each(faultArray, function(index, value) {
+		htmlFaultOptions += '<option value="' + value.name + '">'
+		+ value.name + '</option>';
+		
+	});
+	htmlFaultOptions += '</option>';
 }

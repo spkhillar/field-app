@@ -19,21 +19,18 @@
 		    success : "valid",
 		    ignoreTitle : true,
 		    rules : {
-				"accessCode" : {
-		        required : true
-		      },
-		      "callOutCsrOrTtNumber" : {
-		    	  required : true,
-		    	  range:[1,600]
+			  "siteId" : {
+			      required : true,
+			      siteIdCheck:true
+			   },
+			  "accessCode" : {
+			       required : true
+		       },
+		      "actionsRequiredForPermanentResolution":{
+		      		maxlength : 50
 		      }
 		    }
 		});
-		
-		jQuery.validator.addMethod('siteIdCheck', 
-		    function (value) {
-			return value.match(/(^\d{2}(\/\d{2})(\/\d{3})?$)/);
-		    }, 
-		    "Site should be in format xx/xx/nnn");
 		
 		$( "#dialog").dialog({
 			autoOpen: false,
@@ -42,6 +39,11 @@
 			resizable: false,
 			draggable: false
 		});
+		$('#customer1Impacted').html(htmlClientOptions);
+		$('#customer2Impacted').html(htmlClientOptions);
+		$('#customer3Impacted').html(htmlClientOptions);
+		$('#customer4Impacted').html(htmlClientOptions);
+		$('#mainCategoryOfFault').html(htmlFaultOptions);
 		$("#save").button();
 		$("#reset").button();
 		
@@ -70,7 +72,7 @@
 		}
  */	}
 
-function submitcalloutData(){
+function submitCalloutData(){
 	 
 	console.log('.....webContextPath....'+webContextPath);
 	var actionUrl = webContextPath+"/callout/save";
@@ -97,7 +99,7 @@ function submitcalloutData(){
 	}
 }
 
-function refreshcalloutData(){
+function refreshCalloutData(){
 	location.reload();
 }
 
@@ -118,20 +120,79 @@ function refreshcalloutData(){
 <form:form id="calloutCreateForm" name="calloutCreateForm" modelAttribute="calloutForm" cssClass="cmxform">
 		<fieldset>
 				<p>
-					<label>Access Code <em>*</em> </label> 
+					<label><spring:message code="fieldapp.label.site"/> <em>*</em> </label> 
+					<form:input path="siteId"/>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.access.code"/>  <em>*</em> </label> 
 					<form:input path="accessCode"/>
 				</p>
 				<p>
-					<label>callOut Csr Or Tt Number</label> 
+					<label><spring:message code="fieldapp.label.callout.csr.ttnumber"/></label> 
 					<form:input path="callOutCsrOrTtNumber" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.complain.received.time"/></label> 
+					<form:input path="timeComplainReceived" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.time.to.reach.site"/></label> 
+					<form:input path="timeReachedToSite" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.time.when.fault.resolved"/></label> 
+					<form:input path="timeFaultReserved" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.customer1.impacted"/></label> 
+					<form:select id="customer1Impacted" path="customer1Impacted">
+					</form:select>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.customer2.impacted"/></label> 
+					<form:select id="customer2Impacted" path="customer2Impacted">
+					</form:select>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.customer3.impacted"/></label> 
+					<form:select id="customer3Impacted" path="customer3Impacted">
+					</form:select>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.customer4.impacted"/></label> 
+					<form:select id="customer4Impacted" path="customer4Impacted">
+					</form:select>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.main.category.of.fault"/></label> 
+					<form:select id="mainCategoryOfFault" path="mainCategoryOfFault">
+					</form:select>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.equipment.component.caused.fault"/></label> 
+					<form:input path="equipmentComponentCausedFault" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.equipment.componenet.repaired"/></label> 
+					<form:input path="equipmentComponentRepaired" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.equipment.componenet.replaced"/></label> 
+					<form:input path="equipmentComponentReplaced" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.fix.temporary.permanent"/> </label> 
+					<label style="width: 50px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Temporary" /><spring:message code="fieldapp.label.yes.value"/> </label>
+					<label style="width: 50px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Permanent" /><spring:message code="fieldapp.label.no.value"/></label>
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.actions.required.for.permanent.resolution"/></label> 
+					<form:textarea path="actionsRequiredForPermanentResolution" />
 				</p>
 		</fieldset>
 	</form:form>
-	<div id="dialog" title="Message">
-	
-	</div>
-	<button id="save" onclick="submitcalloutData();">Save</button>
-	<button id="reset" onclick="refreshcalloutData();">Reset</button>
+			<button id="save" onclick="submitCalloutData();"><spring:message code="fieldapp.label.save"/> </button>
+			<button id="reset" onclick="refreshCalloutData();"><spring:message code="fieldapp.label.reset"/></button>
 
 </body>
 </html>

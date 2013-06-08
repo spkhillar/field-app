@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
@@ -111,6 +112,9 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
   /** The created at. */
   @JsonProperty
   private Date createdAt;
+  
+  @JsonProperty
+  private String siteId;
 
   /**
    * Instantiates a new call out visit.
@@ -257,7 +261,10 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
    * @param site the new site
    */
   public void setSite(Site site) {
-    this.site = site;
+	  this.site = site;
+		if (this.site != null) {
+			this.siteId = this.site.getName();
+		}
   }
 
   /**
@@ -568,7 +575,14 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     this.createdAt = createdAt;
   }
   
-  
+  @Transient
+	public String getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
 
   /* (non-Javadoc)
    * @see java.lang.Object#hashCode()
