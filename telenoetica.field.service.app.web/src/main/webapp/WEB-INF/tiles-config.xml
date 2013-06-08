@@ -28,6 +28,10 @@
 		<put-attribute name="title" value="User Administration" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/admin/users.jsp" />
 	</definition>
+	<definition name="routine.list" extends="base.definition">
+		<put-attribute name="title" value="Routine Visit Form" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/routine-visit-statistics.jsp" />
+	</definition>
 	
 
 </tiles-definitions>

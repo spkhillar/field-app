@@ -6,6 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 <provider>org.hibernate.ejb.HibernatePersistence</provider>
 <properties>
 <property name="hibernate.show_sql" value="true"/>
+<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 </properties>
 </persistence-unit>
 </persistence>

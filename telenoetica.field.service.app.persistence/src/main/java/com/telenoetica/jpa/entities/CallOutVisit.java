@@ -21,78 +21,110 @@ import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * 
+ * The Class CallOutVisit.
+ *
+ * @author  Shiv Prasad Khillar
  */
 @Entity
 @Table(name = "call_out_visit")
 @JsonAutoDetect(JsonMethod.NONE)
 public class CallOutVisit implements BaseEntity, java.io.Serializable {
 
-  /**
-	 * 
-	 */
+  /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -1043305759290140709L;
   
+  /** The id. */
   @JsonProperty
   private Long id;
+  
+  /** The version. */
   private Integer version;
   
+  /** The user. */
   @JsonProperty
   private User user;
   
+  /** The site. */
   @JsonProperty
   private Site site;
   
+  /** The access code. */
   @JsonProperty
   private String accessCode;
   
+  /** The call out csr or tt number. */
   @JsonProperty
   private String callOutCsrOrTtNumber;
   
+  /** The time complain received. */
   @JsonProperty
   private Date timeComplainReceived;
   
+  /** The time reached to site. */
   @JsonProperty
   private Date timeReachedToSite;
   
+  /** The time fault reserved. */
   @JsonProperty
   private Date timeFaultReserved;
   
+  /** The customer1 impacted. */
   @JsonProperty
   private String customer1Impacted;
   
+  /** The customer2 impacted. */
   @JsonProperty
   private String customer2Impacted;
   
+  /** The customer3 impacted. */
   @JsonProperty
   private String customer3Impacted;
   
+  /** The customer4 impacted. */
   @JsonProperty
   private String customer4Impacted;
   
+  /** The main category of fault. */
   @JsonProperty
   private String mainCategoryOfFault;
   
+  /** The equipment component caused fault. */
   @JsonProperty
   private String equipmentComponentCausedFault;
   
+  /** The equipment component repaired. */
   @JsonProperty
   private String equipmentComponentRepaired;
   
+  /** The equipment component replaced. */
   @JsonProperty
   private String equipmentComponentReplaced;
   
+  /** The fix resolution temporary or permanent. */
   @JsonProperty
   private String fixResolutionTemporaryOrPermanent;
   
+  /** The actions required for permanent resolution. */
   @JsonProperty
   private String actionsRequiredForPermanentResolution;
   
+  /** The created at. */
   @JsonProperty
   private Date createdAt;
 
+  /**
+   * Instantiates a new call out visit.
+   */
   public CallOutVisit() {}
 
+  /**
+   * Instantiates a new call out visit.
+   *
+   * @param timeComplainReceived the time complain received
+   * @param timeReachedToSite the time reached to site
+   * @param timeFaultReserved the time fault reserved
+   * @param createdAt the created at
+   */
   public CallOutVisit(Date timeComplainReceived, Date timeReachedToSite, Date timeFaultReserved, Date createdAt) {
     this.timeComplainReceived = timeComplainReceived;
     this.timeReachedToSite = timeReachedToSite;
@@ -100,6 +132,28 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     this.createdAt = createdAt;
   }
 
+  /**
+   * Instantiates a new call out visit.
+   *
+   * @param user the user
+   * @param site the site
+   * @param accessCode the access code
+   * @param callOutCsrOrTtNumber the call out csr or tt number
+   * @param timeComplainReceived the time complain received
+   * @param timeReachedToSite the time reached to site
+   * @param timeFaultReserved the time fault reserved
+   * @param customer1Impacted the customer1 impacted
+   * @param customer2Impacted the customer2 impacted
+   * @param customer3Impacted the customer3 impacted
+   * @param customer4Impacted the customer4 impacted
+   * @param mainCategoryOfFault the main category of fault
+   * @param equipmentComponentCausedFault the equipment component caused fault
+   * @param equipmentComponentRepaired the equipment component repaired
+   * @param equipmentComponentReplaced the equipment component replaced
+   * @param fixResolutionTemporaryOrPermanent the fix resolution temporary or permanent
+   * @param actionsRequiredForPermanentResolution the actions required for permanent resolution
+   * @param createdAt the created at
+   */
   public CallOutVisit(User user, Site site, String accessCode, String callOutCsrOrTtNumber, Date timeComplainReceived,
       Date timeReachedToSite, Date timeFaultReserved, String customer1Impacted, String customer2Impacted,
       String customer3Impacted, String customer4Impacted, String mainCategoryOfFault,
@@ -125,6 +179,11 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     this.createdAt = createdAt;
   }
 
+  /**
+   * Gets the id.
+   *
+   * @return the id
+   */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", unique = true, nullable = false)
@@ -132,190 +191,388 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     return this.id;
   }
 
+  /**
+   * Sets the id.
+   *
+   * @param id the new id
+   */
   public void setId(Long id) {
     this.id = id;
   }
 
+  /**
+   * Gets the version.
+   *
+   * @return the version
+   */
   @Version
   @Column(name = "version")
   public Integer getVersion() {
     return this.version;
   }
 
+  /**
+   * Sets the version.
+   *
+   * @param version the new version
+   */
   public void setVersion(Integer version) {
     this.version = version;
   }
 
+  /**
+   * Gets the user.
+   *
+   * @return the user
+   */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   public User getUser() {
     return this.user;
   }
 
+  /**
+   * Sets the user.
+   *
+   * @param user the new user
+   */
   public void setUser(User user) {
     this.user = user;
   }
 
+  /**
+   * Gets the site.
+   *
+   * @return the site
+   */
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "site_id")
   public Site getSite() {
     return this.site;
   }
 
+  /**
+   * Sets the site.
+   *
+   * @param site the new site
+   */
   public void setSite(Site site) {
     this.site = site;
   }
 
+  /**
+   * Gets the access code.
+   *
+   * @return the access code
+   */
   @Column(name = "access_code", length = 250)
   public String getAccessCode() {
     return this.accessCode;
   }
 
+  /**
+   * Sets the access code.
+   *
+   * @param accessCode the new access code
+   */
   public void setAccessCode(String accessCode) {
     this.accessCode = accessCode;
   }
 
+  /**
+   * Gets the call out csr or tt number.
+   *
+   * @return the call out csr or tt number
+   */
   @Column(name = "call_out_csr_or_tt_number", length = 250)
   public String getCallOutCsrOrTtNumber() {
     return this.callOutCsrOrTtNumber;
   }
 
+  /**
+   * Sets the call out csr or tt number.
+   *
+   * @param callOutCsrOrTtNumber the new call out csr or tt number
+   */
   public void setCallOutCsrOrTtNumber(String callOutCsrOrTtNumber) {
     this.callOutCsrOrTtNumber = callOutCsrOrTtNumber;
   }
 
+  /**
+   * Gets the time complain received.
+   *
+   * @return the time complain received
+   */
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "time_complain_received", nullable = false, length = 19)
   public Date getTimeComplainReceived() {
     return this.timeComplainReceived;
   }
 
+  /**
+   * Sets the time complain received.
+   *
+   * @param timeComplainReceived the new time complain received
+   */
   public void setTimeComplainReceived(Date timeComplainReceived) {
     this.timeComplainReceived = timeComplainReceived;
   }
 
+  /**
+   * Gets the time reached to site.
+   *
+   * @return the time reached to site
+   */
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "time_reached_to_site", nullable = false, length = 19)
   public Date getTimeReachedToSite() {
     return this.timeReachedToSite;
   }
 
+  /**
+   * Sets the time reached to site.
+   *
+   * @param timeReachedToSite the new time reached to site
+   */
   public void setTimeReachedToSite(Date timeReachedToSite) {
     this.timeReachedToSite = timeReachedToSite;
   }
 
+  /**
+   * Gets the time fault reserved.
+   *
+   * @return the time fault reserved
+   */
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "time_fault_reserved", nullable = false, length = 19)
   public Date getTimeFaultReserved() {
     return this.timeFaultReserved;
   }
 
+  /**
+   * Sets the time fault reserved.
+   *
+   * @param timeFaultReserved the new time fault reserved
+   */
   public void setTimeFaultReserved(Date timeFaultReserved) {
     this.timeFaultReserved = timeFaultReserved;
   }
 
+  /**
+   * Gets the customer1 impacted.
+   *
+   * @return the customer1 impacted
+   */
   @Column(name = "customer1_impacted", length = 250)
   public String getCustomer1Impacted() {
     return this.customer1Impacted;
   }
 
+  /**
+   * Sets the customer1 impacted.
+   *
+   * @param customer1Impacted the new customer1 impacted
+   */
   public void setCustomer1Impacted(String customer1Impacted) {
     this.customer1Impacted = customer1Impacted;
   }
 
+  /**
+   * Gets the customer2 impacted.
+   *
+   * @return the customer2 impacted
+   */
   @Column(name = "customer2_impacted", length = 250)
   public String getCustomer2Impacted() {
     return this.customer2Impacted;
   }
 
+  /**
+   * Sets the customer2 impacted.
+   *
+   * @param customer2Impacted the new customer2 impacted
+   */
   public void setCustomer2Impacted(String customer2Impacted) {
     this.customer2Impacted = customer2Impacted;
   }
 
+  /**
+   * Gets the customer3 impacted.
+   *
+   * @return the customer3 impacted
+   */
   @Column(name = "customer3_impacted", length = 250)
   public String getCustomer3Impacted() {
     return this.customer3Impacted;
   }
 
+  /**
+   * Sets the customer3 impacted.
+   *
+   * @param customer3Impacted the new customer3 impacted
+   */
   public void setCustomer3Impacted(String customer3Impacted) {
     this.customer3Impacted = customer3Impacted;
   }
 
+  /**
+   * Gets the customer4 impacted.
+   *
+   * @return the customer4 impacted
+   */
   @Column(name = "customer4_impacted", length = 250)
   public String getCustomer4Impacted() {
     return this.customer4Impacted;
   }
 
+  /**
+   * Sets the customer4 impacted.
+   *
+   * @param customer4Impacted the new customer4 impacted
+   */
   public void setCustomer4Impacted(String customer4Impacted) {
     this.customer4Impacted = customer4Impacted;
   }
 
+  /**
+   * Gets the main category of fault.
+   *
+   * @return the main category of fault
+   */
   @Column(name = "main_category_of_fault", length = 250)
   public String getMainCategoryOfFault() {
     return this.mainCategoryOfFault;
   }
 
+  /**
+   * Sets the main category of fault.
+   *
+   * @param mainCategoryOfFault the new main category of fault
+   */
   public void setMainCategoryOfFault(String mainCategoryOfFault) {
     this.mainCategoryOfFault = mainCategoryOfFault;
   }
 
+  /**
+   * Gets the equipment component caused fault.
+   *
+   * @return the equipment component caused fault
+   */
   @Column(name = "equipment_component_caused_fault", length = 250)
   public String getEquipmentComponentCausedFault() {
     return this.equipmentComponentCausedFault;
   }
 
+  /**
+   * Sets the equipment component caused fault.
+   *
+   * @param equipmentComponentCausedFault the new equipment component caused fault
+   */
   public void setEquipmentComponentCausedFault(String equipmentComponentCausedFault) {
     this.equipmentComponentCausedFault = equipmentComponentCausedFault;
   }
 
+  /**
+   * Gets the equipment component repaired.
+   *
+   * @return the equipment component repaired
+   */
   @Column(name = "equipment_component_repaired", length = 250)
   public String getEquipmentComponentRepaired() {
     return this.equipmentComponentRepaired;
   }
 
+  /**
+   * Sets the equipment component repaired.
+   *
+   * @param equipmentComponentRepaired the new equipment component repaired
+   */
   public void setEquipmentComponentRepaired(String equipmentComponentRepaired) {
     this.equipmentComponentRepaired = equipmentComponentRepaired;
   }
 
+  /**
+   * Gets the equipment component replaced.
+   *
+   * @return the equipment component replaced
+   */
   @Column(name = "equipment_component_replaced", length = 250)
   public String getEquipmentComponentReplaced() {
     return this.equipmentComponentReplaced;
   }
 
+  /**
+   * Sets the equipment component replaced.
+   *
+   * @param equipmentComponentReplaced the new equipment component replaced
+   */
   public void setEquipmentComponentReplaced(String equipmentComponentReplaced) {
     this.equipmentComponentReplaced = equipmentComponentReplaced;
   }
 
+  /**
+   * Gets the fix resolution temporary or permanent.
+   *
+   * @return the fix resolution temporary or permanent
+   */
   @Column(name = "fix_resolution_temporary_or_permanent", length = 250)
   public String getFixResolutionTemporaryOrPermanent() {
     return this.fixResolutionTemporaryOrPermanent;
   }
 
+  /**
+   * Sets the fix resolution temporary or permanent.
+   *
+   * @param fixResolutionTemporaryOrPermanent the new fix resolution temporary or permanent
+   */
   public void setFixResolutionTemporaryOrPermanent(String fixResolutionTemporaryOrPermanent) {
     this.fixResolutionTemporaryOrPermanent = fixResolutionTemporaryOrPermanent;
   }
 
+  /**
+   * Gets the actions required for permanent resolution.
+   *
+   * @return the actions required for permanent resolution
+   */
   @Column(name = "actions_required_for_permanent_resolution", length = 250)
   public String getActionsRequiredForPermanentResolution() {
     return this.actionsRequiredForPermanentResolution;
   }
 
+  /**
+   * Sets the actions required for permanent resolution.
+   *
+   * @param actionsRequiredForPermanentResolution the new actions required for permanent resolution
+   */
   public void setActionsRequiredForPermanentResolution(String actionsRequiredForPermanentResolution) {
     this.actionsRequiredForPermanentResolution = actionsRequiredForPermanentResolution;
   }
 
+  /**
+   * Gets the created at.
+   *
+   * @return the created at
+   */
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_at", nullable = false, length = 19)
   public Date getCreatedAt() {
     return this.createdAt;
   }
 
+  /**
+   * Sets the created at.
+   *
+   * @param createdAt the new created at
+   */
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
   
   
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#hashCode()
+   */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -327,6 +584,9 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     return result;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -359,6 +619,9 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     return true;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();

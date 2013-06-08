@@ -1,6 +1,10 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ */
 package com.telenoetica.service.util;
 
 import java.lang.reflect.Field;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +20,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.telenoetica.jpa.entities.CallOutVisit;
+import com.telenoetica.jpa.entities.RoutineVisit;
 import com.telenoetica.jpa.entities.User;
 
+/**
+ * The Class ServiceUtil.
+ * 
+ * @author Shiv Prasad Khillar
+ */
 public class ServiceUtil {
 
+	/** The field mapping. */
 	private static Map<String, Field[]> fieldMapping = new LinkedHashMap<String, Field[]>();
 
 	static {
@@ -30,12 +41,28 @@ public class ServiceUtil {
 		clazzName = CallOutVisit.class.getName();
 		field = getAllFields(CallOutVisit.class);
 		fieldMapping.put(clazzName, field);
+
+		clazzName = RoutineVisit.class.getName();
+		field = getAllFields(RoutineVisit.class);
+		fieldMapping.put(clazzName, field);
 	}
 
+	/**
+	 * Instantiates a new service util.
+	 */
 	private ServiceUtil() {
 
 	}
 
+	/**
+	 * Find field.
+	 * 
+	 * @param className
+	 *            the class name
+	 * @param fieldName
+	 *            the field name
+	 * @return the field
+	 */
 	public static Field findField(String className, String fieldName) {
 		Field[] fields = fieldMapping.get(className);
 		for (Field field : fields) {
@@ -46,6 +73,13 @@ public class ServiceUtil {
 		return null;
 	}
 
+	/**
+	 * Gets the all fields.
+	 * 
+	 * @param klass
+	 *            the klass
+	 * @return the all fields
+	 */
 	@SuppressWarnings("rawtypes")
 	public static Field[] getAllFields(Class klass) {
 		List<Field> fields = new ArrayList<Field>();
@@ -56,6 +90,13 @@ public class ServiceUtil {
 		return fields.toArray(new Field[] {});
 	}
 
+	/**
+	 * Check and return value.
+	 * 
+	 * @param value
+	 *            the value
+	 * @return the string
+	 */
 	public static String checkAndReturnValue(String value) {
 		if (StringUtils.isBlank(value)) {
 			return "";
@@ -63,6 +104,27 @@ public class ServiceUtil {
 		return value;
 	}
 
+	/**
+	 * Check and return value.
+	 * 
+	 * @param value
+	 *            the value
+	 * @return the string
+	 */
+	public static String checkAndReturnValue(Long value) {
+		if (value != null) {
+			return value.toString();
+		}
+		return "";
+	}
+
+	/**
+	 * Check and return value.
+	 * 
+	 * @param date
+	 *            the date
+	 * @return the string
+	 */
 	public static String checkAndReturnValue(Date date) {
 		if (date == null) {
 			return "";
@@ -70,16 +132,70 @@ public class ServiceUtil {
 		return getDateInFormat(date, "MM/dd/yyyy HH:mm:ss");
 	}
 
+	/**
+	 * Gets the date in format.
+	 * 
+	 * @param date
+	 *            the date
+	 * @param format
+	 *            the format
+	 * @return the date in format
+	 */
 	public static String getDateInFormat(Date date, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.format(date);
 
 	}
 
+	/**
+	 * Gets the date in format.
+	 * 
+	 * @param date
+	 *            the date
+	 * @param format
+	 *            the format
+	 * @return the date in format
+	 */
+	public static Date getDateInFormat(String date, String format) {
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		try {
+			return sdf.parse(date);
+		} catch (ParseException e) {
+		}
+
+		return null;
+
+	}
+
+	/**
+	 * Check and return value.
+	 * 
+	 * @param enabled
+	 *            the enabled
+	 * @return the string
+	 */
 	public static String checkAndReturnValue(Boolean enabled) {
+
+		if (enabled == null) {
+			return "false";
+		}
+
 		return enabled.toString();
 	}
 
+	/**
+	 * Gets the page.
+	 * 
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @param sortOrder
+	 *            the sort order
+	 * @param orderByField
+	 *            the order by field
+	 * @return the page
+	 */
 	public static Pageable getPage(int page, int rows, String sortOrder,
 			String orderByField) {
 		Sort.Direction sortDirection = Sort.Direction.ASC;
@@ -91,11 +207,31 @@ public class ServiceUtil {
 		return pagebale;
 	}
 
+	/**
+	 * Gets the page.
+	 * 
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @return the page
+	 */
 	public static Pageable getPage(int page, int rows) {
 		Pageable pagebale = new PageRequest(page - 1, rows);
 		return pagebale;
 	}
 
+	/**
+	 * Gets the typed value.
+	 * 
+	 * @param clazz
+	 *            the clazz
+	 * @param value
+	 *            the value
+	 * @param ruleOperator
+	 *            the rule operator
+	 * @return the typed value
+	 */
 	public static Object getTypedValue(Class clazz, String value,
 			String ruleOperator) {
 		if (ClassUtils.isAssignable(clazz, Long.class)) {
@@ -104,6 +240,9 @@ public class ServiceUtil {
 			return Boolean.valueOf(value);
 		} else if (ClassUtils.isAssignable(clazz, Integer.class)) {
 			return Integer.parseInt(value);
+		} else if (ClassUtils.isAssignable(clazz, Date.class)) {
+			return getDateInFormat(value,
+					ApplicationConstants.JQGRID_DATE_FORMAT);
 		} else {
 			String retunValue = new String(value);
 			if ("cn".equals(ruleOperator)) {
@@ -116,5 +255,28 @@ public class ServiceUtil {
 			return retunValue;
 		}
 
+	}
+
+	/**
+	 * Check value type.
+	 * 
+	 * @param value
+	 *            the value
+	 * @return the class
+	 */
+	public static Class checkValueType(String value) {
+		if (StringUtils.isNumeric(value)) {
+			return Long.class;
+		} else if ("true".equalsIgnoreCase(value)
+				|| "false".equalsIgnoreCase(value)) {
+			return Boolean.class;
+		} else {
+			Date d = getDateInFormat(value,
+					ApplicationConstants.JQGRID_DATE_FORMAT);
+			if (d != null) {
+				return Date.class;
+			}
+		}
+		return String.class;
 	}
 }

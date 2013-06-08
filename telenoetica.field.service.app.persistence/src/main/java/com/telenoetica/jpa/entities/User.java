@@ -23,60 +23,93 @@ import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * User
+ * User.
+ *
+ * @author  Shiv Prasad Khillar
  */
 @Entity
 @Table(name = "user")
 @JsonAutoDetect(JsonMethod.NONE)
 public class User implements BaseEntity, java.io.Serializable {
 
-	/**
-		 * 
-		 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 3228774824582399072L;
 
+	/** The id. */
 	@JsonProperty
 	private Long id;
 
+	/** The version. */
 	@JsonIgnore
 	private Integer version;
 
+	/** The user name. */
 	@JsonProperty
 	private String userName;
 
+	/** The password. */
 	private String password;
 
+	/** The first name. */
 	@JsonProperty
 	private String firstName;
 
+	/** The last name. */
 	@JsonProperty
 	private String lastName;
 
+	/** The email. */
 	@JsonProperty
 	private String email;
 
+	/** The enabled. */
 	@JsonProperty
 	private Boolean enabled;
 
+	/** The phone. */
 	@JsonProperty
 	private String phone;
 
+	/** The created at. */
 	@JsonProperty
 	private Date createdAt = new Date();
 
+	/** The user role. */
 	@JsonIgnore
 	private UserRole userRole;
 
+	/** The role id. */
 	@JsonProperty
 	private Long roleId;
 
+	/**
+	 * Instantiates a new user.
+	 */
 	public User() {
 	}
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param createdAt the created at
+	 */
 	public User(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param email the email
+	 * @param enabled the enabled
+	 * @param createdAt the created at
+	 * @param userRole the user role
+	 * @param phone the phone
+	 */
 	public User(String username, String password, String firstName,
 			String lastName, String email, Boolean enabled, Date createdAt,
 			UserRole userRole, String phone) {
@@ -91,6 +124,17 @@ public class User implements BaseEntity, java.io.Serializable {
 		this.phone = phone;
 	}
 
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param userName the user name
+	 * @param password the password
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param email the email
+	 * @param enabled the enabled
+	 * @param phone the phone
+	 */
 	public User(String userName, String password, String firstName,
 			String lastName, String email, Boolean enabled, String phone) {
 		super();
@@ -103,6 +147,11 @@ public class User implements BaseEntity, java.io.Serializable {
 		this.phone = phone;
 	}
 
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable = false)
@@ -110,98 +159,203 @@ public class User implements BaseEntity, java.io.Serializable {
 		return this.id;
 	}
 
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Gets the user name.
+	 *
+	 * @return the user name
+	 */
 	@Column(name = "username", length = 250)
 	public String getUserName() {
 		return userName;
 	}
 
+	/**
+	 * Sets the user name.
+	 *
+	 * @param userName the new user name
+	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	@Column(name = "password", length = 250)
 	public String getPassword() {
 		return this.password;
 	}
 
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
 	@Column(name = "first_name", length = 250)
 	public String getFirstName() {
 		return this.firstName;
 	}
 
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
 	@Column(name = "last_name", length = 250)
 	public String getLastName() {
 		return this.lastName;
 	}
 
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
 	@Column(name = "email", length = 250)
 	public String getEmail() {
 		return this.email;
 	}
 
+	/**
+	 * Sets the email.
+	 *
+	 * @param email the new email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Gets the enabled.
+	 *
+	 * @return the enabled
+	 */
 	@Column(name = "enabled")
 	public Boolean getEnabled() {
 		return this.enabled;
 	}
 
+	/**
+	 * Sets the enabled.
+	 *
+	 * @param enabled the new enabled
+	 */
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	/**
+	 * Gets the phone.
+	 *
+	 * @return the phone
+	 */
 	@Column(name = "phone", length = 25)
 	public String getPhone() {
 		return phone;
 	}
 
+	/**
+	 * Sets the phone.
+	 *
+	 * @param phone the new phone
+	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+	/**
+	 * Gets the created at.
+	 *
+	 * @return the created at
+	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_at", nullable = false, length = 19)
 	public Date getCreatedAt() {
 		return this.createdAt;
 	}
 
+	/**
+	 * Sets the created at.
+	 *
+	 * @param createdAt the new created at
+	 */
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
+	/**
+	 * Gets the version.
+	 *
+	 * @return the version
+	 */
 	@Version
 	@Column(name = "version")
 	public Integer getVersion() {
 		return this.version;
 	}
 
+	/**
+	 * Sets the version.
+	 *
+	 * @param version the new version
+	 */
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
 
+	/**
+	 * Gets the user role.
+	 *
+	 * @return the user role
+	 */
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 	public UserRole getUserRole() {
 		return this.userRole;
 	}
 
+	/**
+	 * Sets the user role.
+	 *
+	 * @param userRole the new user role
+	 */
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
 		if (userRole != null) {
@@ -209,15 +363,28 @@ public class User implements BaseEntity, java.io.Serializable {
 		}
 	}
 
+	/**
+	 * Gets the role id.
+	 *
+	 * @return the role id
+	 */
 	@Transient
 	public Long getRoleId() {
 		return roleId;
 	}
 
+	/**
+	 * Sets the role id.
+	 *
+	 * @param roleId the new role id
+	 */
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -248,6 +415,9 @@ public class User implements BaseEntity, java.io.Serializable {
 		return builder.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -258,6 +428,9 @@ public class User implements BaseEntity, java.io.Serializable {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -15,30 +15,55 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * Role
+ * Role.
+ *
+ * @author  Shiv Prasad Khillar
  */
 @Entity
 @Table(name = "role")
 public class Role implements java.io.Serializable {
 
-  /**
-	 * 
-	 */
+  /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -6457616256442358384L;
+  
+  /** The id. */
   private Long id;
+  
+  /** The name. */
   private String name;
+ 
+ /** The description. */
  private String description;
+  
+  /** The role permissions. */
   private Set<RolePermission> rolePermissions = new HashSet<RolePermission>(0);
+  
+  /** The user roles. */
   private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 
+  /**
+   * Instantiates a new role.
+   */
   public Role() {}
 
+  /**
+   * Instantiates a new role.
+   *
+   * @param name the name
+   * @param rolePermissions the role permissions
+   * @param userRoles the user roles
+   */
   public Role(String name, Set<RolePermission> rolePermissions, Set<UserRole> userRoles) {
     this.name = name;
     this.rolePermissions = rolePermissions;
     this.userRoles = userRoles;
   }
 
+  /**
+   * Gets the id.
+   *
+   * @return the id
+   */
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", unique = true, nullable = false)
@@ -46,46 +71,94 @@ public class Role implements java.io.Serializable {
     return this.id;
   }
 
+  /**
+   * Sets the id.
+   *
+   * @param id the new id
+   */
   public void setId(Long id) {
     this.id = id;
   }
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   @Column(name = "name", length = 250)
   public String getName() {
     return this.name;
   }
 
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
   public void setName(String name) {
     this.name = name;
   }
   
+  /**
+   * Gets the description.
+   *
+   * @return the description
+   */
   @Column(name = "description", length = 250)
   public String getDescription() {
     return description;
   }
 
+  /**
+   * Sets the description.
+   *
+   * @param description the new description
+   */
   public void setDescription(String description) {
     this.description = description;
   }
 
+  /**
+   * Gets the role permissions.
+   *
+   * @return the role permissions
+   */
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
   public Set<RolePermission> getRolePermissions() {
     return this.rolePermissions;
   }
 
+  /**
+   * Sets the role permissions.
+   *
+   * @param rolePermissions the new role permissions
+   */
   public void setRolePermissions(Set<RolePermission> rolePermissions) {
     this.rolePermissions = rolePermissions;
   }
 
+  /**
+   * Gets the user roles.
+   *
+   * @return the user roles
+   */
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
   public Set<UserRole> getUserRoles() {
     return this.userRoles;
   }
 
+  /**
+   * Sets the user roles.
+   *
+   * @param userRoles the new user roles
+   */
   public void setUserRoles(Set<UserRole> userRoles) {
     this.userRoles = userRoles;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();

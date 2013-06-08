@@ -6,6 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.telenoetica.jpa.entities.Fault;
 import com.telenoetica.jpa.entities.Site;
 
+/**
+ * The Interface FaultDAO.
+ *
+ * @author  Shiv Prasad Khillar
+ */
 public interface FaultDAO extends JpaRepository<Fault, Long> {
 
 }

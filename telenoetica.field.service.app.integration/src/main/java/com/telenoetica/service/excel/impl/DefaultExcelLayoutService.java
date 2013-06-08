@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ */
 package com.telenoetica.service.excel.impl;
 
 import java.util.Date;
@@ -14,75 +17,110 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.stereotype.Service;
 
 import com.telenoetica.service.util.ExcelRendererModel;
+import com.telenoetica.service.util.ServiceUtil;
 
+/**
+ * The Class DefaultExcelLayoutService.
+ * 
+ * @author Shiv Prasad Khillar
+ */
 @Service("defaultExcelLayoutService")
 public class DefaultExcelLayoutService extends AbstractExcelLayoutService {
-  @Override
-  public void buildHeaders(ExcelRendererModel excelRendererModel) {
-    HSSFCellStyle headerCellStyle = getCellStyle(excelRendererModel.getWorksheet());
-    int startRowIndex = excelRendererModel.getStartRowIndex();
-    int startColIndex = excelRendererModel.getStartColIndex();
-    // Create the column headers
-    HSSFRow rowHeader = excelRendererModel.getWorksheet().createRow((short) startRowIndex + 2);
-    rowHeader.setHeight((short) 500);
 
-    List<String> columns = excelRendererModel.getColumns();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.telenoetica.service.excel.impl.AbstractExcelLayoutService#buildHeaders
+	 * (com.telenoetica.service.util.ExcelRendererModel)
+	 */
+	@Override
+	public void buildHeaders(ExcelRendererModel excelRendererModel) {
+		HSSFCellStyle headerCellStyle = getCellStyle(excelRendererModel
+				.getWorksheet());
+		int startRowIndex = excelRendererModel.getStartRowIndex();
+		int startColIndex = excelRendererModel.getStartColIndex();
+		// Create the column headers
+		HSSFRow rowHeader = excelRendererModel.getWorksheet().createRow(
+				(short) startRowIndex + 2);
+		rowHeader.setHeight((short) 500);
 
-    HSSFCell cell1 = null;
-    for (int i = 0; i < columns.size(); i++) {
-      cell1 = rowHeader.createCell(startColIndex + i);
-      cell1.setCellValue(columns.get(i));
-      cell1.setCellStyle(headerCellStyle);
-    }
-  }
+		List<String> columns = excelRendererModel.getColumns();
 
-  @Override
-  public void buildTitle(ExcelRendererModel excelRendererModel) {
-    HSSFSheet worksheet = excelRendererModel.getWorksheet();
-    int startRowIndex = excelRendererModel.getStartRowIndex();
-    int startColIndex = excelRendererModel.getStartColIndex();
-    // Create font style for the report title
-    Font fontTitle = worksheet.getWorkbook().createFont();
-    fontTitle.setBoldweight(Font.BOLDWEIGHT_BOLD);
-    fontTitle.setFontHeight((short) 280);
+		HSSFCell cell1 = null;
+		for (int i = 0; i < columns.size(); i++) {
+			cell1 = rowHeader.createCell(startColIndex + i);
+			cell1.setCellValue(columns.get(i));
+			cell1.setCellStyle(headerCellStyle);
+		}
+	}
 
-    // Create cell style for the report title
-    HSSFCellStyle cellStyleTitle = worksheet.getWorkbook().createCellStyle();
-    cellStyleTitle.setAlignment(CellStyle.ALIGN_CENTER);
-    cellStyleTitle.setWrapText(true);
-    cellStyleTitle.setFont(fontTitle);
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.telenoetica.service.excel.impl.AbstractExcelLayoutService#buildTitle
+	 * (com.telenoetica.service.util.ExcelRendererModel)
+	 */
+	@Override
+	public void buildTitle(ExcelRendererModel excelRendererModel) {
+		HSSFSheet worksheet = excelRendererModel.getWorksheet();
+		int startRowIndex = excelRendererModel.getStartRowIndex();
+		int startColIndex = excelRendererModel.getStartColIndex();
+		// Create font style for the report title
+		Font fontTitle = worksheet.getWorkbook().createFont();
+		fontTitle.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		fontTitle.setFontHeight((short) 280);
 
-    // Create report title
-    HSSFRow rowTitle = worksheet.createRow((short) startRowIndex);
-    rowTitle.setHeight((short) 500);
-    HSSFCell cellTitle = rowTitle.createCell(startColIndex);
-    cellTitle.setCellValue(excelRendererModel.getReportTitle());
-    cellTitle.setCellStyle(cellStyleTitle);
+		// Create cell style for the report title
+		HSSFCellStyle cellStyleTitle = worksheet.getWorkbook()
+				.createCellStyle();
+		cellStyleTitle.setAlignment(CellStyle.ALIGN_CENTER);
+		cellStyleTitle.setWrapText(true);
+		cellStyleTitle.setFont(fontTitle);
 
-    // Create merged region for the report title
-    worksheet.addMergedRegion(new CellRangeAddress(0, 0, 0, excelRendererModel.getColumns().size()-1));
+		// Create report title
+		HSSFRow rowTitle = worksheet.createRow((short) startRowIndex);
+		rowTitle.setHeight((short) 500);
+		HSSFCell cellTitle = rowTitle.createCell(startColIndex);
+		cellTitle.setCellValue(excelRendererModel.getReportTitle());
+		cellTitle.setCellStyle(cellStyleTitle);
 
-    // Create date header
-    HSSFRow dateTitle = worksheet.createRow((short) startRowIndex + 1);
-    HSSFCell cellDate = dateTitle.createCell(startColIndex);
-    cellDate.setCellValue("This report was generated at " + new Date());
-    worksheet.addMergedRegion(new CellRangeAddress(1, 1, 0, excelRendererModel.getColumns().size()-1));
-  }
+		// Create merged region for the report title
+		worksheet.addMergedRegion(new CellRangeAddress(0, 0, 0,
+				excelRendererModel.getColumns().size() - 1));
 
-  private HSSFCellStyle getCellStyle(HSSFSheet worksheet) {
-    Font font = worksheet.getWorkbook().createFont();
-    font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+		// Create date header
+		HSSFRow dateTitle = worksheet.createRow((short) startRowIndex + 1);
+		HSSFCell cellDate = dateTitle.createCell(startColIndex);
+		cellDate.setCellValue("This report was generated at "
+				+ ServiceUtil.checkAndReturnValue(new Date()));
+		worksheet.addMergedRegion(new CellRangeAddress(1, 1, 0,
+				excelRendererModel.getColumns().size() - 1));
+	}
 
-    // Create cell style for the headers
-    HSSFCellStyle headerCellStyle = worksheet.getWorkbook().createCellStyle();
-    headerCellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
-    headerCellStyle.setFillPattern(CellStyle.FINE_DOTS);
-    headerCellStyle.setAlignment(CellStyle.ALIGN_CENTER);
-    headerCellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-    headerCellStyle.setWrapText(true);
-    headerCellStyle.setFont(font);
-    headerCellStyle.setBorderBottom(CellStyle.BORDER_THIN);
-    return headerCellStyle;
-  }
+	/**
+	 * Gets the cell style.
+	 * 
+	 * @param worksheet
+	 *            the worksheet
+	 * @return the cell style
+	 */
+	private HSSFCellStyle getCellStyle(HSSFSheet worksheet) {
+		Font font = worksheet.getWorkbook().createFont();
+		font.setBoldweight(Font.BOLDWEIGHT_BOLD);
+
+		// Create cell style for the headers
+		HSSFCellStyle headerCellStyle = worksheet.getWorkbook()
+				.createCellStyle();
+		headerCellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
+		headerCellStyle.setFillPattern(CellStyle.FINE_DOTS);
+		headerCellStyle.setAlignment(CellStyle.ALIGN_CENTER);
+		headerCellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+		headerCellStyle.setWrapText(true);
+		headerCellStyle.setFont(font);
+		headerCellStyle.setBorderBottom(CellStyle.BORDER_THIN);
+		return headerCellStyle;
+	}
 
 }

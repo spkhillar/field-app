@@ -2,6 +2,7 @@ var webContextPath;
 var homeDataObject;
 var homeSiteMap;
 var trueOrFalseOption = "true:true;false:false";
+var trueOrFalseNAOption = "true:true;false:false;Not Applicable:Not Applicable";
 var jqgridUserRolesFilter;
 $(document).ready(function() {
 

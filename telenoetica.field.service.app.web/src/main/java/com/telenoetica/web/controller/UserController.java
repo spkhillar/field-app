@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ */
 package com.telenoetica.web.controller;
 
 import java.util.HashMap;
@@ -22,28 +25,59 @@ import com.telenoetica.web.rest.RestResponse;
 import com.telenoetica.web.util.DomainObjectMapper;
 import com.telenoetica.web.util.JqGridResponse;
 
+/**
+ * The Class UserController.
+ * 
+ * @author Shiv Prasad Khillar
+ */
 @RequestMapping(value = "/user")
 @Controller
-public class UserController  extends AbstractJqGridFilterController{
+public class UserController extends AbstractJqGridFilterController {
 
+	/** The user service. */
 	@Autowired
 	private UserService userService;
 
-	private final String[] excludedPropsInFilter = new String[]{"roleId"};
+	/** The excluded props in filter. */
+	private final String[] excludedPropsInFilter = new String[] { "roleId" };
 
-	private static final Map<String,String> excludedPropQueryMapping = new HashMap<String, String>();
+	/** The Constant excludedPropQueryMapping. */
+	private static final Map<String, String> excludedPropQueryMapping = new HashMap<String, String>();
 
-	private static final Map<String,String> excludedPropOrderMapping = new HashMap<String, String>();
-	static{
+	/** The Constant excludedPropOrderMapping. */
+	private static final Map<String, String> excludedPropOrderMapping = new HashMap<String, String>();
+	static {
 		excludedPropQueryMapping.put("roleId", "userRole.role.id");
 		excludedPropOrderMapping.put("roleId", "userRole.role.name");
 	}
 
+	/**
+	 * Gets the users page.
+	 * 
+	 * @return the users page
+	 */
 	@RequestMapping(value = "/list")
 	public String getUsersPage() {
 		return "admin.users";
 	}
 
+	/**
+	 * Records.
+	 * 
+	 * @param search
+	 *            the search
+	 * @param filters
+	 *            the filters
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @param sidx
+	 *            the sidx
+	 * @param sord
+	 *            the sord
+	 * @return the jq grid response
+	 */
 	@RequestMapping(value = "/records", produces = "application/json")
 	public @ResponseBody
 	JqGridResponse<User> records(@RequestParam("_search") Boolean search,
@@ -55,8 +89,10 @@ public class UserController  extends AbstractJqGridFilterController{
 		Page<User> users = null;
 		if (search == true) {
 			Map<String, Object> paramObject = new LinkedHashMap<String, Object>();
-			String filterPredicate = getFilteredRecords(filters, sord, sidx, paramObject);
-			users = userService.findALL(page, rows, filterPredicate, paramObject);
+			String filterPredicate = getFilteredRecords(filters, sord, sidx,
+					paramObject, User.class);
+			users = userService.findALL(page, rows, filterPredicate,
+					paramObject);
 		} else {
 			users = userService.findALL(page, rows, sord, sidx);
 		}
@@ -69,6 +105,13 @@ public class UserController  extends AbstractJqGridFilterController{
 		return response;
 	}
 
+	/**
+	 * Creates the.
+	 * 
+	 * @param user
+	 *            the user
+	 * @return the rest response
+	 */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public RestResponse create(User user) {
@@ -78,6 +121,13 @@ public class UserController  extends AbstractJqGridFilterController{
 		return response;
 	}
 
+	/**
+	 * Update.
+	 * 
+	 * @param user
+	 *            the user
+	 * @return the rest response
+	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
 	public RestResponse update(User user) {
@@ -87,6 +137,13 @@ public class UserController  extends AbstractJqGridFilterController{
 		return response;
 	}
 
+	/**
+	 * Delete.
+	 * 
+	 * @param user
+	 *            the user
+	 * @return the rest response
+	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public RestResponse delete(User user) {
@@ -96,49 +153,104 @@ public class UserController  extends AbstractJqGridFilterController{
 		return response;
 	}
 
+	/**
+	 * Gets the roles.
+	 * 
+	 * @return the roles
+	 */
 	@RequestMapping(value = "/roles")
 	@ResponseBody
 	public String getRoles() {
 		List<Role> roleList = userService.listRoles();
 		StringBuilder sb = new StringBuilder();
 		for (Role role : roleList) {
-			sb.append(role.getId()).append(":").append(role.getName()).append(";");
+			sb.append(role.getId()).append(":").append(role.getName())
+					.append(";");
 		}
 		String roles = sb.substring(0, sb.length() - 1);
 		return roles;
 	}
 
+	/**
+	 * Export.
+	 * 
+	 * @param search
+	 *            the search
+	 * @param filters
+	 *            the filters
+	 * @param page
+	 *            the page
+	 * @param rows
+	 *            the rows
+	 * @param sidx
+	 *            the sidx
+	 * @param sord
+	 *            the sord
+	 * @param httpServletResponse
+	 *            the http servlet response
+	 */
 	@RequestMapping(value = "/export")
 	public void export(@RequestParam("_search") Boolean search,
 			@RequestParam(value = "filters", required = false) String filters,
 			@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "rows", required = false) Integer rows,
 			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord, HttpServletResponse httpServletResponse) {
+			@RequestParam(value = "sord", required = false) String sord,
+			HttpServletResponse httpServletResponse) {
 		String filterPredicate = null;
 		Map<String, Object> paramObject = null;
 		if (search) {
 			paramObject = new LinkedHashMap<String, Object>();
-			filterPredicate = getFilteredRecords(filters, sord, sidx, paramObject);
+			filterPredicate = getFilteredRecords(filters, sord, sidx,
+					paramObject, User.class);
 		}
-		userService.exportUsers(filterPredicate, paramObject, httpServletResponse, "users.xls");
+		userService.exportUsers(filterPredicate, paramObject,
+				httpServletResponse, "users.xls");
 	}
 
+	/**
+	 * Check user name.
+	 * 
+	 * @param userName
+	 *            the user name
+	 * @return the boolean
+	 */
 	public Boolean checkUserName(String userName) {
 		return true;
 
 	}
 
+	/**
+	 * Gets the filter exclusion properties.
+	 * 
+	 * @return the filter exclusion properties
+	 * @see com.telenoetica.web.controller.AbstractJqGridFilterController#
+	 *      getFilterExclusionProperties()
+	 */
 	@Override
-	public String[] getFilterExclusionProperties(){
-		return excludedPropsInFilter; 
+	public String[] getFilterExclusionProperties() {
+		return excludedPropsInFilter;
 	}
 
+	/**
+	 * Gets the filter excluded property query mapping.
+	 * 
+	 * @return the filter excluded property query mapping
+	 * @see com.telenoetica.web.controller.AbstractJqGridFilterController#
+	 *      getFilterExcludedPropertyQueryMapping()
+	 */
 	@Override
 	public Map<String, String> getFilterExcludedPropertyQueryMapping() {
 		return excludedPropQueryMapping;
 	}
 
+	/**
+	 * Gets the filter excluded property order mapping.
+	 * 
+	 * @return the filter excluded property order mapping
+	 * @see com.telenoetica.web.controller.AbstractJqGridFilterController#
+	 *      getFilterExcludedPropertyOrderMapping()
+	 */
 	@Override
 	public Map<String, String> getFilterExcludedPropertyOrderMapping() {
 		return excludedPropOrderMapping;

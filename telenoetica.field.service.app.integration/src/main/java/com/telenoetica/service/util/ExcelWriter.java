@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ */
 package com.telenoetica.service.util;
 
 import java.io.File;
@@ -9,12 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+/**
+ * The Class ExcelWriter.
+ *
+ * @author  Shiv Prasad Khillar
+ */
 public class ExcelWriter {
 
+  /** The logger. */
   private static Logger logger = Logger.getLogger(ExcelWriter.class);
 
   /**
-   * Writes the report to the http servlet response output stream
+   * Writes the report to the http servlet response output stream.
+   *
+   * @param response the response
+   * @param workbook the workbook
+   * @param attachmentFileName the attachment file name
    */
   public static void write(HttpServletResponse response, HSSFWorkbook workbook,String attachmentFileName) {
 
@@ -35,7 +48,10 @@ public class ExcelWriter {
   }
 
   /**
-   * Writes the report to the http servlet response output stream
+   * Writes the report to the http servlet response output stream.
+   *
+   * @param excelFileName the excel file name
+   * @param workbook the workbook
    */
   public static void write(String excelFileName, HSSFWorkbook workbook) {
 

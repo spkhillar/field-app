@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ */
 package com.telenoetica.web.util;
 
 import java.lang.reflect.Field;
@@ -13,15 +16,35 @@ import com.telenoetica.service.util.ServiceUtil;
 import com.telenoetica.web.util.JqGridFilter.Rule;
 import com.telenoetica.web.util.JqGridFilter.RuleOperator;
 
+/**
+ * The Class JqGridFilterQueryBuilder.
+ *
+ * @author  Shiv Prasad Khillar
+ */
 public class JqGridFilterQueryBuilder {
 
-	  private static final Logger LOGGER = Logger.getLogger(JqGridFilterQueryBuilder.class);
+	  /** The Constant LOGGER. */
+  	private static final Logger LOGGER = Logger.getLogger(JqGridFilterQueryBuilder.class);
 
-	  private JqGridFilterQueryBuilder() {
+	  /**
+  	 * Instantiates a new jq grid filter query builder.
+  	 */
+  	private JqGridFilterQueryBuilder() {
 
 	  }
 
-	  public static List<Rule> getJpqlPredicate(JqGridFilter jqgridFilter, String[] excludedProperties,
+	  /**
+  	 * Gets the jpql predicate.
+  	 *
+  	 * @param jqgridFilter the jqgrid filter
+  	 * @param excludedProperties the excluded properties
+  	 * @param paramObject the param object
+  	 * @param predicateString the predicate string
+  	 * @param clazz the clazz
+  	 * @param groupOperator the group operator
+  	 * @return the jpql predicate
+  	 */
+  	public static List<Rule> getJpqlPredicate(JqGridFilter jqgridFilter, String[] excludedProperties,
 	     Map<String, Object> paramObject,List<String> predicateString,Class clazz,String groupOperator) {
 
 	    List<String> rules = new ArrayList<String>();
@@ -49,7 +72,16 @@ public class JqGridFilterQueryBuilder {
 	    return excludedFilterList;
 	  }
 
-	  private static String getRuleString(Rule rule, Map<String, Object> paramObject, int paramIndex,Class clazz) {
+	  /**
+  	 * Gets the rule string.
+  	 *
+  	 * @param rule the rule
+  	 * @param paramObject the param object
+  	 * @param paramIndex the param index
+  	 * @param clazz the clazz
+  	 * @return the rule string
+  	 */
+  	private static String getRuleString(Rule rule, Map<String, Object> paramObject, int paramIndex,Class clazz) {
 	    Field field = ServiceUtil.findField(clazz.getName(), rule.getField());
 	    if (field == null) {
 	      return null;
@@ -58,7 +90,16 @@ public class JqGridFilterQueryBuilder {
 	    return predicateRule;
 	  }
 	  
-	  public static String createRuleString(Rule rule, Map<String, Object> paramObject, int paramIndex,Class fieldValueType) {
+	  /**
+  	 * Creates the rule string.
+  	 *
+  	 * @param rule the rule
+  	 * @param paramObject the param object
+  	 * @param paramIndex the param index
+  	 * @param fieldValueType the field value type
+  	 * @return the string
+  	 */
+  	public static String createRuleString(Rule rule, Map<String, Object> paramObject, int paramIndex,Class fieldValueType) {
 	  
 	    String predicateRule = new String();
 

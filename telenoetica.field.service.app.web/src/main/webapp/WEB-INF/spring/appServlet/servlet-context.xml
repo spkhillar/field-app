@@ -17,14 +17,14 @@
 	       <ref bean="jacksonMessageConverter"/>
 	    </mvc:message-converters>
 	</mvc:annotation-driven>
-	<bean id="annotationExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
+<!-- 	<bean id="annotationExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver">
 		<property name="messageConverters">
 			<list>
 				<ref bean="jacksonMessageConverter"/>
 			</list>
 		</property>
 	</bean>
-	<bean id="jacksonMessageConverter"
+ -->	<bean id="jacksonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
 		<property name="objectMapper" ref="customObjectMapper" />
 	</bean>

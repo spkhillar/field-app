@@ -44,7 +44,6 @@ webContextPath="${pageContext.request.contextPath}";
 		<div id="templatemo_header">
         	<div id="site_title"><h1>Field Service Application</h1></div>
         </div>
-        <div>
         <nav>
 	<ul>
 		<li><a href="${homeUrl}">Home</a></li>
@@ -52,13 +51,6 @@ webContextPath="${pageContext.request.contextPath}";
 			<ul>
 				<li>
 					<a href="${contextPath}/user/list">User Management</a>				
-				</li>
-				<li><a href="#">Phone/Device Management</a>			
-					<ul>
-						<li><a href="#">Add</a></li>
-						<li><a href="#">Update</a></li>
-						<li><a href="#">Delete</a></li>
-					</ul>
 				</li>
 			</ul>
 		</li>
@@ -85,7 +77,7 @@ webContextPath="${pageContext.request.contextPath}";
 		</li>
 		<li><a href="#">Site Statistics</a>
 			<ul>
-				<li><a href="#">Routine Visit</a></li>
+				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
 				<li><a href="#" >Diesel Visit</a></li>
 				<li><a href="#">Call Out Visit</a></li>
 				<li><a href="#">Maintainance Visit</a></li>

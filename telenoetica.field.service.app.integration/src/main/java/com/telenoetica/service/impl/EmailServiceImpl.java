@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ */
 package com.telenoetica.service.impl;
 
 import java.io.File;
@@ -18,12 +21,21 @@ import org.springframework.util.Assert;
 import com.telenoetica.service.EmailService;
 import com.telenoetica.service.mail.EmailTemplate;
 
+/**
+ * The Class EmailServiceImpl.
+ *
+ * @author  Shiv Prasad Khillar
+ */
 @Service("emailService")
 public class EmailServiceImpl implements EmailService {
 
+  /** The mail sender. */
   @Autowired
   private JavaMailSender mailSender;
 
+  /* (non-Javadoc)
+   * @see com.telenoetica.service.EmailService#sendEmail(com.telenoetica.service.mail.EmailTemplate)
+   */
   public void sendEmail(EmailTemplate emailTemplate) {
 
     Assert.notEmpty(emailTemplate.getTo(), "To Email Address not found");
@@ -52,6 +64,16 @@ public class EmailServiceImpl implements EmailService {
     sendEmail(emailTemplate.getText(), emailTemplate.getSubject(), toArray, ccArray, bccArray, attachementFile);
   }
 
+  /**
+   * Send email.
+   *
+   * @param emailBody the email body
+   * @param subject the subject
+   * @param toArray the to array
+   * @param ccArray the cc array
+   * @param bccArray the bcc array
+   * @param attachementFile the attachement file
+   */
   private void sendEmail(final String emailBody, final String subject, final String[] toArray, final String[] ccArray,
       final String[] bccArray, final File attachementFile) {
 
