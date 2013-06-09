@@ -40,6 +40,9 @@
 		<put-attribute name="title" value="Diesel Visit Statistics Form" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/diesel-visit-statistics.jsp" />
 	</definition>
-	
+	<definition name="callout.list" extends="base.definition">
+		<put-attribute name="title" value="CallOut Visit Statistics Form" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/callout-visit-statistics.jsp" />
+	</definition>
 
 </tiles-definitions>

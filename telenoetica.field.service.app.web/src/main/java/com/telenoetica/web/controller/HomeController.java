@@ -114,7 +114,7 @@ public class HomeController {
 		callOutVisit.setUser(user);
 		callOutVisit.setSite(site);
 		callOutVisit.setTimeComplainReceived(new Date());
-		callOutVisit.setTimeFaultReserved(new Date());
+		callOutVisit.settimeFaultResolved(new Date());
 		callOutVisit.setTimeReachedToSite(new Date());
 
 		return callOutVisit;

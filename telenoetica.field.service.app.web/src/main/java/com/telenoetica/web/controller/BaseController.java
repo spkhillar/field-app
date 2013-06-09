@@ -3,11 +3,17 @@
  */
 package com.telenoetica.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.telenoetica.web.rest.RestResponse;
@@ -18,6 +24,12 @@ import com.telenoetica.web.rest.RestResponse;
  * @author Shiv Prasad Khillar
  */
 public class BaseController {
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), true));
+	}
 
 	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory

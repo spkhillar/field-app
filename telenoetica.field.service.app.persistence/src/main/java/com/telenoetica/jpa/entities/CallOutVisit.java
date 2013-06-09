@@ -67,7 +67,7 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
   
   /** The time fault reserved. */
   @JsonProperty
-  private Date timeFaultReserved;
+  private Date timeFaultResolved;
   
   /** The customer1 impacted. */
   @JsonProperty
@@ -115,6 +115,10 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
   
   @JsonProperty
   private String siteId;
+  
+  /** The user id. */
+  @JsonProperty
+  private String userId;
 
   /**
    * Instantiates a new call out visit.
@@ -126,13 +130,13 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
    *
    * @param timeComplainReceived the time complain received
    * @param timeReachedToSite the time reached to site
-   * @param timeFaultReserved the time fault reserved
+   * @param timeFaultResolved the time fault reserved
    * @param createdAt the created at
    */
-  public CallOutVisit(Date timeComplainReceived, Date timeReachedToSite, Date timeFaultReserved, Date createdAt) {
+  public CallOutVisit(Date timeComplainReceived, Date timeReachedToSite, Date timeFaultResolved, Date createdAt) {
     this.timeComplainReceived = timeComplainReceived;
     this.timeReachedToSite = timeReachedToSite;
-    this.timeFaultReserved = timeFaultReserved;
+    this.timeFaultResolved = timeFaultResolved;
     this.createdAt = createdAt;
   }
 
@@ -145,7 +149,7 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
    * @param callOutCsrOrTtNumber the call out csr or tt number
    * @param timeComplainReceived the time complain received
    * @param timeReachedToSite the time reached to site
-   * @param timeFaultReserved the time fault reserved
+   * @param timeFaultResolved the time fault reserved
    * @param customer1Impacted the customer1 impacted
    * @param customer2Impacted the customer2 impacted
    * @param customer3Impacted the customer3 impacted
@@ -159,7 +163,7 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
    * @param createdAt the created at
    */
   public CallOutVisit(User user, Site site, String accessCode, String callOutCsrOrTtNumber, Date timeComplainReceived,
-      Date timeReachedToSite, Date timeFaultReserved, String customer1Impacted, String customer2Impacted,
+      Date timeReachedToSite, Date timeFaultResolved, String customer1Impacted, String customer2Impacted,
       String customer3Impacted, String customer4Impacted, String mainCategoryOfFault,
       String equipmentComponentCausedFault, String equipmentComponentRepaired, String equipmentComponentReplaced,
       String fixResolutionTemporaryOrPermanent, String actionsRequiredForPermanentResolution, Date createdAt) {
@@ -169,7 +173,7 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     this.callOutCsrOrTtNumber = callOutCsrOrTtNumber;
     this.timeComplainReceived = timeComplainReceived;
     this.timeReachedToSite = timeReachedToSite;
-    this.timeFaultReserved = timeFaultReserved;
+    this.timeFaultResolved = timeFaultResolved;
     this.customer1Impacted = customer1Impacted;
     this.customer2Impacted = customer2Impacted;
     this.customer3Impacted = customer3Impacted;
@@ -241,7 +245,10 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
    * @param user the new user
    */
   public void setUser(User user) {
-    this.user = user;
+	  this.user = user;
+		if (this.user != null) {
+			userId = this.user.getUserName();
+		}
   }
 
   /**
@@ -352,17 +359,17 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
    */
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "time_fault_reserved", nullable = false, length = 19)
-  public Date getTimeFaultReserved() {
-    return this.timeFaultReserved;
+  public Date gettimeFaultResolved() {
+    return this.timeFaultResolved;
   }
 
   /**
    * Sets the time fault reserved.
    *
-   * @param timeFaultReserved the new time fault reserved
+   * @param timeFaultResolved the new time fault reserved
    */
-  public void setTimeFaultReserved(Date timeFaultReserved) {
-    this.timeFaultReserved = timeFaultReserved;
+  public void settimeFaultResolved(Date timeFaultResolved) {
+    this.timeFaultResolved = timeFaultResolved;
   }
 
   /**
@@ -583,7 +590,25 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
 	public void setSiteId(String siteId) {
 		this.siteId = siteId;
 	}
+	/**
+	 * Gets the user id.
+	 * 
+	 * @return the user id
+	 */
+	@Transient
+	public String getUserId() {
+		return userId;
+	}
 
+	/**
+	 * Sets the user id.
+	 * 
+	 * @param userId
+	 *            the new user id
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
   /* (non-Javadoc)
    * @see java.lang.Object#hashCode()
    */
@@ -656,8 +681,8 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
       builder.append("timeComplainReceived=").append(timeComplainReceived).append(", ");
     if (timeReachedToSite != null)
       builder.append("timeReachedToSite=").append(timeReachedToSite).append(", ");
-    if (timeFaultReserved != null)
-      builder.append("timeFaultReserved=").append(timeFaultReserved).append(", ");
+    if (timeFaultResolved != null)
+      builder.append("timeFaultResolved=").append(timeFaultResolved).append(", ");
     if (customer1Impacted != null)
       builder.append("customer1Impacted=").append(customer1Impacted).append(", ");
     if (customer2Impacted != null)

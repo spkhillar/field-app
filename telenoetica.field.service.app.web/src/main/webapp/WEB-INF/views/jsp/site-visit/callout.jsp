@@ -24,22 +24,57 @@
 			      siteIdCheck:true
 			   },
 			  "accessCode" : {
-			       required : true
+				  number : true,
+				  required : true
 		       },
-		      "actionsRequiredForPermanentResolution":{
+		      "callOutCsrOrTtNumber" : {
+				  number : true,
+				  required : true
+			   },
+				"timeComplainReceived" : {
+					dateRangeCheck : true,
+					required : true
+				},
+				"timeReachedToSite" : {
+					dateRangeCheck : true,
+					required : true
+				},
+				"timeFaultResolved" : {
+					dateRangeCheck : true,
+					required : true
+				},
+		       "actionsRequiredForPermanentResolution":{
 		      		maxlength : 50
-		      }
+		      },
 		    }
 		});
+		
+		jQuery.validator.addMethod('dateRangeCheck', function(value) {
+			var timeReachedToSite = $("#timeReachedToSite").val();
+			var timeComplainReceived = $("#timeComplainReceived").val();
+			var timeFaultResolved = $("#timeFaultResolved").val();
+			if((timeReachedToSite != "")&& (timeComplainReceived != "")&&(timeFaultResolved != "")){
+			if((Date.parse(timeComplainReceived)<Date.parse(timeReachedToSite)) && (Date.parse(timeReachedToSite)<Date.parse(timeFaultResolved)))
+	        {
+				return true;
+	        }else{
+			return false;
+	        }
+			}
+			return true;
+		}, "Time enterd is not in correct sequence.");
+		
 		var timeOptions={
 				dateFormat : "dd/mm/yy",
 				timeFormat: 'HH:mm:ss',
 				addSliderAccess: true,
-				sliderAccessArgs: { touchonly: false }
+				sliderAccessArgs: { touchonly: false },
+				minDate: '-6d',
+				maxDate: '+0d'
 			};
 		$('#timeComplainReceived').datetimepicker(timeOptions);
 		$('#timeReachedToSite').datetimepicker(timeOptions);
-		$('#timeFaultReserved').datetimepicker(timeOptions);
+		$('#timeFaultResolved').datetimepicker(timeOptions);
 		$( "#dialog").dialog({
 			autoOpen: false,
 			width: 300,
@@ -139,7 +174,7 @@ function refreshCalloutData(){
 					<form:input path="accessCode"/>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.callout.csr.ttnumber"/></label> 
+					<label><spring:message code="fieldapp.label.callout.csr.ttnumber"/> <em>*</em> </label> 
 					<form:input path="callOutCsrOrTtNumber" />
 				</p>
 				<p>
@@ -152,7 +187,7 @@ function refreshCalloutData(){
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.time.when.fault.resolved"/></label> 
-					<form:input path="timeFaultReserved" />
+					<form:input path="timeFaultResolved" />
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.customer1.impacted"/></label> 

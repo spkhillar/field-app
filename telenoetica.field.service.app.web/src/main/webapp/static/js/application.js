@@ -8,6 +8,8 @@ var jqgridUserRolesFilter;
 var htmlClientOptions='<option value=""></option>';
 var htmlFaultOptions='<option value=""></option>';
 var htmlEquipmentOptions='<option value=""></option>';
+var temproryPermanentOption = "Temporary:Temporary;Permanent:Permanent";
+
 $(document).ready(function() {
 
 	$.ajax({

@@ -33,7 +33,7 @@ public class CallOutVisitServiceTest extends BaseServiceTest{
 	  callOutVisit.setUser(user);
 	  callOutVisit.setSite(site);
 	  callOutVisit.setTimeComplainReceived(new Date());
-	  callOutVisit.setTimeFaultReserved(new Date());
+	  callOutVisit.settimeFaultResolved(new Date());
 	  callOutVisit.setTimeReachedToSite(new Date());
 	  
 	  callOutVisit = callOutVisitService.saveOrUpdate(callOutVisit);
