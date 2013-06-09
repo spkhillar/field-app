@@ -76,7 +76,9 @@ webContextPath="${pageContext.request.contextPath}";
 				<li><a href="${contextPath}/diesel/list">Diesel Visit</a></li>
 				<li><a href="${contextPath}/callout/list">Call Out Visit</a></li>
 				<li><a href="#">Maintainance Visit</a></li>
-			</ul>
+			</ul>	
+		</li>
+		<li><a href="${contextPath}/logout">Logout</a>
 		</li>
 	</ul>
 </nav>

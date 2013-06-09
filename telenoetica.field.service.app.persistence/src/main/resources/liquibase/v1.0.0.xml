@@ -8882,4 +8882,28 @@
 				<column name="version" valueNumeric="0" />
 			</insert>
 		</changeSet>
-	</databaseChangeLog>
+		<changeSet author="Shiv" id="1370006636842-9">
+			<update tableName="role">
+				<column name="role_name" value="ROLE_ADMIN"></column>
+				<where>id=1</where>
+			</update>
+			<update tableName="role">
+				<column name="role_name" value="ROLE_OPS_MANAGER"></column>
+				<where>id=2</where>
+			</update>
+			<update tableName="role">
+				<column name="role_name" value="ROLE_FSE"></column>
+				<where>id=3</where>
+			</update>
+			<update tableName="role">
+				<column name="role_name" value="ROLE_CSOE"></column>
+				<where>id=4</where>
+			</update>
+		</changeSet>
+		<changeSet author="Shiv" id="1370006636842-10">
+			<update tableName="user">
+				<column name="password" value="630d1d8c41c910cb54214edb7fd78d592c85c87c40b4c9fc4cd4b3ad228fcc43"></column>
+				<where>username='root'</where>
+			</update>
+		</changeSet>
+</databaseChangeLog>

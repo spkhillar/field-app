@@ -787,5 +787,12 @@
 			<append value=" after enabled" />
 		</modifySql>
 	</changeSet>
-
+	<changeSet author="shiv prasad khillar" id="1367592120329-37">
+		<addColumn tableName="role">
+			<column name="role_name" type="VARCHAR(100)"></column>
+		</addColumn>
+		<modifySql dbms="mysql">
+			<append value=" after name"/>
+		</modifySql>
+	</changeSet>	
 </databaseChangeLog>
