@@ -20,7 +20,11 @@
 	</properties>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>telenoetica.field.service.app</groupId>
+			<artifactId>telenoetica.field.service.app.entities</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 	</dependencies>
 

@@ -17,7 +17,6 @@
 		<maven-eclipse-plugin-version>2.9</maven-eclipse-plugin-version>
 		<com.google.android-version>4.1.1.4</com.google.android-version>
 		<org.springframework.android-version>1.0.1.RELEASE</org.springframework.android-version>
-		<org.codehaus.jackson-version>1.9.11</org.codehaus.jackson-version>
 		<android.sdk.path>E:\FP\adt-bundle-windows-x86_64-20130522\adt-bundle-windows-x86_64-20130522\sdk</android.sdk.path>
 		<android-emulator>MyVD</android-emulator>
 	</properties>
@@ -34,12 +33,11 @@
 			<artifactId>spring-android-rest-template</artifactId>
 			<version>${org.springframework.android-version}</version>
 		</dependency>
-		
-		<!-- Jackson JSON Processor -->
+
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${org.codehaus.jackson-version}</version>
+			<groupId>telenoetica.field.service.app</groupId>
+			<artifactId>telenoetica.field.service.app.entities</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
 
@@ -63,9 +61,7 @@
 					<sdk>
 						<platform>${android-platform}</platform>
 					</sdk>
-					<emulator>
-                        <avd>${android-emulator}</avd>
-                    </emulator>
+					<!-- <emulator> <avd>${android-emulator}</avd> </emulator> -->
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 				</configuration>
@@ -90,5 +86,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
