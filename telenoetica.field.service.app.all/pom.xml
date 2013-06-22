@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>../telenoetica.field.service.app.entities</module>
 		<module>../telenoetica.field.service.app.persistence</module>
 		<module>../telenoetica.field.service.app.integration</module>
 		<module>../telenoetica.field.service.app.scheduler</module>
