@@ -66,7 +66,7 @@ webContextPath="${pageContext.request.contextPath}";
 				</li>
 				<li><a href="${contextPath}/callout/new">Call Out Visit</a>			
 				</li>
-				<li><a href="#">Maintainance Visit</a>
+				<li><a href="${contextPath}/maintenance/new">Maintenance Visit</a>
 				</li>
 			</ul>
 		</li>
@@ -75,7 +75,7 @@ webContextPath="${pageContext.request.contextPath}";
 				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
 				<li><a href="${contextPath}/diesel/list">Diesel Visit</a></li>
 				<li><a href="${contextPath}/callout/list">Call Out Visit</a></li>
-				<li><a href="#">Maintainance Visit</a></li>
+				<li><a href="${contextPath}/maintenance/list">Maintenance Visit</a></li>
 			</ul>	
 		</li>
 		<li><a href="${contextPath}/logout">Logout</a>

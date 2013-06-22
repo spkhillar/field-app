@@ -8,6 +8,7 @@ var jqgridUserRolesFilter;
 var htmlClientOptions='<option value=""></option>';
 var htmlFaultOptions='<option value=""></option>';
 var htmlEquipmentOptions='<option value=""></option>';
+var htmlMaintenanceCategoriesOptions='<option value=""></option>';
 var temproryPermanentOption = "Temporary:Temporary;Permanent:Permanent";
 
 $(document).ready(function() {
@@ -45,6 +46,7 @@ $(document).ready(function() {
 	getClientsForDropDown();
 	getFaultsForDropDown();
 	getEquipmentForDropDown();
+	getMaintenanceCategoriesForDropDown();
 
 });
 
@@ -88,13 +90,21 @@ function getFaultsForDropDown(){
 }
 
 function getEquipmentForDropDown(){
-	var equipmentArray = homeDataObject.faults;
+	var equipmentArray = homeDataObject.spares;
 	$.each(equipmentArray, function(index, value) {
 		htmlEquipmentOptions += '<option value="' + value.name + '">'
 		+ value.name + '</option>';
 		
 	});
-	htmlEquipmentOptions += '</option>';
-	
-	
+	htmlEquipmentOptions += '</option>';	
+}
+
+function getMaintenanceCategoriesForDropDown(){
+	var maintenanceCategoriesArray = homeDataObject.maintenanceCategories;
+	$.each(maintenanceCategoriesArray, function(index, value) {
+		htmlMaintenanceCategoriesOptions += '<option value="' + value.name + '">'
+		+ value.name + '</option>';
+		
+	});
+	htmlMaintenanceCategoriesOptions += '</option>';	
 }

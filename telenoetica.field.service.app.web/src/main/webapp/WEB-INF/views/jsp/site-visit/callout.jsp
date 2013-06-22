@@ -174,68 +174,68 @@ function refreshCalloutData(){
 					<form:input path="accessCode"/>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.callout.csr.ttnumber"/> <em>*</em> </label> 
+					<label><spring:message code="fieldapp.label.cv.callout.csr.ttnumber"/> <em>*</em> </label> 
 					<form:input path="callOutCsrOrTtNumber" />
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.complain.received.time"/></label> 
+					<label><spring:message code="fieldapp.label.cv.complain.received.time"/></label> 
 					<form:input path="timeComplainReceived" />
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.time.to.reach.site"/></label> 
+					<label><spring:message code="fieldapp.label.cv.time.to.reach.site"/></label> 
 					<form:input path="timeReachedToSite" />
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.time.when.fault.resolved"/></label> 
+					<label><spring:message code="fieldapp.label.cv.time.when.fault.resolved"/></label> 
 					<form:input path="timeFaultResolved" />
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.customer1.impacted"/></label> 
+					<label><spring:message code="fieldapp.label.cv.customer1.impacted"/></label> 
 					<form:select id="customer1Impacted" path="customer1Impacted">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.customer2.impacted"/></label> 
+					<label><spring:message code="fieldapp.label.cv.customer2.impacted"/></label> 
 					<form:select id="customer2Impacted" path="customer2Impacted">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.customer3.impacted"/></label> 
+					<label><spring:message code="fieldapp.label.cv.customer3.impacted"/></label> 
 					<form:select id="customer3Impacted" path="customer3Impacted">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.customer4.impacted"/></label> 
+					<label><spring:message code="fieldapp.label.cv.customer4.impacted"/></label> 
 					<form:select id="customer4Impacted" path="customer4Impacted">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.main.category.of.fault"/></label> 
+					<label><spring:message code="fieldapp.label.cv.main.category.of.fault"/></label> 
 					<form:select id="mainCategoryOfFault" path="mainCategoryOfFault">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.equipment.component.caused.fault"/></label> 
+					<label><spring:message code="fieldapp.label.cv.equipment.component.caused.fault"/></label> 
 					<form:select id="equipmentComponentCausedFault" path="equipmentComponentCausedFault">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.equipment.componenet.repaired"/></label> 
+					<label><spring:message code="fieldapp.label.cv.equipment.componenet.repaired"/></label> 
 					<form:select id="equipmentComponentRepaired" path="equipmentComponentRepaired">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.equipment.componenet.replaced"/></label> 
+					<label><spring:message code="fieldapp.label.cv.equipment.componenet.replaced"/></label> 
 					<form:select id="equipmentComponentReplaced" path="equipmentComponentReplaced">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.fix.temporary.permanent"/> </label> 
+					<label><spring:message code="fieldapp.label.cv.fix.temporary.permanent"/> </label> 
 					<label style="width: 50px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Temporary" /><spring:message code="fieldapp.label.yes.value"/> </label>
 					<label style="width: 50px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Permanent" /><spring:message code="fieldapp.label.no.value"/></label>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.actions.required.for.permanent.resolution"/></label> 
+					<label><spring:message code="fieldapp.label.cv.actions.required.for.permanent.resolution"/></label> 
 					<form:textarea path="actionsRequiredForPermanentResolution" />
 				</p>
 		</fieldset>

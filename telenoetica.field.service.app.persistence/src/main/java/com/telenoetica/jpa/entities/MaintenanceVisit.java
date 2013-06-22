@@ -15,7 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * MaintenanceVisit.
@@ -91,6 +94,14 @@ public class MaintenanceVisit implements java.io.Serializable,BaseEntity {
   
   /** The created at. */
   private Date createdAt;
+  
+  /** The user id. */
+  @JsonProperty
+  private String userId;
+
+ /** The site id. */
+  @JsonProperty
+  private String siteId;
 
   /**
    * Instantiates a new maintenance visit.
@@ -194,46 +205,6 @@ public class MaintenanceVisit implements java.io.Serializable,BaseEntity {
    */
   public void setVersion(Integer version) {
     this.version = version;
-  }
-
-  /**
-   * Gets the user.
-   *
-   * @return the user
-   */
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id")
-  public User getUser() {
-    return this.user;
-  }
-
-  /**
-   * Sets the user.
-   *
-   * @param user the new user
-   */
-  public void setUser(User user) {
-    this.user = user;
-  }
-
-  /**
-   * Gets the site.
-   *
-   * @return the site
-   */
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "site_id")
-  public Site getSite() {
-    return this.site;
-  }
-
-  /**
-   * Sets the site.
-   *
-   * @param site the new site
-   */
-  public void setSite(Site site) {
-    this.site = site;
   }
 
   /**
@@ -559,5 +530,312 @@ public class MaintenanceVisit implements java.io.Serializable,BaseEntity {
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
   }
+  
+  /**
+	 * Gets the user.
+	 * 
+	 * @return the user
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * Sets the user.
+	 * 
+	 * @param user
+	 *            the new user
+	 */
+	public void setUser(User user) {
+		this.user = user;
+		if (this.user != null) {
+			userId = this.user.getUserName();
+		}
+	}
+
+	/**
+	 * Gets the site.
+	 * 
+	 * @return the site
+	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "site_id")
+	public Site getSite() {
+		return site;
+	}
+
+	/**
+	 * Sets the site.
+	 * 
+	 * @param site
+	 *            the new site
+	 */
+	public void setSite(Site site) {
+		this.site = site;
+		if (this.site != null) {
+			siteId = this.site.getName();
+		}
+	}
+	
+	/**
+	 * Gets the user id.
+	 * 
+	 * @return the user id
+	 */
+	@Transient
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * Sets the user id.
+	 * 
+	 * @param userId
+	 *            the new user id
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	/**
+	 * Gets the site id.
+	 * 
+	 * @return the site id
+	 */
+	@Transient
+	public String getSiteId() {
+		return siteId;
+	}
+
+	/**
+	 * Sets the site id.
+	 * 
+	 * @param siteId
+	 *            the new site id
+	 */
+	public void setSiteId(String siteId) {
+		this.siteId = siteId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((accessCode == null) ? 0 : accessCode.hashCode());
+		result = prime
+				* result
+				+ ((categoryOfMaintenance == null) ? 0 : categoryOfMaintenance
+						.hashCode());
+		result = prime * result
+				+ ((cosumablesUsed1 == null) ? 0 : cosumablesUsed1.hashCode());
+		result = prime * result
+				+ ((cosumablesUsed2 == null) ? 0 : cosumablesUsed2.hashCode());
+		result = prime * result
+				+ ((cosumablesUsed3 == null) ? 0 : cosumablesUsed3.hashCode());
+		result = prime * result
+				+ ((cosumablesUsed4 == null) ? 0 : cosumablesUsed4.hashCode());
+		result = prime * result
+				+ ((cosumablesUsed5 == null) ? 0 : cosumablesUsed5.hashCode());
+		result = prime * result
+				+ ((cosumablesUsed6 == null) ? 0 : cosumablesUsed6.hashCode());
+		result = prime * result
+				+ ((createdAt == null) ? 0 : createdAt.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime
+				* result
+				+ ((runHourAfterPmdG2 == null) ? 0 : runHourAfterPmdG2
+						.hashCode());
+		result = prime
+				* result
+				+ ((runHoursAfterPmdG1 == null) ? 0 : runHoursAfterPmdG1
+						.hashCode());
+		result = prime * result + ((site == null) ? 0 : site.hashCode());
+		result = prime * result + ((siteId == null) ? 0 : siteId.hashCode());
+		result = prime
+				* result
+				+ ((sparesUsedItemsReplaced1 == null) ? 0
+						: sparesUsedItemsReplaced1.hashCode());
+		result = prime
+				* result
+				+ ((sparesUsedItemsReplaced2 == null) ? 0
+						: sparesUsedItemsReplaced2.hashCode());
+		result = prime
+				* result
+				+ ((sparesUsedItemsReplaced3 == null) ? 0
+						: sparesUsedItemsReplaced3.hashCode());
+		result = prime
+				* result
+				+ ((sparesUsedItemsReplaced4 == null) ? 0
+						: sparesUsedItemsReplaced4.hashCode());
+		result = prime
+				* result
+				+ ((sparesUsedItemsReplaced5 == null) ? 0
+						: sparesUsedItemsReplaced5.hashCode());
+		result = prime
+				* result
+				+ ((sparesUsedItemsReplaced6 == null) ? 0
+						: sparesUsedItemsReplaced6.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MaintenanceVisit other = (MaintenanceVisit) obj;
+		if (accessCode == null) {
+			if (other.accessCode != null)
+				return false;
+		} else if (!accessCode.equals(other.accessCode))
+			return false;
+		if (categoryOfMaintenance == null) {
+			if (other.categoryOfMaintenance != null)
+				return false;
+		} else if (!categoryOfMaintenance.equals(other.categoryOfMaintenance))
+			return false;
+		if (cosumablesUsed1 == null) {
+			if (other.cosumablesUsed1 != null)
+				return false;
+		} else if (!cosumablesUsed1.equals(other.cosumablesUsed1))
+			return false;
+		if (cosumablesUsed2 == null) {
+			if (other.cosumablesUsed2 != null)
+				return false;
+		} else if (!cosumablesUsed2.equals(other.cosumablesUsed2))
+			return false;
+		if (cosumablesUsed3 == null) {
+			if (other.cosumablesUsed3 != null)
+				return false;
+		} else if (!cosumablesUsed3.equals(other.cosumablesUsed3))
+			return false;
+		if (cosumablesUsed4 == null) {
+			if (other.cosumablesUsed4 != null)
+				return false;
+		} else if (!cosumablesUsed4.equals(other.cosumablesUsed4))
+			return false;
+		if (cosumablesUsed5 == null) {
+			if (other.cosumablesUsed5 != null)
+				return false;
+		} else if (!cosumablesUsed5.equals(other.cosumablesUsed5))
+			return false;
+		if (cosumablesUsed6 == null) {
+			if (other.cosumablesUsed6 != null)
+				return false;
+		} else if (!cosumablesUsed6.equals(other.cosumablesUsed6))
+			return false;
+		if (createdAt == null) {
+			if (other.createdAt != null)
+				return false;
+		} else if (!createdAt.equals(other.createdAt))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (runHourAfterPmdG2 == null) {
+			if (other.runHourAfterPmdG2 != null)
+				return false;
+		} else if (!runHourAfterPmdG2.equals(other.runHourAfterPmdG2))
+			return false;
+		if (runHoursAfterPmdG1 == null) {
+			if (other.runHoursAfterPmdG1 != null)
+				return false;
+		} else if (!runHoursAfterPmdG1.equals(other.runHoursAfterPmdG1))
+			return false;
+		if (site == null) {
+			if (other.site != null)
+				return false;
+		} else if (!site.equals(other.site))
+			return false;
+		if (siteId == null) {
+			if (other.siteId != null)
+				return false;
+		} else if (!siteId.equals(other.siteId))
+			return false;
+		if (sparesUsedItemsReplaced1 == null) {
+			if (other.sparesUsedItemsReplaced1 != null)
+				return false;
+		} else if (!sparesUsedItemsReplaced1
+				.equals(other.sparesUsedItemsReplaced1))
+			return false;
+		if (sparesUsedItemsReplaced2 == null) {
+			if (other.sparesUsedItemsReplaced2 != null)
+				return false;
+		} else if (!sparesUsedItemsReplaced2
+				.equals(other.sparesUsedItemsReplaced2))
+			return false;
+		if (sparesUsedItemsReplaced3 == null) {
+			if (other.sparesUsedItemsReplaced3 != null)
+				return false;
+		} else if (!sparesUsedItemsReplaced3
+				.equals(other.sparesUsedItemsReplaced3))
+			return false;
+		if (sparesUsedItemsReplaced4 == null) {
+			if (other.sparesUsedItemsReplaced4 != null)
+				return false;
+		} else if (!sparesUsedItemsReplaced4
+				.equals(other.sparesUsedItemsReplaced4))
+			return false;
+		if (sparesUsedItemsReplaced5 == null) {
+			if (other.sparesUsedItemsReplaced5 != null)
+				return false;
+		} else if (!sparesUsedItemsReplaced5
+				.equals(other.sparesUsedItemsReplaced5))
+			return false;
+		if (sparesUsedItemsReplaced6 == null) {
+			if (other.sparesUsedItemsReplaced6 != null)
+				return false;
+		} else if (!sparesUsedItemsReplaced6
+				.equals(other.sparesUsedItemsReplaced6))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "MaintenanceVisit [id=" + id + ", version=" + version
+				+ ", user=" + user + ", site=" + site + ", accessCode="
+				+ accessCode + ", categoryOfMaintenance="
+				+ categoryOfMaintenance + ", sparesUsedItemsReplaced1="
+				+ sparesUsedItemsReplaced1 + ", sparesUsedItemsReplaced2="
+				+ sparesUsedItemsReplaced2 + ", sparesUsedItemsReplaced3="
+				+ sparesUsedItemsReplaced3 + ", sparesUsedItemsReplaced4="
+				+ sparesUsedItemsReplaced4 + ", sparesUsedItemsReplaced5="
+				+ sparesUsedItemsReplaced5 + ", sparesUsedItemsReplaced6="
+				+ sparesUsedItemsReplaced6 + ", cosumablesUsed1="
+				+ cosumablesUsed1 + ", cosumablesUsed2=" + cosumablesUsed2
+				+ ", cosumablesUsed3=" + cosumablesUsed3 + ", cosumablesUsed4="
+				+ cosumablesUsed4 + ", cosumablesUsed5=" + cosumablesUsed5
+				+ ", cosumablesUsed6=" + cosumablesUsed6
+				+ ", runHoursAfterPmdG1=" + runHoursAfterPmdG1
+				+ ", runHourAfterPmdG2=" + runHourAfterPmdG2 + ", createdAt="
+				+ createdAt + ", userId=" + userId + ", siteId=" + siteId + "]";
+	}
 
 }

@@ -7,14 +7,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.telenoetica.jpa.entities.CallOutVisit;
-import com.telenoetica.jpa.entities.RoutineVisit;
+import com.telenoetica.jpa.entities.MaintenanceVisit;
 
 public class FindFields {
 
   @Test
   public void testGetFields(){
-    Field[] fields = getAllFields(CallOutVisit.class);
+    Field[] fields = getAllFields(MaintenanceVisit.class);
     
     for (Field field : fields) {
       System.out.println("..."+field.getName());

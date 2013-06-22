@@ -28,6 +28,10 @@
 		<put-attribute name="title" value="Callout Visit Form" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/callout.jsp" />
 	</definition>
+	<definition name="maintenance.new" extends="base.definition">
+		<put-attribute name="title" value="Maintenance Visit Form" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/maintenance.jsp" />
+	</definition>
 	
 	<definition name="admin.users" extends="base.definition">
 		<put-attribute name="title" value="User Administration" />
@@ -48,6 +52,10 @@
 	<definition name="callout.list" extends="base.definition">
 		<put-attribute name="title" value="CallOut Visit Statistics Form" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/callout-visit-statistics.jsp" />
+	</definition>
+	<definition name="maintenance.list" extends="base.definition">
+		<put-attribute name="title" value="Maintenance Visit Statistics Form" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/maintenance-visit-statistics.jsp" />
 	</definition>
 	<definition name="login" extends="base.login.definition">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/login.jsp" />
