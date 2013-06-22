@@ -25,8 +25,8 @@ public final class AppValuesPopulator {
     
   }
   
-  public static void populateValues() throws JSONException{
-    JSONObject jsonObject = RestClient.INSTANCE.executeGet("http://ec2-54-235-55-111.compute-1.amazonaws.com:8080/fieldapp/home");
+  public static void populateValues(String userName,String password) throws JSONException{
+    JSONObject jsonObject = RestClient.INSTANCE.executeGet("http://localhost:8080/fieldapp/home",userName,password);
     
     if(jsonObject != null){
     

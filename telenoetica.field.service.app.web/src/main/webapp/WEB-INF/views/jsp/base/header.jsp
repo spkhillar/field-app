@@ -4,12 +4,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <spring:url value="/resources/css/templatemo_style.css" var="resourceCssUrl"/>
 <spring:url value="/resources/css/cupertino/jquery-ui-1.10.2.custom.min.css" var="resourceJqUiCssUrl"/>
 <spring:url value="/resources/css/ui.jqgrid.css" var="resourceJqGridCssUrl"/>
+<spring:url value="/resources/css/menu.css" var="resourceMenuCssUrl"/>
 
 <spring:url value="/resources/js/jquery-1.9.1.min.js" var="resourceJqUrl"/>
 <spring:url value="/resources/js/jquery.validate.min.js" var="resourceJqvUrl"/>
@@ -32,6 +33,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="${resourceCssUrl}"/>
+<link rel="stylesheet" type="text/css" href="${resourceMenuCssUrl}"/>
 <link rel="stylesheet" type="text/css" href="${resourceJqUiCssUrl}"/>
 <link rel="stylesheet" type="text/css" href="${resourceJqGridCssUrl}" />
 
@@ -46,10 +48,17 @@ webContextPath="${pageContext.request.contextPath}";
 
     
 		<div id="templatemo_header">
-        	<div id="site_title"><h1>Field Service Application</h1></div>
+        	<div id="site_title"><h1><a href="#" target="_parent">Helios Field Application</a></h1></div>
+        
+        	<div class="col_right_allw270">
+        	<span><b>Logged-In User: <sec:authentication property="principal.username"/></b> </span>
+        	<div><b>Logged-In Time</b>:<span id="loggedInTime"></span></div>
+        	<div id="dateTime"></div>
+        	<div id="logout"><a href="${contextPath}/logout"></a></div>
+        	</div>
         </div>
-        <nav>
-	<ul>
+       <ul id="menu">
+	
 		<li><a href="${homeUrl}">Home</a></li>
 		<li><a href="#">Administration</a>
 			<ul>
@@ -78,10 +87,8 @@ webContextPath="${pageContext.request.contextPath}";
 				<li><a href="${contextPath}/maintenance/list">Maintenance Visit</a></li>
 			</ul>	
 		</li>
-		<li><a href="${contextPath}/logout">Logout</a>
-		</li>
 	</ul>
-</nav>
+
 
 </body>
 </html>

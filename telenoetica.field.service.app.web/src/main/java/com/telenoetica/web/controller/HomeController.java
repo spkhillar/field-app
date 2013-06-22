@@ -30,6 +30,7 @@ import com.telenoetica.service.MaintenanceVisitCategoryService;
 import com.telenoetica.service.SiteService;
 import com.telenoetica.service.SpareService;
 import com.telenoetica.web.rest.HomeDataObject;
+import com.telenoetica.web.rest.RestResponse;
 
 /**
  * Handles requests for the application home page.
@@ -137,6 +138,16 @@ public class HomeController {
 		HomeDataObject homeDataObject = new HomeDataObject(sites, spares,
 				clients, faults, maintenanceCategories);
 		return homeDataObject;
+	}
+	/**
+	 * android rest login.
+	 * 
+	 * @return the home data object
+	 */
+	@RequestMapping(value = "/rest/auth", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	private RestResponse restAuth() {
+		return new RestResponse(0, "Logged In");
 	}
 
 }

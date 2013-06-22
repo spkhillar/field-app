@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -14,16 +16,18 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 public enum RestClient {
 
 	INSTANCE;
 
-	public JSONObject executeGet(String url) {
+	public JSONObject executeGet(String url,String userName,String password) {
 		String finalJsonString = null;
 		try {
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpGet getRequest = new HttpGet(url);
 			getRequest.addHeader("accept", "application/json");
+			getUserCredentials(getRequest, userName, password);
 			HttpResponse response = httpClient.execute(getRequest);
 			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
@@ -40,16 +44,20 @@ public enum RestClient {
 		return getJsonObject(finalJsonString);
 	}
 
-	public RestResponse executePost(String url, JSONObject jsonObject) {
+	public RestResponse executePost(String url, JSONObject jsonObject,String userName,String password) {
 		String finalJsonString = null;
 		try {
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url);
 			postRequest.addHeader("accept", "application/json");
-			postRequest.addHeader("Content-Type", "application/json");
+			//postRequest.addHeader("Content-Type", "application/json");
+			if(jsonObject != null){
 			StringEntity stringEntity = new StringEntity(jsonObject.toString(),
 					"UTF-8");
 			postRequest.setEntity(stringEntity);
+			}
+			getUserCredentials(postRequest, userName, password);
+			
 			HttpResponse response = httpClient.execute(postRequest);
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode != 200) {
@@ -122,5 +130,10 @@ public enum RestClient {
 			}
 		}
 		return true;
+	}
+	
+	private void getUserCredentials(HttpRequest httpRequest,String userName,String password){
+		String creds = userName+":"+password;
+		httpRequest.addHeader("Authorization", "Basic " + Base64.encodeBase64String(creds.getBytes()));
 	}
 }

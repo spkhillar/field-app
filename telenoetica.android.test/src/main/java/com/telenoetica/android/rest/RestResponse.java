@@ -33,6 +33,12 @@ public class RestResponse {
 		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "RestResponse [statusCode=" + statusCode + ", message="
+				+ message + "]";
+	}
+
 
 
 }

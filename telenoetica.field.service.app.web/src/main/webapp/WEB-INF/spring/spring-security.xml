@@ -17,6 +17,7 @@
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/logout" access="permitAll"/>
 		<intercept-url pattern="/" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
+		<intercept-url pattern="/rest/auth" access="hasAnyRole('ROLE_FSE')"/>
 		<intercept-url pattern="/home" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		<intercept-url pattern="/routine/**" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
@@ -25,7 +26,7 @@
 		<intercept-url pattern="/maintenance/**" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		
 		<session-management invalid-session-url="/logout/session" session-authentication-error-url="/sessiontimeout" session-fixation-protection="newSession">
-			<concurrency-control error-if-maximum-exceeded="true" max-sessions="1" />
+			
 		</session-management>
 		
 		<form-login login-page="/login" 
