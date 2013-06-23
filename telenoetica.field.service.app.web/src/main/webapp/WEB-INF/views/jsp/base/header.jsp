@@ -60,6 +60,7 @@ webContextPath="${pageContext.request.contextPath}";
        <ul id="menu">
 	
 		<li><a href="${homeUrl}">Home</a></li>
+		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
 		<li><a href="#">Administration</a>
 			<ul>
 				<li>
@@ -67,6 +68,7 @@ webContextPath="${pageContext.request.contextPath}";
 				</li>
 			</ul>
 		</li>
+		</sec:authorize>
 		<li><a href="#">Site Visit</a>
 			<ul>
 				<li><a href="${contextPath}/routine/new">Routine Visit</a>							
@@ -79,6 +81,7 @@ webContextPath="${pageContext.request.contextPath}";
 				</li>
 			</ul>
 		</li>
+		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
 		<li><a href="#">Site Statistics</a>
 			<ul>
 				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
@@ -87,6 +90,7 @@ webContextPath="${pageContext.request.contextPath}";
 				<li><a href="${contextPath}/maintenance/list">Maintenance Visit</a></li>
 			</ul>	
 		</li>
+		</sec:authorize>
 	</ul>
 
 
