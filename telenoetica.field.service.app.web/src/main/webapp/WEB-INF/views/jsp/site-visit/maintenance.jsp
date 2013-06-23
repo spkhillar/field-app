@@ -95,8 +95,8 @@ function submitMaintenanceData(){
 		    url:actionUrl,
 		    async: false,
 		    success: function(data, textStatus){
-			$( "#dialog").append(data);
-		    $( "#dialog" ).dialog( "open" );
+		    alert(data+""+textStatus);
+			$("#save").hide();
 		    },
 		    error: function(textStatus,errorThrown){
 			       alert(textStatus+""+errorThrown);

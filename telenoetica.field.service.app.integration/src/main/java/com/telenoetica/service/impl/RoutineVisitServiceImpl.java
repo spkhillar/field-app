@@ -43,7 +43,8 @@ import com.telenoetica.service.util.ServiceUtil;
  */
 @Service("routineVisitService")
 @Transactional
-public class RoutineVisitServiceImpl implements RoutineVisitService {
+public class RoutineVisitServiceImpl extends AbstractBaseService implements
+		RoutineVisitService {
 
 	/** The routine visit dao. */
 	@Autowired
@@ -94,7 +95,7 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 * @see com.telenoetica.service.BaseService#retrieve(java.lang.Long)
 	 */
 	@Override
-	public RoutineVisit retrieve(Long id) {
+	public RoutineVisit retrieve(final Long id) {
 		return routineVisitDAO.findOne(id);
 	}
 
@@ -107,26 +108,21 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 * @see com.telenoetica.service.BaseService#saveOrUpdate(com.telenoetica.jpa.entities.BaseEntity)
 	 */
 	@Override
-	public RoutineVisit saveOrUpdate(RoutineVisit routineVisit) {
-
-		if (routineVisit.getUser() == null) {
-			User user = userService.retrieve(1L);
-			routineVisit.setUser(user);
+	public RoutineVisit saveOrUpdate(final RoutineVisit visit) {
+		if (visit.getUser() == null) {
+			User user = getUser(visit.getUserId());
+			visit.setUser(user);
 		}
 
-		if (routineVisit.getSite() == null) {
-			Site site = siteService.findSite(routineVisit.getSiteId());
-			if (site == null) {
-				throw new ApplicationServiceException("Site \""
-						+ routineVisit.getSiteId() + "\" not found in system");
-			}
-			routineVisit.setSite(site);
+		if (visit.getSite() == null) {
+			Site site = getSite(visit.getSiteId());
+			visit.setSite(site);
 		} else {
 			throw new ApplicationServiceException(
 					"Site is required for creating a Routine Visit");
 		}
 
-		return routineVisitDAO.save(routineVisit);
+		return routineVisitDAO.save(visit);
 	}
 
 	/**
@@ -137,7 +133,7 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 * @see com.telenoetica.service.BaseService#delete(com.telenoetica.jpa.entities.BaseEntity)
 	 */
 	@Override
-	public void delete(RoutineVisit baseEntity) {
+	public void delete(final RoutineVisit baseEntity) {
 		routineVisitDAO.delete(baseEntity);
 
 	}
@@ -151,7 +147,7 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 * @see com.telenoetica.service.RoutineVisitService#getVisits(java.lang.Integer)
 	 */
 	@Override
-	public Page<RoutineVisit> getVisits(Integer pageNumber) {
+	public Page<RoutineVisit> getVisits(final Integer pageNumber) {
 
 		PageRequest request = new PageRequest(pageNumber - 1, PAGE_SIZE,
 				Sort.Direction.DESC, "createdAt");
@@ -185,8 +181,8 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 *      java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Page<RoutineVisit> findALL(int page, int rows, String sortOrder,
-			String orderByField) {
+	public Page<RoutineVisit> findALL(final int page, final int rows,
+			final String sortOrder, String orderByField) {
 		if ("userId".equals(orderByField)) {
 			orderByField = "user.userName";
 		} else if ("siteId".equals(orderByField)) {
@@ -212,8 +208,8 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 *      java.lang.String, java.util.Map)
 	 */
 	@Override
-	public Page<RoutineVisit> findALL(int page, int rows, String predicate,
-			Map<String, Object> params) {
+	public Page<RoutineVisit> findALL(final int page, final int rows,
+			final String predicate, final Map<String, Object> params) {
 		String ejbql = "from RoutineVisit where " + predicate;
 		return genericQueryExecutorDAO.executeQuery(ejbql, RoutineVisit.class,
 				params, page, rows);
@@ -235,9 +231,10 @@ public class RoutineVisitServiceImpl implements RoutineVisitService {
 	 *      java.lang.String)
 	 */
 	@Override
-	public void exportReport(String filterPredicate,
-			Map<String, Object> paramObject,
-			HttpServletResponse httpServletResponse, String attachmentFileName) {
+	public void exportReport(final String filterPredicate,
+			final Map<String, Object> paramObject,
+			final HttpServletResponse httpServletResponse,
+			final String attachmentFileName) {
 
 		// 1. Create new workbook
 		HSSFWorkbook workbook = new HSSFWorkbook();

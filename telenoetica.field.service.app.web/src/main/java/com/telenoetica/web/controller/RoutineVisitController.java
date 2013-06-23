@@ -79,7 +79,8 @@ public class RoutineVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(RoutineVisit routineVisit) {
+	public String save(final RoutineVisit routineVisit) {
+		routineVisit.setUserId(getCurrentLoggedinUserName());
 		RoutineVisit savedRoutineVisit = routineVisitService
 				.saveOrUpdate(routineVisit);
 		return "Saved Successfuly with id:" + savedRoutineVisit.getId();
@@ -104,7 +105,7 @@ public class RoutineVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/rest", method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
 	@ResponseBody
-	public RestResponse saveApi(@RequestBody RoutineVisit routineVisit) {
+	public RestResponse saveApi(@RequestBody final RoutineVisit routineVisit) {
 		RoutineVisit savedRoutineVisit = routineVisitService
 				.saveOrUpdate(routineVisit);
 		RestResponse response = new RestResponse(0,
@@ -121,7 +122,7 @@ public class RoutineVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
-	public RoutineVisit saveApi(@PathVariable Long id) {
+	public RoutineVisit saveApi(@PathVariable final Long id) {
 		RoutineVisit routineVisit = routineVisitService.retrieve(id);
 		return routineVisit;
 	}
@@ -156,12 +157,12 @@ public class RoutineVisitController extends AbstractJqGridFilterController {
 	@RequestMapping(value = "/records", produces = "application/json")
 	public @ResponseBody
 	JqGridResponse<RoutineVisit> records(
-			@RequestParam("_search") Boolean search,
-			@RequestParam(value = "filters", required = false) String filters,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord) {
+			@RequestParam("_search") final Boolean search,
+			@RequestParam(value = "filters", required = false) final String filters,
+			@RequestParam(value = "page", required = false) final Integer page,
+			@RequestParam(value = "rows", required = false) final Integer rows,
+			@RequestParam(value = "sidx", required = false) final String sidx,
+			@RequestParam(value = "sord", required = false) final String sord) {
 		Page<RoutineVisit> routineVisits = null;
 
 		if (search) {
@@ -205,13 +206,14 @@ public class RoutineVisitController extends AbstractJqGridFilterController {
 	 *            the http servlet response
 	 */
 	@RequestMapping(value = "/export")
-	public void export(@RequestParam("_search") Boolean search,
-			@RequestParam(value = "filters", required = false) String filters,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord,
-			HttpServletResponse httpServletResponse) {
+	public void export(
+			@RequestParam("_search") final Boolean search,
+			@RequestParam(value = "filters", required = false) final String filters,
+			@RequestParam(value = "page", required = false) final Integer page,
+			@RequestParam(value = "rows", required = false) final Integer rows,
+			@RequestParam(value = "sidx", required = false) final String sidx,
+			@RequestParam(value = "sord", required = false) final String sord,
+			final HttpServletResponse httpServletResponse) {
 		String filterPredicate = null;
 		Map<String, Object> paramObject = null;
 		if (search) {

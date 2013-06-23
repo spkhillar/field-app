@@ -87,7 +87,8 @@ public class DieselVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(DieselVisit dieselVisit) {
+	public String save(final DieselVisit dieselVisit) {
+		dieselVisit.setUserId(getCurrentLoggedinUserName());
 		DieselVisit savedDieselVisit = dieselVisitService
 				.saveOrUpdate(dieselVisit);
 		return "Saved Successfuly with id:" + savedDieselVisit.getId();
@@ -112,7 +113,7 @@ public class DieselVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/rest", method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
 	@ResponseBody
-	public RestResponse saveApi(@RequestBody DieselVisit dieselVisit) {
+	public RestResponse saveApi(@RequestBody final DieselVisit dieselVisit) {
 		DieselVisit savedDieselVisit = dieselVisitService
 				.saveOrUpdate(dieselVisit);
 		RestResponse response = new RestResponse(0,
@@ -129,7 +130,7 @@ public class DieselVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
-	public DieselVisit saveApi(@PathVariable Long id) {
+	public DieselVisit saveApi(@PathVariable final Long id) {
 		DieselVisit dieselVisit = dieselVisitService.retrieve(id);
 		return dieselVisit;
 	}
@@ -164,12 +165,12 @@ public class DieselVisitController extends AbstractJqGridFilterController {
 	@RequestMapping(value = "/records", produces = "application/json")
 	public @ResponseBody
 	JqGridResponse<DieselVisit> records(
-			@RequestParam("_search") Boolean search,
-			@RequestParam(value = "filters", required = false) String filters,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord) {
+			@RequestParam("_search") final Boolean search,
+			@RequestParam(value = "filters", required = false) final String filters,
+			@RequestParam(value = "page", required = false) final Integer page,
+			@RequestParam(value = "rows", required = false) final Integer rows,
+			@RequestParam(value = "sidx", required = false) final String sidx,
+			@RequestParam(value = "sord", required = false) final String sord) {
 		Page<DieselVisit> dieselVisits = null;
 
 		if (search) {
@@ -213,13 +214,14 @@ public class DieselVisitController extends AbstractJqGridFilterController {
 	 *            the http servlet response
 	 */
 	@RequestMapping(value = "/export")
-	public void export(@RequestParam("_search") Boolean search,
-			@RequestParam(value = "filters", required = false) String filters,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord,
-			HttpServletResponse httpServletResponse) {
+	public void export(
+			@RequestParam("_search") final Boolean search,
+			@RequestParam(value = "filters", required = false) final String filters,
+			@RequestParam(value = "page", required = false) final Integer page,
+			@RequestParam(value = "rows", required = false) final Integer rows,
+			@RequestParam(value = "sidx", required = false) final String sidx,
+			@RequestParam(value = "sord", required = false) final String sord,
+			final HttpServletResponse httpServletResponse) {
 		String filterPredicate = null;
 		Map<String, Object> paramObject = null;
 		if (search) {

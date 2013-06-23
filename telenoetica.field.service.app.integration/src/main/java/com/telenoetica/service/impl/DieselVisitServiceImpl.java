@@ -25,8 +25,6 @@ import com.telenoetica.jpa.entities.User;
 import com.telenoetica.jpa.repositories.DieselVisitDAO;
 import com.telenoetica.jpa.repositories.GenericQueryExecutorDAO;
 import com.telenoetica.service.DieselVisitService;
-import com.telenoetica.service.SiteService;
-import com.telenoetica.service.UserService;
 import com.telenoetica.service.excel.ExcelFillerService;
 import com.telenoetica.service.excel.ExcelLayoutService;
 import com.telenoetica.service.util.ApplicationServiceException;
@@ -41,19 +39,12 @@ import com.telenoetica.service.util.ServiceUtil;
  */
 @Service("dieselVisitService")
 @Transactional
-public class DieselVisitServiceImpl implements DieselVisitService {
+public class DieselVisitServiceImpl extends AbstractBaseService implements
+		DieselVisitService {
 
 	/** The diesel visit dao. */
 	@Autowired
 	private DieselVisitDAO dieselVisitDAO;
-
-	/** The site service. */
-	@Autowired
-	private SiteService siteService;
-
-	/** The user service. */
-	@Autowired
-	private UserService userService;
 
 	/** The generic query executor dao. */
 	@Autowired
@@ -83,7 +74,7 @@ public class DieselVisitServiceImpl implements DieselVisitService {
 	 * @see com.telenoetica.service.BaseService#retrieve(java.lang.Long)
 	 */
 	@Override
-	public DieselVisit retrieve(Long id) {
+	public DieselVisit retrieve(final Long id) {
 		return dieselVisitDAO.findOne(id);
 	}
 
@@ -95,37 +86,31 @@ public class DieselVisitServiceImpl implements DieselVisitService {
 	 * entities.BaseEntity)
 	 */
 	@Override
-	public DieselVisit saveOrUpdate(DieselVisit dieselVisit) {
-
-		if (dieselVisit.getUser() == null) {
-			User user = userService.retrieve(1L);
-			dieselVisit.setUser(user);
+	public DieselVisit saveOrUpdate(final DieselVisit visit) {
+		if (visit.getUser() == null) {
+			User user = getUser(visit.getUserId());
+			visit.setUser(user);
 		}
 
-		if (dieselVisit.getSite() == null) {
-			Site site = siteService.findSite(dieselVisit.getSiteId());
-			if (site == null) {
-				throw new ApplicationServiceException("Site \""
-						+ dieselVisit.getSiteId() + "\" not found in system");
-			}
-			dieselVisit.setSite(site);
+		if (visit.getSite() == null) {
+			Site site = getSite(visit.getSiteId());
+			visit.setSite(site);
 		} else {
 			throw new ApplicationServiceException(
 					"Site is required for creating a Routine Visit");
 		}
 
-		if (StringUtils.isNotBlank(dieselVisit.getTransferredSiteId())) {
-			Site transferredSite = siteService.findSite(dieselVisit
-					.getTransferredSiteId());
+		if (StringUtils.isNotBlank(visit.getTransferredSiteId())) {
+			Site transferredSite = getSite(visit.getTransferredSiteId());
+			visit.setTransferredSite(transferredSite);
 			if (transferredSite == null) {
 				throw new ApplicationServiceException("Transfer Site \""
-						+ dieselVisit.getTransferredSiteId()
+						+ visit.getTransferredSiteId()
 						+ "\" not found in system");
 			}
-			dieselVisit.setTransferredSite(transferredSite);
 		}
 
-		return dieselVisitDAO.save(dieselVisit);
+		return dieselVisitDAO.save(visit);
 	}
 
 	/*
@@ -136,7 +121,7 @@ public class DieselVisitServiceImpl implements DieselVisitService {
 	 * .BaseEntity)
 	 */
 	@Override
-	public void delete(DieselVisit baseEntity) {
+	public void delete(final DieselVisit baseEntity) {
 		dieselVisitDAO.delete(baseEntity);
 	}
 
@@ -157,8 +142,8 @@ public class DieselVisitServiceImpl implements DieselVisitService {
 	 * java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Page<DieselVisit> findALL(int page, int rows, String sortOrder,
-			String orderByField) {
+	public Page<DieselVisit> findALL(final int page, final int rows,
+			final String sortOrder, String orderByField) {
 		if ("userId".equals(orderByField)) {
 			orderByField = "user.userName";
 		} else if ("siteId".equals(orderByField)) {
@@ -177,8 +162,8 @@ public class DieselVisitServiceImpl implements DieselVisitService {
 	 * java.lang.String, java.util.Map)
 	 */
 	@Override
-	public Page<DieselVisit> findALL(int page, int rows, String predicate,
-			Map<String, Object> params) {
+	public Page<DieselVisit> findALL(final int page, final int rows,
+			final String predicate, final Map<String, Object> params) {
 		String ejbql = "from DieselVisit where " + predicate;
 		return genericQueryExecutorDAO.executeQuery(ejbql, DieselVisit.class,
 				params, page, rows);
@@ -200,9 +185,10 @@ public class DieselVisitServiceImpl implements DieselVisitService {
 	 *      java.lang.String)
 	 */
 	@Override
-	public void exportReport(String filterPredicate,
-			Map<String, Object> paramObject,
-			HttpServletResponse httpServletResponse, String attachmentFileName) {
+	public void exportReport(final String filterPredicate,
+			final Map<String, Object> paramObject,
+			final HttpServletResponse httpServletResponse,
+			final String attachmentFileName) {
 
 		// 1. Create new workbook
 		HSSFWorkbook workbook = new HSSFWorkbook();

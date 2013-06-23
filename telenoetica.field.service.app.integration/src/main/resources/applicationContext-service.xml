@@ -30,5 +30,14 @@
     <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
      <constructor-arg value="256"/>
  </bean>
-
+<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="useCodeAsDefaultMessage" value="true" />
+    <property name="basenames">
+         <list>
+            <value>classpath:messages</value>
+         </list>
+    </property>
+    <!-- <property name="cacheSeconds" value="0" /> -->
+    <property name="defaultEncoding" value="UTF-8"></property>
+</bean>
 </beans>

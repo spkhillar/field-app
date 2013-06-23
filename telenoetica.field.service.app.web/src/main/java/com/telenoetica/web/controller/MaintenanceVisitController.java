@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.telenoetica.jpa.entities.MaintenanceVisit;
-import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.service.MaintenanceVisitService;
 import com.telenoetica.web.rest.RestResponse;
 import com.telenoetica.web.util.DomainObjectMapper;
 import com.telenoetica.web.util.JqGridResponse;
+
 @Controller
 @RequestMapping(value = "/maintenance")
 @SessionAttributes("maintenanceForm")
@@ -33,11 +33,11 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 	/** The maintenance visit service. */
 	@Autowired
 	private MaintenanceVisitService maintenanceVisitService;
-	
+
 	/** The excluded props in filter. */
 	private final String[] excludedPropsInFilter = new String[] { "userId",
 			"siteId", "createdAt" };
-	
+
 	/** The Constant excludedPropQueryMapping. */
 	private static final Map<String, String> excludedPropQueryMapping = new HashMap<String, String>();
 
@@ -51,7 +51,7 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 		excludedPropOrderMapping.put("userId", "user.userName");
 		excludedPropOrderMapping.put("siteId", "site.name");
 	}
-	
+
 	/**
 	 * Creates the form bean.
 	 * 
@@ -71,8 +71,10 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String save(MaintenanceVisit maintenanceVisit) {
-		MaintenanceVisit savedMaintenanceVisit = maintenanceVisitService.saveOrUpdate(maintenanceVisit);
+	public String save(final MaintenanceVisit maintenanceVisit) {
+		maintenanceVisit.setUserId(getCurrentLoggedinUserName());
+		MaintenanceVisit savedMaintenanceVisit = maintenanceVisitService
+				.saveOrUpdate(maintenanceVisit);
 		return "Saved Successfuly with id:" + savedMaintenanceVisit.getId();
 	}
 
@@ -95,7 +97,8 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/rest", method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
 	@ResponseBody
-	public RestResponse saveApi(@RequestBody MaintenanceVisit maintenanceVisit) {
+	public RestResponse saveApi(
+			@RequestBody final MaintenanceVisit maintenanceVisit) {
 		MaintenanceVisit savedMaintenanceVisit = maintenanceVisitService
 				.saveOrUpdate(maintenanceVisit);
 		RestResponse response = new RestResponse(0,
@@ -112,8 +115,9 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 	 */
 	@RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
 	@ResponseBody
-	public MaintenanceVisit saveApi(@PathVariable Long id) {
-		MaintenanceVisit maintenanceVisit = maintenanceVisitService.retrieve(id);
+	public MaintenanceVisit saveApi(@PathVariable final Long id) {
+		MaintenanceVisit maintenanceVisit = maintenanceVisitService
+				.retrieve(id);
 		return maintenanceVisit;
 	}
 
@@ -147,12 +151,12 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 	@RequestMapping(value = "/records", produces = "application/json")
 	public @ResponseBody
 	JqGridResponse<MaintenanceVisit> records(
-			@RequestParam("_search") Boolean search,
-			@RequestParam(value = "filters", required = false) String filters,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord) {
+			@RequestParam("_search") final Boolean search,
+			@RequestParam(value = "filters", required = false) final String filters,
+			@RequestParam(value = "page", required = false) final Integer page,
+			@RequestParam(value = "rows", required = false) final Integer rows,
+			@RequestParam(value = "sidx", required = false) final String sidx,
+			@RequestParam(value = "sord", required = false) final String sord) {
 		Page<MaintenanceVisit> maintenanceVisits = null;
 
 		if (search) {
@@ -163,7 +167,8 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 			maintenanceVisits = maintenanceVisitService.findALL(page, rows,
 					filterPredicate, paramObject);
 		} else {
-			maintenanceVisits = maintenanceVisitService.findALL(page, rows, sord, sidx);
+			maintenanceVisits = maintenanceVisitService.findALL(page, rows,
+					sord, sidx);
 		}
 		List<Object> list = DomainObjectMapper.listEntities(maintenanceVisits);
 		JqGridResponse<MaintenanceVisit> response = new JqGridResponse<MaintenanceVisit>();
@@ -196,13 +201,14 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 	 *            the http servlet response
 	 */
 	@RequestMapping(value = "/export")
-	public void export(@RequestParam("_search") Boolean search,
-			@RequestParam(value = "filters", required = false) String filters,
-			@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "rows", required = false) Integer rows,
-			@RequestParam(value = "sidx", required = false) String sidx,
-			@RequestParam(value = "sord", required = false) String sord,
-			HttpServletResponse httpServletResponse) {
+	public void export(
+			@RequestParam("_search") final Boolean search,
+			@RequestParam(value = "filters", required = false) final String filters,
+			@RequestParam(value = "page", required = false) final Integer page,
+			@RequestParam(value = "rows", required = false) final Integer rows,
+			@RequestParam(value = "sidx", required = false) final String sidx,
+			@RequestParam(value = "sord", required = false) final String sord,
+			final HttpServletResponse httpServletResponse) {
 		String filterPredicate = null;
 		Map<String, Object> paramObject = null;
 		if (search) {

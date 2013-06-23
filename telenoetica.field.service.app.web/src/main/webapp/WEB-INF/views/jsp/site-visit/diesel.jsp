@@ -139,6 +139,7 @@
 					async : false,
 					success : function(data, textStatus) {
 						alert(data + "" + textStatus);
+					       $("#save").hide();
 						//$("#save").attr("disabled","disabled");
 						//$("#save").css("background-color","silver");
 					},

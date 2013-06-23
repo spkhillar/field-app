@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/main/resources/applicationContext-scheduler-jobs.xml</config>
+		<config>src/test/resources/jobs-test-context.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
