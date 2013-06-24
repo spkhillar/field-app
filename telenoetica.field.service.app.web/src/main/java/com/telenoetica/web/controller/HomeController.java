@@ -1,9 +1,10 @@
 /*
- * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
  */
 package com.telenoetica.web.controller;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -11,6 +12,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +21,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.telenoetica.jpa.entities.CallOutVisit;
 import com.telenoetica.jpa.entities.Client;
+import com.telenoetica.jpa.entities.DieselVisit;
 import com.telenoetica.jpa.entities.Fault;
+import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.jpa.entities.MaintenanceVisitCategory;
+import com.telenoetica.jpa.entities.RoutineVisit;
 import com.telenoetica.jpa.entities.Site;
 import com.telenoetica.jpa.entities.Spare;
 import com.telenoetica.jpa.entities.User;
+import com.telenoetica.service.CallOutVisitService;
 import com.telenoetica.service.ClientService;
+import com.telenoetica.service.DieselVisitService;
 import com.telenoetica.service.FaultService;
 import com.telenoetica.service.MaintenanceVisitCategoryService;
+import com.telenoetica.service.MaintenanceVisitService;
+import com.telenoetica.service.RoutineVisitService;
 import com.telenoetica.service.SiteService;
 import com.telenoetica.service.SpareService;
 import com.telenoetica.web.rest.HomeDataObject;
 import com.telenoetica.web.rest.RestResponse;
+import com.telenoetica.web.rest.WebHomeData;
 
 /**
  * Handles requests for the application home page.
@@ -40,114 +50,146 @@ import com.telenoetica.web.rest.RestResponse;
 @Controller
 public class HomeController {
 
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	/** The fault service. */
-	@Autowired
-	private FaultService faultService;
+  /** The fault service. */
+  @Autowired
+  private FaultService faultService;
 
-	/** The site service. */
-	@Autowired
-	private SiteService siteService;
+  /** The site service. */
+  @Autowired
+  private SiteService siteService;
 
-	/** The spare service. */
-	@Autowired
-	private SpareService spareService;
+  /** The spare service. */
+  @Autowired
+  private SpareService spareService;
 
-	/** The client service. */
-	@Autowired
-	private ClientService clientService;
+  /** The client service. */
+  @Autowired
+  private ClientService clientService;
 
-	/** The maintenance visit category service. */
-	@Autowired
-	private MaintenanceVisitCategoryService maintenanceVisitCategoryService;
+  /** The maintenance visit category service. */
+  @Autowired
+  private MaintenanceVisitCategoryService maintenanceVisitCategoryService;
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
-	 * @return the string
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+  @Autowired
+  private CallOutVisitService callOutVisitService;
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
+  @Autowired
+  private DieselVisitService dieselVisitService;
 
-		String formattedDate = dateFormat.format(date);
+  @Autowired
+  private RoutineVisitService routineVisitService;
 
-		model.addAttribute("serverTime", formattedDate);
+  @Autowired
+  private MaintenanceVisitService maintenanceVisitService;
 
-		return "home";
-	}
+  /**
+   * Simply selects the home view to render by returning its name.
+   * 
+   * @param locale
+   *          the locale
+   * @param model
+   *          the model
+   * @return the string
+   */
+  @RequestMapping(value = "/", method = RequestMethod.GET)
+  public String home(final Locale locale, final Model model) {
+    logger.info("Welcome home! The client locale is {}.", locale);
 
-	/**
-	 * Gets the routine visit.
-	 * 
-	 * @return the routine visit
-	 */
-	@RequestMapping(value = "/rt", method = RequestMethod.GET)
-	@ResponseBody
-	public CallOutVisit getRoutineVisit() {
-		User user = new User();
-		Site site = new Site();
+    Date date = new Date();
+    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
-		user.setEmail("shivprasad.khillar@gmial.com");
-		user.setEnabled(true);
-		user.setFirstName("Shiv");
-		user.setLastName("khillar");
-		user.setUserName("spkhillar");
-		user.setId(1L);
+    String formattedDate = dateFormat.format(date);
 
-		site.setName("Bellandur");
-		site.setId(2L);
+    model.addAttribute("serverTime", formattedDate);
 
-		CallOutVisit callOutVisit = new CallOutVisit();
-		callOutVisit.setAccessCode("AAA");
+    return "home";
+  }
 
-		callOutVisit.setUser(user);
-		callOutVisit.setSite(site);
-		callOutVisit.setTimeComplainReceived(new Date());
-		callOutVisit.settimeFaultResolved(new Date());
-		callOutVisit.setTimeReachedToSite(new Date());
+  /**
+   * Gets the routine visit.
+   * 
+   * @return the routine visit
+   */
+  @RequestMapping(value = "/rt", method = RequestMethod.GET)
+  @ResponseBody
+  public CallOutVisit getRoutineVisit() {
+    User user = new User();
+    Site site = new Site();
 
-		return callOutVisit;
-	}
+    user.setEmail("shivprasad.khillar@gmial.com");
+    user.setEnabled(true);
+    user.setFirstName("Shiv");
+    user.setLastName("khillar");
+    user.setUserName("spkhillar");
+    user.setId(1L);
 
-	/**
-	 * Home objects.
-	 * 
-	 * @return the home data object
-	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	private HomeDataObject homeObjects() {
-		List<Fault> faults = faultService.getFaults();
-		List<Site> sites = siteService.getSites();
-		List<Client> clients = clientService.getClients();
-		List<Spare> spares = spareService.getSpares();
-		List<MaintenanceVisitCategory> maintenanceCategories = maintenanceVisitCategoryService
-				.getCategories();
-		HomeDataObject homeDataObject = new HomeDataObject(sites, spares,
-				clients, faults, maintenanceCategories);
-		return homeDataObject;
-	}
-	/**
-	 * android rest login.
-	 * 
-	 * @return the home data object
-	 */
-	@RequestMapping(value = "/rest/auth", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	private RestResponse restAuth() {
-		return new RestResponse(0, "Logged In");
-	}
+    site.setName("Bellandur");
+    site.setId(2L);
+
+    CallOutVisit callOutVisit = new CallOutVisit();
+    callOutVisit.setAccessCode("AAA");
+
+    callOutVisit.setUser(user);
+    callOutVisit.setSite(site);
+    callOutVisit.setTimeComplainReceived(new Date());
+    callOutVisit.settimeFaultResolved(new Date());
+    callOutVisit.setTimeReachedToSite(new Date());
+
+    return callOutVisit;
+  }
+
+  /**
+   * Home objects.
+   * 
+   * @return the home data object
+   */
+  @RequestMapping(value = "/home", method = RequestMethod.GET, produces = "application/json")
+  @ResponseBody
+  private HomeDataObject homeObjects() {
+    List<Fault> faults = faultService.getFaults();
+    List<Site> sites = siteService.getSites();
+    List<Client> clients = clientService.getClients();
+    List<Spare> spares = spareService.getSpares();
+    List<MaintenanceVisitCategory> maintenanceCategories = maintenanceVisitCategoryService.getCategories();
+    HomeDataObject homeDataObject = new HomeDataObject(sites, spares, clients, faults, maintenanceCategories);
+    return homeDataObject;
+  }
+
+  /**
+   * android rest login.
+   * 
+   * @return the home data object
+   */
+  @RequestMapping(value = "/rest/auth", method = RequestMethod.POST, produces = "application/json")
+  @ResponseBody
+  private RestResponse restAuth() {
+    return new RestResponse(0, "Logged In");
+  }
+
+  /**
+   * android rest login.
+   * 
+   * @return the home data object
+   */
+  @RequestMapping(value = "/rest/webHomeData", method = RequestMethod.GET, produces = "application/json")
+  @ResponseBody
+  private WebHomeData chartData() {
+    Page<RoutineVisit> routineVisits = routineVisitService.findALL(1, 5, "desc", "createdAt");
+    Page<CallOutVisit> callOutVisits = callOutVisitService.findALL(1, 5, "desc", "createdAt");
+    Page<DieselVisit> dieselVisits = dieselVisitService.findALL(1, 5, "desc", "createdAt");
+    Page<MaintenanceVisit> maintenanceVisits = maintenanceVisitService.findALL(1, 5, "desc", "createdAt");
+    List<Integer> chartData = new ArrayList<Integer>(4);
+    chartData.add(2);
+    chartData.add(5);
+    chartData.add(10);
+    chartData.add(8);
+    WebHomeData webHomeData =
+        new WebHomeData(chartData, maintenanceVisits.getContent(), callOutVisits.getContent(),
+          routineVisits.getContent(), dieselVisits.getContent());
+    return webHomeData;
+  }
 
 }

@@ -521,38 +521,6 @@ font-weight: bold;
 color: #FF0000;
 }
 
-
-.login-form {
-    background-color: #505830; 
-    color: white;
-	padding: 5px;
-	width: 300px;
-	height: 160px;
-	margin: auto;
-	text-align: center;
-	margin-top: 100px;
-}
-
-.login-form fieldset {
-	border: 1px solid gray;	
-}
-
-.login-form legend {
-	margin: 0px;
-	padding: 0px;
-	text-align: left;
-}
-
-.login-form hr {
-	height: 1px;
-	border: 0px;
-	border-top: 1px solid black;
-}
-
-.login-form input {
-	float: right;
-}
-
 .message {
 	color: red;
 	text-align: center;	
@@ -573,3 +541,39 @@ color: #FF0000;
 	border: none;
 	background: url(../images/logout.png) right center no-repeat
 }
+
+#newspaper-b
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	width: 440px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#newspaper-b th
+{
+	background: none repeat scroll 0 0 #B9C9FE;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 4px solid #AABCFE;
+	padding: 15px 5px 5px 5px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #039;
+}
+#newspaper-b tbody
+{
+	background: #e8edff;
+}
+#newspaper-b td
+{
+	padding: 5px;
+	color: #669;
+	border-top: 1px dashed #fff;
+}
+#newspaper-b tbody tr:hover td
+{
+	color: #339;
+	background: #FF9D19;
+}
+#newspaper-b tr:nth-child(even) {background: #E8EDFF}
+#newspaper-b tr:nth-child(odd) {background: #FFF}
