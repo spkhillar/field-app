@@ -17,7 +17,6 @@
 	<definition name="base.login.definition"
 		template="/WEB-INF/views/jsp/base/login-layout.jsp">
 		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/jsp/base/footer.jsp" />
 	</definition>	
 	
 	<definition name="routine.new" extends="base.definition">

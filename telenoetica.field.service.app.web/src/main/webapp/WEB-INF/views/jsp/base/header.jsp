@@ -54,7 +54,7 @@ webContextPath="${pageContext.request.contextPath}";
         	<span><b>Logged-In User: <sec:authentication property="principal.username"/></b> </span>
         	<div><b>Logged-In Time</b>:<span id="loggedInTime"></span></div>
         	<div id="dateTime"></div>
-        	<div id="logout"><a href="${contextPath}/logout"></a></div>
+        	<div id="logout"><a href="${contextPath}/logout/success"></a></div>
         	</div>
         </div>
        <ul id="menu">

@@ -5,7 +5,7 @@ body {
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 12px;
 	line-height: 1.5em; 
-	background-color: #174577;
+	background-color: #A2A2A2;
 	background-repeat: repeat-x;
 	background-position: top
 }
@@ -103,13 +103,13 @@ em { color: #359548 }
 
 #templatemo_body_wrapper {
 	width: 100%;
-	background-color: #174577;
+	background-color: #A2A2A2;
 }
 
 #templatemo_wrapper {
 	width: 960px;
 	margin: 0 auto;
-	background-color: #E6EBE5;
+	background-color: #FFFFFF;
 }
 
 #templatemo_header {
@@ -187,7 +187,21 @@ em { color: #359548 }
 	clear: both;
 	width: 900px;
 	padding: 45px 30px;
-	background-color: #E6EBE5;
+	background-color: #FFFFFF;
+}
+
+#templatemo_main_login {
+	clear: both;
+	width: 900px;
+	padding: 45px 30px;
+	background-color: #FFFFFF;
+}
+
+#templatemo_wrapper_login {
+	width: 960px;
+	margin-left: 200px;
+	margin-top: 100px;
+	background-color: #FFFFFF;
 }
 
 .col_w900 { 
@@ -482,7 +496,7 @@ em { color: #359548 }
 #templatemo_footer_wrapper {
 	clear: both;
 	height: 85px;
-	background-color: #7A89A6;
+	background-color: #A2A2A2;
 }
 
 #templatemo_footer {
@@ -493,7 +507,7 @@ em { color: #359548 }
 	margin: 0 auto;
 	text-align: center;
 	color: #fff;
-	background-color: #7A89A6;
+	background-color: #A2A2A2;
 }
 
 #templatemo_footer a {
@@ -501,41 +515,6 @@ em { color: #359548 }
 	color: #fff;
 }
 
-.login-form {
-    background-color: #505830; 
-    color: white;
-	padding: 5px;
-	width: 300px;
-	height: 160px;
-	margin: auto;
-	text-align: center;
-	margin-top: 100px;
-}
-
-.login-form fieldset {
-	border: 1px solid gray;	
-}
-
-.login-form legend {
-	margin: 0px;
-	padding: 0px;
-	text-align: left;
-}
-
-.login-form hr {
-	height: 1px;
-	border: 0px;
-	border-top: 1px solid black;
-}
-
-.login-form input {
-	float: right;
-}
-
-.message {
-	color: red;
-	text-align: center;	
-}
 em {
 font-size: 15px;
 font-weight: bold;
