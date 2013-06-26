@@ -7,51 +7,57 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class LoginActivity extends Activity {
-	
-	Button button1;
-	
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login);
-	    addListenerOnButtonLogin();
-}
-	
-public void addListenerOnButtonLogin() {
-		
-		final Context context = this;
-		button1 = (Button) findViewById(R.id.btn1_main);
-		button1.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View arg0) {
+  Button button1;
 
-				
-				LoginAsyncTask task = new LoginAsyncTask();
-                task.execute();
-			}
+  private EditText userName;
 
-		});
-	}
+  private EditText password;
 
-public void addListenerOnButtonPass() {
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.login);
+    addListenerOnButtonLogin();
+  }
 
-	final Context context = this;
+  public void addListenerOnButtonLogin() {
 
-	button1 = (Button) findViewById(R.id.btn1_pass);
+    button1 = (Button) findViewById(R.id.btn1_main);
+    button1.setOnClickListener(new OnClickListener() {
 
-	button1.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(final View arg0) {
+        userName = (EditText)findViewById(R.id.et1_main_uid);
+        password = (EditText)findViewById(R.id.et2_main_password);
+        String []array = new String[]{userName.getText().toString(),password.getText().toString()};
+        LoginAsyncTask task = new LoginAsyncTask();
+        task.execute(array);
+      }
 
-		@Override
-		public void onClick(View arg0) {
+    });
+  }
 
-			Intent intent = new Intent(context, MainMenu.class);
-			startActivity(intent);
+  public void addListenerOnButtonPass() {
 
-		}
+    final Context context = this;
 
-	});
-}
-	
+    button1 = (Button) findViewById(R.id.btn1_pass);
+
+    button1.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(final View arg0) {
+
+        Intent intent = new Intent(context, MainMenu.class);
+        startActivity(intent);
+
+      }
+
+    });
+  }
+
 }

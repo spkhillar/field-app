@@ -163,7 +163,7 @@ public class HomeController {
    * 
    * @return the home data object
    */
-  @RequestMapping(value = "/rest/auth", method = RequestMethod.POST, produces = "application/json")
+  @RequestMapping(value = "/rest/auth", method = RequestMethod.GET, produces = "application/json")
   @ResponseBody
   private RestResponse restAuth() {
     return new RestResponse(0, "Logged In");

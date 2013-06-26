@@ -36,7 +36,7 @@ public enum RestClient {
       requestHeaders.setContentType(contentType);
     }
     try {
-      response = restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<Object>(requestObject,requestHeaders), returnType);
+      response = restTemplate.exchange(url, httpMethod, new HttpEntity<Object>(requestObject,requestHeaders), returnType);
     } catch (RestClientException e) {
       e.printStackTrace();
       System.err.println( "I failed in post."+e.getMessage());
