@@ -133,16 +133,16 @@
 						width : 120
 					}
 					 ],
-					rowNum : 10,
-					rowList : [ 10, 20, 40, 60 ],
-					height : 250,
+					rowNum : 20,
+					rowList : [ 20, 30, 40, 50 ],
+					height : 450,
 					width : 900,
 					pager : '#pager',
 					rownumbers : true,
 					sortname : 'createdAt',
 					viewrecords : true,
 					sortorder : "desc",
-					caption : "Callout Visit",
+					caption : "Callout Visit Report",
 					emptyrecords : "Empty records",
 					shrinkToFit : false,
 					jsonReader : {
@@ -188,11 +188,13 @@
 </script>
 </head>
 <body>
-
+<div style="height: 500px;">
 	<div id='jqgrid'>
 		<table id='grid'></table>
 		<div id='pager'></div>
 	</div>
+</div>
 	<div id='msgbox' title='' style='display: none'></div>
+</body>
 </body>
 </html>

@@ -45,20 +45,15 @@ webContextPath="${pageContext.request.contextPath}";
 	
 	<spring:url value="/" var="homeUrl" htmlEscape="true"/>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
-    
 		<div id="templatemo_header">
         	<div id="site_title"><h1><a href="#" target="_parent">Helios Field Application</a></h1></div>
-        
         	<div class="col_right_allw270">
         	<span><b>Logged-In User: <sec:authentication property="principal.username"/></b> </span>
-        	<div><b>Logged-In Time</b>:<span id="loggedInTime"></span></div>
-        	<div id="dateTime"></div>
-        	<div id="logout"><a href="${contextPath}/logout/success"></a></div>
+        	<div id="dateTime" style="height: 10px;"></div>
+        	<div id="logout"><a href="${contextPath}/logout/success"> <br><br>Logout</a>  </div>
         	</div>
         </div>
        <ul id="menu">
-	
 		<li><a href="${homeUrl}">Home</a></li>
 		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
 		<li><a href="#">Administration</a>
@@ -72,7 +67,7 @@ webContextPath="${pageContext.request.contextPath}";
 		<li><a href="#">Site Visit</a>
 			<ul>
 				<li><a href="${contextPath}/routine/new">Routine Visit</a>							
-					</li>
+				</li>
 				<li><a href="${contextPath}/diesel/new">Diesel Visit</a>
 				</li>
 				<li><a href="${contextPath}/callout/new">Call Out Visit</a>			
@@ -82,15 +77,21 @@ webContextPath="${pageContext.request.contextPath}";
 			</ul>
 		</li>
 		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
-		<li><a href="#">Site Statistics</a>
+		<li><a href="#">Visit Reports</a>
 			<ul>
 				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
 				<li><a href="${contextPath}/diesel/list">Diesel Visit</a></li>
 				<li><a href="${contextPath}/callout/list">Call Out Visit</a></li>
 				<li><a href="${contextPath}/maintenance/list">Maintenance Visit</a></li>
+				<li><a href="${contextPath}/underconstruction">Diesel Details reports</a></li>
+				<li><a href="${contextPath}/underconstruction">Spares Utilization reports</a></li>
 			</ul>	
 		</li>
 		</sec:authorize>
+		<li><a href="${contextPath}/underconstruction">Download Android App</a>
+		</li>
+		<li><a href="${contextPath}/underconstruction">Help</a>
+		</li>
 	</ul>
 
 

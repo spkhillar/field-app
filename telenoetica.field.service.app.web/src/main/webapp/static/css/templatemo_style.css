@@ -133,7 +133,7 @@ em { color: #359548 }
 	height: 100px; 
 	color: #F60; 
 	text-indent: -10000px; 
-	background: url(../images/htn-logo.jpg) no-repeat
+	background: url(../images/htnpng.png) no-repeat
 }
 
 /* menu */
@@ -221,7 +221,7 @@ em { color: #359548 }
 	background: url(../images/templatemo_hr_divider.png) repeat-x bottom; 
 }
 
-.col_right_allw270 { float: right; width: 270px;margin-top: 2px;}
+.col_right_allw270 { float: right; width: 270px;margin-top: 2px; color: #0186ba}
 
 .frontpage_box h2 { 
 	font-size: 20px; 
@@ -529,17 +529,17 @@ color: #FF0000;
 #logout a {
 	float: right;
 	display: block;
-	width: 45px;
-	height: 35px;
+	width: 50px;
+	height: 40px;
 	padding: 10px 0 0 0;
 	font-size: 14px;
 	color: #333;	
-	text-align: center;
+	text-align: justify;
 	text-decoration: none;
 	font-weight: 700;
 	outline: none;
 	border: none;
-	background: url(../images/logout.png) right center no-repeat
+	background: url(../images/logout.jpg) right center no-repeat
 }
 
 #newspaper-b

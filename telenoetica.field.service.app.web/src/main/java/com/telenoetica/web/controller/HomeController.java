@@ -192,4 +192,9 @@ public class HomeController {
     return webHomeData;
   }
 
+  @RequestMapping(value = "/underconstruction", method = RequestMethod.GET)
+  public String underConstruction() {
+    return "under.construction";
+  }
+
 }

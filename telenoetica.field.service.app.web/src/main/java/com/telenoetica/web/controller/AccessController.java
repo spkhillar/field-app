@@ -93,7 +93,7 @@ public class AccessController extends BaseController {
    */
   @RequestMapping(value = "/logout/session", method = RequestMethod.GET)
   public String logoutSessionTimeOut(final Model model) {
-    String message = "Loggedout as Session had time out.";
+    String message = "";
     model.addAttribute("message", message);
     return "redirect:/login";
   }

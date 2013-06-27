@@ -63,4 +63,7 @@
 	<definition name="sessiontimeout" extends="base.login.definition">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/session-timed-out.jsp" />
 	</definition>
+	<definition name="under.construction" extends="base.definition">
+		<put-attribute name="body" value="/WEB-INF/views/jsp/under-construction.jsp" />
+	</definition>
 </tiles-definitions>

@@ -132,10 +132,10 @@
 						}
 					} ],
 					postData : {},
-					rowNum : 10,
-					rowList : [ 10, 20, 40, 60 ],
-					height : 240,
-					autowidth : true,
+					rowNum : 20,
+					rowList : [ 20, 30, 40, 50 ],
+					height : 450,
+					width : 900,
 					rownumbers : true,
 					pager : '#pager',
 					sortname : 'id',
@@ -429,10 +429,13 @@
 </script>
 </head>
 <body>
+<div style="height: 500px;">
 	<div id='jqgrid'>
 		<table id='grid'></table>
 		<div id='pager'></div>
 	</div>
+</div>
 	<div id='msgbox' title='' style='display: none'></div>
+</body>
 </body>
 </html>
