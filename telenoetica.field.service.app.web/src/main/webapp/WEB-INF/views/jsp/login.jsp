@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<c:set var="emptySring" value="Type in your Credentials"/>
 	<div class="wrapper">
 		<form class="form1" action="j_spring_security_check" method="post">
 			<div class="formtitle">Login to your account</div>
@@ -26,7 +27,15 @@
 				<!-- 	<br/><a href="#">Forgot password?</a> -->
 				</div>
 			</div>
-			<div class="message">${message}</div>
+			<c:choose>
+			    <c:when test="${empty message}">
+			      <div class="message">${emptySring}</div>
+			    </c:when>
+			    <c:otherwise>
+			       <div class="message">${message}</div>
+			    </c:otherwise>
+			</c:choose>
+			
 			<div class="buttons">
 				<input class="orangebutton" type="submit" value="Login" />
 			</div>

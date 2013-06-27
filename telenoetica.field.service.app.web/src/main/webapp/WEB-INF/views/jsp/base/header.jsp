@@ -77,14 +77,14 @@ webContextPath="${pageContext.request.contextPath}";
 			</ul>
 		</li>
 		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
-		<li><a href="#">Visit Reports</a>
+		<li><a href="#">Reports</a>
 			<ul>
 				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
 				<li><a href="${contextPath}/diesel/list">Diesel Visit</a></li>
 				<li><a href="${contextPath}/callout/list">Call Out Visit</a></li>
 				<li><a href="${contextPath}/maintenance/list">Maintenance Visit</a></li>
-				<li><a href="${contextPath}/underconstruction">Diesel Details reports</a></li>
-				<li><a href="${contextPath}/underconstruction">Spares Utilization reports</a></li>
+				<li><a href="${contextPath}/underconstruction">Diesel Details</a></li>
+				<li><a href="${contextPath}/underconstruction">Spares Utilization</a></li>
 			</ul>	
 		</li>
 		</sec:authorize>
