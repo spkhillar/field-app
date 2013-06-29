@@ -18,6 +18,10 @@ import com.telenoetica.jpa.entities.Site;
  * 
  * @author Shiv Prasad Khillar
  */
+/**
+ * @author satyam.srivastava
+ * 
+ */
 public interface DieselVisitService extends BaseService<DieselVisit> {
 
 	/**
@@ -79,5 +83,11 @@ public interface DieselVisitService extends BaseService<DieselVisit> {
 	 * @return
 	 */
 	public List<DieselVisit> findBySiteAndCreatedAtBetween(final Site site);
+
+	/**
+	 * @param params
+	 * @return
+	 */
+	public long findRecordCount(Map<String, Object> params);
 
 }

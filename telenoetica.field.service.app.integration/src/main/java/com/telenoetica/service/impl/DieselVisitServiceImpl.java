@@ -281,4 +281,11 @@ public class DieselVisitServiceImpl extends AbstractBaseService implements
 		return dieselVisitDAO.findBySiteAndCreatedAtBetween(site, startDate,
 				endDate);
 	}
+
+	@Override
+	public long findRecordCount(final Map<String, Object> params) {
+
+		String ejbql = "from DieselVisit where created_at >= :startDate AND created_at < :endDate";
+		return genericQueryExecutorDAO.findCount(ejbql, params);
+	}
 }

@@ -106,4 +106,6 @@ public interface GenericQueryExecutorDAO {
 	 */
 	<T> List<T> executeProjectedQuery(String ejbql, Map<String, Object> params);
 
+	long findCount(String ejbql, Map<String, Object> params);
+
 }

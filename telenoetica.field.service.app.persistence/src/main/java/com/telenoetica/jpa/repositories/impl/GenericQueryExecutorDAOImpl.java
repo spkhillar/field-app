@@ -24,8 +24,8 @@ import com.telenoetica.jpa.repositories.GenericQueryExecutorDAO;
 
 /**
  * The Class GenericQueryExecutorDAOImpl.
- *
- * @author  Shiv Prasad Khillar
+ * 
+ * @author Shiv Prasad Khillar
  */
 @Repository
 public class GenericQueryExecutorDAOImpl implements GenericQueryExecutorDAO {
@@ -38,43 +38,59 @@ public class GenericQueryExecutorDAOImpl implements GenericQueryExecutorDAO {
 	@PersistenceContext(unitName = "springJpaPersistenceUnit")
 	private EntityManager entityManager;
 
-	/* (non-Javadoc)
-	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery(java.lang.String, java.lang.Class)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery
+	 * (java.lang.String, java.lang.Class)
 	 */
 	@Override
-	public <T> List<T> executeQuery(String ejbql, Class<T> clazz) {
+	public <T> List<T> executeQuery(final String ejbql, final Class<T> clazz) {
 		return executeQuery(ejbql, clazz, null);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery(java.lang.String, java.lang.Class, java.util.Map)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery
+	 * (java.lang.String, java.lang.Class, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> List<T> executeQuery(String ejbql, Class<T> clazz,
-			Map<String, Object> params) {
+	public <T> List<T> executeQuery(final String ejbql, final Class<T> clazz,
+			final Map<String, Object> params) {
 		LOGGER.debug("Executing Query.." + ejbql);
 		Query query = entityManager.createQuery(ejbql, clazz);
 		setParameters(query, params);
 		return query.getResultList();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery(java.lang.String, java.lang.Class, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery
+	 * (java.lang.String, java.lang.Class, int, int)
 	 */
 	@Override
-	public <T> Page<T> executeQuery(String ejbql, Class<T> clazz, int page,
-			int pageSize) {
+	public <T> Page<T> executeQuery(final String ejbql, final Class<T> clazz,
+			final int page, final int pageSize) {
 		return executeQuery(ejbql, clazz, null, page, pageSize);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery(java.lang.String, java.lang.Class, java.util.Map, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeQuery
+	 * (java.lang.String, java.lang.Class, java.util.Map, int, int)
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> Page<T> executeQuery(String ejbql, Class<T> clazz,
-			Map<String, Object> params, int page, int pageSize) {
+	public <T> Page<T> executeQuery(final String ejbql, final Class<T> clazz,
+			final Map<String, Object> params, final int page, final int pageSize) {
 		LOGGER.debug("Executing Query.." + ejbql);
 		Query countQuery = entityManager
 				.createQuery("select count(*) " + ejbql);
@@ -94,41 +110,61 @@ public class GenericQueryExecutorDAOImpl implements GenericQueryExecutorDAO {
 
 	/**
 	 * Sets the parameters.
-	 *
-	 * @param query the query
-	 * @param params the params
+	 * 
+	 * @param query
+	 *            the query
+	 * @param params
+	 *            the params
 	 */
-	private void setParameters(Query query, Map<String, Object> params) {
+	private void setParameters(final Query query,
+			final Map<String, Object> params) {
 		if (MapUtils.isNotEmpty(params)) {
 			for (Map.Entry<String, Object> substitute : params.entrySet()) {
-				if(ClassUtils.isAssignableValue(Date.class, substitute.getValue())){
-					query.setParameter(substitute.getKey(), (Date)substitute.getValue(), TemporalType.DATE);
-				}else{
-					query.setParameter(substitute.getKey(), substitute.getValue());
+				if (ClassUtils.isAssignableValue(Date.class,
+						substitute.getValue())) {
+					query.setParameter(substitute.getKey(),
+							(Date) substitute.getValue(), TemporalType.DATE);
+				} else {
+					query.setParameter(substitute.getKey(),
+							substitute.getValue());
 				}
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeProjectedQuery(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#
+	 * executeProjectedQuery(java.lang.String)
 	 */
 	@Override
-	public <T> List<T> executeProjectedQuery(String ejbql) {
+	public <T> List<T> executeProjectedQuery(final String ejbql) {
 		return executeProjectedQuery(ejbql, null);
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#executeProjectedQuery(java.lang.String, java.util.Map)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.telenoetica.jpa.repositories.GenericQueryExecutorDAO#
+	 * executeProjectedQuery(java.lang.String, java.util.Map)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> List<T> executeProjectedQuery(String ejbql,Map<String, Object> params) {
+	public <T> List<T> executeProjectedQuery(final String ejbql,
+			final Map<String, Object> params) {
 		Query query = entityManager.createQuery(ejbql);
 		setParameters(query, params);
 		return query.getResultList();
 
 	}
 
+	@Override
+	public long findCount(final String ejbql, final Map<String, Object> params) {
+		Query query = entityManager.createQuery(ejbql);
+		setParameters(query, params);
+		return (Long) query.getSingleResult();
+
+	}
 }
