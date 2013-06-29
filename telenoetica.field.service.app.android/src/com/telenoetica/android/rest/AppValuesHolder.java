@@ -3,22 +3,22 @@ package com.telenoetica.android.rest;
 import java.util.List;
 
 public class AppValuesHolder {
-  
+
   private static List<String> sites;
-  
+
   private static List<String> spares;
-  
+
   private static List<String> faults;
-  
+
   private static List<String> clients;
-  
+
   private static List<String> maintenanceCategories;
 
   public static List<String> getSites() {
     return sites;
   }
 
-  public static void setSites(List<String> sites) {
+  public static void setSites(final List<String> sites) {
     AppValuesHolder.sites = sites;
   }
 
@@ -26,7 +26,7 @@ public class AppValuesHolder {
     return spares;
   }
 
-  public static void setSpares(List<String> spares) {
+  public static void setSpares(final List<String> spares) {
     AppValuesHolder.spares = spares;
   }
 
@@ -34,7 +34,7 @@ public class AppValuesHolder {
     return faults;
   }
 
-  public static void setFaults(List<String> faults) {
+  public static void setFaults(final List<String> faults) {
     AppValuesHolder.faults = faults;
   }
 
@@ -42,7 +42,7 @@ public class AppValuesHolder {
     return clients;
   }
 
-  public static void setClients(List<String> clients) {
+  public static void setClients(final List<String> clients) {
     AppValuesHolder.clients = clients;
   }
 
@@ -50,10 +50,10 @@ public class AppValuesHolder {
     return maintenanceCategories;
   }
 
-  public static void setMaintenanceCategories(List<String> maintenanceCategories) {
+  public static void setMaintenanceCategories(final List<String> maintenanceCategories) {
     AppValuesHolder.maintenanceCategories = maintenanceCategories;
   }
-  
-  
+
+
 
 }

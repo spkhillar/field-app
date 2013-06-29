@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -28,7 +29,7 @@ public enum RestClient {
       .singletonList(MediaType.APPLICATION_JSON));
 
     // Create a new RestTemplate instance
-    RestTemplate restTemplate = new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
     restTemplate.getMessageConverters().add(
       new MappingJacksonHttpMessageConverter());
     ResponseEntity<T> response = null;
@@ -41,6 +42,9 @@ public enum RestClient {
       e.printStackTrace();
       System.err.println( "I failed in post."+e.getMessage());
     }
-    return response.getBody();
+    if(response != null){
+      return response.getBody();
+    }
+    return null;
   }
 }

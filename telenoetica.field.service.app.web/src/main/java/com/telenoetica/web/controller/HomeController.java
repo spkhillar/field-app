@@ -29,6 +29,7 @@ import com.telenoetica.jpa.entities.RoutineVisit;
 import com.telenoetica.jpa.entities.Site;
 import com.telenoetica.jpa.entities.Spare;
 import com.telenoetica.jpa.entities.User;
+import com.telenoetica.service.AndroidHomeService;
 import com.telenoetica.service.CallOutVisitService;
 import com.telenoetica.service.ClientService;
 import com.telenoetica.service.DieselVisitService;
@@ -38,7 +39,8 @@ import com.telenoetica.service.MaintenanceVisitService;
 import com.telenoetica.service.RoutineVisitService;
 import com.telenoetica.service.SiteService;
 import com.telenoetica.service.SpareService;
-import com.telenoetica.web.rest.HomeDataObject;
+import com.telenoetica.util.model.HomeAndroidObject;
+import com.telenoetica.util.model.HomeDataObject;
 import com.telenoetica.web.rest.RestResponse;
 import com.telenoetica.web.rest.WebHomeData;
 
@@ -84,6 +86,9 @@ public class HomeController {
 
   @Autowired
   private MaintenanceVisitService maintenanceVisitService;
+
+  @Autowired
+  private AndroidHomeService androidHomeService;
 
   /**
    * Simply selects the home view to render by returning its name.
@@ -176,7 +181,7 @@ public class HomeController {
    */
   @RequestMapping(value = "/rest/webHomeData", method = RequestMethod.GET, produces = "application/json")
   @ResponseBody
-  private WebHomeData chartData() {
+  public WebHomeData chartData() {
     Page<RoutineVisit> routineVisits = routineVisitService.findALL(1, 5, "desc", "createdAt");
     Page<CallOutVisit> callOutVisits = callOutVisitService.findALL(1, 5, "desc", "createdAt");
     Page<DieselVisit> dieselVisits = dieselVisitService.findALL(1, 5, "desc", "createdAt");
@@ -195,6 +200,22 @@ public class HomeController {
   @RequestMapping(value = "/underconstruction", method = RequestMethod.GET)
   public String underConstruction() {
     return "under.construction";
+  }
+
+  @RequestMapping(value = "/rest/home", method = RequestMethod.GET, produces = "application/json")
+  @ResponseBody
+  public HomeAndroidObject androidHomeData() {
+
+    Date start = new Date();
+    HomeAndroidObject homeAndroidObject = androidHomeService.getAndroidHomeObject();
+
+    System.err.println("...."+homeAndroidObject);
+
+    Date end = new Date();
+    long total = end.getTime()-start.getTime();
+
+    System.err.println(total+"-----HomeAndroidObject.......End-----"+new Date());
+    return homeAndroidObject;
   }
 
 }

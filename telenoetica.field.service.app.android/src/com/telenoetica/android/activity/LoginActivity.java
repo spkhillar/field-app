@@ -1,5 +1,7 @@
 package com.telenoetica.android.activity;
 
+import java.util.Date;
+
 import org.springframework.http.HttpMethod;
 
 import android.app.Activity;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.telenoetica.android.rest.AppValuesPopulator;
 import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestResponse;
 
@@ -88,14 +91,15 @@ public class LoginActivity extends Activity {
 
     @Override
     protected RestResponse doInBackground(final String... params) {
-
+      Date start = new Date();
       System.err.println("...spring app- rest123--");
-      String url = "http://192.168.1.104:8082/fieldapp/rest/auth";
+      String url = "http://192.168.1.103:8082/fieldapp/rest/auth";
       RestResponse response = null;
       try {
 
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
+        AppValuesPopulator.populateValues( params[0], params[1]);
         /*
          * CallOutVisit postObject = getCalloutVisitEntity();
          * url="http://192.168.1.104:8080/fieldapp/callout/rest"; response =
@@ -108,7 +112,10 @@ public class LoginActivity extends Activity {
         System.out.println("..Failed, in rest client..." + e.getMessage());
         response = new RestResponse(500, "System Exception.");
       }
+      Date end = new Date();
+      long total = end.getTime() - start.getTime();
 
+      System.out.println("...Total Time..."+total);
       return response;
     }
 

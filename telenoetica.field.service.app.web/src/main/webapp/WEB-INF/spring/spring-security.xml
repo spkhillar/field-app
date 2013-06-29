@@ -19,6 +19,7 @@
 		<intercept-url pattern="/" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		<intercept-url pattern="/rest/auth" access="hasAnyRole('ROLE_FSE')"/>
 		<intercept-url pattern="/home" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
+		<intercept-url pattern="/rest/home" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		<intercept-url pattern="/routine/**" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
 		<intercept-url pattern="/diesel/**" access="hasAnyRole('ROLE_FSE','ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')"/>
