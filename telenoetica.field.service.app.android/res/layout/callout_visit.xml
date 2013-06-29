@@ -103,7 +103,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Time when complaint recieved"
+                    android:text="Complaint recieved"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </TableRow>
 
@@ -115,7 +115,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Time whenreached to site"
+                    android:text="Time Reached"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </TableRow>
 
@@ -127,7 +127,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Time when fault resolved"
+                    android:text="Fault resolved"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </TableRow>
 
@@ -143,7 +143,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/spinner_customer1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -162,7 +162,26 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/spinner_customer2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:prompt="@string/spinner_title" />
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:text="Customer 3 impacted"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_customer3"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -181,7 +200,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/spinner_customer4"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -196,15 +215,15 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Main category of fault"
+                    android:text="Category of fault"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/spinner_main_category_of_fault"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:background="@drawable/shape"/>
             </TableRow>
 
             <TableRow
@@ -215,20 +234,17 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Equipment/Component"
+                    android:text="Equip/Comp Repaired"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/spinner_equip_comp_repaired"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title" />
             </TableRow>
-            <TextView
-                    android:id="@+id/textView1"
-                    android:text="repaired"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            
 
             <TableRow
                 android:id="@+id/tableRow1"
@@ -238,11 +254,11 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Equipment/Component Replaced"
+                    android:text="Equip/Comp Replaced"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/spinner_equip_comp_replaced"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -257,14 +273,14 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Is the Fix/Resolution temporary or permanent?"
+                    android:text=" Fix/Resolution:"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
                     android:id="@+id/radiotp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="vertical" >
 
                     <RadioButton
                         android:id="@+id/radiotemporary"
@@ -292,7 +308,6 @@
                 android:id="@+id/button1"
                 android:layout_width="fill_parent"
                 android:layout_height="100dip"
-                
                 android:background="@drawable/shape"
                 android:gravity="center_horizontal"
                 android:paddingLeft="10dip"

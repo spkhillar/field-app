@@ -161,15 +161,20 @@
                     android:id="@+id/textView1"
                     android:text="If Bulk,then name of vendor?"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <Spinner
-                    android:id="@+id/spinner1"                    
-                    android:layout_width="0dip"
+                
+                <EditText
+                    android:id="@+id/button1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:prompt="@string/spinner_title"  
+                    android:layout_weight="50"
+                    android:background="@drawable/shape"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:layout_weight="1"
-                    android:layout_alignParentRight="true"/>
+                    android:singleLine="true" />
+
+                
             </TableRow>
 
             <TableRow

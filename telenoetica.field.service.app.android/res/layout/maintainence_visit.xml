@@ -85,7 +85,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp1_mv"
+                    android:id="@+id/spinner_category_of_maintainence"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -105,7 +105,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp7_mv"
+                    android:id="@+id/spinner_spares1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -124,7 +124,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp8_mv"
+                    android:id="@+id/spinner_spares2"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -143,7 +143,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp9_mv"
+                    android:id="@+id/spinner_spares3"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -162,7 +162,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp10_mv"
+                    android:id="@+id/spinner_spares4"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -181,7 +181,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp11_mv"
+                    android:id="@+id/spinner_spares5"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -200,7 +200,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp12_mv"
+                    android:id="@+id/spinner_spares6"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -215,11 +215,11 @@
 
                 <TextView
                     android:id="@+id/tv15_mv"
-                    android:text="Spares Used/Items Replaced 5"
+                    android:text="Spares Used/Items Replaced 7"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp13_mv"
+                    android:id="@+id/spinner_spares7"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -238,7 +238,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp14_mv"
+                    android:id="@+id/spinner_consumable1"    
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -257,7 +257,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp15_mv"
+                    android:id="@+id/spinner_consumable2"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -276,7 +276,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp16_mv"
+                    android:id="@+id/spinner_consumable3"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -295,7 +295,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp17_mv"
+                    android:id="@+id/spinner_consumable4"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -314,7 +314,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/sp18_mv"
+                    android:id="@+id/spinner_consumable5"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
