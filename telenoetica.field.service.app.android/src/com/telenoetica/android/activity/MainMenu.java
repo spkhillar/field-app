@@ -2,124 +2,145 @@
 
 package com.telenoetica.android.activity;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainMenu extends Activity {
-	Button button1;
-	Button button2;
-	Button button3;
-	Button button4;
-	Button button5;
+  Button button1;
+  Button button2;
+  Button button3;
+  Button button4;
+  Button button5;
+  Button button6;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_menu);
-		addListenerOnButtonRV();
-		addListenerOnButtonDV();
-		addListenerOnButtonMV();
-		addListenerOnButtonCV();
-		addListenerOnButtonExit();
-	}
+  @Override
+  protected void onCreate(final Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main_menu);
+    addListenerOnButtonRV();
+    addListenerOnButtonDV();
+    addListenerOnButtonMV();
+    addListenerOnButtonCV();
+    addListenerOnButtonConfigure();
+    addListenerOnButtonExit();
+  }
 
-	public void addListenerOnButtonRV() {
+  public void addListenerOnButtonRV() {
 
-		final Context context = this;
+    final Context context = this;
 
-		button1 = (Button) findViewById(R.id.button_rv);
+    button1 = (Button) findViewById(R.id.button_rv);
 
-		button1.setOnClickListener(new OnClickListener() {
+    button1.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View arg0) {
+      @Override
+      public void onClick(final View arg0) {
 
-				Intent intent = new Intent(context, RoutineVisit.class);
-				startActivity(intent);
+        Intent intent = new Intent(context, RoutineVisit.class);
+        startActivity(intent);
 
-			}
+      }
 
-		});
-	}
-	
-	public void addListenerOnButtonDV() {
+    });
+  }
 
-		final Context context = this;
+  public void addListenerOnButtonDV() {
 
-		button2 = (Button) findViewById(R.id.button_dv);
+    final Context context = this;
 
-		button2.setOnClickListener(new OnClickListener() {
+    button2 = (Button) findViewById(R.id.button_dv);
 
-			@Override
-			public void onClick(View arg0) {
+    button2.setOnClickListener(new OnClickListener() {
 
-				Intent intent = new Intent(context, DieselVisit.class);
-				startActivity(intent);
+      @Override
+      public void onClick(final View arg0) {
 
-			}
+        Intent intent = new Intent(context, DieselVisit.class);
+        startActivity(intent);
 
-		});
-	}
-	public void addListenerOnButtonMV() {
+      }
 
-		final Context context = this;
+    });
+  }
 
-		button3 = (Button) findViewById(R.id.button_mv);
+  public void addListenerOnButtonMV() {
 
-		button3.setOnClickListener(new OnClickListener() {
+    final Context context = this;
 
-			@Override
-			public void onClick(View arg0) {
+    button3 = (Button) findViewById(R.id.button_mv);
 
-				Intent intent = new Intent(context, MaintainenceVisit.class);
-				startActivity(intent);
+    button3.setOnClickListener(new OnClickListener() {
 
-			}
+      @Override
+      public void onClick(final View arg0) {
 
-		});
+        Intent intent = new Intent(context, MaintainenceVisit.class);
+        startActivity(intent);
+
+      }
+
+    });
+  }
+
+  public void addListenerOnButtonCV() {
+
+    final Context context = this;
+
+    button4 = (Button) findViewById(R.id.button_cv);
+
+    button4.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(final View arg0) {
+
+        Intent intent = new Intent(context, CalloutVisit.class);
+        startActivity(intent);
+
+      }
+
+    });
+  }
+
+  public void addListenerOnButtonConfigure() {
+
+    final Context context = this;
+
+    button5 = (Button) findViewById(R.id.button_configure);
+
+    button5.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(final View arg0) {
+
+        Intent intent = new Intent(context, ConfigureActivity.class);
+        startActivity(intent);
+
+      }
+
+    });
+  }
+
+  public void addListenerOnButtonExit() {
+
+    final Context context = this;
+
+    button6 = (Button) findViewById(R.id.button_exit);
+
+    button6.setOnClickListener(new OnClickListener() {
+
+      @Override
+      public void onClick(final View arg0) {
+
+        Intent intent = new Intent(context, LoginActivity.class);
+        startActivity(intent);
+
+      }
+
+    });
+  }
 }
-	
-	public void addListenerOnButtonCV() {
-
-		final Context context = this;
-
-		button5 = (Button) findViewById(R.id.button_cv);
-
-		button5.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-
-				Intent intent = new Intent(context, CalloutVisit.class);
-				startActivity(intent);
-
-			}
-
-		});
-}
-	
-	
-	public void addListenerOnButtonExit() {
-
-		final Context context = this;
-
-		button4 = (Button) findViewById(R.id.button_exit);
-
-		button4.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-
-				Intent intent = new Intent(context, LoginActivity.class);
-				startActivity(intent);
-
-			}
-
-		});
-}
-	}

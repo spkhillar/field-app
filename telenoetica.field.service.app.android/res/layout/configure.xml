@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="APPLICATION CONFIGURATION"
+                android:textStyle="bold"
+                android:gravity="center|top"
+                android:textAppearance="?android:attr/textAppearanceLarge"  />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip" >
+
+            <TextView
+                android:text="Host "
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:paddingRight="10dip" />
+
+            <EditText
+                android:id="@+id/et_config_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:background="@drawable/shape"
+                android:gravity="center_horizontal"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:shape="rectangle"
+                android:singleLine="true" />
+        </TableRow>
+    </TableLayout>
+
+    <CheckBox
+        android:id="@+id/chk_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_reset_sys" />
+
+    <CheckBox
+        android:id="@+id/chk_abc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chk_reset_config" />
+
+    <Button
+        android:id="@+id/btn_config_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button"
+        android:layout_marginLeft="8dip"
+        android:text="Save" />
+
+</LinearLayout>
