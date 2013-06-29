@@ -50,7 +50,7 @@ webContextPath="${pageContext.request.contextPath}";
         	<div class="col_right_allw270">
         	<span><b>Logged-In User: <sec:authentication property="principal.username"/></b> </span>
         	<div id="dateTime" style="height: 10px;"></div>
-        	<div id="logout"><a href="${contextPath}/logout/success"> <br><br>Logout</a>  </div>
+        	<div id="logout"><a href="${contextPath}/j_spring_security_logout"> <br><br>Logout</a>  </div>
         	</div>
         </div>
        <ul id="menu">

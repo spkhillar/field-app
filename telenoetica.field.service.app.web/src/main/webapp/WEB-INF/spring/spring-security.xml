@@ -35,9 +35,7 @@
 		
 		<access-denied-handler error-page="/denied"/>
 		
-		<logout invalidate-session="true" 
-			logout-success-url="/logout/success" 
-			logout-url="/logout"/>
+		<logout invalidate-session="true" delete-cookies="JSESSIONID"/>
 	</http>
 	
 	<authentication-manager>

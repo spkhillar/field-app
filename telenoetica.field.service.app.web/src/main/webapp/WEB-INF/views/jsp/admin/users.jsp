@@ -144,6 +144,7 @@
 					caption : "Users",
 					emptyrecords : "Empty records",
 					loadonce : false,
+					hidegrid: false, 
 					loadComplete : function() {
 					},
 					jsonReader : {
@@ -162,7 +163,11 @@
 			add : false,
 			del : false,
 			search : true,
-			excel : true
+			excel : true,
+		    searchtext: "Filter",
+		    searchtitle: "Filter",
+		    refreshtext: "Refresh",
+		    refreshtitle: "Refresh"
 		}, {}, {}, {}, { //search
 			sopt : [ 'cn', 'eq', 'ne', 'lt', 'gt', 'bw', 'ew' ],
 			closeOnEscape : true,

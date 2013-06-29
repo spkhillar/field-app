@@ -12,6 +12,7 @@
 					url : actionUrl,
 					datatype : 'json',
 					mtype : 'GET',
+					hidegrid: false, 
 					colNames : [ "Access Code", "User Name", "Site",
 							"Created At", "Diesel Level T1", "Diesel Level T2",
 							"Run Hour Gen 1", "Run Hour Gen 2",
@@ -212,10 +213,10 @@
 			del : false,
 			search : true,
 			excel : true,
-		    searchtext: "Filter records",
-		    searchtitle: "Filter records",
-		    refreshtext: "Reload Grid",
-		    refreshtitle: "Reload Grid"
+		    searchtext: "Filter",
+		    searchtitle: "Filter",
+		    refreshtext: "Refresh",
+		    refreshtitle: "Refresh"
 		}, {}, {}, {}, { //search
 			sopt : [ 'cn', 'eq', 'ne', 'lt', 'gt', 'bw', 'ew' ],
 			closeOnEscape : true,

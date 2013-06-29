@@ -12,6 +12,7 @@
 					url : actionUrl,
 					datatype : 'json',
 					mtype : 'GET',
+					hidegrid: false, 
 					colNames : [ "Access Code", "User Name", "Site",
 							"Created At", "DRN/DTN Number",
 							"Diesel Supply Type", "Transfer Site",
@@ -163,7 +164,11 @@
 			add : false,
 			del : false,
 			search : true,
-			excel : true
+			excel : true,
+		    searchtext: "Filter",
+		    searchtitle: "Filter",
+		    refreshtext: "Refresh",
+		    refreshtitle: "Refresh"
 		}, {}, {}, {}, { //search
 			sopt : [ 'cn', 'eq', 'ne', 'lt', 'gt', 'bw', 'ew' ],
 			closeOnEscape : true,
