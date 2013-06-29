@@ -715,6 +715,12 @@ public class DieselVisit implements java.io.Serializable, BaseEntity {
 		return result;
 	}
 
+	@Override
+	public String toString() {
+		return "DieselVisit [accessCode=" + accessCode + ", createdAt="
+				+ createdAt + ", userId=" + userId + ", siteId=" + siteId + "]";
+	}
+
 	/**
 	 * Equals.
 	 * 

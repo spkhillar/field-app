@@ -5,6 +5,8 @@ package com.telenoetica.service.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -267,4 +269,16 @@ public class DieselVisitServiceImpl extends AbstractBaseService implements
 
 	}
 
+	@Override
+	public List<DieselVisit> findBySiteAndCreatedAtBetween(final Site site) {
+		Date startDate;
+		Date endDate;
+		Calendar currentDate = Calendar.getInstance(); // Get the current date
+		endDate = currentDate.getTime();
+		currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance()
+				.getActualMinimum(Calendar.DAY_OF_MONTH));
+		startDate = currentDate.getTime();
+		return dieselVisitDAO.findBySiteAndCreatedAtBetween(site, startDate,
+				endDate);
+	}
 }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 
 import com.telenoetica.jpa.entities.DieselVisit;
+import com.telenoetica.jpa.entities.Site;
 
 /**
  * The Interface DieselVisitService.
@@ -72,4 +73,11 @@ public interface DieselVisitService extends BaseService<DieselVisit> {
 	 */
 	void exportReport(String filterPredicate, Map<String, Object> paramObject,
 			HttpServletResponse httpServletResponse, String attachmentFileName);
+
+	/**
+	 * @param site
+	 * @return
+	 */
+	public List<DieselVisit> findBySiteAndCreatedAtBetween(final Site site);
+
 }
