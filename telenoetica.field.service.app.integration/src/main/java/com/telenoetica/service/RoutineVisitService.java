@@ -82,4 +82,10 @@ public interface RoutineVisitService extends BaseService<RoutineVisit> {
 	void exportReport(String filterPredicate, Map<String, Object> paramObject,
 			HttpServletResponse httpServletResponse, String attachmentFileName);
 
+	/**
+	 * @param params
+	 * @return
+	 */
+	long findRecordCount(Map<String, Object> params);
+
 }

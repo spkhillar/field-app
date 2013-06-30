@@ -215,4 +215,11 @@ public class MaintenanceVisitServiceImpl extends AbstractBaseService implements
 
 	}
 
+	@Override
+	public long findRecordCount(final Map<String, Object> params) {
+
+		String ejbql = "select count(*) from MaintenanceVisit where createdAt >= :startDate AND createdAt < :endDate";
+		return genericQueryExecutorDAO.findCount(ejbql, params);
+	}
+
 }

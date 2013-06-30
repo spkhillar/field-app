@@ -81,7 +81,7 @@
 				'Maintenance Visit' ];
 		plot1 = $.jqplot('chartdiv', [ input ], {
 			// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
-			title : "Visit Analysis Chart",
+			title : "Visit Analysis Chart(Last 7 Days)",
 			seriesDefaults : {
 				renderer : $.jqplot.BarRenderer,
 				pointLabels : {
@@ -104,6 +104,7 @@
 </script>
 </head>
 <body>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	<div style="height: 650px;">
 	<div id="chartdiv" style="height:200px;width:600px; margin-left:130px;">
 	
@@ -122,6 +123,7 @@
 
 				</tbody>
 			</table>
+			<a href="${contextPath}/routine/list" style="float:right; font-weight: bold">View All</a>
 		</div>
 		<div class="col_w420 float_r">
 			<h5>Callout Visit</h5>
@@ -135,6 +137,7 @@
 				<tbody>
 				</tbody>
 			</table>
+			<a href="${contextPath}/callout/list" style="float:right; font-weight: bold">View All</a>
 		</div>
 		<br/>
 		<div class="col_w420 lp_box float_l">
@@ -150,6 +153,7 @@
 
 				</tbody>
 			</table>
+			<a href="${contextPath}/diesel/list" style="float:right; font-weight: bold">View All</a>
 		</div>
 		<div class="col_w420 float_r">
 			<h5>Maintenance Visit</h5>
@@ -163,6 +167,7 @@
 				<tbody>
 				</tbody>
 			</table>
+			<a href="${contextPath}/maintenance/list" style="float:right; font-weight: bold">View All</a>
 		</div>
 	</div>
 </body>

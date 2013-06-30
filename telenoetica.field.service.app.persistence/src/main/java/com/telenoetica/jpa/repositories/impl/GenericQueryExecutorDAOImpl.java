@@ -164,7 +164,8 @@ public class GenericQueryExecutorDAOImpl implements GenericQueryExecutorDAO {
 	public long findCount(final String ejbql, final Map<String, Object> params) {
 		Query query = entityManager.createQuery(ejbql);
 		setParameters(query, params);
-		return (Long) query.getSingleResult();
+		long count = (Long) query.getSingleResult();
+		return count;
 
 	}
 }

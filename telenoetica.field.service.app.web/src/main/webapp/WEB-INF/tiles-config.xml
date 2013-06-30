@@ -66,4 +66,8 @@
 	<definition name="under.construction" extends="base.definition">
 		<put-attribute name="body" value="/WEB-INF/views/jsp/under-construction.jsp" />
 	</definition>
+	<definition name="reportDownload.diesel" extends="base.definition">
+		<put-attribute name="title" value="diesel Detail Form" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/dieselDetalReportDownload.jsp" />
+	</definition>
 </tiles-definitions>

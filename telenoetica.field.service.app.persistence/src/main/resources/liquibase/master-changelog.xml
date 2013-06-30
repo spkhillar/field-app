@@ -794,5 +794,13 @@
 		<modifySql dbms="mysql">
 			<append value=" after name"/>
 		</modifySql>
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1367592120329-38">
+		<addColumn tableName="job_history">
+			<column name="path" type="VARCHAR(255)"></column>
+		</addColumn>
+		<modifySql dbms="mysql">
+			<append value=" after status"/>
+		</modifySql>
 	</changeSet>	
 </databaseChangeLog>

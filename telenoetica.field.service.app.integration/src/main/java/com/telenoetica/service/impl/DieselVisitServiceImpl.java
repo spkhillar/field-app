@@ -285,7 +285,7 @@ public class DieselVisitServiceImpl extends AbstractBaseService implements
 	@Override
 	public long findRecordCount(final Map<String, Object> params) {
 
-		String ejbql = "from DieselVisit where created_at >= :startDate AND created_at < :endDate";
+		String ejbql = "select count(*) from DieselVisit where createdAt >= :startDate AND createdAt < :endDate";
 		return genericQueryExecutorDAO.findCount(ejbql, params);
 	}
 }
