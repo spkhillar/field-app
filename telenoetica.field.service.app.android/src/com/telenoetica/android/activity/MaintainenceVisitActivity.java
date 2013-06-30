@@ -1,7 +1,9 @@
 package com.telenoetica.android.activity;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.telenoetica.android.rest.AppValuesHolder;
+import com.telenoetica.jpa.entities.MaintenanceVisit;
+import com.telenoetica.jpa.entities.RoutineVisit;
 
-public class MaintainenceVisit extends AbstractVisitActivity {
+public class MaintainenceVisitActivity extends AbstractVisitActivity {
   Button button1;
   Button button2;
 
@@ -26,29 +30,31 @@ public class MaintainenceVisit extends AbstractVisitActivity {
     addItemsOnSpinner(R.id.spinner_consumable3, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_consumable4, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_consumable5, AppValuesHolder.getSpares());
+    addItemsOnSpinner(R.id.spinner_consumable6, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares1, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares2, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares3, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares4, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares5, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares6, AppValuesHolder.getSpares());
-    addItemsOnSpinner(R.id.spinner_spares7, AppValuesHolder.getSpares());
+
   }
 
   public void addListenerOnButtonSubmit() {
 
     final Context context = this;
-    Button button;
-
     button1 = (Button) findViewById(R.id.btn_mv_submit);
-
+    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
     button1.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(final View arg0) {
 
-        Intent intent = new Intent(context, CalloutVisit.class);
-        startActivity(intent);
+        // Intent intent = new Intent(context, CalloutVisit.class);
+        // startActivity(intent);
+        ViewGroup group = (ViewGroup) findViewById(R.id.ll3_mv);
+        getTargetObject(group, valueMap);
+        saveVisit(new MaintenanceVisit(), valueMap);
 
       }
 

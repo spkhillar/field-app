@@ -60,7 +60,7 @@ public class MainMenu extends Activity {
       @Override
       public void onClick(final View arg0) {
 
-        Intent intent = new Intent(context, DieselVisit.class);
+        Intent intent = new Intent(context, DieselVisitActivity.class);
         startActivity(intent);
 
       }
@@ -79,7 +79,7 @@ public class MainMenu extends Activity {
       @Override
       public void onClick(final View arg0) {
 
-        Intent intent = new Intent(context, MaintainenceVisit.class);
+        Intent intent = new Intent(context, MaintainenceVisitActivity.class);
         startActivity(intent);
 
       }
@@ -98,7 +98,7 @@ public class MainMenu extends Activity {
       @Override
       public void onClick(final View arg0) {
 
-        Intent intent = new Intent(context, CalloutVisit.class);
+        Intent intent = new Intent(context, CalloutVisitActivity.class);
         startActivity(intent);
 
       }

@@ -170,7 +170,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Voltage: N-R volts"
+                    android:text="Voltage: N-R(volts)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -194,7 +194,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Voltage: N-Y volts"
+                    android:text="Voltage: N-Y(volts)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -218,7 +218,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Voltage: N-B volts"
+                    android:text="Voltage: N-B(volts)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -242,7 +242,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Load: R phase Amps"
+                    android:text="Load: R phase(amps)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -266,7 +266,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Load: Y phase Amps"
+                    android:text="Load: Y phase(amps)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -290,7 +290,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Load: B phase Amps"
+                    android:text="Load: B phase(amps) "
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -314,7 +314,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Rectifier O/P voltage"
+                    android:text="Rectifier O/P(volts) "
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -338,7 +338,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Rectifier O/P current Amp"
+                    android:text="Rectifier O/P current(amp)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -362,7 +362,31 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Battery capacity V/AH"
+                    android:text="Battery capacity(volts)"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/et_rv_batterycapacityvah"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:background="@drawable/shape"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:shape="rectangle"
+                    android:maxLength="4"
+                    android:inputType="number"
+                    android:singleLine="true" android:tag="batteryCapcityV"/>
+            </TableRow>
+            
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dip" >
+
+                <TextView
+                    android:text="Battery capacity(amp)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText

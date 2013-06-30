@@ -45,7 +45,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:tag="siteId" />
             </TableRow>
 
             <TableRow
@@ -70,7 +71,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="accessCode" />
             </TableRow>
 
             <TableRow
@@ -90,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="categoryOfMaintenance" />
             </TableRow>
 
             <TableRow
@@ -109,7 +113,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="sparesUsedItemsReplaced1" />
             </TableRow>
 
             <TableRow
@@ -128,7 +133,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title" 
+                    android:tag="sparesUsedItemsReplaced2"/>
             </TableRow>
 
             <TableRow
@@ -147,7 +153,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="sparesUsedItemsReplaced3" />
             </TableRow>
 
             <TableRow
@@ -166,7 +173,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title" 
+                    android:tag="sparesUsedItemsReplaced4"/>
             </TableRow>
 
             <TableRow
@@ -185,7 +193,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="sparesUsedItemsReplaced5" />
             </TableRow>
 
             <TableRow
@@ -204,28 +213,11 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="sparesUsedItemsReplaced6" />
             </TableRow>
 
-            <TableRow
-                android:id="@+id/tr15_mv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip" >
-
-                <TextView
-                    android:id="@+id/tv15_mv"
-                    android:text="Spares Used/Items Replaced 7"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <Spinner
-                    android:id="@+id/spinner_spares7"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
-            </TableRow>
-
+            
             <TableRow
                 android:id="@+id/tr16_mv"
                 android:layout_width="wrap_content"
@@ -242,7 +234,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="cosumablesUsed1" />
             </TableRow>
 
             <TableRow
@@ -261,7 +254,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="cosumablesUsed2" />
             </TableRow>
 
             <TableRow
@@ -280,7 +274,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="cosumablesUsed3" />
             </TableRow>
 
             <TableRow
@@ -299,7 +294,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="cosumablesUsed4" />
             </TableRow>
 
             <TableRow
@@ -318,7 +314,28 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title" 
+                    android:tag="cosumablesUsed5"/>
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tr20_mv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/tv20_mv"
+                    android:text="Consumable Used 6"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_consumable6"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:prompt="@string/spinner_title" 
+                    android:tag="cosumablesUsed6"/>
             </TableRow>
 
             <TableRow
@@ -342,7 +359,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="runHoursAfterPmdG1" />
             </TableRow>
 
             <TableRow
@@ -353,7 +372,7 @@
 
                 <TextView
                     android:id="@+id/tv22_mv"
-                    android:text="Run-Hours after PM of DG1"
+                    android:text="Run-Hours after PM of DG2"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -366,7 +385,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="runHoursAfterPmdG2" />
             </TableRow>
 
             <TableRow

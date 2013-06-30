@@ -44,7 +44,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:tag="siteId" />
             </TableRow>
 
             <TableRow
@@ -68,7 +69,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="accessCode" />
             </TableRow>
 
             <TableRow
@@ -92,7 +95,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="drnNumber" />
             </TableRow>
 
             <TableRow
@@ -110,7 +115,8 @@
                     android:id="@+id/radioyesno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:tag="dieselTransferOrBulkSupply" >
 
                     <RadioButton
                         android:id="@+id/radiotransfer"
@@ -148,7 +154,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:tag="transferredSite" />
             </TableRow>
 
             <TableRow
@@ -161,7 +168,7 @@
                     android:id="@+id/textView1"
                     android:text="If Bulk,then name of vendor?"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
-                
+
                 <EditText
                     android:id="@+id/button1"
                     android:layout_width="0dp"
@@ -172,9 +179,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
-
-                
+                    android:singleLine="true"
+                    android:tag="bulkNameOfVendor" />
             </TableRow>
 
             <TableRow
@@ -198,7 +204,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="dieselLevelT1BeforeVisit" />
             </TableRow>
 
             <TableRow
@@ -222,7 +230,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="dieselLevelT2BeforeVisit" />
             </TableRow>
 
             <TableRow
@@ -246,7 +256,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="dieselReceivedLtrs" />
             </TableRow>
 
             <TableRow
@@ -270,7 +282,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="runHourGen1" />
             </TableRow>
 
             <TableRow
@@ -293,7 +307,10 @@
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
-                    android:shape="rectangle" />
+                    android:shape="rectangle"
+                    android:tag="runHourGen2"
+                    android:inputType="number"
+                    android:singleLine="true"  />
             </TableRow>
 
             <TableRow
@@ -311,7 +328,8 @@
                     android:id="@+id/radioyesno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    android:tag="drnBookAtSite" >
 
                     <RadioButton
                         android:id="@+id/radioyes"
@@ -343,7 +361,8 @@
                     android:id="@+id/radioyesno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    android:tag="dieselLogBookMaintained" >
 
                     <RadioButton
                         android:id="@+id/radioyes"
@@ -359,7 +378,7 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-            
+
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
@@ -375,7 +394,8 @@
                     android:id="@+id/radioyesno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    android:tag="phcnInstalled" >
 
                     <RadioButton
                         android:id="@+id/radioyes"
@@ -391,10 +411,8 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-            
-           
-            
-             <TableRow
+
+            <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -414,10 +432,13 @@
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
-                    android:shape="rectangle" />
+                    android:shape="rectangle"
+                    android:tag="phcnHrsPerDay"
+                    android:inputType="number"
+                    android:singleLine="true"  />
             </TableRow>
-            
-              <TableRow
+
+            <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -432,7 +453,8 @@
                     android:id="@+id/radioyesno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    android:tag="hybridOrPiuInstalled" >
 
                     <RadioButton
                         android:id="@+id/radioyes"
@@ -448,8 +470,8 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-            
-              <TableRow
+
+            <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -469,10 +491,11 @@
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
-                    android:shape="rectangle" />
+                    android:shape="rectangle"
+                    android:inputType="number"
+                    android:singleLine="true" 
+                    android:tag="hybridOrPiuHrsPerDay" />
             </TableRow>
-            
-            
 
             <TableRow
                 android:id="@+id/tableRow1"

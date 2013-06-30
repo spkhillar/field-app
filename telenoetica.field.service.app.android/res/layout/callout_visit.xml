@@ -44,7 +44,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:tag="siteId" />
             </TableRow>
 
             <TableRow
@@ -68,7 +69,9 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="accessCode" />
             </TableRow>
 
             <TableRow
@@ -92,11 +95,13 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:tag="callOutCsrOrTtNumber" />
             </TableRow>
 
             <TableRow
-                android:id="@+id/tableRow1"
+                android:id="@+id/tableRow111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip" >
@@ -105,6 +110,25 @@
                     android:id="@+id/textView1"
                     android:text="Complaint recieved"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical" >
+
+                    <DatePicker
+                        android:id="@+id/datePicker1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                    </DatePicker>
+
+                    <TimePicker
+                        android:id="@+id/timePicker1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+                    </TimePicker>
+                </LinearLayout>
             </TableRow>
 
             <TableRow
@@ -147,7 +171,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title" 
+                    android:tag="customer1Impacted"/>
             </TableRow>
 
             <TableRow
@@ -166,9 +191,10 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="customer2Impacted" />
             </TableRow>
-            
+
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
@@ -185,7 +211,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="customer3Impacted" />
             </TableRow>
 
             <TableRow
@@ -204,7 +231,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="customer4Impacted" />
             </TableRow>
 
             <TableRow
@@ -223,7 +251,26 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/shape"/>
+                    android:tag="mainCategoryOfFault" />
+            </TableRow>
+            
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:text="Equip/Cmpnt causing fault"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/spinner_equipment_causing_fault"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="equipmentComponentCausedFault" />
             </TableRow>
 
             <TableRow
@@ -242,9 +289,9 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="equipmentComponentRepaired" />
             </TableRow>
-            
 
             <TableRow
                 android:id="@+id/tableRow1"
@@ -262,7 +309,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" />
+                    android:prompt="@string/spinner_title"
+                    android:tag="equipmentComponentReplaced" />
             </TableRow>
 
             <TableRow
@@ -280,7 +328,8 @@
                     android:id="@+id/radiotp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:tag="fixResolutionTemporaryOrPermanent" >
 
                     <RadioButton
                         android:id="@+id/radiotemporary"
@@ -312,7 +361,9 @@
                 android:gravity="center_horizontal"
                 android:paddingLeft="10dip"
                 android:paddingRight="10dip"
-                android:shape="rectangle"/>
+                android:shape="rectangle"
+                android:singleLine="true" 
+                android:tag="actionsRequiredForPermanentResolution" />
 
             <TableRow>
             </TableRow>
