@@ -267,7 +267,6 @@ public class ServiceUtil {
       }
       return retunValue;
     }
-
   }
 
   /**

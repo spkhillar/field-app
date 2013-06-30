@@ -35,7 +35,18 @@ public class RestResponse {
 
   @Override
   public String toString() {
-    return "RestResponse [statusCode=" + statusCode + ", message=" + message + "]";
+    StringBuilder builder = new StringBuilder();
+    builder.append("RestResponse [statusCode=");
+    builder.append(statusCode);
+    builder.append(", ");
+    if (message != null) {
+      builder.append("message=");
+      builder.append(message);
+    }
+    builder.append("]");
+    return builder.toString();
   }
+
+
 
 }

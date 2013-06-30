@@ -40,7 +40,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" />
+                    android:singleLine="true" 
+                    android:tag="siteId"/>
             </TableRow>
 
             <TableRow
@@ -63,7 +64,8 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" 
+                    android:tag="accessCode"/>
             </TableRow>
 
             <TableRow
@@ -87,7 +89,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="dieselLevelT1"/>
             </TableRow>
 
             <TableRow
@@ -111,7 +113,7 @@
                     android:shape="rectangle"
                     android:maxLength="4"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="dieselLevelT2"/>
             </TableRow>
 
             <TableRow
@@ -135,7 +137,7 @@
                     android:shape="rectangle"
                     android:maxLength="5"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="runHourGen1"/>
             </TableRow>
 
             <TableRow
@@ -159,7 +161,7 @@
                     android:shape="rectangle"
                     android:maxLength="5"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="runHourGen2"/>
             </TableRow>
 
             <TableRow
@@ -183,7 +185,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="voltageNrVolts"/>
             </TableRow>
 
             <TableRow
@@ -207,7 +209,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="voltageNyVolts"/>
             </TableRow>
 
             <TableRow
@@ -231,7 +233,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="voltageNbVolts"/>
             </TableRow>
 
             <TableRow
@@ -255,7 +257,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="loadRPhaseAmps"/>
             </TableRow>
 
             <TableRow
@@ -279,7 +281,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="loadYPhaseAmps"/>
             </TableRow>
 
             <TableRow
@@ -303,7 +305,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="loadBPhaseAmps"/>
             </TableRow>
 
             <TableRow
@@ -327,7 +329,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="rectifierOpVoltage"/>
             </TableRow>
 
             <TableRow
@@ -351,7 +353,7 @@
                     android:shape="rectangle"
                     android:maxLength="3"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="rectifierOpCurrentAmp"/>
             </TableRow>
 
             <TableRow
@@ -375,7 +377,7 @@
                     android:shape="rectangle"
                     android:maxLength="4"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true" android:tag="batteryCapcityV"/>
             </TableRow>
 
             <TableRow
@@ -391,7 +393,7 @@
                     android:id="@+id/rg_rv_atsfunctional"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal" android:tag="atsFunctional">
 
                     <RadioButton
                         android:id="@+id/rb_rv_atsfunctional_yes"
@@ -421,7 +423,7 @@
                     android:id="@+id/rb_rv_atssynchronising"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal" android:tag="atsSysncronising">
 
                     <RadioButton
                         android:id="@+id/rb_rv_atssynchronising_yes"
@@ -451,7 +453,7 @@
                     android:id="@+id/rb_rv_atssynchronising"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal" android:tag="drnBookAtSite">
 
                     <RadioButton
                         android:id="@+id/rb_rv_atssynchronising_yes"
@@ -467,37 +469,7 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dip" >
-
-                <TextView
-                    android:text="DRN Book at site"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <RadioGroup
-                    android:id="@+id/rg_rv_drnbookatsite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
-
-                    <RadioButton
-                        android:id="@+id/rg_rv_drnbookatsite_yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:text="@string/Yes" />
-
-                    <RadioButton
-                        android:id="@+id/rg_rv_drnbookatsite_no"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/No" />
-                </RadioGroup>
-            </TableRow>
-
+           
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -511,7 +483,7 @@
                     android:id="@+id/rg_rv_diesellogbookmaintained"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal" android:tag="dieselLogBookMaintained">
 
                     <RadioButton
                         android:id="@+id/rg_rv_diesellogbookmaintained_yes"
@@ -541,7 +513,7 @@
                     android:id="@+id/rb_rv_airconofshelter1cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical" android:tag="airconShelter1Cooling">
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter1cooling_yes"
@@ -577,7 +549,7 @@
                     android:id="@+id/rb_rv_airconofshelter2cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"  android:tag="airconShelter2Cooling">
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter2cooling_yes"
@@ -612,7 +584,7 @@
                     android:id="@+id/rb_rv_airconofshelter3cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"  android:tag="airconShelter3Cooling">
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter3cooling_yes"
@@ -649,7 +621,7 @@
                     android:id="@+id/rb_rv_airconofshelter4cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"  android:tag="airconShelter4Cooling">
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter4cooling_yes"

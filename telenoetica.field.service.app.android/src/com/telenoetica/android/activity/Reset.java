@@ -18,12 +18,9 @@ public class Reset {
       } else if (view instanceof RadioButton) {
         ((RadioButton) view).setChecked(false);
       }
-
       if (view instanceof ViewGroup && (((ViewGroup) view).getChildCount() > 0)) {
-
         clearForm((ViewGroup) view);
       }
-
     }
   }
 

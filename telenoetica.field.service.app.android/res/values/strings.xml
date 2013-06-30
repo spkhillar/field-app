@@ -4,8 +4,8 @@
     <string name="app_name">Helios Field Application</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="Yes">Yes</string>
-    <string name="No">No</string>
+    <string name="Yes">true</string>
+    <string name="No">false</string>
     <string name="Temporary">Temporary</string>
     <string name="Permanent">Permanent</string>
     <string name="Transfer">Transfer</string>

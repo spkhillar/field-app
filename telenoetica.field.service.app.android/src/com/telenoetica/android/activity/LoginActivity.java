@@ -2,6 +2,8 @@ package com.telenoetica.android.activity;
 
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 
 import android.app.Activity;
@@ -20,7 +22,7 @@ import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestResponse;
 
 public class LoginActivity extends Activity {
-
+  private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
   Button button1;
 
   private EditText userName;
@@ -46,6 +48,9 @@ public class LoginActivity extends Activity {
         userName = (EditText) findViewById(R.id.et1_main_uid);
         password = (EditText) findViewById(R.id.et2_main_password);
         String[] array = new String[] { userName.getText().toString(), password.getText().toString() };
+
+        LOGGER.info("Logging to the system...");
+
         LoginAsyncTask task = new LoginAsyncTask();
         task.execute(array);
 
@@ -55,7 +60,7 @@ public class LoginActivity extends Activity {
   }
 
   private void doWithResponse(final RestResponse result) {
-
+    LOGGER.info("Logging to the system. done.."+result);
     int i = result.getStatusCode();
     if (i == 0) {
       Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
@@ -92,11 +97,10 @@ public class LoginActivity extends Activity {
     @Override
     protected RestResponse doInBackground(final String... params) {
       Date start = new Date();
-      System.err.println("...spring app- rest123--");
       String url = "http://192.168.1.103:8082/fieldapp/rest/auth";
       RestResponse response = null;
       try {
-
+        LOGGER.debug("invoking..."+url);
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
         AppValuesPopulator.populateValues( params[0], params[1]);
