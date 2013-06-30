@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.telenoetica.android.rest.AppValuesPopulator;
 import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestResponse;
+import com.telenoetica.android.sqllite.SQLiteDbHandler;
 
 public class LoginActivity extends Activity {
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
@@ -29,16 +30,20 @@ public class LoginActivity extends Activity {
 
   private EditText password;
 
+  private SQLiteDbHandler sqLiteDbHandler;
+
+  private boolean userExistsInLocal;
+
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.login);
     addListenerOnButtonLogin();
     addListenerOnButtonPass();
+    sqLiteDbHandler = new SQLiteDbHandler(this);
   }
 
   public void addListenerOnButtonLogin() {
-    final Context context = this;
     button1 = (Button) findViewById(R.id.btn1_main);
     button1.setOnClickListener(new OnClickListener() {
 
@@ -51,9 +56,17 @@ public class LoginActivity extends Activity {
 
         LOGGER.info("Logging to the system...");
 
-        LoginAsyncTask task = new LoginAsyncTask();
-        task.execute(array);
+        userExistsInLocal = sqLiteDbHandler.validateUser(array[0], array[1]);
 
+        if(userExistsInLocal){
+          LOGGER.info("User verified from local");
+          sqLiteDbHandler.checkBaseDataInSystem();
+          RestResponse response = new RestResponse(0, "Logged In");
+          doWithResponse(response);
+        }else{
+          LoginAsyncTask task = new LoginAsyncTask();
+          task.execute(array);
+        }
       }
 
     });
@@ -63,11 +76,15 @@ public class LoginActivity extends Activity {
     LOGGER.info("Logging to the system. done.."+result);
     int i = result.getStatusCode();
     if (i == 0) {
-      Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-      final Context context = this;
-      Intent intent = new Intent(context, MainMenu.class);
-      startActivity(intent);
 
+      if(!userExistsInLocal){
+        sqLiteDbHandler.insertUser(userName.getText().toString(), password.getText().toString());
+        sqLiteDbHandler.checkAndInsertBaseData();
+      }
+
+      Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+      Intent intent = new Intent(this, MainMenu.class);
+      startActivity(intent);
     } else {
       Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
     }
@@ -113,8 +130,11 @@ public class LoginActivity extends Activity {
          * System.err.println("..callout request..."+response.getMessage()); }
          */
       } catch (Exception e) {
-        System.out.println("..Failed, in rest client..." + e.getMessage());
+        LOGGER.error("Exception...",e);
         response = new RestResponse(500, "System Exception.");
+      }
+      if(response == null){
+        response = new RestResponse(500, "Rest invocation failed...");
       }
       Date end = new Date();
       long total = end.getTime() - start.getTime();
