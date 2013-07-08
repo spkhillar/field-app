@@ -13,6 +13,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,6 +39,8 @@ public class LoginActivity extends Activity {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     setContentView(R.layout.login);
     addListenerOnButtonLogin();
     addListenerOnButtonPass();
@@ -58,12 +62,12 @@ public class LoginActivity extends Activity {
 
         userExistsInLocal = sqLiteDbHandler.validateUser(array[0], array[1]);
 
-        if(userExistsInLocal){
+        if (userExistsInLocal) {
           LOGGER.info("User verified from local");
           sqLiteDbHandler.checkBaseDataInSystem();
           RestResponse response = new RestResponse(0, "Logged In");
           doWithResponse(response);
-        }else{
+        } else {
           LoginAsyncTask task = new LoginAsyncTask();
           task.execute(array);
         }
@@ -73,11 +77,11 @@ public class LoginActivity extends Activity {
   }
 
   private void doWithResponse(final RestResponse result) {
-    LOGGER.info("Logging to the system. done.."+result);
+    LOGGER.info("Logging to the system. done.." + result);
     int i = result.getStatusCode();
     if (i == 0) {
 
-      if(!userExistsInLocal){
+      if (!userExistsInLocal) {
         sqLiteDbHandler.insertUser(userName.getText().toString(), password.getText().toString());
         sqLiteDbHandler.checkAndInsertBaseData();
       }
@@ -117,10 +121,10 @@ public class LoginActivity extends Activity {
       String url = "http://192.168.1.103:8082/fieldapp/rest/auth";
       RestResponse response = null;
       try {
-        LOGGER.debug("invoking..."+url);
+        LOGGER.debug("invoking..." + url);
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
-        AppValuesPopulator.populateValues( params[0], params[1]);
+        AppValuesPopulator.populateValues(params[0], params[1]);
         /*
          * CallOutVisit postObject = getCalloutVisitEntity();
          * url="http://192.168.1.104:8080/fieldapp/callout/rest"; response =
@@ -130,16 +134,16 @@ public class LoginActivity extends Activity {
          * System.err.println("..callout request..."+response.getMessage()); }
          */
       } catch (Exception e) {
-        LOGGER.error("Exception...",e);
+        LOGGER.error("Exception...", e);
         response = new RestResponse(500, "System Exception.");
       }
-      if(response == null){
+      if (response == null) {
         response = new RestResponse(500, "Rest invocation failed...");
       }
       Date end = new Date();
       long total = end.getTime() - start.getTime();
 
-      System.out.println("...Total Time..."+total);
+      System.out.println("...Total Time..." + total);
       return response;
     }
 

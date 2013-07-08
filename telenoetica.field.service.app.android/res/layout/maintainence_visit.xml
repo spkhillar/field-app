@@ -15,20 +15,41 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:text="MAINTAINENCE VISIT"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold" />
+                android:background="@layout/header_gradient"
+                android:orientation="horizontal"
+                android:paddingBottom="5dip"
+                android:paddingTop="5dip" >
+
+                <!-- Logo Start -->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:src="@drawable/logo" />
+                <!-- Logo Ends -->
+                
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|top"
+                    android:text="MAINTAINENCE VISIT"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TableRow
                 android:id="@+id/tr1_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
-            
+                android:padding="5dip"
+                android:layout_marginTop="15dip"  >
 
                 <TextView
                     android:id="@+id/tv1_mv"
@@ -68,11 +89,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="accessCode" />
             </TableRow>
 
@@ -133,8 +154,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" 
-                    android:tag="sparesUsedItemsReplaced2"/>
+                    android:prompt="@string/spinner_title"
+                    android:tag="sparesUsedItemsReplaced2" />
             </TableRow>
 
             <TableRow
@@ -173,8 +194,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" 
-                    android:tag="sparesUsedItemsReplaced4"/>
+                    android:prompt="@string/spinner_title"
+                    android:tag="sparesUsedItemsReplaced4" />
             </TableRow>
 
             <TableRow
@@ -217,7 +238,6 @@
                     android:tag="sparesUsedItemsReplaced6" />
             </TableRow>
 
-            
             <TableRow
                 android:id="@+id/tr16_mv"
                 android:layout_width="wrap_content"
@@ -230,7 +250,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
-                    android:id="@+id/spinner_consumable1"    
+                    android:id="@+id/spinner_consumable1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -314,10 +334,10 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" 
-                    android:tag="cosumablesUsed5"/>
+                    android:prompt="@string/spinner_title"
+                    android:tag="cosumablesUsed5" />
             </TableRow>
-            
+
             <TableRow
                 android:id="@+id/tr20_mv"
                 android:layout_width="wrap_content"
@@ -334,8 +354,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:prompt="@string/spinner_title" 
-                    android:tag="cosumablesUsed6"/>
+                    android:prompt="@string/spinner_title"
+                    android:tag="cosumablesUsed6" />
             </TableRow>
 
             <TableRow
@@ -356,11 +376,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="runHoursAfterPmdG1" />
             </TableRow>
 
@@ -382,11 +402,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="runHoursAfterPmdG2" />
             </TableRow>
 
@@ -402,7 +422,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Submit" />
+                    android:text="Submit"
+                     android:layout_marginRight="2dip"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/button" />
 
                 <Button
                     android:id="@+id/btn_mv_reset"
@@ -410,7 +433,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Reset" />
+                    android:text="Reset"
+                     android:layout_marginLeft="2dip"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/button" />
             </TableRow>
         </TableLayout>
     </ScrollView>

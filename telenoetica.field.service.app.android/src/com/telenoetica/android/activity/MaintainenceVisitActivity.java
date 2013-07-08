@@ -8,11 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
-import com.telenoetica.jpa.entities.RoutineVisit;
 
 public class MaintainenceVisitActivity extends AbstractVisitActivity {
   Button button1;
@@ -21,6 +22,8 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     setContentView(R.layout.maintainence_visit);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();

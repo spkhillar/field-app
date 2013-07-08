@@ -15,18 +15,39 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:text="DIESEL VISIT"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textStyle="bold" />
+                android:background="@layout/header_gradient"
+                android:orientation="horizontal"
+                android:paddingBottom="5dip"
+                android:paddingTop="5dip" >
+
+                <!-- Logo Start -->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:src="@drawable/logo" />
+                <!-- Logo Ends -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|top"
+                    android:text="DIESEL VISIT"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
                 android:padding="5dip" >
 
                 <TextView
@@ -61,16 +82,15 @@
 
                 <EditText
                     android:id="@+id/button1"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="accessCode" />
             </TableRow>
 
@@ -92,11 +112,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="drnNumber" />
             </TableRow>
 
@@ -108,7 +128,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Diesel as Transfer or Bulk supply"
+                    android:text="Diesel Transfer/Bulk Supply"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
@@ -116,7 +136,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:tag="dieselTransferOrBulkSupply" >
+                    android:tag="dieselTransferOrBulkSupply"
+                    >
 
                     <RadioButton
                         android:id="@+id/radiotransfer"
@@ -129,6 +150,7 @@
                         android:id="@+id/radiobulk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:text="@string/Bulk" />
                 </RadioGroup>
             </TableRow>
@@ -141,7 +163,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="If transfer,then from which site?"
+                    android:text="Transfer from Site"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -166,7 +188,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="If Bulk,then name of vendor?"
+                    android:text="Bulk Vendor Name"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -201,11 +223,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="dieselLevelT1BeforeVisit" />
             </TableRow>
 
@@ -227,11 +249,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="dieselLevelT2BeforeVisit" />
             </TableRow>
 
@@ -253,11 +275,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="dieselReceivedLtrs" />
             </TableRow>
 
@@ -279,11 +301,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:tag="runHourGen1" />
             </TableRow>
 
@@ -305,12 +327,12 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:tag="runHourGen2"
-                    android:inputType="number"
-                    android:singleLine="true"  />
+                    android:singleLine="true"
+                    android:tag="runHourGen2" />
             </TableRow>
 
             <TableRow
@@ -430,12 +452,12 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:tag="phcnHrsPerDay"
-                    android:inputType="number"
-                    android:singleLine="true"  />
+                    android:singleLine="true"
+                    android:tag="phcnHrsPerDay" />
             </TableRow>
 
             <TableRow
@@ -489,11 +511,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:inputType="number"
-                    android:singleLine="true" 
+                    android:singleLine="true"
                     android:tag="hybridOrPiuHrsPerDay" />
             </TableRow>
 
@@ -507,17 +529,23 @@
                     android:id="@+id/btn_dv_submit"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="2dip"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Submit" />
+                    android:background="@drawable/button"
+                    android:text="Submit"
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/btn_dv_reset"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dip"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Reset" />
+                    android:background="@drawable/button"
+                    android:text="Reset"
+                    android:textColor="#FFFFFF" />
             </TableRow>
         </TableLayout>
     </ScrollView>

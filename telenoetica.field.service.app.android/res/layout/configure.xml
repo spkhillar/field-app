@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-     xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-    
-    <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="APPLICATION CONFIGURATION"
-                android:textStyle="bold"
-                android:gravity="center|top"
-                android:textAppearance="?android:attr/textAppearanceLarge"  />
+    android:orientation="horizontal" >
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
+        
+        <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@layout/header_gradient"
+                android:orientation="horizontal"
+                android:paddingBottom="5dip"
+                android:paddingTop="5dip" >
+
+                <!-- Logo Start -->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:src="@drawable/logo" />
+                <!-- Logo Ends -->
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:text="APPLICATION CONFIGURATION"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+             android:textColor="#ffffff"
+             android:textStyle="bold" />
+        
+        </LinearLayout>
+        
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dip" >
+            android:padding="10dip"
+            android:layout_marginTop="15dip"  >
 
             <TextView
+                android:paddingRight="10dip"
                 android:text="Host "
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:paddingRight="10dip" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <EditText
                 android:id="@+id/et_config_address"
@@ -39,7 +61,6 @@
                 android:shape="rectangle"
                 android:singleLine="true" />
         </TableRow>
-    </TableLayout>
 
     <CheckBox
         android:id="@+id/chk_reset"
@@ -55,11 +76,10 @@
 
     <Button
         android:id="@+id/btn_config_submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
         android:background="@drawable/button"
-        android:layout_marginLeft="8dip"
-        android:text="Save" />
-
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textColor="#FFFFFF" />
+   
+</TableLayout>
 </LinearLayout>

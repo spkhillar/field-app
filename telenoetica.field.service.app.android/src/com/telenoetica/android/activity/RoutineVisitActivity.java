@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.telenoetica.jpa.entities.RoutineVisit;
@@ -18,6 +20,8 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     setContentView(R.layout.routine_visit);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
@@ -29,10 +33,10 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
     button1.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
-        //Intent intent = new Intent(context, MainMenu.class);
-        //startActivity(intent);
+        // Intent intent = new Intent(context, MainMenu.class);
+        // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
-        getTargetObject(group,valueMap);
+        getTargetObject(group, valueMap);
         saveVisit(new RoutineVisit(), valueMap);
 
       }
@@ -44,7 +48,7 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
     button2.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
-        Reset r=new Reset();
+        Reset r = new Reset();
         ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
         r.clearForm(group);
       }

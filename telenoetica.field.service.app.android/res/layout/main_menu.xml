@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff" >
+        android:background="#ffffff">
 
         <!-- Header  Starts -->
 
@@ -35,23 +35,22 @@
             android:id="@+id/footer"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" >
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
         </LinearLayout>
-      
-
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@id/header"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_marginTop="20dip">
 
             <TextView
                 android:id="@+id/widget35"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|top"
-                
                 android:text="MENU"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textStyle="bold" />
@@ -60,11 +59,11 @@
                 android:id="@+id/button_rv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                android:layout_marginTop="30dip"
                 android:background="@drawable/button"
                 android:text="Routine Visit"
-               android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
-                
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -73,9 +72,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="8dip"
+                android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Diesel Visit"
-                android:layout_marginTop="10dip"
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -84,9 +83,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="8dip"
+                android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Maintainence Visit"
-                android:layout_marginTop="10dip"
                 android:textColor="#FFFFFF" />
 
             <Button
@@ -95,8 +94,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="8dip"
-                android:background="@drawable/button"
                 android:layout_marginTop="10dip"
+                android:background="@drawable/button"
                 android:text="Call-Out Visit"
                 android:textColor="#FFFFFF" />
 
@@ -106,8 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="8dip"
-                android:background="@drawable/button"
                 android:layout_marginTop="10dip"
+                android:background="@drawable/button"
                 android:text="Configure"
                 android:textColor="#FFFFFF" />
 
@@ -117,9 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dip"
                 android:layout_marginRight="8dip"
+                android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Exit"
-                android:layout_marginTop="10dip"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 

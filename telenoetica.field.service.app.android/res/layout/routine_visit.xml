@@ -4,27 +4,49 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
+    
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-
+        
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
+            
+            <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@layout/header_gradient"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip"
+            android:orientation="horizontal" >
+
+            <!-- Logo Start -->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:src="@drawable/logo" />
+            <!-- Logo Ends -->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ROUTINE VISIT"
                 android:textStyle="bold"
-                android:gravity="center|top"
+                android:gravity="bottom|center"
+                android:textColor="#ffffff"
                 android:textAppearance="?android:attr/textAppearanceLarge"  />
+            </LinearLayout>
 
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dip" >
+                android:padding="10dip"
+                android:layout_marginTop="15dip" >
 
                 <TextView
                     android:text="Site ID"
@@ -407,7 +429,7 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dip" >
+                 android:padding="10dip" >
 
                 <TextView
                     android:text="ATS Functional "
@@ -437,7 +459,7 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dip" >
+              android:padding="10dip" >
 
                 <TextView
                     android:text="ATS Synchronising"
@@ -680,7 +702,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginTop="10dip"
-                    
+                     android:layout_marginRight="2dip"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/button"
                     android:text="Submit" />
 
                 <Button
@@ -689,7 +713,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Reset" />
+                    android:text="Reset" 
+                     android:layout_marginLeft="2dip"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/button"/>
             </TableRow>
         </TableLayout>
     </ScrollView>
