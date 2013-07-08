@@ -38,8 +38,7 @@ public enum RestClient {
     try {
       response = restTemplate.exchange(url, httpMethod, new HttpEntity<Object>(requestObject,requestHeaders), returnType);
     } catch (RestClientException e) {
-      e.printStackTrace();
-      System.err.println( "I failed in post."+e.getMessage());
+      throw new RuntimeException(e);
     }
     if(response != null){
       return response.getBody();

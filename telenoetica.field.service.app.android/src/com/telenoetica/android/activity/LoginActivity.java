@@ -5,6 +5,8 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -78,7 +80,7 @@ public class LoginActivity extends Activity {
     String pwd = password.getText().toString();
     if (statusCode == 0) {
       if (!userExistsInLocal) {
-        sqLiteDbHandler.insertUser(uname, pwd);
+        sqLiteDbHandler.insertOrUpdateUser(uname, pwd);
         sqLiteDbHandler.checkAndInsertBaseData();
       }
       Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
@@ -87,32 +89,23 @@ public class LoginActivity extends Activity {
     } else {
       Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
     }
-
     AppValuesHolder.setCurrentUser(uname);
     AppValuesHolder.setCurrentUserPassword(pwd);
   }
 
   public void addListenerOnButtonPass() {
-
     button1 = (Button) findViewById(R.id.btn1_pass);
-
     button1.setOnClickListener(new OnClickListener() {
-
       @Override
       public void onClick(final View arg0) {
-
         Intent intent = new Intent(context, MainMenu.class);
         startActivity(intent);
-
       }
-
     });
   }
 
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
-
     private ProgressDialog pd;
-
     @Override
     protected void onPreExecute() {
       pd = new ProgressDialog(context);
@@ -132,13 +125,17 @@ public class LoginActivity extends Activity {
         LOGGER.debug("invoking..." + url);
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
-
         if (AppValuesHolder.getClients().size() == 1) {
           AppValuesPopulator.populateValues(params[0], params[1]);
         }
       } catch (Exception e) {
         LOGGER.error("Exception...", e);
-        response = new RestResponse(500, "System Exception.");
+        if(e.getCause() instanceof HttpClientErrorException){
+          HttpStatus status = ((HttpClientErrorException)e.getCause()).getStatusCode();
+          if(HttpStatus.UNAUTHORIZED.equals(status)){
+            response = new RestResponse(500, "Invalid Credentials. Check username and password");
+          }
+        }
       }
       if (response == null) {
         response = new RestResponse(500, "System Exception...");
@@ -155,7 +152,5 @@ public class LoginActivity extends Activity {
       findViewById(R.id.btn1_main).setEnabled(true);
       doWithResponse(restResponse);
     }
-
   }
-
 }

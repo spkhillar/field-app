@@ -1,7 +1,9 @@
 package com.telenoetica.android.activity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.app.DatePickerDialog;
@@ -92,8 +94,11 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
         // Intent intent = new Intent(context, MainMenu.class);
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll4_cv);
-        getTargetObject(group, valueMap);
-        saveVisit(new CallOutVisit(), valueMap);
+        List<String> errorList = new ArrayList<String>();
+        getTargetObject(group, valueMap,errorList);
+        CallOutVisit callOutVisit = new CallOutVisit();
+        callOutVisit.setUserId(AppValuesHolder.getCurrentUser());
+        saveVisit(callOutVisit, valueMap);
 
       }
 

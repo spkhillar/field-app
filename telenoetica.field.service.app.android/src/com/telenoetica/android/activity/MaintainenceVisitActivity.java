@@ -1,6 +1,8 @@
 package com.telenoetica.android.activity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
@@ -56,8 +58,11 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
         // Intent intent = new Intent(context, CalloutVisit.class);
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll3_mv);
-        getTargetObject(group, valueMap);
-        saveVisit(new MaintenanceVisit(), valueMap);
+        List<String> errorList = new ArrayList<String>();
+        getTargetObject(group, valueMap,errorList);
+        MaintenanceVisit maintenanceVisit = new MaintenanceVisit();
+        maintenanceVisit.setUserId(AppValuesHolder.getCurrentUser());
+        saveVisit(maintenanceVisit, valueMap);
 
       }
 

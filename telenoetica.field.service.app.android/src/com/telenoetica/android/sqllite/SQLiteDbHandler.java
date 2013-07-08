@@ -42,14 +42,40 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return found;
   }
 
-  public void insertUser(final String username,final String password) {
+  public boolean validateUser(final String username) {
+    SQLiteDatabase db = getWritableDatabase();
+    String selectQuery = "SELECT  * FROM " + getCredentialsTable() +" where username='"+username+"'" ;
+    LOGGER.debug("check if .. "+username+" exists in db in Phone Db.");
+    boolean found = false;
+    try {
+      Cursor cursor = db.rawQuery(selectQuery, null);
+      // looping through all rows and adding to list
+      if (cursor.moveToFirst()) {
+        do {
+          found = true;
+        }while(cursor.moveToNext());
+      }
+      cursor.close();
+      db.close();
+    } catch (Exception e) {
+      LOGGER.error("validateUser  Failed....",e);
+    }
+    return found;
+  }
+
+  public void insertOrUpdateUser(final String username,final String password) {
     SQLiteDatabase db = getWritableDatabase();
     LOGGER.debug("insertUser .. "+username+" in Phone Db.");
     try {
       ContentValues values = new ContentValues();
-      values.put("username", username);
-      values.put("password", password);
-      db.insert(getCredentialsTable(), null, values);
+      if(validateUser(username)){
+        values.put("password", password);
+        db.update(getCredentialsTable(), values, "username='"+username+"'", null);
+      }else{
+        values.put("username", username);
+        values.put("password", password);
+        db.insert(getCredentialsTable(), null, values);
+      }
     } catch (Exception e) {
       LOGGER.error("insertUser  Failed....",e);
     }
@@ -120,6 +146,7 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     if(resetSystem){
       db.delete(getVistisTable(), null, null);
     }
+    AppValuesHolder.resetConfigData();
     db.close();
   }
 

@@ -1,7 +1,11 @@
 package com.telenoetica.android.activity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.springframework.util.CollectionUtils;
 
 import android.os.Bundle;
 import android.view.View;
@@ -39,10 +43,15 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
         // Intent intent = new Intent(context, MainMenu.class);
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
-        getTargetObject(group, valueMap);
-        RoutineVisit routineVisit = new RoutineVisit();
-        routineVisit.setUserId(AppValuesHolder.getCurrentUser());
-        saveVisit(routineVisit, valueMap);
+        List<String> errorList = new ArrayList<String>();
+        getTargetObject(group, valueMap,errorList);
+        if(CollectionUtils.isEmpty(errorList)){
+          RoutineVisit routineVisit = new RoutineVisit();
+          routineVisit.setUserId(AppValuesHolder.getCurrentUser());
+          //saveVisit(routineVisit, valueMap);
+        }else{
+          LOGGER.error("Validation failed");
+        }
       }
     });
   }

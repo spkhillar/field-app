@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.telenoetica.android.rest.JsonValidator;
 import com.telenoetica.android.rest.RestJsonUtils;
 import com.telenoetica.android.sqllite.SQLiteDbHandler;
 
@@ -41,7 +43,7 @@ public class AbstractVisitActivity extends Activity {
     spinner.setAdapter(spinnerAdapter);
   }
 
-  public void getTargetObject(final ViewGroup group, final Map<String, Object> valueMap){
+  public  void getTargetObject(final ViewGroup group, final Map<String, Object> valueMap,final List<String> errorList){
     LOGGER.debug("Mapping fields to object map started");
     Object value=null;
     String tagValue = null;
@@ -71,14 +73,42 @@ public class AbstractVisitActivity extends Activity {
           value = btn.getText();
         }
       }
-      if(tagValue != null){
-        valueMap.put(tagValue, value);
+      if(tagValue != null && value != null){
+        addValuesInMap(view,valueMap,value,tagValue,errorList);
       }
       if (view instanceof ViewGroup && (((ViewGroup) view).getChildCount() > 0)) {
-        getTargetObject((ViewGroup) view,valueMap);
+        getTargetObject((ViewGroup) view,valueMap,errorList);
       }
     }
     LOGGER.debug("Mapping fields to object map ends");
+  }
+
+  private void addValuesInMap(final View view, final Map<String, Object> valueMap, final Object value, final String tagValue, final List<String> errorList) {
+    String tagAndValidation[] = StringUtils.split(tagValue,"=");
+    boolean valid = false;
+    if(tagAndValidation.length ==1){
+      valueMap.put(tagValue, value);
+    }else{
+      try {
+        JsonValidator jsonValidator= RestJsonUtils.fromJSONString(tagAndValidation[1], JsonValidator.class);
+        valid = jsonValidator.validate(value.toString());
+        if(!valid){
+          if (view instanceof EditText) {
+            EditText editable = (EditText) view;
+            editable.setError(jsonValidator.getMessage());
+          }
+          errorList.add("Error");
+        }else{
+          valueMap.put(tagAndValidation[0], value);
+        }
+      } catch (JsonParseException e) {
+        e.printStackTrace();
+      } catch (JsonMappingException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   @SuppressWarnings("rawtypes")

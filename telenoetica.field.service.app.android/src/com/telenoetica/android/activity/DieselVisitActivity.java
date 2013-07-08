@@ -1,6 +1,8 @@
 package com.telenoetica.android.activity;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
@@ -12,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.DieselVisit;
 
 public class DieselVisitActivity extends AbstractVisitActivity {
@@ -41,8 +44,11 @@ public class DieselVisitActivity extends AbstractVisitActivity {
         // intent = new Intent(context, MaintainenceVisit.class);
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll2_dv);
-        getTargetObject(group, valueMap);
-        saveVisit(new DieselVisit(), valueMap);
+        List<String> errorList = new ArrayList<String>();
+        getTargetObject(group, valueMap,errorList);
+        DieselVisit dieselVisit = new DieselVisit();
+        dieselVisit.setUserId(AppValuesHolder.getCurrentUser());
+        saveVisit(dieselVisit, valueMap);
 
       }
 
