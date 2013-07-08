@@ -1,11 +1,15 @@
 package com.telenoetica.android.activity;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.ClassUtils;
+import org.apache.commons.lang.StringUtils;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,9 +23,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
+import com.telenoetica.android.rest.RestJsonUtils;
+import com.telenoetica.android.sqllite.SQLiteDbHandler;
+
 public class AbstractVisitActivity extends Activity {
 
   protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractVisitActivity.class);
+
+  protected SQLiteDbHandler sqLiteDbHandler;
 
   public void addItemsOnSpinner(final int spinnerId, final List<String> spinnerValues) {
     Spinner spinner;
@@ -78,12 +87,11 @@ public class AbstractVisitActivity extends Activity {
     if(bean != null){
       Class clazz = bean.getClass();
       for (Map.Entry<String, Object> mapEntry : valueMap.entrySet()) {
-        System.out.println(mapEntry.getKey()+"...."+mapEntry.getValue());
         try {
           Field field = clazz.getDeclaredField(mapEntry.getKey());
           field.setAccessible(true);
           Class retType = field.getType();
-          if(mapEntry.getValue() != null){
+          if(mapEntry.getValue() != null && StringUtils.isNotBlank(mapEntry.getValue().toString())){
             Object value = getTypedValue(retType, mapEntry.getValue().toString());
             field.set(bean, value);
           }
@@ -95,8 +103,26 @@ public class AbstractVisitActivity extends Activity {
           LOGGER.error("IllegalArgumentException...", e);
         }
       }
+      saveJsonToDB(bean,clazz);
     }
     LOGGER.debug("saveVisit ends.."+bean);
+  }
+
+  private void saveJsonToDB(final Object bean, final Class clazz) {
+    String clazzName = clazz.getCanonicalName();
+    LOGGER.debug("Saving To DB.."+clazzName);
+    try {
+      String jsonString =  RestJsonUtils.toJSONString(bean);
+      sqLiteDbHandler.insertVisit(jsonString, clazzName);
+    } catch (JsonGenerationException e) {
+      LOGGER.error("JsonGenerationException...", e);
+    } catch (JsonMappingException e) {
+      LOGGER.error("JsonMappingException...", e);
+    } catch (IOException e) {
+      LOGGER.error("IOException...", e);
+    }
+
+
   }
 
   @SuppressWarnings("rawtypes")

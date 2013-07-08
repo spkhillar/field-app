@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.telenoetica.android.rest.AppValuesHolder;
+import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.RoutineVisit;
 
 public class RoutineVisitActivity extends AbstractVisitActivity {
@@ -25,6 +27,7 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
     setContentView(R.layout.routine_visit);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
+    sqLiteDbHandler = new SQLiteDbHandler(this);
   }
 
   public void addListenerOnButtonSubmit() {
@@ -37,7 +40,9 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
         getTargetObject(group, valueMap);
-        saveVisit(new RoutineVisit(), valueMap);
+        RoutineVisit routineVisit = new RoutineVisit();
+        routineVisit.setUserId(AppValuesHolder.getCurrentUser());
+        saveVisit(routineVisit, valueMap);
       }
     });
   }

@@ -2,6 +2,8 @@
 
 package com.telenoetica.android.activity;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,14 +14,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.telenoetica.android.sqllite.AndroidVisitSqLiteModel;
+import com.telenoetica.android.sqllite.SQLiteDbHandler;
+
 public class MainMenu extends Activity {
   private Button btnRoutineVisit;
   private Button btnDieselVisit;
   private Button btnMaintenanceVisit;
   private Button btnCalloutVisit;
+  private Button btnSendToServer;
   private Button btnConfigure;
   private Button btnExit;
   private Context context;
+  private SQLiteDbHandler sqLiteDbHandler;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -28,12 +35,31 @@ public class MainMenu extends Activity {
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     setContentView(R.layout.main_menu);
+    sqLiteDbHandler = new SQLiteDbHandler(this);
     addListenerOnButtonRV();
     addListenerOnButtonDV();
     addListenerOnButtonMV();
     addListenerOnButtonCV();
     addListenerOnButtonConfigure();
+    addListenerOnButtonSendToServer();
     addListenerOnButtonExit();
+  }
+
+  private void addListenerOnButtonSendToServer() {
+    btnSendToServer = (Button) findViewById(R.id.button_send_to_server);
+    btnSendToServer.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(final View arg0) {
+        List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
+        for (AndroidVisitSqLiteModel androidVisitSqLiteModel : dataList) {
+          /* androidVisitSqLiteModel.setTries(1);
+          androidVisitSqLiteModel.setStatus(AndroidConstants.FAILED_STATUS);
+          sqLiteDbHandler.updateVisit(androidVisitSqLiteModel);*/
+        }
+      }
+    });
+
+
   }
 
   public void addListenerOnButtonRV() {

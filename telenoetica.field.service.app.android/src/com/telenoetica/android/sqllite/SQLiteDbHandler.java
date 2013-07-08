@@ -12,6 +12,7 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import com.telenoetica.android.rest.AndroidConstants;
 import com.telenoetica.android.rest.AppValuesHolder;
 
 public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
@@ -92,8 +93,6 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
-
-
   public void checkAndInsertBaseData(){
     SQLiteDatabase db = getWritableDatabase();
     long count = DatabaseUtils.queryNumEntries(db,getMaintenanceTable());
@@ -124,8 +123,61 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
-  private List<String> getNamesList(final SQLiteDatabase db,final String selectQuery){
+  public void insertVisit(final String jsonString,final String clazzName) {
+    SQLiteDatabase db = getWritableDatabase();
+    LOGGER.debug("insertVisit .. "+clazzName+" in Phone Db."+jsonString);
+    try {
+      ContentValues values = new ContentValues();
+      values.put("json", jsonString);
+      values.put("class", clazzName);
+      values.put("tries", 0);
+      values.put("status", AndroidConstants.INITIAL_STATUS);
+      db.insert(getVistisTable(), null, values);
+    } catch (Exception e) {
+      LOGGER.error("insertVisit  Failed....",e);
+    }
+    db.close();
+  }
 
+  public List<AndroidVisitSqLiteModel> getVisitsInSystem() {
+    SQLiteDatabase db = getWritableDatabase();
+    List<AndroidVisitSqLiteModel> dataList = new ArrayList<AndroidVisitSqLiteModel>();
+    String selectQuery = "SELECT  * FROM " + getVistisTable() +" where status in ('"+AndroidConstants.INITIAL_STATUS+"','"+AndroidConstants.FAILED_STATUS+"')" ;
+    LOGGER.debug("getVisitsInSystem .. "+selectQuery+" in Phone Db.");
+    AndroidVisitSqLiteModel androidVisitSqLiteModel = null;
+    try {
+      Cursor cursor = db.rawQuery(selectQuery, null);
+      // looping through all rows and adding to list
+      cursor.moveToFirst();
+      do{
+        androidVisitSqLiteModel = new AndroidVisitSqLiteModel(cursor.getLong(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4));
+        LOGGER.debug("Found visit data.."+androidVisitSqLiteModel);
+        dataList.add(androidVisitSqLiteModel);
+      }while(cursor.moveToNext());
+      cursor.close();
+    }catch (Exception e) {
+      LOGGER.error("Error getVisitsInSystem..",e);
+    }
+    db.close();
+    return dataList;
+  }
+
+  public void updateVisit(final AndroidVisitSqLiteModel androidVisitSqLiteModel) {
+    SQLiteDatabase db = getWritableDatabase();
+    LOGGER.debug("updateVisit .. "+androidVisitSqLiteModel.getId()+" in Phone Db.");
+    try {
+      ContentValues values = new ContentValues();
+      values.put("tries", androidVisitSqLiteModel.getTries());
+      values.put("status", androidVisitSqLiteModel.getStatus());
+      int updateCount = db.update(getVistisTable(), values, "id="+androidVisitSqLiteModel.getId(), null);
+      LOGGER.debug("..Rows Affected..."+updateCount);
+    } catch (Exception e) {
+      LOGGER.error("updateVisit  Failed....",e);
+    }
+    db.close();
+  }
+
+  private List<String> getNamesList(final SQLiteDatabase db,final String selectQuery){
     List<String> dataList = new ArrayList<String>();
     try {
       Cursor cursor = db.rawQuery(selectQuery, null);
