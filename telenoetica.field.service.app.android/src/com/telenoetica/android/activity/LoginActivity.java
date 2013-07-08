@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -28,14 +29,12 @@ import com.telenoetica.android.sqllite.SQLiteDbHandler;
 public class LoginActivity extends Activity {
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
   private Button button1;
-
   private EditText userName;
-
   private EditText password;
-
   private SQLiteDbHandler sqLiteDbHandler;
-
   private boolean userExistsInLocal;
+  protected static final String TAG = AbstractVisitActivity.class.getSimpleName();
+  Context context;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -46,6 +45,7 @@ public class LoginActivity extends Activity {
     addListenerOnButtonLogin();
     addListenerOnButtonPass();
     sqLiteDbHandler = new SQLiteDbHandler(this);
+    context = this;
   }
 
   public void addListenerOnButtonLogin() {
@@ -74,7 +74,7 @@ public class LoginActivity extends Activity {
   private void doWithResponse(final RestResponse result) {
     LOGGER.info("Logging to the system. done.." + result);
     int statusCode = result.getStatusCode();
-    String uname=userName.getText().toString();
+    String uname = userName.getText().toString();
     String pwd = password.getText().toString();
     if (statusCode == 0) {
       if (!userExistsInLocal) {
@@ -94,8 +94,6 @@ public class LoginActivity extends Activity {
 
   public void addListenerOnButtonPass() {
 
-    final Context context = this;
-
     button1 = (Button) findViewById(R.id.btn1_pass);
 
     button1.setOnClickListener(new OnClickListener() {
@@ -112,18 +110,31 @@ public class LoginActivity extends Activity {
   }
 
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
+
+    private ProgressDialog pd;
+
+    @Override
+    protected void onPreExecute() {
+      pd = new ProgressDialog(context);
+      pd.setTitle("Processing...");
+      pd.setMessage("Please wait.");
+      pd.setCancelable(false);
+      pd.setIndeterminate(true);
+      pd.show();
+    }
+
     @Override
     protected RestResponse doInBackground(final String... params) {
       Date start = new Date();
-      String url = AppValuesHolder.getHost()+"/rest/auth";
+      String url = AppValuesHolder.getHost() + "/rest/auth";
       RestResponse response = null;
       try {
         LOGGER.debug("invoking..." + url);
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
 
-        if(AppValuesHolder.getClients().size() ==1){
-          AppValuesPopulator.populateValues( params[0], params[1]);
+        if (AppValuesHolder.getClients().size() == 1) {
+          AppValuesPopulator.populateValues(params[0], params[1]);
         }
       } catch (Exception e) {
         LOGGER.error("Exception...", e);
@@ -134,13 +145,17 @@ public class LoginActivity extends Activity {
       }
       Date end = new Date();
       long total = end.getTime() - start.getTime();
-      LOGGER.debug("...Total Time..."+total);
+      LOGGER.debug("...Total Time..." + total);
       return response;
     }
 
     @Override
     protected void onPostExecute(final RestResponse restResponse) {
+      pd.dismiss();
+      findViewById(R.id.btn1_main).setEnabled(true);
       doWithResponse(restResponse);
     }
+
   }
+
 }
