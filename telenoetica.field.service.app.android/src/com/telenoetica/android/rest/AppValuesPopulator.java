@@ -18,8 +18,9 @@ public final class AppValuesPopulator {
   }
 
   public static void populateValues(final String userName, final String password) throws JSONException {
+    String url = AppValuesHolder.getHost()+"/rest/home";
     HomeAndroidObject homeAndroidObject =
-        RestClient.INSTANCE.executeRest("http://192.168.1.103:8082/fieldapp/rest/home", userName, password, HttpMethod.GET, null,
+        RestClient.INSTANCE.executeRest(url, userName, password, HttpMethod.GET, null,
           HomeAndroidObject.class, MediaType.APPLICATION_JSON);
     LOGGER.debug("...Home Object..."+homeAndroidObject);
     if(homeAndroidObject != null){
@@ -29,6 +30,5 @@ public final class AppValuesPopulator {
       AppValuesHolder.setSites(homeAndroidObject.getSites());
       AppValuesHolder.setSpares(homeAndroidObject.getSpares());
     }
-
   }
 }

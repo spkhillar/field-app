@@ -14,6 +14,7 @@
     <string name="chk_reset_config">Reset Configuration</string>
     <string name="Not_Applicable">Not Applicable</string>
     <string name="btn_display">Display</string>
-    <string name="spinner_title">Brows and Select</string>
-
+    <string name="spinner_title">Browse and Select</string>
+    <string name="host_id">http://10.144.6.25:8082/fieldapp</string>
+	
 </resources>

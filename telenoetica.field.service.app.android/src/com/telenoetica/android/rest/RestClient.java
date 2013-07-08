@@ -15,7 +15,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 public enum RestClient {
-
   INSTANCE;
 
   public <T> T executeRest(final String url, final String userName, final String password,

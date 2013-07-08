@@ -25,10 +25,10 @@ public abstract class AbstractSQLiteDbHandler extends SQLiteOpenHelper {
   @SuppressWarnings("unused")
   private Context context;
 
-  private static final String[] SPINNER_TABLE_NAMES =
+  protected static final String[] SPINNER_TABLE_NAMES =
       new String[] { "spare", "client", "fault", "site", "maintenance" };
 
-  private static final List<String> FINAL_TABLE_LIST = new ArrayList<String>(Arrays.asList(SPINNER_TABLE_NAMES));
+  protected static final List<String> FINAL_TABLE_LIST = new ArrayList<String>(Arrays.asList(SPINNER_TABLE_NAMES));
 
   public AbstractSQLiteDbHandler(final Context context, final String name, final CursorFactory factory, final int version) {
     super(context, name, null, version);
@@ -47,7 +47,6 @@ public abstract class AbstractSQLiteDbHandler extends SQLiteOpenHelper {
     LOGGER.debug("creating table started");
     try {
       String finalCreateSqlQuery;
-
       for (String spinnerTableName : SPINNER_TABLE_NAMES) {
         finalCreateSqlQuery = getSpinnerTableSqlScript(spinnerTableName);
         db.execSQL(finalCreateSqlQuery);
@@ -107,7 +106,7 @@ public abstract class AbstractSQLiteDbHandler extends SQLiteOpenHelper {
   private String getVisitTableSqlScript() {
     String sqlCreateQuery =
         "CREATE TABLE if not exists " + "visit" + "(id INTEGER PRIMARY KEY AUTOINCREMENT," + "json" + " TEXT,"
-            + "status" + " TEXT,tries INTEGER)";
+            + "status" + " TEXT, class TEXT, tries INTEGER)";
     return sqlCreateQuery;
   }
 

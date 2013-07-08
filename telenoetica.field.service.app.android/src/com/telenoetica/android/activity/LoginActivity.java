@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.android.rest.AppValuesPopulator;
 import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestResponse;
@@ -26,7 +27,7 @@ import com.telenoetica.android.sqllite.SQLiteDbHandler;
 
 public class LoginActivity extends Activity {
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
-  Button button1;
+  private Button button1;
 
   private EditText userName;
 
@@ -50,18 +51,13 @@ public class LoginActivity extends Activity {
   public void addListenerOnButtonLogin() {
     button1 = (Button) findViewById(R.id.btn1_main);
     button1.setOnClickListener(new OnClickListener() {
-
       @Override
       public void onClick(final View arg0) {
-
         userName = (EditText) findViewById(R.id.et1_main_uid);
         password = (EditText) findViewById(R.id.et2_main_password);
         String[] array = new String[] { userName.getText().toString(), password.getText().toString() };
-
         LOGGER.info("Logging to the system...");
-
         userExistsInLocal = sqLiteDbHandler.validateUser(array[0], array[1]);
-
         if (userExistsInLocal) {
           LOGGER.info("User verified from local");
           sqLiteDbHandler.checkBaseDataInSystem();
@@ -72,26 +68,28 @@ public class LoginActivity extends Activity {
           task.execute(array);
         }
       }
-
     });
   }
 
   private void doWithResponse(final RestResponse result) {
     LOGGER.info("Logging to the system. done.." + result);
-    int i = result.getStatusCode();
-    if (i == 0) {
-
+    int statusCode = result.getStatusCode();
+    String uname=userName.getText().toString();
+    String pwd = password.getText().toString();
+    if (statusCode == 0) {
       if (!userExistsInLocal) {
-        sqLiteDbHandler.insertUser(userName.getText().toString(), password.getText().toString());
+        sqLiteDbHandler.insertUser(uname, pwd);
         sqLiteDbHandler.checkAndInsertBaseData();
       }
-
       Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
       Intent intent = new Intent(this, MainMenu.class);
       startActivity(intent);
     } else {
       Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
     }
+
+    AppValuesHolder.setCurrentUser(uname);
+    AppValuesHolder.setCurrentUserPassword(pwd);
   }
 
   public void addListenerOnButtonPass() {
@@ -114,36 +112,29 @@ public class LoginActivity extends Activity {
   }
 
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
-
     @Override
     protected RestResponse doInBackground(final String... params) {
       Date start = new Date();
-      String url = "http://192.168.1.103:8082/fieldapp/rest/auth";
+      String url = AppValuesHolder.getHost()+"/rest/auth";
       RestResponse response = null;
       try {
         LOGGER.debug("invoking..." + url);
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
-        AppValuesPopulator.populateValues(params[0], params[1]);
-        /*
-         * CallOutVisit postObject = getCalloutVisitEntity();
-         * url="http://192.168.1.104:8080/fieldapp/callout/rest"; response =
-         * RestClient.INSTANCE.executeRest(url, "sunny", "sunny",
-         * HttpMethod.POST, postObject, RestResponse.class,
-         * MediaType.APPLICATION_JSON); if(response != null){
-         * System.err.println("..callout request..."+response.getMessage()); }
-         */
+
+        if(AppValuesHolder.getClients().size() ==1){
+          AppValuesPopulator.populateValues( params[0], params[1]);
+        }
       } catch (Exception e) {
         LOGGER.error("Exception...", e);
         response = new RestResponse(500, "System Exception.");
       }
       if (response == null) {
-        response = new RestResponse(500, "Rest invocation failed...");
+        response = new RestResponse(500, "System Exception...");
       }
       Date end = new Date();
       long total = end.getTime() - start.getTime();
-
-      System.out.println("...Total Time..." + total);
+      LOGGER.debug("...Total Time..."+total);
       return response;
     }
 
@@ -151,16 +142,5 @@ public class LoginActivity extends Activity {
     protected void onPostExecute(final RestResponse restResponse) {
       doWithResponse(restResponse);
     }
-
-    /*
-     * private CallOutVisit getCalloutVisitEntity() { CallOutVisit callOutVisit
-     * = new CallOutVisit(); callOutVisit.setAccessCode("AAA");
-     * 
-     * callOutVisit.setUserId("root"); callOutVisit.setSiteId("HT/SW/OY/007");
-     * callOutVisit.setTimeComplainReceived(new Date());
-     * callOutVisit.settimeFaultResolved(new Date());
-     * callOutVisit.setTimeReachedToSite(new Date()); return callOutVisit; }
-     */
-
   }
 }

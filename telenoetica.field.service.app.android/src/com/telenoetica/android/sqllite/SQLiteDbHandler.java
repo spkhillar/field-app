@@ -60,7 +60,6 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     String baseQuery = "SELECT name FROM ";
 
     List<String> dataList = null;
-
     String selectQuery = baseQuery + getClientsTable();
     if(AppValuesHolder.getClients().size() == 1){
       dataList = getNamesList(db, selectQuery);
@@ -93,23 +92,7 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
-  private List<String> getNamesList(final SQLiteDatabase db,final String selectQuery){
 
-    List<String> dataList = new ArrayList<String>();
-    try {
-      Cursor cursor = db.rawQuery(selectQuery, null);
-      // looping through all rows and adding to list
-      cursor.moveToFirst();
-      do{
-        dataList.add(cursor.getString(0));
-      }while(cursor.moveToNext());
-
-      cursor.close();
-    }catch (Exception e) {
-      LOGGER.error("Error populating..",selectQuery);
-    }
-    return dataList;
-  }
 
   public void checkAndInsertBaseData(){
     SQLiteDatabase db = getWritableDatabase();
@@ -130,6 +113,34 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     checkBaseDataInSystem();
   }
 
+  public void resetConfiguration(final boolean resetSystem){
+    SQLiteDatabase db = getWritableDatabase();
+    for (String tableName : SPINNER_TABLE_NAMES) {
+      db.delete(tableName, null, null);
+    }
+    if(resetSystem){
+      db.delete(getVistisTable(), null, null);
+    }
+    db.close();
+  }
+
+  private List<String> getNamesList(final SQLiteDatabase db,final String selectQuery){
+
+    List<String> dataList = new ArrayList<String>();
+    try {
+      Cursor cursor = db.rawQuery(selectQuery, null);
+      // looping through all rows and adding to list
+      cursor.moveToFirst();
+      do{
+        dataList.add(cursor.getString(0));
+      }while(cursor.moveToNext());
+
+      cursor.close();
+    }catch (Exception e) {
+      LOGGER.error("Error populating..",selectQuery);
+    }
+    return dataList;
+  }
   private void insertAndroidBaseData(final SQLiteDatabase db) {
     String sql = null;
     if(!CollectionUtils.isEmpty(AppValuesHolder.getSpares())){

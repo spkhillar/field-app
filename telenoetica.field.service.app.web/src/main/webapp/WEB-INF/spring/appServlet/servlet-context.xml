@@ -9,7 +9,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
 
-<bean id="customObjectMapper" class="com.telenoetica.web.util.CustomObjectMapper"/>
+<bean id="customObjectMapper" class="com.telenoetica.util.model.CustomObjectMapper"/>
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven>

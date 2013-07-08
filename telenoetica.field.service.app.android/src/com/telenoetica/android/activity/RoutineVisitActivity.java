@@ -38,7 +38,6 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
         ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
         getTargetObject(group, valueMap);
         saveVisit(new RoutineVisit(), valueMap);
-
       }
     });
   }
