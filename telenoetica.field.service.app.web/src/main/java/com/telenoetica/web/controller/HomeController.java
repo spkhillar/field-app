@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -221,6 +223,13 @@ public class HomeController {
 		System.err.println(total + "-----HomeAndroidObject.......End-----"
 				+ new Date());
 		return homeAndroidObject;
+	}
+
+	@RequestMapping(value = "/downloadAndroidApp")
+	@ResponseBody
+	public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
+
+		androidHomeService.exportAndroidApp(httpServletResponse);
 	}
 
 }

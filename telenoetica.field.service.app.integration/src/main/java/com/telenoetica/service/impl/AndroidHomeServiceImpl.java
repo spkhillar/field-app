@@ -1,11 +1,16 @@
 package com.telenoetica.service.impl;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +42,9 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
 
 	@Autowired
 	private MaintenanceVisitService maintenanceVisitService;
+
+	@Autowired
+	SystemConfiguration systemConfiguration;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -79,6 +87,33 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
 		chartData.add((int) dvCount);
 		chartData.add((int) mvCount);
 		return chartData;
+	}
+
+	@Override
+	public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
+
+		String appFilePath = systemConfiguration.getAndroidAppFilePath();
+		File file = new File(appFilePath);
+		FileInputStream fileIn;
+		try {
+			httpServletResponse.setContentType("application/octet-stream");
+			httpServletResponse.setHeader("Content-Disposition",
+					"Attachment;filename= " + "fieldapp.apk");
+			fileIn = new FileInputStream(file);
+			ServletOutputStream out = httpServletResponse.getOutputStream();
+
+			byte[] outputByte = new byte[4096];
+			// copy binary contect to output stream
+			while (fileIn.read(outputByte, 0, 4096) != -1) {
+				out.write(outputByte, 0, 4096);
+			}
+			fileIn.close();
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

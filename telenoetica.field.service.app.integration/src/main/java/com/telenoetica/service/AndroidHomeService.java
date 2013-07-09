@@ -2,6 +2,8 @@ package com.telenoetica.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.telenoetica.util.model.HomeAndroidObject;
 
 public interface AndroidHomeService {
@@ -10,4 +12,5 @@ public interface AndroidHomeService {
 
 	public List<Integer> getchartData();
 
+	public void exportAndroidApp(HttpServletResponse httpServletResponse);
 }

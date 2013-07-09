@@ -6,35 +6,39 @@ import org.springframework.stereotype.Service;
 @Service("systemConfig")
 public class SystemConfiguration {
 
-  @Value("${diesel.details.report.directory}")
-  private String dieselDetailsReportDirectory;
+	@Value("${diesel.details.report.directory}")
+	private String dieselDetailsReportDirectory;
 
-  @Value("${spares.utilization.report.directory}")
-  private String sparesUtilizationReportDirectory;
+	@Value("${spares.utilization.report.directory}")
+	private String sparesUtilizationReportDirectory;
 
+	@Value("${diesel.details.report.file.name}")
+	private String dieselDetailsReportFileName;
 
-  @Value("${diesel.details.report.file.name}")
-  private String dieselDetailsReportFileName;
+	@Value("${spares.utilization.report.file.name}")
+	private String sparesUtilizationReportFileName;
 
-  @Value("${spares.utilization.report.file.name}")
-  private String sparesUtilizationReportFileName;
+	@Value("${android.apk.source.file.name}")
+	private String androidAppFilePath;
 
-  public String getDieselDetailsReportDirectory() {
-    return dieselDetailsReportDirectory;
-  }
+	public String getDieselDetailsReportDirectory() {
+		return dieselDetailsReportDirectory;
+	}
 
-  public String getSparesUtilizationReportDirectory() {
-    return sparesUtilizationReportDirectory;
-  }
+	public String getSparesUtilizationReportDirectory() {
+		return sparesUtilizationReportDirectory;
+	}
 
-  public String getDieselDetailsReportFileName() {
-    return dieselDetailsReportFileName;
-  }
+	public String getDieselDetailsReportFileName() {
+		return dieselDetailsReportFileName;
+	}
 
-  public String getSparesUtilizationReportFileName() {
-    return sparesUtilizationReportFileName;
-  }
+	public String getSparesUtilizationReportFileName() {
+		return sparesUtilizationReportFileName;
+	}
 
-
+	public String getAndroidAppFilePath() {
+		return androidAppFilePath;
+	}
 
 }

@@ -16,5 +16,4 @@ public class AndroidPageController extends BaseController {
 	public String create() {
 		return "androidDownload.appexe";
 	}
-
 }
