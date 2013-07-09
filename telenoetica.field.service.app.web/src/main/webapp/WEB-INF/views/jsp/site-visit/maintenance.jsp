@@ -14,28 +14,29 @@
 
 //$("#accountForm").validate( {
 	
-	$(document).ready(function() {	
-		$("#maintenanceCreateForm").validate( {
-		    success : "valid",
-		    ignoreTitle : true,
-		    rules : {
-			  "siteId" : {
-			      required : true,
-			      siteIdCheck:true
-			   },
-			  "accessCode" : {
-				  number : true,
-				  required : true
-		       },
-		      "runHoursAfterPmdG1" : {
-				  number : true,
-				  range : [ 1, 30000 ]
-			   },
-			   "runHoursAfterPmdG2" : {
-				   number : true,
-				   range : [ 1, 30000 ]
-			   },
-		    }
+
+	$(document).ready(function() {
+		$("#maintenanceCreateForm").validate({
+			success : "valid",
+			ignoreTitle : true,
+			rules : {
+				"siteId" : {
+					required : true,
+					siteIdCheck : true
+				},
+				"accessCode" : {
+					number : true,
+					required : true
+				},
+				"runHoursAfterPmdG1" : {
+					number : true,
+					range : [ 1, 30000 ]
+				},
+				"runHoursAfterPmdG2" : {
+					number : true,
+					range : [ 1, 30000 ]
+				},
+			}
 		});
 		$('#categoryOfMaintenance').html(htmlMaintenanceCategoriesOptions);
 		$('#sparesUsedItemsReplaced1').html(htmlEquipmentOptions);
@@ -52,11 +53,10 @@
 		$('#cosumablesUsed6').html(htmlEquipmentOptions);
 		$("#save").button();
 		$("#reset").button();
-		
-		
+
 	});
-	
-	function test(){
+
+	function test() {
 
 		/* messages: {
 			required: "This field is required.",
@@ -76,39 +76,38 @@
 			max: $.validator.format("Please enter a value less than or equal to {0}."),
 			min: $.validator.format("Please enter a value greater than or equal to {0}.")
 		}
- */	}
+		 */}
 
-function submitMaintenanceData(){
-	 
-	console.log('.....webContextPath....'+webContextPath);
-	var actionUrl = webContextPath+"/maintenance/save";
+	function submitMaintenanceData() {
 
-	console.log('..actionUrl-maintenance..',actionUrl);
-	var isValid = $("#maintenanceCreateForm").valid();
-	console.log('Form Valid...',isValid);
-	if(isValid){
-		var str = $("#maintenanceCreateForm").serialize();
-		console.log('values...',str);
-		$.ajax({
-		    type:"post",
-		    data:str,
-		    url:actionUrl,
-		    async: false,
-		    success: function(data, textStatus){
-		    alert(data+""+textStatus);
-			$("#save").hide();
-		    },
-		    error: function(textStatus,errorThrown){
-			       alert(textStatus+""+errorThrown);
-			}
-		});
+		console.log('.....webContextPath....' + webContextPath);
+		var actionUrl = webContextPath + "/maintenance/save";
+
+		console.log('..actionUrl-maintenance..', actionUrl);
+		var isValid = $("#maintenanceCreateForm").valid();
+		console.log('Form Valid...', isValid);
+		if (isValid) {
+			var str = $("#maintenanceCreateForm").serialize();
+			console.log('values...', str);
+			$.ajax({
+				type : "post",
+				data : str,
+				url : actionUrl,
+				async : false,
+				success : function(data, textStatus) {
+					showVisitMessage(data);
+					$("#save").hide();
+				},
+				error : function(textStatus, errorThrown) {
+					alert(textStatus + "" + errorThrown);
+				}
+			});
+		}
 	}
-}
 
-function refreshMaintenanceData(){
-	location.reload();
-}
-
+	function refreshMaintenanceData() {
+		location.reload();
+	}
 </script>
 <style type="text/css">
 
@@ -210,6 +209,6 @@ function refreshMaintenanceData(){
 	</form:form>
 			<button id="save" onclick="submitMaintenanceData();"><spring:message code="fieldapp.label.save"/> </button>
 			<button id="reset" onclick="refreshMaintenanceData();"><spring:message code="fieldapp.label.reset"/></button>
-
+			<span id="messageSpanId" class="message"></span>
 </body>
 </html>

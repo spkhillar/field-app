@@ -131,8 +131,8 @@ function submitRoutineData(){
 		    url:actionUrl,
 		    async: false,
 		    success: function(data, textStatus){
-		       alert(data+""+textStatus);
-		       $("#save").hide();
+		    	showVisitMessage(data);
+		    	$("#save").hide();
 		       //$("#save").attr("disabled","disabled");
 		       //$("#save").css("background-color","silver");
 		    },
@@ -277,6 +277,6 @@ function refreshRoutineData(){
 	</form:form>
 			<button id="save" onclick="submitRoutineData();"><spring:message code="fieldapp.label.save"/> </button>
 			<button id="reset" onclick="refreshRoutineData();"><spring:message code="fieldapp.label.reset"/></button>
-
+			<span id="messageSpanId" class="message"></span>
 </body>
 </html>

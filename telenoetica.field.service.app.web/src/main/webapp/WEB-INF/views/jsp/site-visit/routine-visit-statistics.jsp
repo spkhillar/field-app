@@ -244,7 +244,7 @@
 </script>
 </head>
 <body>
-<div style="height: 500px;">
+<div style="height: 550px;">
 	<div id='jqgrid'>
 		<table id='grid'></table>
 		<div id='pager'></div>

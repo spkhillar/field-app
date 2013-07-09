@@ -186,7 +186,7 @@ em { color: #359548 }
 #templatemo_main {
 	clear: both;
 	width: 900px;
-	padding: 45px 30px;
+	padding: 10px 30px;
 	background-color: #FFFFFF;
 }
 
@@ -577,3 +577,8 @@ color: #FF0000;
 }
 #newspaper-b tr:nth-child(even) {background: #E8EDFF}
 #newspaper-b tr:nth-child(odd) {background: #FFF}
+
+#currentViewTitle {
+	font-weight:bold;
+	padding: 5px 30px;	
+}

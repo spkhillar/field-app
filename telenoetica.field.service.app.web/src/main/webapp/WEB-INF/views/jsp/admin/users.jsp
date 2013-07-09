@@ -31,7 +31,9 @@
 						width : 100,
 						editable : true,
 						editrules : {
-							required : true
+							required : true,
+							custom:true, 
+							custom_func:validateUser
 						},
 						editoptions : {
 							size : 20
@@ -431,10 +433,32 @@
 			});
 		}
 	}
+	
+	function validateUser(value, colname){
+		var retArray = new Array();
+		$.ajax({
+			type : "get",
+			url : webContextPath + '/user/checkUserName/'+value,
+			async : false,
+			success : function(data, textStatus) {
+				console.log("...data...",data);
+				if(data){
+					console.log('in true');
+					retArray.push(false);
+					retArray.push("Username already exists in system.");
+				}else{
+					retArray.push(true);
+					retArray.push("");
+				}
+			}
+		});
+		console.log('..retArray..',retArray);
+		return retArray;
+	}
 </script>
 </head>
 <body>
-<div style="height: 500px;">
+<div style="height: 550px;">
 	<div id='jqgrid'>
 		<table id='grid'></table>
 		<div id='pager'></div>

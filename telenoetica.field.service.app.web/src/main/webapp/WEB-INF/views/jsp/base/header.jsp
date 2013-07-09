@@ -90,10 +90,10 @@ webContextPath="${pageContext.request.contextPath}";
 		</sec:authorize>
 		<li><a href="${contextPath}/downloadAndroidApp">Download Android App</a>
 		</li>
-		<li><a href="${contextPath}/underconstruction">Help</a>
+		<li><a href="${contextPath}/help">Help</a>
 		</li>
 	</ul>
-
+	<div id="currentViewTitle">${currentViewTitle}</div>
 
 </body>
 </html>

@@ -135,7 +135,7 @@ function submitCalloutData(){
 		    url:actionUrl,
 		    async: false,
 		    success: function(data, textStatus){
-		    	alert(data+""+textStatus);
+		    	showVisitMessage(data);
 			    $("#save").hide();
 		    },
 		    error: function(textStatus,errorThrown){
@@ -242,6 +242,7 @@ function refreshCalloutData(){
 	</form:form>
 			<button id="save" onclick="submitCalloutData();"><spring:message code="fieldapp.label.save"/> </button>
 			<button id="reset" onclick="refreshCalloutData();"><spring:message code="fieldapp.label.reset"/></button>
+			<span id="messageSpanId" class="message"></span>
 
 </body>
 </html>
