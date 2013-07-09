@@ -21,32 +21,40 @@ import com.telenoetica.service.JobHistoryService;
 @SessionAttributes("jobHistoryForm")
 public class JobServiceController extends BaseController {
 
-  @Autowired
-  JobHistoryService jobHistoryService;
+	@Autowired
+	JobHistoryService jobHistoryService;
 
-  /**
-   * Creates the.
-   * 
-   * @return the string
-   */
-  @RequestMapping(value = "/diesel")
-  public String create(final Model model) {
-    return "reportDownload.diesel";
-  }
+	/**
+	 * Creates the.
+	 * 
+	 * @return the string
+	 */
+	@RequestMapping(value = "/monthlyReport/{type}")
+	public String create(final Model model, @PathVariable final String type) {
+		model.addAttribute("type", type);
+		return "reportDownload.monthlyReport";
+	}
 
-  @RequestMapping(value = "/dieselReportList", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  public List<JobHistory> findByStartTimeBetween() {
-    List<JobHistory> listReport = jobHistoryService
-        .findByStartTimeBetween();
-    return listReport;
-  }
+	@RequestMapping(value = "/yearlyReportList/{type}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public List<JobHistory> findByStartTimeBetween(
+			@PathVariable final String type) {
+		String jobName = "";
+		if (type.equals("diesel")) {
+			jobName = "DieselDetailReportJob";
+		} else {
+			jobName = "SpareUtilizationReportJob";
+		}
+		List<JobHistory> listReport = jobHistoryService
+				.findOneYearJobList(jobName);
+		return listReport;
+	}
 
-  @RequestMapping(value = "/diesel/export/{jobId}")
-  @ResponseBody
-  public void exportDieselDetailsReport(@PathVariable final long jobId,
-      final HttpServletResponse httpServletResponse) {
-    String reportPath = jobHistoryService.getPath(jobId);
-    jobHistoryService.exportReport(reportPath, httpServletResponse);
-  }
+	@RequestMapping(value = "/monthlyReport/export/{jobId}")
+	@ResponseBody
+	public void exportDieselDetailsReport(@PathVariable final long jobId,
+			final HttpServletResponse httpServletResponse) {
+		String reportPath = jobHistoryService.getPath(jobId);
+		jobHistoryService.exportReport(reportPath, httpServletResponse);
+	}
 }

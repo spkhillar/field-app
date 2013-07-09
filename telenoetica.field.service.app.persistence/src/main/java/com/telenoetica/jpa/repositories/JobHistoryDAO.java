@@ -17,7 +17,8 @@ import com.telenoetica.jpa.entities.JobHistory;
  */
 public interface JobHistoryDAO extends JpaRepository<JobHistory, Long> {
 
-	List<JobHistory> findByStartTimeBetween(Date startDate, Date endDate);
+	List<JobHistory> findByJobNameAndStartTimeBetween(String jobName,
+			Date startDate, Date endDate);
 
 	JobHistory findById(long id);
 

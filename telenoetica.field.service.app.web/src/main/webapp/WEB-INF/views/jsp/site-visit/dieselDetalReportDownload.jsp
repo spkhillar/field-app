@@ -20,8 +20,8 @@
 <script type="text/javascript">
 
 	$().ready(function() {
-
-		var jsonurl = webContextPath + "/reportDownload/dieselReportList";
+		var typeVar = '<c:out value="${type}"/>';
+		var jsonurl = webContextPath + "/reportDownload/yearlyReportList/"+typeVar;
 		var listReport = populateDataForHomeScreen(jsonurl);
 		populateReportDownloadTableData(listReport);
 	});
@@ -44,7 +44,7 @@
 		$.each(input, function(i, row) {
 			$('[name="reportTable"]').append(
 					"<tr><td>" + row.jobName + "</td><td>" + row.startTime
-							+ "</td><td>" + '<a href="'+webContextPath+'/reportDownload/diesel/export/'+ row.id+'" style="font-weight: bold">Download</a>'
+							+ "</td><td>" + '<a href="'+webContextPath+'/reportDownload/monthlyReport/export/'+ row.id+'" style="font-weight: bold">Download</a>'
 							+ "</td></tr>");
 		});
 	}

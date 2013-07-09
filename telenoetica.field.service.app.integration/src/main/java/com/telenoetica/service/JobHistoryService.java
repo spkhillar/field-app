@@ -8,7 +8,7 @@ import com.telenoetica.jpa.entities.JobHistory;
 
 public interface JobHistoryService extends BaseService<JobHistory> {
 
-	List<JobHistory> findByStartTimeBetween();
+	List<JobHistory> findOneYearJobList(String jobName);
 
 	void exportReport(String reportPath, HttpServletResponse httpServletResponse);
 

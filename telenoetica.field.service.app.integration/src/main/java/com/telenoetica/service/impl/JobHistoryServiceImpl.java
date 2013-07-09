@@ -39,14 +39,14 @@ public class JobHistoryServiceImpl implements JobHistoryService {
 	}
 
 	@Override
-	public List<JobHistory> findByStartTimeBetween() {
+	public List<JobHistory> findOneYearJobList(final String jobName) {
 		Date startDate;
 		Date endDate;
 		Calendar currentDate = Calendar.getInstance(); // Get the current date
 		endDate = currentDate.getTime();
 		startDate = new DateTime(endDate).minusMonths(12).toDate();
-		List<JobHistory> jobHistoryList = jobHistoryDAO.findByStartTimeBetween(
-				startDate, endDate);
+		List<JobHistory> jobHistoryList = jobHistoryDAO
+				.findByJobNameAndStartTimeBetween(jobName, startDate, endDate);
 		return jobHistoryList;
 	}
 
