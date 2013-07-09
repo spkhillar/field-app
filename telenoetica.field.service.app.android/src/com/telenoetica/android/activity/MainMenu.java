@@ -1,7 +1,5 @@
 /* Copyright (C) 2013 Telenoetica, Inc. All rights reserved */
-
 package com.telenoetica.android.activity;
-
 import java.util.List;
 
 import android.app.Activity;
@@ -16,7 +14,6 @@ import android.widget.Button;
 
 import com.telenoetica.android.sqllite.AndroidVisitSqLiteModel;
 import com.telenoetica.android.sqllite.SQLiteDbHandler;
-
 public class MainMenu extends Activity {
   private Button btnRoutineVisit;
   private Button btnDieselVisit;
@@ -27,7 +24,6 @@ public class MainMenu extends Activity {
   private Button btnExit;
   private Context context;
   private SQLiteDbHandler sqLiteDbHandler;
-
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -44,7 +40,6 @@ public class MainMenu extends Activity {
     addListenerOnButtonSendToServer();
     addListenerOnButtonExit();
   }
-
   private void addListenerOnButtonSendToServer() {
     btnSendToServer = (Button) findViewById(R.id.button_send_to_server);
     btnSendToServer.setOnClickListener(new OnClickListener() {
@@ -58,10 +53,7 @@ public class MainMenu extends Activity {
         }
       }
     });
-
-
   }
-
   public void addListenerOnButtonRV() {
     btnRoutineVisit = (Button) findViewById(R.id.button_rv);
     btnRoutineVisit.setOnClickListener(new OnClickListener() {
@@ -72,7 +64,6 @@ public class MainMenu extends Activity {
       }
     });
   }
-
   public void addListenerOnButtonDV() {
     btnDieselVisit = (Button) findViewById(R.id.button_dv);
     btnDieselVisit.setOnClickListener(new OnClickListener() {
@@ -83,7 +74,6 @@ public class MainMenu extends Activity {
       }
     });
   }
-
   public void addListenerOnButtonMV() {
     btnMaintenanceVisit = (Button) findViewById(R.id.button_mv);
     btnMaintenanceVisit.setOnClickListener(new OnClickListener() {
@@ -94,7 +84,6 @@ public class MainMenu extends Activity {
       }
     });
   }
-
   public void addListenerOnButtonCV() {
     btnCalloutVisit = (Button) findViewById(R.id.button_cv);
     btnCalloutVisit.setOnClickListener(new OnClickListener() {
@@ -105,7 +94,6 @@ public class MainMenu extends Activity {
       }
     });
   }
-
   public void addListenerOnButtonConfigure() {
     btnConfigure = (Button) findViewById(R.id.button_configure);
     btnConfigure.setOnClickListener(new OnClickListener() {
@@ -116,7 +104,6 @@ public class MainMenu extends Activity {
       }
     });
   }
-
   public void addListenerOnButtonExit() {
     btnExit = (Button) findViewById(R.id.button_exit);
     btnExit.setOnClickListener(new OnClickListener() {

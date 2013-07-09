@@ -1,5 +1,4 @@
 package com.telenoetica.android.activity;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,20 +11,14 @@ import android.widget.EditText;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.android.sqllite.SQLiteDbHandler;
-
 public class ConfigureActivity extends Activity {
   private Button btnSubmit;
-
   //Shall clear all the tables from the local handheld device
   private CheckBox resetSystemChkbox;
-
   //Shall clear data from the spinner tables. does not include visit and configuration table
   private CheckBox resetConfigurationChkBox;
-
   private SQLiteDbHandler sqLiteDbHandler;
-
   private EditText hostConfiguredIpAddressEditText;
-
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -35,8 +28,6 @@ public class ConfigureActivity extends Activity {
     sqLiteDbHandler = new SQLiteDbHandler(this);
     addBtnSubmitAction();
   }
-
-
   private void addBtnSubmitAction() {
     btnSubmit = (Button) findViewById(R.id.btn_config_submit);
     resetSystemChkbox = (CheckBox) findViewById(R.id.chk_reset_system);
@@ -45,8 +36,6 @@ public class ConfigureActivity extends Activity {
     final boolean resetSys = resetSystemChkbox.isChecked();
     final boolean resetConfig = resetConfigurationChkBox.isChecked();
     final String hostConfiguredIpAddress = hostConfiguredIpAddressEditText.getText().toString();
-
-
     btnSubmit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
@@ -55,7 +44,6 @@ public class ConfigureActivity extends Activity {
         }else if(resetConfig){
           sqLiteDbHandler.resetConfiguration(false);
         }
-
         if(hostConfiguredIpAddress != null && !AppValuesHolder.getHost().equals(hostConfiguredIpAddress)){
           AppValuesHolder.setHost(hostConfiguredIpAddress);
         }

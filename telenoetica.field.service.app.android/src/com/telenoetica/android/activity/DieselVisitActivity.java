@@ -1,11 +1,9 @@
 package com.telenoetica.android.activity;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,11 +14,9 @@ import android.widget.Button;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.DieselVisit;
-
 public class DieselVisitActivity extends AbstractVisitActivity {
-  Button button1;
-  Button button2;
-
+  private Button buttonSubit;
+  private Button buttonReset;
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -30,17 +26,12 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
   }
-
   public void addListenerOnButtonSubmit() {
-
-    final Context context = this;
-    button1 = (Button) findViewById(R.id.btn_dv_submit);
+    buttonSubit = (Button) findViewById(R.id.btn_dv_submit);
     final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
-    button1.setOnClickListener(new OnClickListener() {
-
+    buttonSubit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
-
         // intent = new Intent(context, MaintainenceVisit.class);
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll2_dv);
@@ -49,27 +40,18 @@ public class DieselVisitActivity extends AbstractVisitActivity {
         DieselVisit dieselVisit = new DieselVisit();
         dieselVisit.setUserId(AppValuesHolder.getCurrentUser());
         saveVisit(dieselVisit, valueMap);
-
       }
-
     });
-
   }
-
   private void addListenerOnButtonReset() {
-    final Context context = this;
-    button2 = (Button) findViewById(R.id.btn_dv_reset);
-    button2.setOnClickListener(new OnClickListener() {
-
+    buttonReset = (Button) findViewById(R.id.btn_dv_reset);
+    buttonReset.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
         Reset r = new Reset();
         ViewGroup group = (ViewGroup) findViewById(R.id.ll2_dv);
         r.clearForm(group);
-
       }
-
     });
   }
-
 }

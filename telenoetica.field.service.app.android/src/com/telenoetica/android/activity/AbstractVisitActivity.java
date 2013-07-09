@@ -138,7 +138,7 @@ public class AbstractVisitActivity extends Activity {
     LOGGER.debug("saveVisit ends.."+bean);
   }
 
-  private void saveJsonToDB(final Object bean, final Class clazz) {
+  private void saveJsonToDB(final Object bean, final Class<?> clazz) {
     String clazzName = clazz.getCanonicalName();
     LOGGER.debug("Saving To DB.."+clazzName);
     try {

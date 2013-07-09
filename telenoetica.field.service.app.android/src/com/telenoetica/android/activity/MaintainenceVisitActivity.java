@@ -18,8 +18,8 @@ import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 
 public class MaintainenceVisitActivity extends AbstractVisitActivity {
-  Button button1;
-  Button button2;
+  private Button buttonSubmit;
+  private Button buttonReset;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
@@ -48,9 +48,9 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
   public void addListenerOnButtonSubmit() {
 
     final Context context = this;
-    button1 = (Button) findViewById(R.id.btn_mv_submit);
+    buttonSubmit = (Button) findViewById(R.id.btn_mv_submit);
     final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
-    button1.setOnClickListener(new OnClickListener() {
+    buttonSubmit.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(final View arg0) {
@@ -71,8 +71,8 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
 
   private void addListenerOnButtonReset() {
     final Context context = this;
-    button2 = (Button) findViewById(R.id.btn_mv_reset);
-    button2.setOnClickListener(new OnClickListener() {
+    buttonReset = (Button) findViewById(R.id.btn_mv_reset);
+    buttonReset.setOnClickListener(new OnClickListener() {
 
       @Override
       public void onClick(final View arg0) {

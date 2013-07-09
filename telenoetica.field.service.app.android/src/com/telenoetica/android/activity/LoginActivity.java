@@ -2,6 +2,7 @@ package com.telenoetica.android.activity;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
@@ -30,7 +31,7 @@ import com.telenoetica.android.sqllite.SQLiteDbHandler;
 
 public class LoginActivity extends Activity {
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
-  private Button button1;
+  private Button buttonLogin;
   private EditText userName;
   private EditText password;
   private SQLiteDbHandler sqLiteDbHandler;
@@ -51,23 +52,28 @@ public class LoginActivity extends Activity {
   }
 
   public void addListenerOnButtonLogin() {
-    button1 = (Button) findViewById(R.id.btn1_main);
-    button1.setOnClickListener(new OnClickListener() {
+    buttonLogin = (Button) findViewById(R.id.btn1_main);
+    buttonLogin.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
         userName = (EditText) findViewById(R.id.et1_main_uid);
         password = (EditText) findViewById(R.id.et2_main_password);
         String[] array = new String[] { userName.getText().toString(), password.getText().toString() };
         LOGGER.info("Logging to the system...");
-        userExistsInLocal = sqLiteDbHandler.validateUser(array[0], array[1]);
-        if (userExistsInLocal) {
-          LOGGER.info("User verified from local");
-          sqLiteDbHandler.checkBaseDataInSystem();
-          RestResponse response = new RestResponse(0, "Logged In");
+        if(StringUtils.isBlank(array[0]) || StringUtils.isBlank(array[1]) ){
+          RestResponse response = new RestResponse(500, "Username or password is blank.");
           doWithResponse(response);
-        } else {
-          LoginAsyncTask task = new LoginAsyncTask();
-          task.execute(array);
+        }else{
+          userExistsInLocal = sqLiteDbHandler.validateUser(array[0], array[1]);
+          if (userExistsInLocal) {
+            LOGGER.info("User verified from local");
+            sqLiteDbHandler.checkBaseDataInSystem();
+            RestResponse response = new RestResponse(0, "Logged In");
+            doWithResponse(response);
+          } else {
+            LoginAsyncTask task = new LoginAsyncTask();
+            task.execute(array);
+          }
         }
       }
     });
@@ -94,8 +100,8 @@ public class LoginActivity extends Activity {
   }
 
   public void addListenerOnButtonPass() {
-    button1 = (Button) findViewById(R.id.btn1_pass);
-    button1.setOnClickListener(new OnClickListener() {
+    buttonLogin = (Button) findViewById(R.id.btn1_pass);
+    buttonLogin.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
         Intent intent = new Intent(context, MainMenu.class);
