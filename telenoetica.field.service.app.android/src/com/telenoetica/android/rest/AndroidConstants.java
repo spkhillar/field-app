@@ -14,4 +14,12 @@ public interface AndroidConstants {
 
   String RANGE_MESSAGE = "{0} must be in between {1} and {2}";
 
+  String ROUTINE_VISIT_SAVE_REST_URL = "/routine/rest";
+
+  String CALLOUT_VISIT_SAVE_REST_URL = "/callout/rest";
+
+  String DIESEL_VISIT_SAVE_REST_URL = "/diesel/rest";
+
+  String MAINTENANCE_VISIT_SAVE_REST_URL = "/maintenance/rest";
+
 }

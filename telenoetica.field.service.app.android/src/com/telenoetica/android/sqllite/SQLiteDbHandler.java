@@ -43,7 +43,7 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
   }
 
   public boolean validateUser(final String username) {
-    SQLiteDatabase db = getWritableDatabase();
+    SQLiteDatabase db = getReadableDatabase();
     String selectQuery = "SELECT  * FROM " + getCredentialsTable() +" where username='"+username+"'" ;
     LOGGER.debug("check if .. "+username+" exists in db in Phone Db.");
     boolean found = false;
@@ -64,11 +64,13 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
   }
 
   public void insertOrUpdateUser(final String username,final String password) {
-    SQLiteDatabase db = getWritableDatabase();
+    SQLiteDatabase db = null;;
     LOGGER.debug("insertUser .. "+username+" in Phone Db.");
     try {
       ContentValues values = new ContentValues();
-      if(validateUser(username)){
+      boolean valid = validateUser(username);
+      db = getWritableDatabase();
+      if(valid){
         values.put("password", password);
         db.update(getCredentialsTable(), values, "username='"+username+"'", null);
       }else{
@@ -201,6 +203,13 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     } catch (Exception e) {
       LOGGER.error("updateVisit  Failed....",e);
     }
+    db.close();
+  }
+
+  public void deleteVisit(final Long id){
+    SQLiteDatabase db = getWritableDatabase();
+    int deleteCount = db.delete(getVistisTable(), "id="+id, null);
+    LOGGER.debug(id+"..Visit deleting Rows Affected..."+deleteCount);
     db.close();
   }
 

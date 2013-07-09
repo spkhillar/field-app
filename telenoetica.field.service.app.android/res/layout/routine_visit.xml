@@ -63,7 +63,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true" 
-                    android:tag='siteId={"required":true,"min":3,"max":7}'/>
+                    android:tag='siteId={"required":true}'/>
             </TableRow>
 
             <TableRow

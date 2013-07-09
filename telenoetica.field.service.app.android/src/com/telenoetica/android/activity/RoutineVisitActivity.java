@@ -48,7 +48,7 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
         if(CollectionUtils.isEmpty(errorList)){
           RoutineVisit routineVisit = new RoutineVisit();
           routineVisit.setUserId(AppValuesHolder.getCurrentUser());
-          //saveVisit(routineVisit, valueMap);
+          saveVisit(routineVisit, valueMap);
         }else{
           LOGGER.error("Validation failed");
         }

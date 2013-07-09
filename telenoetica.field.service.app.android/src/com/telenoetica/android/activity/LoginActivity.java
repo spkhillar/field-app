@@ -36,8 +36,7 @@ public class LoginActivity extends Activity {
   private EditText password;
   private SQLiteDbHandler sqLiteDbHandler;
   private boolean userExistsInLocal;
-  protected static final String TAG = AbstractVisitActivity.class.getSimpleName();
-  Context context;
+  private Context context;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
