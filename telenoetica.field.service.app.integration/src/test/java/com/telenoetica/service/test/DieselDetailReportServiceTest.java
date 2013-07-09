@@ -22,7 +22,7 @@ public class DieselDetailReportServiceTest extends BaseServiceTest {
 
 		List<Site> siteList = siteDAO.findAll();
 		try {
-			dieselDetailReportService.createNewReport(siteList);
+			dieselDetailReportService.createNewReport();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

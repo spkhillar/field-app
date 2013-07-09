@@ -1,58 +1,52 @@
 package com.telenoetica.scheduler.job;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.springframework.context.MessageSource;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.telenoetica.jpa.entities.JobHistory;
 import com.telenoetica.jpa.entities.JobStatus;
-import com.telenoetica.jpa.entities.Site;
+import com.telenoetica.service.DieselDetailReportService;
 import com.telenoetica.service.JobHistoryService;
-import com.telenoetica.service.SiteService;
-import com.telenoetica.service.impl.DieselDetailReportServiceImpl;
 
-public class DieselDetailsReport extends QuartzJobBean {
+public class DieselDetailsReportJob extends QuartzJobBean {
 
 	private static final Logger LOGGER = Logger
-			.getLogger(DieselDetailsReport.class);
-
-	private DieselDetailReportServiceImpl detailReportServiceImpl;
-
-	private MessageSource messageSource;
-
-	private SiteService siteService;
+			.getLogger(DieselDetailsReportJob.class);
 
 	private JobHistoryService jobHistoryService;
 
-	public void setJobHistoryService(final JobHistoryService jobHistoryService) {
-		this.jobHistoryService = jobHistoryService;
+	private DieselDetailReportService dieselDetailReportService;
+
+	public void setDieselDetailReportService(
+			final DieselDetailReportService dieselDetailReportService) {
+		this.dieselDetailReportService = dieselDetailReportService;
 	}
 
-	public void setMessageSource(final MessageSource messageSource) {
-		this.messageSource = messageSource;
+	public void setJobHistoryService(final JobHistoryService jobHistoryService) {
+		this.jobHistoryService = jobHistoryService;
 	}
 
 	@Override
 	protected void executeInternal(final JobExecutionContext context)
 			throws JobExecutionException {
 		LOGGER.debug("Job Started");
+		String reportPath = "";
 		JobHistory jobHistory = new JobHistory("DieselDetailReportJob",
-				"DieselDetailReportJob", new Date(), null, JobStatus.RUNNING);
+				"DieselDetailReport", new Date(), null, JobStatus.RUNNING);
 		createJobStatus(jobHistory);
 		// setup the
 		// Do your work
-		List<Site> siteList = siteService.getSites();
 		try {
-			detailReportServiceImpl.createNewReport(siteList);
+			reportPath = dieselDetailReportService.createNewReport();
 		} catch (Exception e) {
 			LOGGER.debug("Error while creating Report");
 			e.printStackTrace();
 		}
+		jobHistory.setPath(reportPath);
 		jobHistory.setEndTime(new Date());
 		jobHistory.setJobStatus(JobStatus.COMPLETED);
 		updateJobStatus(jobHistory);

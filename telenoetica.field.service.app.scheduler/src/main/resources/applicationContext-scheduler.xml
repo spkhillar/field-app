@@ -8,10 +8,7 @@
 	<bean name="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="routineVisitJobTrigger" /> 
-				<ref bean="callOutVisitJobTrigger" />
-				<ref bean="dieselVisitJobTrigger" />
-				<ref bean="maintenanceVisitJobTrigger" />
+				<ref bean="dieselDetailsReportJobTrigger" />
 			</list>
 		</property>
 		<property name="jobFactory" ref="jobFactory" />
@@ -33,6 +30,9 @@
 				<entry key="maintenanceVisitService">
 					<ref bean="maintenanceVisitService" />
 				</entry> -->
+				<entry key="dieselDetailReportService">
+					<ref bean="dieselDetailReportService"/>
+				</entry>
 			</map>
 		</property>
 

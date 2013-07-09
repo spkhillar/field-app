@@ -88,7 +88,7 @@ webContextPath="${pageContext.request.contextPath}";
 			</ul>	
 		</li>
 		</sec:authorize>
-		<li><a href="${contextPath}/underconstruction">Download Android App</a>
+		<li><a href="${contextPath}/androidDownload/appexe">Download Android App</a>
 		</li>
 		<li><a href="${contextPath}/underconstruction">Help</a>
 		</li>

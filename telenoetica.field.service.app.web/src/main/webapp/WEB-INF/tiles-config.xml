@@ -70,4 +70,8 @@
 		<put-attribute name="title" value="diesel Detail Form" />
 		<put-attribute name="body" value="/WEB-INF/views/jsp/site-visit/dieselDetalReportDownload.jsp" />
 	</definition>
+	<definition name="androidDownload.appexe" extends="base.definition">
+		<put-attribute name="title" value="Download Android App" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/download-android-page.jsp" />
+	</definition>
 </tiles-definitions>
