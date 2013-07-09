@@ -14,50 +14,51 @@ import com.telenoetica.service.JobHistoryService;
 
 public class DieselDetailsReportJob extends QuartzJobBean {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(DieselDetailsReportJob.class);
+  private static final Logger LOGGER = Logger
+      .getLogger(DieselDetailsReportJob.class);
 
-	private JobHistoryService jobHistoryService;
+  private JobHistoryService jobHistoryService;
 
-	private DieselDetailReportService dieselDetailReportService;
+  private DieselDetailReportService dieselDetailReportService;
 
-	public void setDieselDetailReportService(
-			final DieselDetailReportService dieselDetailReportService) {
-		this.dieselDetailReportService = dieselDetailReportService;
-	}
+  public void setDieselDetailReportService(
+      final DieselDetailReportService dieselDetailReportService) {
+    this.dieselDetailReportService = dieselDetailReportService;
+  }
 
-	public void setJobHistoryService(final JobHistoryService jobHistoryService) {
-		this.jobHistoryService = jobHistoryService;
-	}
+  public void setJobHistoryService(final JobHistoryService jobHistoryService) {
+    this.jobHistoryService = jobHistoryService;
+  }
 
-	@Override
-	protected void executeInternal(final JobExecutionContext context)
-			throws JobExecutionException {
-		LOGGER.debug("Job Started");
-		String reportPath = "";
-		JobHistory jobHistory = new JobHistory("DieselDetailReportJob",
-				"DieselDetailReport", new Date(), null, JobStatus.RUNNING);
-		createJobStatus(jobHistory);
-		// setup the
-		// Do your work
-		try {
-			reportPath = dieselDetailReportService.createNewReport();
-		} catch (Exception e) {
-			LOGGER.debug("Error while creating Report");
-			e.printStackTrace();
-		}
-		jobHistory.setPath(reportPath);
-		jobHistory.setEndTime(new Date());
-		jobHistory.setJobStatus(JobStatus.COMPLETED);
-		updateJobStatus(jobHistory);
+  @Override
+  protected void executeInternal(final JobExecutionContext context)
+      throws JobExecutionException {
+    LOGGER.debug("Job Started");
+    String reportPath = "";
+    JobHistory jobHistory = new JobHistory("DieselDetailReportJob",
+      "DieselDetailReport", new Date(), null, JobStatus.RUNNING);
+    createJobStatus(jobHistory);
+    // setup the
+    // Do your work
+    try {
+      reportPath = dieselDetailReportService.createNewReport();
+      jobHistory.setPath(reportPath);
+      jobHistory.setEndTime(new Date());
+      jobHistory.setJobStatus(JobStatus.COMPLETED);
+    } catch (Exception e) {
+      LOGGER.error("Error while creating Report",e);
+      jobHistory.setEndTime(new Date());
+      jobHistory.setJobStatus(JobStatus.FAILED);
+    }
+    updateJobStatus(jobHistory);
 
-	}
+  }
 
-	public void createJobStatus(final JobHistory jobHistory) {
-		jobHistoryService.saveOrUpdate(jobHistory);
-	}
+  public void createJobStatus(final JobHistory jobHistory) {
+    jobHistoryService.saveOrUpdate(jobHistory);
+  }
 
-	public void updateJobStatus(final JobHistory jobHistory) {
-		jobHistoryService.saveOrUpdate(jobHistory);
-	}
+  public void updateJobStatus(final JobHistory jobHistory) {
+    jobHistoryService.saveOrUpdate(jobHistory);
+  }
 }
