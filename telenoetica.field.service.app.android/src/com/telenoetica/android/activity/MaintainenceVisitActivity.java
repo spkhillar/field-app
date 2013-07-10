@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.util.CollectionUtils;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.telenoetica.android.rest.AppValuesHolder;
+import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 
 public class MaintainenceVisitActivity extends AbstractVisitActivity {
@@ -29,6 +32,7 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
     setContentView(R.layout.maintainence_visit);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
+    sqLiteDbHandler = new SQLiteDbHandler(this);
     addItemsOnSpinner(R.id.spinner_category_of_maintainence, AppValuesHolder.getMaintenanceCategories());
     addItemsOnSpinner(R.id.spinner_consumable1, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_consumable2, AppValuesHolder.getSpares());
@@ -59,13 +63,15 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll3_mv);
         List<String> errorList = new ArrayList<String>();
-        getTargetObject(group, valueMap,errorList);
-        MaintenanceVisit maintenanceVisit = new MaintenanceVisit();
-        maintenanceVisit.setUserId(AppValuesHolder.getCurrentUser());
-        saveVisit(maintenanceVisit, valueMap);
-
+        getTargetObject(group, valueMap, errorList);
+        if (CollectionUtils.isEmpty(errorList)) {
+          MaintenanceVisit maintenanceVisit = new MaintenanceVisit();
+          maintenanceVisit.setUserId(AppValuesHolder.getCurrentUser());
+          saveVisit(maintenanceVisit, valueMap);
+        } else {
+          LOGGER.error("Validation failed");
+        }
       }
-
     });
   }
 

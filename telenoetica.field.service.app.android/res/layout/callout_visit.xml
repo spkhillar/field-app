@@ -47,7 +47,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
+                android:padding="10dip"
                 android:layout_marginTop="15dip"  >
 
                 <TextView
@@ -66,14 +66,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="siteId" />
+                    android:tag='siteId={"required":true}'/>
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -92,14 +92,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="accessCode" />
+                    android:tag='accessCode={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -118,202 +118,154 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="callOutCsrOrTtNumber" />
+                    android:tag='callOutCsrOrTtNumber={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
                     android:text="Complaint recieved"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/linearLayout1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical" >
-
+                
                 <Button
                     android:id="@+id/datePicker1"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Date"
+                    android:layout_weight="50"
+                    android:text="Date and Time"
                     android:textColor="#FFFFFF"
-                    android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
                     android:background="@drawable/button"/>
-
-                <Button
-                    android:id="@+id/timePicker1"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginLeft="8dip"
-                android:layout_marginRight="8dip"
-                    android:background="@drawable/button"
-                    android:text="Time" />
             </TableRow>
 
-            <TableRow
+          
+            <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:padding="10dip">
 
                 <TextView
                     android:id="@+id/date1"
-                    android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginLeft="10dip" />
+                    android:gravity="right"
+                    android:text=""/>
                 
                 <TextView
                     android:id="@+id/time1"
-                    android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginLeft="10dip"/>
-                </TableRow>
+                    android:gravity="right"
+                    android:layout_marginLeft="50dip"
+                    android:layout_marginRight="10dip"
+                    android:text=""/>            
+                </LinearLayout>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
                         android:text="Time Reached"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow111"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip" >
-
+                    
                     <Button
                         android:id="@+id/datePicker2"
                         android:layout_width="0dip"
                         android:background="@drawable/button"
                         android:layout_height="wrap_content"
                         android:textColor="#FFFFFF"
-                        android:layout_marginLeft="4dip"
-                android:layout_marginRight="8dip"
-                        android:layout_weight="1"
-                        android:text="Date" />
-
-                    <Button
-                        android:id="@+id/timePicker2"
-                        android:layout_width="0dip"
-                        android:background="@drawable/button"
-                        android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"
-                        android:layout_marginLeft="8dip"
-                android:layout_marginRight="4dip"
-                        android:layout_weight="1"
-                        android:text="Time" />
+                        android:layout_weight="50"
+                        android:text="Date and Time" />
                 </TableRow>
 
-                 <TableRow
+                 <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:padding="10dip">
 
                 <TextView
                     android:id="@+id/date2"
-                    android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginLeft="10dip" />
+                    android:gravity="right"
+                    android:text=""/>
                 
                 <TextView
                     android:id="@+id/time2"
-                    android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginLeft="10dip"/>
-                </TableRow>
+                    android:gravity="right"
+                    android:layout_marginLeft="50dip"
+                    android:layout_marginRight="10dip"
+                    android:text=""/>            
+                </LinearLayout>
+                
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
                         android:text="Fault resolved"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/tableRow111"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dip" >
-
+                    
+                    
                     <Button
                         android:id="@+id/datePicker3"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="50"
                         android:background="@drawable/button"
                         android:textColor="#FFFFFF"
-                        android:layout_marginLeft="4dip"
-                android:layout_marginRight="8dip"
-                        android:text="Date" />
-
-                    <Button
-                        android:id="@+id/timePicker3"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/button"
-                        android:layout_marginLeft="8dip"
-                android:layout_marginRight="4dip"
-                        android:textColor="#FFFFFF"
-                        android:text="Time" />
+                        android:text="Date and Time" />
                 </TableRow>
-                
-                 <TableRow
+
+                 <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:padding="10dip">
 
                 <TextView
                     android:id="@+id/date3"
-                    android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginLeft="10dip" />
+                    android:gravity="right"
+                    android:text=""/>
                 
                 <TextView
                     android:id="@+id/time3"
-                    android:layout_width="0dip"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:layout_marginLeft="10dip"/>
-                </TableRow>
+                    android:gravity="right"
+                    android:layout_marginLeft="50dip"
+                    android:layout_marginRight="10dip"
+                    android:text=""/>            
+                </LinearLayout>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -326,14 +278,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag="customer1Impacted" />
+                        android:tag='customer1Impacted={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -346,14 +298,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag="customer2Impacted" />
+                        android:tag='customer2Impacted={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -366,14 +318,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag="customer3Impacted" />
+                        android:tag='customer3Impacted={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -386,14 +338,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag="customer4Impacted" />
+                        android:tag='customer4Impacted={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -405,14 +357,14 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:tag="mainCategoryOfFault" />
+                        android:tag='mainCategoryOfFault={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -424,14 +376,14 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:tag="equipmentComponentCausedFault" />
+                        android:tag='equipmentComponentCausedFault={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -444,14 +396,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag="equipmentComponentRepaired" />
+                        android:tag='equipmentComponentRepaired={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -464,14 +416,14 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag="equipmentComponentReplaced" />
+                        android:tag='equipmentComponentReplaced={"required":true}' />
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="5dip" >
+                    android:padding="10dip" >
 
                     <TextView
                         android:id="@+id/textView1"
@@ -483,7 +435,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:tag="fixResolutionTemporaryOrPermanent" >
+                        android:tag='fixResolutionTemporaryOrPermanent={"required":true}' >
 
                         <RadioButton
                             android:id="@+id/radiotemporary"
@@ -518,7 +470,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="actionsRequiredForPermanentResolution" 
+                    android:tag='actionsRequiredForPermanentResolution={"required":true}'
                     android:layout_marginLeft="4dip"
                     android:layout_marginRight="4dip"/>
 

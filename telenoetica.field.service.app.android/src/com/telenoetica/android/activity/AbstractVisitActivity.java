@@ -2,7 +2,7 @@ package com.telenoetica.android.activity;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,62 +43,63 @@ public class AbstractVisitActivity extends Activity {
     spinner.setAdapter(spinnerAdapter);
   }
 
-  public  void getTargetObject(final ViewGroup group, final Map<String, Object> valueMap,final List<String> errorList){
+  public void getTargetObject(final ViewGroup group, final Map<String, Object> valueMap, final List<String> errorList) {
     LOGGER.debug("Mapping fields to object map started");
-    Object value=null;
+    Object value = null;
     String tagValue = null;
     Object tag = null;
     for (int i = 0, count = group.getChildCount(); i < count; ++i) {
       View view = group.getChildAt(i);
       tag = view.getTag();
-      if(tag != null){
-        tagValue= tag.toString();
+      if (tag != null) {
+        tagValue = tag.toString();
       }
       if (view instanceof EditText) {
         Editable editable = ((EditText) view).getText();
         value = editable.toString();
       } else if (view instanceof Spinner) {
         value = ((Spinner) view).getSelectedItem();
-        if("Browse & Select".equals(value)){
+        if ("Browse & Select".equals(value)) {
           value = null;
         }
       } else if (view instanceof RadioGroup) {
         RadioGroup rg = (RadioGroup) view;
         int valuebutton = rg.getCheckedRadioButtonId();
-        if(valuebutton != -1){
-          int id= rg.getCheckedRadioButtonId();
+        if (valuebutton != -1) {
+          int id = rg.getCheckedRadioButtonId();
           View radioButton = rg.findViewById(id);
           int radioId = rg.indexOfChild(radioButton);
           RadioButton btn = (RadioButton) rg.getChildAt(radioId);
           value = btn.getText();
         }
       }
-      if(tagValue != null && value != null){
-        addValuesInMap(view,valueMap,value,tagValue,errorList);
+      if (tagValue != null && value != null) {
+        addValuesInMap(view, valueMap, value, tagValue, errorList);
       }
       if (view instanceof ViewGroup && (((ViewGroup) view).getChildCount() > 0)) {
-        getTargetObject((ViewGroup) view,valueMap,errorList);
+        getTargetObject((ViewGroup) view, valueMap, errorList);
       }
     }
     LOGGER.debug("Mapping fields to object map ends");
   }
 
-  private void addValuesInMap(final View view, final Map<String, Object> valueMap, final Object value, final String tagValue, final List<String> errorList) {
-    String tagAndValidation[] = StringUtils.split(tagValue,"=");
+  private void addValuesInMap(final View view, final Map<String, Object> valueMap, final Object value,
+      final String tagValue, final List<String> errorList) {
+    String tagAndValidation[] = StringUtils.split(tagValue, "=");
     boolean valid = false;
-    if(tagAndValidation.length ==1){
+    if (tagAndValidation.length == 1) {
       valueMap.put(tagValue, value);
-    }else{
+    } else {
       try {
-        JsonValidator jsonValidator= RestJsonUtils.fromJSONString(tagAndValidation[1], JsonValidator.class);
+        JsonValidator jsonValidator = RestJsonUtils.fromJSONString(tagAndValidation[1], JsonValidator.class);
         valid = jsonValidator.validate(value.toString());
-        if(!valid){
+        if (!valid) {
           if (view instanceof EditText) {
             EditText editable = (EditText) view;
             editable.setError(jsonValidator.getMessage());
           }
           errorList.add("Error");
-        }else{
+        } else {
           valueMap.put(tagAndValidation[0], value);
         }
       } catch (JsonParseException e) {
@@ -112,16 +113,16 @@ public class AbstractVisitActivity extends Activity {
   }
 
   @SuppressWarnings("rawtypes")
-  public void saveVisit(final Object bean,final Map<String, Object> valueMap){
+  public void saveVisit(final Object bean, final Map<String, Object> valueMap) {
     LOGGER.debug("saveVisit starts");
-    if(bean != null){
+    if (bean != null) {
       Class clazz = bean.getClass();
       for (Map.Entry<String, Object> mapEntry : valueMap.entrySet()) {
         try {
           Field field = clazz.getDeclaredField(mapEntry.getKey());
           field.setAccessible(true);
           Class retType = field.getType();
-          if(mapEntry.getValue() != null && StringUtils.isNotBlank(mapEntry.getValue().toString())){
+          if (mapEntry.getValue() != null && StringUtils.isNotBlank(mapEntry.getValue().toString())) {
             Object value = getTypedValue(retType, mapEntry.getValue().toString());
             field.set(bean, value);
           }
@@ -133,16 +134,16 @@ public class AbstractVisitActivity extends Activity {
           LOGGER.error("IllegalArgumentException...", e);
         }
       }
-      saveJsonToDB(bean,clazz);
+      saveJsonToDB(bean, clazz);
     }
-    LOGGER.debug("saveVisit ends.."+bean);
+    LOGGER.debug("saveVisit ends.." + bean);
   }
 
   private void saveJsonToDB(final Object bean, final Class<?> clazz) {
     String clazzName = clazz.getCanonicalName();
-    LOGGER.debug("Saving To DB.."+clazzName);
+    LOGGER.debug("Saving To DB.." + clazzName);
     try {
-      String jsonString =  RestJsonUtils.toJSONString(bean);
+      String jsonString = RestJsonUtils.toJSONString(bean);
       sqLiteDbHandler.insertVisit(jsonString, clazzName);
     } catch (JsonGenerationException e) {
       LOGGER.error("JsonGenerationException...", e);
@@ -151,7 +152,6 @@ public class AbstractVisitActivity extends Activity {
     } catch (IOException e) {
       LOGGER.error("IOException...", e);
     }
-
 
   }
 
@@ -168,6 +168,6 @@ public class AbstractVisitActivity extends Activity {
     } else if (ClassUtils.isAssignable(clazz, String.class)) {
       return value;
     }
-    throw new IllegalArgumentException(clazz.getName()+"Not in List");
+    throw new IllegalArgumentException(clazz.getName() + "Not in List");
   }
 }

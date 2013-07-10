@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dip"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -66,14 +66,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="siteId" />
+                    android:tag='siteId={"required":true}'/>
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -82,8 +82,9 @@
 
                 <EditText
                     android:id="@+id/button1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
+                    android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
                     android:inputType="number"
@@ -91,14 +92,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="accessCode" />
+                    android:tag='accessCode={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -117,14 +118,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="drnNumber" />
+                    android:maxLength="7"
+                    android:tag='drnNumber={"required":true,"min":1,"max":9999999}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -159,7 +161,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -177,14 +179,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="transferredSite" />
+                    android:tag='transferredSite={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -202,14 +204,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="bulkNameOfVendor" />
+                    android:tag='bulkNameOfVendor={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -228,14 +230,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="dieselLevelT1BeforeVisit" />
+                    android:maxLength="4"
+                    android:tag='dieselLevelT1BeforeVisit={"required":true,"min":1,"max":6000}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -254,14 +257,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="dieselLevelT2BeforeVisit" />
+                    android:maxLength="4"
+                    android:tag='dieselLevelT2BeforeVisit={"required":true,"min":1,"max":6000}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -280,14 +284,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="dieselReceivedLtrs" />
+                    android:maxLength="4"
+                    android:tag='dieselReceivedLtrs={"required":true,"min":1,"max":6000}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -306,14 +311,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="runHourGen1" />
+                    android:maxLength="5"
+                    android:tag='runHourGen1={"required":true,"min":1,"max":30000}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -332,14 +338,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="runHourGen2" />
+                    android:maxLength="5"
+                    android:tag='runHourGen2={"required":true,"min":1,"max":30000}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -372,7 +379,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -405,7 +412,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -438,7 +445,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -457,14 +464,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="phcnHrsPerDay" />
+                    android:maxLength="2"
+                    android:tag='phcnHrsPerDay={"required":true,"min":1,"max":24}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -497,7 +505,7 @@
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/textView1"
@@ -516,14 +524,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="hybridOrPiuHrsPerDay" />
+                    android:tag='hybridOrPiuHrsPerDay={"required":true,"min":1,"max":24}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <Button
                     android:id="@+id/btn_dv_submit"

@@ -48,7 +48,7 @@
                 android:id="@+id/tr1_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
+                android:padding="10dip"
                 android:layout_marginTop="15dip"  >
 
                 <TextView
@@ -67,14 +67,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="siteId" />
+                    android:tag='siteId={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr2_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv2_mv"
@@ -94,14 +94,14 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="accessCode" />
+                    android:tag='accessCode={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr3_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv3_mv"
@@ -115,14 +115,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="categoryOfMaintenance" />
+                    android:tag='categoryOfMaintenance={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr9_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@id/tr9_mv"
@@ -135,14 +135,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced1" />
+                    android:tag='sparesUsedItemsReplaced1={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr10_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv10_mv"
@@ -155,14 +155,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced2" />
+                    android:tag='sparesUsedItemsReplaced2={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr11_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv11_mv"
@@ -175,14 +175,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced3" />
+                    android:tag='sparesUsedItemsReplaced3={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr12_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv12_mv"
@@ -195,14 +195,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced4" />
+                    android:tag='sparesUsedItemsReplaced4={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr13_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tr13_mv"
@@ -215,14 +215,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced5" />
+                    android:tag='sparesUsedItemsReplaced5={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr14_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv14_mv"
@@ -235,14 +235,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced6" />
+                    android:tag='sparesUsedItemsReplaced6={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr16_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv16_mv"
@@ -255,14 +255,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="cosumablesUsed1" />
+                    android:tag='cosumablesUsed1={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr17_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv17_mv"
@@ -275,14 +275,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="cosumablesUsed2" />
+                    android:tag='cosumablesUsed2={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr18_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv18_mv"
@@ -295,14 +295,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="cosumablesUsed3" />
+                    android:tag='cosumablesUsed3={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr19_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv19_mv"
@@ -315,14 +315,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="cosumablesUsed4" />
+                    android:tag='cosumablesUsed4={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr20_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv20_mv"
@@ -335,14 +335,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="cosumablesUsed5" />
+                    android:tag='cosumablesUsed5={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr20_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv20_mv"
@@ -355,14 +355,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="cosumablesUsed6" />
+                    android:tag='cosumablesUsed6={"required":true}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr21_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv21_mv"
@@ -381,14 +381,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="runHoursAfterPmdG1" />
+                    android:maxLength="2"
+                    android:tag='runHoursAfterPmdG1={"required":true,"min":1,"max":24}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr22_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv22_mv"
@@ -407,14 +408,15 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag="runHoursAfterPmdG2" />
+                    android:maxLength="2"
+                    android:tag='runHoursAfterPmdG2={"required":true,"min":1,"max":24}' />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr23_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="10dip" >
 
                 <Button
                     android:id="@+id/btn_mv_submit"

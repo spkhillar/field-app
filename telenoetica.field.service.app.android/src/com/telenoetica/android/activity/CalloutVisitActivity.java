@@ -1,9 +1,12 @@
 package com.telenoetica.android.activity;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.util.CollectionUtils;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -21,7 +24,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.telenoetica.android.rest.AppValuesHolder;
+import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.CallOutVisit;
+
 public class CalloutVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
   private Button buttonReset;
@@ -40,6 +45,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
   private static final int DATE_DIALOG_ID2 = 3;
   private static final int TIME_DIALOG_ID3 = 4;
   private static final int DATE_DIALOG_ID3 = 5;
+
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -52,6 +58,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     timeDisplay2 = (TextView) findViewById(R.id.time2);
     dateDisplay3 = (TextView) findViewById(R.id.date3);
     timeDisplay3 = (TextView) findViewById(R.id.time3);
+    sqLiteDbHandler = new SQLiteDbHandler(this);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
     OnDateAndTimeChangeListener1();
@@ -66,6 +73,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     addItemsOnSpinner(R.id.spinner_equip_comp_repaired, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_equip_comp_replaced, AppValuesHolder.getSpares());
   }
+
   /*
    * public void showDateTime() { Context context; // Dialog dialog = new
    * Dialog(context); dialog.setContentView(R.layout.callout_visit);
@@ -85,13 +93,18 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll4_cv);
         List<String> errorList = new ArrayList<String>();
-        getTargetObject(group, valueMap,errorList);
-        CallOutVisit callOutVisit = new CallOutVisit();
-        callOutVisit.setUserId(AppValuesHolder.getCurrentUser());
-        saveVisit(callOutVisit, valueMap);
+        getTargetObject(group, valueMap, errorList);
+        if (CollectionUtils.isEmpty(errorList)) {
+          CallOutVisit callOutVisit = new CallOutVisit();
+          callOutVisit.setUserId(AppValuesHolder.getCurrentUser());
+          saveVisit(callOutVisit, valueMap);
+        } else {
+          LOGGER.error("Validation failed");
+        }
       }
     });
   }
+
   private void addListenerOnButtonReset() {
     final Context context = this;
     buttonReset = (Button) findViewById(R.id.btn_cv_reset);
@@ -117,25 +130,19 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       }
     });
   }
+
   private void updateDate(final TextView DateDisplay, final int day, final int month, final int year) {
     // Month is 0 based so add 1
     DateDisplay.setText(new StringBuilder().append(day).append("/").append(month + 1).append("/").append(year)
       .append(" "));
   }
+
   public void updatetime(final TextView TimeDisplay, final int hour, final int minute) {
     TimeDisplay.setText(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
   }
+
   public void OnDateAndTimeChangeListener1() {
     final Context context = this;
-    pickTime1 = (Button) findViewById(R.id.timePicker1);
-    pickTime1.setOnClickListener(new OnClickListener() {
-      @Override
-      @SuppressWarnings("deprecation")
-      public void onClick(final View v) {
-        // TODO Auto-generated method stub
-        showDialog(TIME_DIALOG_ID1);
-      }
-    });
     pickDate1 = (Button) findViewById(R.id.datePicker1);
     pickDate1.setOnClickListener(new OnClickListener() {
       @Override
@@ -151,6 +158,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     hour1 = c.get(Calendar.HOUR_OF_DAY);
     minute1 = c.get(Calendar.MINUTE);
   }
+
   private static String pad(final int c) {
     if (c >= 10) {
       return String.valueOf(c);
@@ -158,6 +166,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       return "0" + String.valueOf(c);
     }
   }
+
   private DatePickerDialog.OnDateSetListener DateSetListener1 = new DatePickerDialog.OnDateSetListener() {
     @Override
     public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
@@ -165,6 +174,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       month1 = monthOfYear;
       day1 = dayOfMonth;
       updateDate(dateDisplay1, day1, month1, year1);
+      showDialog(TIME_DIALOG_ID1);
     }
   };
   // Timepicker dialog generation
@@ -176,6 +186,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       updatetime(timeDisplay1, hour1, minute1);
     }
   };
+
   @Override
   protected Dialog onCreateDialog(final int id) {
     switch (id) {
@@ -194,17 +205,9 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     }
     return null;
   }
+
   public void OnDateAndTimeChangeListener2() {
     final Context context = this;
-    pickTime2 = (Button) findViewById(R.id.timePicker2);
-    pickTime2.setOnClickListener(new OnClickListener() {
-      @Override
-      @SuppressWarnings("deprecation")
-      public void onClick(final View v) {
-        // TODO Auto-generated method stub
-        showDialog(TIME_DIALOG_ID2);
-      }
-    });
     pickDate2 = (Button) findViewById(R.id.datePicker2);
     pickDate2.setOnClickListener(new OnClickListener() {
       @Override
@@ -220,6 +223,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     hour2 = c.get(Calendar.HOUR_OF_DAY);
     minute2 = c.get(Calendar.MINUTE);
   }
+
   private static String pad2(final int c) {
     if (c >= 10) {
       return String.valueOf(c);
@@ -227,6 +231,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       return "0" + String.valueOf(c);
     }
   }
+
   private DatePickerDialog.OnDateSetListener DateSetListener2 = new DatePickerDialog.OnDateSetListener() {
     @Override
     public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
@@ -234,6 +239,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       month2 = monthOfYear;
       day2 = dayOfMonth;
       updateDate(dateDisplay2, day2, month2, year2);
+      showDialog(TIME_DIALOG_ID2);
     }
   };
   private TimePickerDialog.OnTimeSetListener TimeSetListener2 = new TimePickerDialog.OnTimeSetListener() {
@@ -244,16 +250,8 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       updatetime(timeDisplay2, hour2, minute2);
     }
   };
+
   public void OnDateAndTimeChangeListener3() {
-    pickTime3 = (Button) findViewById(R.id.timePicker3);
-    pickTime3.setOnClickListener(new OnClickListener() {
-      @Override
-      @SuppressWarnings("deprecation")
-      public void onClick(final View v) {
-        // TODO Auto-generated method stub
-        showDialog(TIME_DIALOG_ID3);
-      }
-    });
     pickDate2 = (Button) findViewById(R.id.datePicker3);
     pickDate2.setOnClickListener(new OnClickListener() {
       @Override
@@ -269,6 +267,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     hour3 = c.get(Calendar.HOUR_OF_DAY);
     minute3 = c.get(Calendar.MINUTE);
   }
+
   private static String pad3(final int c) {
     if (c >= 10) {
       return String.valueOf(c);
@@ -276,6 +275,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       return "0" + String.valueOf(c);
     }
   }
+
   private DatePickerDialog.OnDateSetListener DateSetListener3 = new DatePickerDialog.OnDateSetListener() {
     @Override
     public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
@@ -283,6 +283,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       month3 = monthOfYear;
       day3 = dayOfMonth;
       updateDate(dateDisplay3, day3, month3, year3);
+      showDialog(TIME_DIALOG_ID3);
     }
   };
   private TimePickerDialog.OnTimeSetListener TimeSetListener3 = new TimePickerDialog.OnTimeSetListener() {
