@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.scheduler.job;
 
 import java.util.Date;
@@ -12,52 +15,85 @@ import com.telenoetica.jpa.entities.JobStatus;
 import com.telenoetica.service.DieselDetailReportService;
 import com.telenoetica.service.JobHistoryService;
 
+/**
+ * The Class SparesUtilizationReportJob.
+ */
 public class SparesUtilizationReportJob extends QuartzJobBean {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(SparesUtilizationReportJob.class);
+  /** The Constant LOGGER. */
+  private static final Logger LOGGER = Logger
+      .getLogger(SparesUtilizationReportJob.class);
 
-	private JobHistoryService jobHistoryService;
+  /** The job history service. */
+  private JobHistoryService jobHistoryService;
 
-	private DieselDetailReportService dieselDetailReportService;
+  /** The diesel detail report service. */
+  private DieselDetailReportService dieselDetailReportService;
 
-	public void setDieselDetailReportService(
-			final DieselDetailReportService dieselDetailReportService) {
-		this.dieselDetailReportService = dieselDetailReportService;
-	}
+  /**
+   * Sets the diesel detail report service.
+   *
+   * @param dieselDetailReportService the new diesel detail report service
+   */
+  public void setDieselDetailReportService(
+      final DieselDetailReportService dieselDetailReportService) {
+    this.dieselDetailReportService = dieselDetailReportService;
+  }
 
-	public void setJobHistoryService(final JobHistoryService jobHistoryService) {
-		this.jobHistoryService = jobHistoryService;
-	}
+  /**
+   * Sets the job history service.
+   *
+   * @param jobHistoryService the new job history service
+   */
+  public void setJobHistoryService(final JobHistoryService jobHistoryService) {
+    this.jobHistoryService = jobHistoryService;
+  }
 
-	@Override
-	protected void executeInternal(final JobExecutionContext context)
-			throws JobExecutionException {
-		LOGGER.debug("Job Started");
-		String reportPath = "";
-		JobHistory jobHistory = new JobHistory("DieselDetailReportJob",
-				"DieselDetailReport", new Date(), null, JobStatus.RUNNING);
-		createJobStatus(jobHistory);
-		// setup the
-		// Do your work
-		try {
-			reportPath = dieselDetailReportService.createNewReport();
-		} catch (Exception e) {
-			LOGGER.debug("Error while creating Report");
-			e.printStackTrace();
-		}
-		jobHistory.setPath(reportPath);
-		jobHistory.setEndTime(new Date());
-		jobHistory.setJobStatus(JobStatus.COMPLETED);
-		updateJobStatus(jobHistory);
+  /**
+   * Execute internal.
+   *
+   * @param context the context
+   * @throws JobExecutionException the job execution exception
+   * @see org.springframework.scheduling.quartz.QuartzJobBean#executeInternal(org.quartz.JobExecutionContext)
+   */
+  @Override
+  protected void executeInternal(final JobExecutionContext context)
+      throws JobExecutionException {
+    LOGGER.debug("Job Started");
+    String reportPath = "";
+    JobHistory jobHistory = new JobHistory("DieselDetailReportJob",
+      "DieselDetailReport", new Date(), null, JobStatus.RUNNING);
+    createJobStatus(jobHistory);
+    // setup the
+    // Do your work
+    try {
+      reportPath = dieselDetailReportService.createNewReport();
+    } catch (Exception e) {
+      LOGGER.debug("Error while creating Report");
+      e.printStackTrace();
+    }
+    jobHistory.setPath(reportPath);
+    jobHistory.setEndTime(new Date());
+    jobHistory.setJobStatus(JobStatus.COMPLETED);
+    updateJobStatus(jobHistory);
 
-	}
+  }
 
-	public void createJobStatus(final JobHistory jobHistory) {
-		jobHistoryService.saveOrUpdate(jobHistory);
-	}
+  /**
+   * Creates the job status.
+   *
+   * @param jobHistory the job history
+   */
+  public void createJobStatus(final JobHistory jobHistory) {
+    jobHistoryService.saveOrUpdate(jobHistory);
+  }
 
-	public void updateJobStatus(final JobHistory jobHistory) {
-		jobHistoryService.saveOrUpdate(jobHistory);
-	}
+  /**
+   * Update job status.
+   *
+   * @param jobHistory the job history
+   */
+  public void updateJobStatus(final JobHistory jobHistory) {
+    jobHistoryService.saveOrUpdate(jobHistory);
+  }
 }

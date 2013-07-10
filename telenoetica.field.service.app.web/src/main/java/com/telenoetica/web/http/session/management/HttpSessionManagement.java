@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.web.http.session.management;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -8,8 +11,18 @@ import org.springframework.security.authentication.event.AuthenticationFailureBa
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.session.SessionDestroyedEvent;
 
+/**
+ * The Class HttpSessionManagement.
+ * @author shiv prasad khillar
+ */
 public class HttpSessionManagement implements ApplicationListener<ApplicationEvent> {
 
+  /**
+   * On application event.
+   *
+   * @param event the event
+   * @see org.springframework.context.ApplicationListener#onApplicationEvent(org.springframework.context.ApplicationEvent)
+   */
   @Override
   public void onApplicationEvent(final ApplicationEvent event) {
 

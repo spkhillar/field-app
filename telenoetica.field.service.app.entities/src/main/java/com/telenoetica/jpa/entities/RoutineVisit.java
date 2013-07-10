@@ -862,6 +862,71 @@ public class RoutineVisit implements java.io.Serializable, BaseEntity {
     this.siteId = siteId;
   }
 
+  /**
+   * Hash code.
+   *
+   * @return the int
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((accessCode == null) ? 0 : accessCode.hashCode());
+    result = prime * result + ((site == null) ? 0 : site.hashCode());
+    result = prime * result + ((user == null) ? 0 : user.hashCode());
+    return result;
+  }
+
+  /**
+   * Equals.
+   *
+   * @param obj the obj
+   * @return true, if successful
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    RoutineVisit other = (RoutineVisit) obj;
+    if (accessCode == null) {
+      if (other.accessCode != null) {
+        return false;
+      }
+    } else if (!accessCode.equals(other.accessCode)) {
+      return false;
+    }
+    if (site == null) {
+      if (other.site != null) {
+        return false;
+      }
+    } else if (!site.equals(other.site)) {
+      return false;
+    }
+    if (user == null) {
+      if (other.user != null) {
+        return false;
+      }
+    } else if (!user.equals(other.user)) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * To string.
+   *
+   * @return the string
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
@@ -998,9 +1063,5 @@ public class RoutineVisit implements java.io.Serializable, BaseEntity {
     builder.append("]");
     return builder.toString();
   }
-
-
-
-
 
 }

@@ -113,6 +113,7 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
   @JsonProperty
   private Date createdAt;
 
+  /** The site id. */
   @JsonProperty
   private String siteId;
 
@@ -627,11 +628,21 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     this.createdAt = createdAt;
   }
 
+  /**
+   * Gets the site id.
+   *
+   * @return the site id
+   */
   @Transient
   public String getSiteId() {
     return siteId;
   }
 
+  /**
+   * Sets the site id.
+   *
+   * @param siteId the new site id
+   */
   public void setSiteId(final String siteId) {
     this.siteId = siteId;
   }
@@ -656,9 +667,10 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     this.userId = userId;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
+  /**
+   * Hash code.
+   *
+   * @return the int
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -672,9 +684,11 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     return result;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
+  /**
+   * Equals.
+   *
+   * @param obj the obj
+   * @return true, if successful
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -720,6 +734,12 @@ public class CallOutVisit implements BaseEntity, java.io.Serializable {
     return true;
   }
 
+  /**
+   * To string.
+   *
+   * @return the string
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     return "CallOutVisit [id=" + id + ", version=" + version + ", user=" + user + ", site=" + site + ", accessCode="

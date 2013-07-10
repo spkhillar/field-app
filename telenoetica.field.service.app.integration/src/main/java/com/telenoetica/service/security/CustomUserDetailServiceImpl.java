@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
  */
 package com.telenoetica.service.security;
 
@@ -30,52 +30,55 @@ import com.telenoetica.service.UserService;
 @Transactional(readOnly = true)
 public class CustomUserDetailServiceImpl implements UserDetailsService {
 
-	/** The user service. */
-	@Autowired
-	private UserService userService;
+  /** The user service. */
+  @Autowired
+  private UserService userService;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.springframework.security.core.userdetails.UserDetailsService#
-	 * loadUserByUsername(java.lang.String)
-	 */
-	@Override
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
+  /**
+   * Load user by username.
+   *
+   * @param username the username
+   * @return the user details
+   * @throws UsernameNotFoundException the username not found exception
+   * @see org.springframework.security.core.userdetails.UserDetailsService#
+   * loadUserByUsername(java.lang.String)
+   */
+  @Override
+  public UserDetails loadUserByUsername(final String username)
+      throws UsernameNotFoundException {
 
-		try {
-			User user = userService.findByUserName(username);
+    try {
+      User user = userService.findByUserName(username);
 
-			boolean enabled = true;
-			boolean accountNonExpired = true;
-			boolean credentialsNonExpired = true;
-			boolean accountNonLocked = true;
+      boolean enabled = true;
+      boolean accountNonExpired = true;
+      boolean credentialsNonExpired = true;
+      boolean accountNonLocked = true;
 
-			return new org.springframework.security.core.userdetails.User(
-					user.getUserName(), user.getPassword(), enabled,
-					accountNonExpired, credentialsNonExpired, accountNonLocked,
-					getAuthorities(user.getUserRole()));
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+      return new org.springframework.security.core.userdetails.User(
+        user.getUserName(), user.getPassword(), enabled,
+        accountNonExpired, credentialsNonExpired, accountNonLocked,
+        getAuthorities(user.getUserRole()));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
 
-	}
+  }
 
-	/**
-	 * Gets the authorities.
-	 * 
-	 * @param userRole
-	 *            the user role
-	 * @return the authorities
-	 */
-	private Collection<? extends GrantedAuthority> getAuthorities(
-			UserRole userRole) {
+  /**
+   * Gets the authorities.
+   * 
+   * @param userRole
+   *            the user role
+   * @return the authorities
+   */
+  private Collection<? extends GrantedAuthority> getAuthorities(
+    final UserRole userRole) {
 
-		Role role = userRole.getRole();
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-		return authorities;
-	}
+    Role role = userRole.getRole();
+    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+    return authorities;
+  }
 
 }

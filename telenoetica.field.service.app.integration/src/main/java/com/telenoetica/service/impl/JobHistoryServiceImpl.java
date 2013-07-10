@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.service.impl;
 
 import java.util.Calendar;
@@ -16,52 +19,97 @@ import com.telenoetica.jpa.repositories.JobHistoryDAO;
 import com.telenoetica.service.JobHistoryService;
 import com.telenoetica.service.util.ExcelWriter;
 
+/**
+ * The Class JobHistoryServiceImpl.
+ */
 @Service("jobHistoryService")
 @Transactional
 public class JobHistoryServiceImpl implements JobHistoryService {
 
-	@Autowired
-	private JobHistoryDAO jobHistoryDAO;
+  /** The job history dao. */
+  @Autowired
+  private JobHistoryDAO jobHistoryDAO;
 
-	@Override
-	public JobHistory retrieve(final Long id) {
-		return jobHistoryDAO.findOne(id);
-	}
+  /**
+   * Retrieve.
+   *
+   * @param id the id
+   * @return the job history
+   * @see com.telenoetica.service.BaseService#retrieve(java.lang.Long)
+   */
+  @Override
+  public JobHistory retrieve(final Long id) {
+    return jobHistoryDAO.findOne(id);
+  }
 
-	@Override
-	public JobHistory saveOrUpdate(final JobHistory jobHistory) {
-		return jobHistoryDAO.saveAndFlush(jobHistory);
-	}
+  /**
+   * Save or update.
+   *
+   * @param jobHistory the job history
+   * @return the job history
+   * @see com.telenoetica.service.BaseService#saveOrUpdate(com.telenoetica.jpa.entities.BaseEntity)
+   */
+  @Override
+  public JobHistory saveOrUpdate(final JobHistory jobHistory) {
+    return jobHistoryDAO.saveAndFlush(jobHistory);
+  }
 
-	@Override
-	public void delete(final JobHistory jobHistory) {
-		jobHistoryDAO.delete(jobHistory);
-	}
+  /**
+   * Delete.
+   *
+   * @param jobHistory the job history
+   * @see com.telenoetica.service.BaseService#delete(com.telenoetica.jpa.entities.BaseEntity)
+   */
+  @Override
+  public void delete(final JobHistory jobHistory) {
+    jobHistoryDAO.delete(jobHistory);
+  }
 
-	@Override
-	public List<JobHistory> findOneYearJobList(final String jobName) {
-		Date startDate;
-		Date endDate;
-		Calendar currentDate = Calendar.getInstance(); // Get the current date
-		endDate = currentDate.getTime();
-		startDate = new DateTime(endDate).minusMonths(12).toDate();
-		List<JobHistory> jobHistoryList = jobHistoryDAO
-				.findByJobNameAndStartTimeBetween(jobName, startDate, endDate);
-		return jobHistoryList;
-	}
+  /**
+   * Find one year job list.
+   *
+   * @param jobName the job name
+   * @return the list
+   * @see com.telenoetica.service.JobHistoryService#findOneYearJobList(java.lang.String)
+   */
+  @Override
+  public List<JobHistory> findOneYearJobList(final String jobName) {
+    Date startDate;
+    Date endDate;
+    Calendar currentDate = Calendar.getInstance(); // Get the current date
+    endDate = currentDate.getTime();
+    startDate = new DateTime(endDate).minusMonths(12).toDate();
+    List<JobHistory> jobHistoryList = jobHistoryDAO
+        .findByJobNameAndStartTimeBetween(jobName, startDate, endDate);
+    return jobHistoryList;
+  }
 
-	@Override
-	public String getPath(final long jobId) {
-		JobHistory jobHistory = jobHistoryDAO.findById(jobId);
-		String path = jobHistory.getPath();
-		return path;
-	}
+  /**
+   * Gets the path.
+   *
+   * @param jobId the job id
+   * @return the path
+   * @see com.telenoetica.service.JobHistoryService#getPath(long)
+   */
+  @Override
+  public String getPath(final long jobId) {
+    JobHistory jobHistory = jobHistoryDAO.findById(jobId);
+    String path = jobHistory.getPath();
+    return path;
+  }
 
-	@Override
-	public void exportReport(final String reportPath,
-			final HttpServletResponse httpServletResponse) {
+  /**
+   * Export report.
+   *
+   * @param reportPath the report path
+   * @param httpServletResponse the http servlet response
+   * @see com.telenoetica.service.JobHistoryService#exportReport(java.lang.String, javax.servlet.http.HttpServletResponse)
+   */
+  @Override
+  public void exportReport(final String reportPath,
+      final HttpServletResponse httpServletResponse) {
 
-		String reportFileName = reportPath;
-		ExcelWriter.write(httpServletResponse, reportFileName);
-	}
+    String reportFileName = reportPath;
+    ExcelWriter.write(httpServletResponse, reportFileName);
+  }
 }

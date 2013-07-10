@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.web.controller;
 
 import java.util.HashMap;
@@ -26,6 +29,10 @@ import com.telenoetica.web.rest.RestResponse;
 import com.telenoetica.web.util.DomainObjectMapper;
 import com.telenoetica.web.util.JqGridResponse;
 
+/**
+ * The Class MaintenanceVisitController.
+ * @author Satyam
+ */
 @Controller
 @RequestMapping(value = "/maintenance")
 @SessionAttributes("maintenanceForm")
@@ -81,7 +88,8 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 
   /**
    * Creates the.
-   * 
+   *
+   * @param model the model
    * @return the string
    */
   @RequestMapping(value = "/new")
@@ -125,7 +133,8 @@ public class MaintenanceVisitController extends AbstractJqGridFilterController {
 
   /**
    * Gets the users page.
-   * 
+   *
+   * @param model the model
    * @return the users page
    */
   @RequestMapping(value = "/list")

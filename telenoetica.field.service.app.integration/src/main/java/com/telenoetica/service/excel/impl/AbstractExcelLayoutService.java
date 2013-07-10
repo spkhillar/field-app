@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
  */
 package com.telenoetica.service.excel.impl;
 
@@ -19,16 +19,19 @@ import com.telenoetica.service.util.ExcelRendererModel;
  */
 public abstract class AbstractExcelLayoutService implements ExcelLayoutService {
 
-  /* (non-Javadoc)
+  /**
+   * Builds the report.
+   *
+   * @param excelRendererModel the excel renderer model
    * @see com.telenoetica.service.excel.ExcelLayoutService#buildReport(com.telenoetica.service.util.ExcelRendererModel)
    */
   @Override
-  public void buildReport(ExcelRendererModel excelRendererModel) {
+  public void buildReport(final ExcelRendererModel excelRendererModel) {
 
     HSSFSheet worksheet = excelRendererModel.getWorksheet();
     List<String> columns = excelRendererModel.getColumns();
     Assert.isTrue(CollectionUtils.isNotEmpty(columns), "Columns cannot be empty.");
- // Set column widths
+    // Set column widths
     for (int i = 0; i < columns.size(); i++) {
       worksheet.setColumnWidth(i, excelRendererModel.getColumnWidth());
     }

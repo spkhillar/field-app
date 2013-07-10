@@ -26,21 +26,21 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Table(name = "fault")
 @JsonAutoDetect(JsonMethod.NONE)
 public class Fault implements BaseEntity, java.io.Serializable {
-  
+
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -6378773493771389583L;
 
   /** The id. */
   @JsonProperty
   private Long id;
-  
+
   /** The version. */
   private Integer version;
-  
+
   /** The name. */
   @JsonProperty
   private String name;
-  
+
   /** The created at. */
   @JsonProperty
   private Date createdAt=new Date();
@@ -55,7 +55,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
    *
    * @param createdAt the created at
    */
-  public Fault(Date createdAt) {
+  public Fault(final Date createdAt) {
     this.createdAt = createdAt;
   }
 
@@ -65,7 +65,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
    * @param name the name
    * @param createdAt the created at
    */
-  public Fault(String name, Date createdAt) {
+  public Fault(final String name, final Date createdAt) {
     this.name = name;
     this.createdAt = createdAt;
   }
@@ -79,7 +79,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", unique = true, nullable = false)
   public Long getId() {
-    return this.id;
+    return id;
   }
 
   /**
@@ -87,7 +87,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
    *
    * @param id the new id
    */
-  public void setId(Long id) {
+  public void setId(final Long id) {
     this.id = id;
   }
 
@@ -99,7 +99,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
   @Version
   @Column(name = "version")
   public Integer getVersion() {
-    return this.version;
+    return version;
   }
 
   /**
@@ -107,7 +107,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
    *
    * @param version the new version
    */
-  public void setVersion(Integer version) {
+  public void setVersion(final Integer version) {
     this.version = version;
   }
 
@@ -118,7 +118,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
    */
   @Column(name = "name", length = 250)
   public String getName() {
-    return this.name;
+    return name;
   }
 
   /**
@@ -126,7 +126,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
    *
    * @param name the new name
    */
-  public void setName(String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 
@@ -138,7 +138,7 @@ public class Fault implements BaseEntity, java.io.Serializable {
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "created_at", nullable = false, length = 19)
   public Date getCreatedAt() {
-    return this.createdAt;
+    return createdAt;
   }
 
   /**
@@ -146,11 +146,14 @@ public class Fault implements BaseEntity, java.io.Serializable {
    *
    * @param createdAt the new created at
    */
-  public void setCreatedAt(Date createdAt) {
+  public void setCreatedAt(final Date createdAt) {
     this.createdAt = createdAt;
   }
-  
-  /* (non-Javadoc)
+
+  /**
+   * Hash code.
+   *
+   * @return the int
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -162,49 +165,67 @@ public class Fault implements BaseEntity, java.io.Serializable {
     return result;
   }
 
-  /* (non-Javadoc)
+  /**
+   * Equals.
+   *
+   * @param obj the obj
+   * @return true, if successful
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
+  public boolean equals(final Object obj) {
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     Fault other = (Fault) obj;
     if (createdAt == null) {
-      if (other.createdAt != null)
+      if (other.createdAt != null) {
         return false;
-    } else if (!createdAt.equals(other.createdAt))
+      }
+    } else if (!createdAt.equals(other.createdAt)) {
       return false;
+    }
     if (name == null) {
-      if (other.name != null)
+      if (other.name != null) {
         return false;
-    } else if (!name.equals(other.name))
+      }
+    } else if (!name.equals(other.name)) {
       return false;
+    }
     return true;
   }
 
-  /* (non-Javadoc)
+  /**
+   * To string.
+   *
+   * @return the string
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
     builder.append("Site [");
-    if (id != null)
+    if (id != null) {
       builder.append("id=").append(id).append(", ");
-    if (version != null)
+    }
+    if (version != null) {
       builder.append("version=").append(version).append(", ");
-    if (name != null)
+    }
+    if (name != null) {
       builder.append("name=").append(name).append(", ");
-    if (createdAt != null)
+    }
+    if (createdAt != null) {
       builder.append("createdAt=").append(createdAt);
+    }
     builder.append("]");
     return builder.toString();
   }
-  
+
 
 }

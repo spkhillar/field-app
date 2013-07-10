@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
  */
 package com.telenoetica.jpa.repositories;
 
@@ -17,9 +17,9 @@ import com.telenoetica.jpa.entities.JobHistory;
  */
 public interface JobHistoryDAO extends JpaRepository<JobHistory, Long> {
 
-	List<JobHistory> findByJobNameAndStartTimeBetween(String jobName,
-			Date startDate, Date endDate);
+  List<JobHistory> findByJobNameAndStartTimeBetween(String jobName,
+    Date startDate, Date endDate);
 
-	JobHistory findById(long id);
+  JobHistory findById(Long id);
 
 }

@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.service.impl;
 
 import java.io.File;
@@ -24,26 +27,42 @@ import com.telenoetica.service.DieselVisitService;
 import com.telenoetica.service.SiteService;
 import com.telenoetica.service.util.ServiceUtil;
 
+/**
+ * The Class DieselDetailReportServiceImpl.
+ */
 @Service("dieselDetailReportService")
 public class DieselDetailReportServiceImpl implements DieselDetailReportService {
 
+  /** The Constant LOGGER. */
   private static final Logger LOGGER = Logger
       .getLogger(DieselDetailReportService.class);
 
+  /** The diesel visit service. */
   @Autowired
   private DieselVisitService dieselVisitService;
 
+  /** The site service. */
   @Autowired
   private SiteService siteService;
 
+  /** The workbook. */
   private HSSFWorkbook workbook = null;
 
+  /** The message source. */
   @Autowired
   private MessageSource messageSource;
 
+  /** The system configuration. */
   @Autowired
   private SystemConfiguration systemConfiguration;
 
+  /**
+   * Creates the new report.
+   *
+   * @return the string
+   * @throws Exception the exception
+   * @see com.telenoetica.service.DieselDetailReportService#createNewReport()
+   */
   @Override
   public String createNewReport() throws Exception {
     LOGGER.debug("Service DieselDetailReportService Started");
@@ -63,6 +82,12 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
     return reportName;
   }
 
+  /**
+   * Sets the sheet data.
+   *
+   * @param sheet the sheet
+   * @param siteList the site list
+   */
   private void setSheetData(final HSSFSheet sheet, final List<Site> siteList) {
     HSSFRow row;
     HSSFCell cell;
@@ -132,6 +157,12 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
     }
   }
 
+  /**
+   * Close report.
+   *
+   * @return the string
+   * @throws Exception the exception
+   */
   public String closeReport() throws Exception {
     String reportName = addTimeInFileName(systemConfiguration
       .getDieselDetailsReportFileName());
@@ -149,6 +180,12 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
     return reportFilePath;
   }
 
+  /**
+   * Adds the time in file name.
+   *
+   * @param name the name
+   * @return the string
+   */
   private String addTimeInFileName(String name) {
     Calendar cal = new GregorianCalendar();
     int month = cal.get(Calendar.MONTH) + 1;

@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.service.impl;
 
 import java.io.File;
@@ -25,95 +28,122 @@ import com.telenoetica.service.MaintenanceVisitService;
 import com.telenoetica.service.RoutineVisitService;
 import com.telenoetica.util.model.HomeAndroidObject;
 
+/**
+ * The Class AndroidHomeServiceImpl.
+ */
 @Service("androidHomeService")
 public class AndroidHomeServiceImpl implements AndroidHomeService {
 
-	@Autowired
-	private GenericQueryExecutorDAO genericQueryExecutorDAO;
+  /** The generic query executor dao. */
+  @Autowired
+  private GenericQueryExecutorDAO genericQueryExecutorDAO;
 
-	@Autowired
-	private CallOutVisitService callOutVisitService;
+  /** The call out visit service. */
+  @Autowired
+  private CallOutVisitService callOutVisitService;
 
-	@Autowired
-	private DieselVisitService dieselVisitService;
+  /** The diesel visit service. */
+  @Autowired
+  private DieselVisitService dieselVisitService;
 
-	@Autowired
-	private RoutineVisitService routineVisitService;
+  /** The routine visit service. */
+  @Autowired
+  private RoutineVisitService routineVisitService;
 
-	@Autowired
-	private MaintenanceVisitService maintenanceVisitService;
+  /** The maintenance visit service. */
+  @Autowired
+  private MaintenanceVisitService maintenanceVisitService;
 
-	@Autowired
-	SystemConfiguration systemConfiguration;
+  /** The system configuration. */
+  @Autowired
+  SystemConfiguration systemConfiguration;
 
-	@Override
-	@Transactional(readOnly = true)
-	public HomeAndroidObject getAndroidHomeObject() {
-		List<String> sites = genericQueryExecutorDAO.executeQuery(
-				"select name from Site", String.class);
-		List<String> faults = genericQueryExecutorDAO.executeQuery(
-				"select name from Fault", String.class);
-		List<String> clients = genericQueryExecutorDAO.executeQuery(
-				"select name from Client", String.class);
-		List<String> maintenanceCategories = genericQueryExecutorDAO
-				.executeQuery("select name from MaintenanceVisitCategory",
-						String.class);
-		List<String> spares = genericQueryExecutorDAO.executeQuery(
-				"select name from Spare", String.class);
-		HomeAndroidObject homeAndroidObject = new HomeAndroidObject(sites,
-				spares, clients, faults, maintenanceCategories);
-		return homeAndroidObject;
-	}
+  /**
+   * Gets the android home object.
+   *
+   * @return the android home object
+   * @see com.telenoetica.service.AndroidHomeService#getAndroidHomeObject()
+   */
+  @Override
+  @Transactional(readOnly = true)
+  public HomeAndroidObject getAndroidHomeObject() {
+    List<String> sites = genericQueryExecutorDAO.executeQuery(
+      "select name from Site", String.class);
+    List<String> faults = genericQueryExecutorDAO.executeQuery(
+      "select name from Fault", String.class);
+    List<String> clients = genericQueryExecutorDAO.executeQuery(
+      "select name from Client", String.class);
+    List<String> maintenanceCategories = genericQueryExecutorDAO
+        .executeQuery("select name from MaintenanceVisitCategory",
+          String.class);
+    List<String> spares = genericQueryExecutorDAO.executeQuery(
+      "select name from Spare", String.class);
+    HomeAndroidObject homeAndroidObject = new HomeAndroidObject(sites,
+      spares, clients, faults, maintenanceCategories);
+    return homeAndroidObject;
+  }
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Integer> getchartData() {
-		Date startDate;
-		Date endDate;
-		Calendar currentDate = Calendar.getInstance(); // Get the current date
-		endDate = currentDate.getTime();
-		startDate = new DateTime(endDate).minusDays(30).toDate();
-		Map<String, Object> param = new HashMap<String, Object>(1);
-		param.put("endDate", endDate);
-		param.put("startDate", startDate);
-		List<Integer> chartData = new ArrayList<Integer>(4);
+  /**
+   * Gets the chart data.
+   *
+   * @return the chart data
+   * @see com.telenoetica.service.AndroidHomeService#getchartData()
+   */
+  @Override
+  @Transactional(readOnly = true)
+  public List<Integer> getchartData() {
+    Date startDate;
+    Date endDate;
+    Calendar currentDate = Calendar.getInstance(); // Get the current date
+    endDate = currentDate.getTime();
+    startDate = new DateTime(endDate).minusDays(30).toDate();
+    Map<String, Object> param = new HashMap<String, Object>(1);
+    param.put("endDate", endDate);
+    param.put("startDate", startDate);
+    List<Integer> chartData = new ArrayList<Integer>(4);
 
-		long rvCount = routineVisitService.findRecordCount(param);
-		long cvCount = callOutVisitService.findRecordCount(param);
-		long dvCount = dieselVisitService.findRecordCount(param);
-		long mvCount = maintenanceVisitService.findRecordCount(param);
-		chartData.add((int) rvCount);
-		chartData.add((int) cvCount);
-		chartData.add((int) dvCount);
-		chartData.add((int) mvCount);
-		return chartData;
-	}
+    long rvCount = routineVisitService.findRecordCount(param);
+    long cvCount = callOutVisitService.findRecordCount(param);
+    long dvCount = dieselVisitService.findRecordCount(param);
+    long mvCount = maintenanceVisitService.findRecordCount(param);
+    chartData.add((int) rvCount);
+    chartData.add((int) cvCount);
+    chartData.add((int) dvCount);
+    chartData.add((int) mvCount);
+    return chartData;
+  }
 
-	@Override
-	public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
+  /**
+   * Export android app.
+   *
+   * @param httpServletResponse the http servlet response
+   * @see com.telenoetica.service.AndroidHomeService#exportAndroidApp(javax.servlet.http.HttpServletResponse)
+   */
+  @Override
+  public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
 
-		String appFilePath = systemConfiguration.getAndroidAppFilePath();
-		File file = new File(appFilePath);
-		FileInputStream fileIn;
-		try {
-			httpServletResponse.setContentType("application/octet-stream");
-			httpServletResponse.setHeader("Content-Disposition",
-					"Attachment;filename= " + "fieldapp.apk");
-			fileIn = new FileInputStream(file);
-			ServletOutputStream out = httpServletResponse.getOutputStream();
+    String appFilePath = systemConfiguration.getAndroidAppFilePath();
+    File file = new File(appFilePath);
+    FileInputStream fileIn;
+    try {
+      httpServletResponse.setContentType("application/octet-stream");
+      httpServletResponse.setHeader("Content-Disposition",
+        "Attachment;filename= " + "fieldapp.apk");
+      fileIn = new FileInputStream(file);
+      ServletOutputStream out = httpServletResponse.getOutputStream();
 
-			byte[] outputByte = new byte[4096];
-			// copy binary contect to output stream
-			while (fileIn.read(outputByte, 0, 4096) != -1) {
-				out.write(outputByte, 0, 4096);
-			}
-			fileIn.close();
-			out.flush();
-			out.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+      byte[] outputByte = new byte[4096];
+      // copy binary contect to output stream
+      while (fileIn.read(outputByte, 0, 4096) != -1) {
+        out.write(outputByte, 0, 4096);
+      }
+      fileIn.close();
+      out.flush();
+      out.close();
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
 
 }

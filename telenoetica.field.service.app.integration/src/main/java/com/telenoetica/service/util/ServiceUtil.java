@@ -292,6 +292,13 @@ public class ServiceUtil {
     return String.class;
   }
 
+  /**
+   * Gets the string in format.
+   *
+   * @param formatString the format string
+   * @param arguments the arguments
+   * @return the string in format
+   */
   public static String getStringInFormat(final String formatString,final Object arguments[]){
     if(ArrayUtils.isEmpty(arguments)){
       return formatString;
@@ -299,6 +306,13 @@ public class ServiceUtil {
     return MessageFormat.format(formatString, arguments);
   }
 
+  /**
+   * Gets the parent folder.
+   *
+   * @param directory the directory
+   * @param date the date
+   * @return the parent folder
+   */
   public static String getParentFolder(final String directory,final Date date){
 
     Calendar cal = Calendar.getInstance();

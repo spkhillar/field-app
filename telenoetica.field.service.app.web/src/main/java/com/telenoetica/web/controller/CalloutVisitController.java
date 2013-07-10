@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.web.controller;
 
 import java.util.HashMap;
@@ -26,6 +29,10 @@ import com.telenoetica.web.rest.RestResponse;
 import com.telenoetica.web.util.DomainObjectMapper;
 import com.telenoetica.web.util.JqGridResponse;
 
+/**
+ * The Class CalloutVisitController.
+ * @author Satyam
+ */
 @Controller
 @RequestMapping(value = "/callout")
 @SessionAttributes("calloutForm")
@@ -56,11 +63,22 @@ public class CalloutVisitController extends AbstractJqGridFilterController {
     excludedPropOrderMapping.put("siteId", "site.name");
   }
 
+  /**
+   * Creates the form bean.
+   *
+   * @return the call out visit
+   */
   @ModelAttribute("calloutForm")
   public CallOutVisit createFormBean() {
     return new CallOutVisit();
   }
 
+  /**
+   * Save.
+   *
+   * @param callOutVisit the call out visit
+   * @return the string
+   */
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   @ResponseBody
   public String save(final CallOutVisit callOutVisit) {
@@ -70,12 +88,24 @@ public class CalloutVisitController extends AbstractJqGridFilterController {
     return "Saved Successfuly with id:" + savedCallOutVisit.getId();
   }
 
+  /**
+   * Creates the.
+   *
+   * @param model the model
+   * @return the string
+   */
   @RequestMapping(value = "/new")
   public String create(final Model model) {
     model.addAttribute("currentViewTitle", "Callout Visit");
     return "callout.new";
   }
 
+  /**
+   * Save api.
+   *
+   * @param callOutVisit the call out visit
+   * @return the rest response
+   */
   @RequestMapping(value = "/rest", method = RequestMethod.POST, consumes = { "application/json" }, produces = { "application/json" })
   @ResponseBody
   public RestResponse saveApi(@RequestBody final CallOutVisit callOutVisit) {
@@ -86,6 +116,12 @@ public class CalloutVisitController extends AbstractJqGridFilterController {
     return response;
   }
 
+  /**
+   * Save api.
+   *
+   * @param id the id
+   * @return the call out visit
+   */
   @RequestMapping(value = "/rest/{id}", method = RequestMethod.GET, produces = { "application/json" })
   @ResponseBody
   public CallOutVisit saveApi(@PathVariable final Long id) {
@@ -95,7 +131,8 @@ public class CalloutVisitController extends AbstractJqGridFilterController {
 
   /**
    * Gets the users page.
-   * 
+   *
+   * @param model the model
    * @return the users page
    */
   @RequestMapping(value = "/list")

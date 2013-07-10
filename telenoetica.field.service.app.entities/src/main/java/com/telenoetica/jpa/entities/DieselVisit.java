@@ -710,6 +710,12 @@ public class DieselVisit implements java.io.Serializable, BaseEntity {
     return result;
   }
 
+  /**
+   * To string.
+   *
+   * @return the string
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();

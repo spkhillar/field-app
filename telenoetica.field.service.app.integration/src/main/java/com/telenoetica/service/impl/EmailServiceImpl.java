@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Telenoetica, Inc. All rights reserved 
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
  */
 package com.telenoetica.service.impl;
 
@@ -33,10 +33,14 @@ public class EmailServiceImpl implements EmailService {
   @Autowired
   private JavaMailSender mailSender;
 
-  /* (non-Javadoc)
+  /**
+   * Send email.
+   *
+   * @param emailTemplate the email template
    * @see com.telenoetica.service.EmailService#sendEmail(com.telenoetica.service.mail.EmailTemplate)
    */
-  public void sendEmail(EmailTemplate emailTemplate) {
+  @Override
+  public void sendEmail(final EmailTemplate emailTemplate) {
 
     Assert.notEmpty(emailTemplate.getTo(), "To Email Address not found");
     Assert.hasText(emailTemplate.getText(), "Body is null or Empty");
@@ -78,7 +82,8 @@ public class EmailServiceImpl implements EmailService {
       final String[] bccArray, final File attachementFile) {
 
     mailSender.send(new MimeMessagePreparator() {
-      public void prepare(MimeMessage mimeMessage) throws MessagingException {
+      @Override
+      public void prepare(final MimeMessage mimeMessage) throws MessagingException {
         MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
         message.setTo(toArray);
         message.setSubject(subject);
