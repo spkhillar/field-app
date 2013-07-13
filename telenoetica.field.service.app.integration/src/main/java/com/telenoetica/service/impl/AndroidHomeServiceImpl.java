@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,8 @@ import com.telenoetica.util.model.HomeAndroidObject;
  */
 @Service("androidHomeService")
 public class AndroidHomeServiceImpl implements AndroidHomeService {
+
+  private static final Logger LOGGER = Logger.getLogger(AndroidHomeServiceImpl.class);
 
   /** The generic query executor dao. */
   @Autowired
@@ -123,6 +126,7 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
   public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
 
     String appFilePath = systemConfiguration.getAndroidAppFilePath();
+    LOGGER.debug("Downalod starts from source.."+appFilePath);
     File file = new File(appFilePath);
     FileInputStream fileIn;
     try {
@@ -140,9 +144,9 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
       fileIn.close();
       out.flush();
       out.close();
+      LOGGER.debug("Downalod ends from source.."+appFilePath);
     } catch (Exception e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      LOGGER.error("Exception while downloading...",e);
     }
   }
 
