@@ -66,30 +66,34 @@ public class JsonValidator {
     this.message = message;
   }
 
-  public boolean validate(final String value){
+  public boolean validate(final String value) {
     boolean valid = true;
-    if(required){
+    if (required) {
       valid = StringUtils.isNotBlank(value);
-      if(!valid){
+      if (!valid) {
         message = AndroidConstants.REQUIRED_MESSAGE;
       }
     }
-    if(valid && siteIdCheck){
-      return false;
+    if (valid && siteIdCheck) {
+      valid = AppValuesHolder.getSites().contains(value);
+      if (!valid) {
+        message = "Site Id does not exists in the system";
+      }
+      return valid;
     }
 
-    if(valid && min > 0 && max > 0){
-      int intValue =Integer.parseInt(value);
-      valid = (intValue >=min && intValue <=max);
-      if(!valid){
-        message = getStringInFormat(AndroidConstants.RANGE_MESSAGE, new Object[]{value,min,max});
+    if (valid && min > 0 && max > 0) {
+      int intValue = Integer.parseInt(value);
+      valid = (intValue >= min && intValue <= max);
+      if (!valid) {
+        message = getStringInFormat(AndroidConstants.RANGE_MESSAGE, new Object[] { value, min, max });
       }
     }
     return valid;
   }
 
-  private String getStringInFormat(final String formatString,final Object arguments[]){
-    if(ArrayUtils.isEmpty(arguments)){
+  private String getStringInFormat(final String formatString, final Object arguments[]) {
+    if (ArrayUtils.isEmpty(arguments)) {
       return formatString;
     }
     return MessageFormat.format(formatString, arguments);

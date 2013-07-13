@@ -48,7 +48,7 @@ public class MainMenu extends ApplicationBaseActivity {
 
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
-    //checkForUserIdandPassword();
+    // checkForUserIdandPassword();
     setContentView(R.layout.main_menu);
     addListenerOnButtonRV();
     addListenerOnButtonDV();
@@ -65,13 +65,14 @@ public class MainMenu extends ApplicationBaseActivity {
       @Override
       public void onClick(final View arg0) {
         List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
-        if(!CollectionUtils.isEmpty(dataList)){
+        if (!CollectionUtils.isEmpty(dataList)) {
           AndroidVisitSqLiteModel array[] = new AndroidVisitSqLiteModel[dataList.size()];
           SendToServerAsyncTask task = new SendToServerAsyncTask();
           task.execute(dataList.toArray(array));
-        }else{
+        } else {
           RestResponse response = new RestResponse(501, "No pending visit records available in system");
           doWithResponse(response);
+
         }
       }
     });
@@ -137,24 +138,28 @@ public class MainMenu extends ApplicationBaseActivity {
     btnExit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("com.package.ACTION_LOGOUT");
+        sendBroadcast(broadcastIntent);
         AppValuesHolder.setCurrentUser(null);
         AppValuesHolder.setCurrentUserPassword(null);
-        Intent intent = new Intent(context, LoginActivity.class);
-        startActivity(intent);
+        // Intent intent = new Intent(context, LoginActivity.class);
+        // startActivity(intent);
       }
     });
   }
 
   public void doWithResponse(final RestResponse restResponse) {
-
-    if(restResponse != null){
-      if(restResponse.getStatusCode() == 401){
+    AndroidVisitSqLiteModel androidVisitSqLiteModel = new AndroidVisitSqLiteModel();
+    if (restResponse != null) {
+      if (restResponse.getStatusCode() == 401) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
+
         startActivity(intent);
-      }else if(restResponse.getStatusCode() != 0){
+      } else if (restResponse.getStatusCode() != 0) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
-      }else{
+      } else {
         Toast.makeText(this, "Send to server successfull", Toast.LENGTH_SHORT).show();
       }
 
@@ -177,17 +182,26 @@ public class MainMenu extends ApplicationBaseActivity {
 
     @Override
     protected RestResponse doInBackground(final AndroidVisitSqLiteModel... params) {
+      long errorCode = 0;
       Date start = new Date();
       RestResponse response = null;
       for (AndroidVisitSqLiteModel androidVisitSqLiteModel : params) {
         try {
           Class<?> currentClazz = Class.forName(androidVisitSqLiteModel.getClazzName());
           String url = AppValuesHolder.getHost() + determinePath(currentClazz);
-          LOGGER.debug(androidVisitSqLiteModel+"....invoking..." + url);
+          LOGGER.debug(androidVisitSqLiteModel + "....invoking..." + url);
           Object postObject = determinePostObject(currentClazz, androidVisitSqLiteModel.getJson());
-          response = RestClient.INSTANCE.executeRest(url, AppValuesHolder.getCurrentUser(),
-            AppValuesHolder.getCurrentUserPassword(), HttpMethod.POST, postObject, RestResponse.class,
-            MediaType.APPLICATION_JSON);
+          response =
+              RestClient.INSTANCE.executeRest(url, AppValuesHolder.getCurrentUser(),
+                AppValuesHolder.getCurrentUserPassword(), HttpMethod.POST, postObject, RestResponse.class,
+                MediaType.APPLICATION_JSON);
+          if (response != null && response.getStatusCode() != 0) {
+            androidVisitSqLiteModel.setTries(androidVisitSqLiteModel.getTries() + 1);
+            androidVisitSqLiteModel.setStatus(AndroidConstants.FAILED_STATUS);
+            sqLiteDbHandler.updateVisit(androidVisitSqLiteModel);
+          } else if (response != null && response.getStatusCode() == 0) {
+            sqLiteDbHandler.deleteVisit(androidVisitSqLiteModel.getId());
+          }
         } catch (Exception e) {
           LOGGER.error("Exception send to server...", e);
           if (e.getCause() instanceof HttpClientErrorException) {
@@ -195,22 +209,28 @@ public class MainMenu extends ApplicationBaseActivity {
             if (HttpStatus.UNAUTHORIZED.equals(status)) {
               response = new RestResponse(401, "Invalid Credentials. Check username and password");
             }
-          }else{
+          } else {
             response = new RestResponse(500, "System Exception...");
           }
         }
-        if(response != null && response.getStatusCode() !=0){
-          break;
+        if (response != null && response.getStatusCode() != 0) {
+          errorCode = 1;
         }
       }
       Date end = new Date();
       long total = end.getTime() - start.getTime();
       LOGGER.debug("...Total Time..." + total);
+      if (errorCode == 0) {
+        response = new RestResponse(0, "Sent successfully.");
+      } else {
+        response = new RestResponse(1, "Sending failed.");
+      }
       return response;
+
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-    JsonMappingException, IOException {
+        JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 
