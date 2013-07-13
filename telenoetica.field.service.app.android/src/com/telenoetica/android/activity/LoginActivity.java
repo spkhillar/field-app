@@ -59,10 +59,10 @@ public class LoginActivity extends ApplicationBaseActivity {
         password = (EditText) findViewById(R.id.et2_main_password);
         String[] array = new String[] { userName.getText().toString(), password.getText().toString() };
         LOGGER.info("Logging to the system...");
-        if(StringUtils.isBlank(array[0]) || StringUtils.isBlank(array[1]) ){
+        if (StringUtils.isBlank(array[0]) || StringUtils.isBlank(array[1])) {
           RestResponse response = new RestResponse(500, "Username or password is blank.");
           doWithResponse(response);
-        }else{
+        } else {
           userExistsInLocal = sqLiteDbHandler.validateUser(array[0], array[1]);
           if (userExistsInLocal) {
             LOGGER.info("User verified from local");
@@ -111,6 +111,7 @@ public class LoginActivity extends ApplicationBaseActivity {
 
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
     private ProgressDialog pd;
+
     @Override
     protected void onPreExecute() {
       pd = new ProgressDialog(context);
@@ -135,9 +136,9 @@ public class LoginActivity extends ApplicationBaseActivity {
         }
       } catch (Exception e) {
         LOGGER.error("Exception...", e);
-        if(e.getCause() instanceof HttpClientErrorException){
-          HttpStatus status = ((HttpClientErrorException)e.getCause()).getStatusCode();
-          if(HttpStatus.UNAUTHORIZED.equals(status)){
+        if (e.getCause() instanceof HttpClientErrorException) {
+          HttpStatus status = ((HttpClientErrorException) e.getCause()).getStatusCode();
+          if (HttpStatus.UNAUTHORIZED.equals(status)) {
             response = new RestResponse(500, "Invalid Credentials. Check username and password");
           }
         }
