@@ -9,10 +9,10 @@
 <property name="ignoreResourceNotFound" value="true"></property>
   <property name="locations">
 	  <list>
+		<value>classpath:system-config.properties</value>
 		<value>file:${catalina.home}/conf/system-config.properties</value>
 		<value>file:${catalina.home}/system-config.properties</value>
 		<value>file:${user.home}/system-config.properties</value>
-		<value>classpath:system-config.properties</value>
 	   </list>
       </property>
 </bean>
