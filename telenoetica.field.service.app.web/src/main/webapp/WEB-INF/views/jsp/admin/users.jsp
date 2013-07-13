@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type='text/javascript'>
+	var editUserAction = false;
 	$(function() {
 		var actionUrl = webContextPath + "/user/records";
 		var roles = jqgridUserRolesFilter;
@@ -217,6 +218,7 @@
 	});
 
 	function exportExcel() {
+		editUserAction=false;
 		jQuery("#grid").jqGrid('excelExport', {
 			tag : 'excel',
 			url : webContextPath + '/user/export'
@@ -224,8 +226,7 @@
 	}
 
 	function addRow() {
-
-		//$("#grid").jqGrid('setColProp', 'username', {editoptions:{readonly:false, size:10}});
+		editUserAction=false;
 		$("#grid").jqGrid('setColProp', 'password', {
 			hidden : false
 		});
@@ -234,8 +235,6 @@
 				required : true
 			}
 		});
-
-		// Get the currently selected row
 		$('#grid').jqGrid(
 				'editGridRow',
 				'new',
@@ -305,7 +304,7 @@
 		var row = $('#grid').jqGrid('getGridParam', 'selrow');
 
 		if (row != null) {
-
+			editUserAction = true;
 			$('#grid').jqGrid('editGridRow', row, {
 				url : webContextPath + '/user/update',
 				editData : {},
@@ -366,6 +365,7 @@
 	}
 
 	function deleteRow() {
+		editUserAction = false;
 		// Get the currently selected row
 		var row = $('#grid').jqGrid('getGridParam', 'selrow');
 
@@ -436,6 +436,8 @@
 	
 	function validateUser(value, colname){
 		var retArray = new Array();
+		console.log('...editUserAction....',editUserAction);
+		if(editUserAction == false){
 		$.ajax({
 			type : "get",
 			url : webContextPath + '/user/checkUserName/'+value,
@@ -452,6 +454,10 @@
 				}
 			}
 		});
+		}else{
+			retArray.push(true);
+			retArray.push("");
+		}
 		console.log('..retArray..',retArray);
 		return retArray;
 	}
