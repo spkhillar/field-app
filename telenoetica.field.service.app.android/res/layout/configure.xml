@@ -63,18 +63,6 @@
                 android:text="@string/host_id"/>
         </TableRow>
 
-    <CheckBox
-        android:id="@+id/chk_reset_system"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/chk_reset_sys" />
-
-    <CheckBox
-        android:id="@+id/chk_reset_config"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/chk_reset_config" />
-
     <Button
         android:id="@+id/btn_config_submit"
         android:background="@drawable/button"

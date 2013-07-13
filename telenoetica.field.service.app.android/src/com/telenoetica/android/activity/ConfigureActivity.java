@@ -1,18 +1,16 @@
 package com.telenoetica.android.activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 public class ConfigureActivity extends ApplicationBaseActivity {
   private Button btnSubmit;
-  //Shall clear all the tables from the local handheld device
-  private CheckBox resetSystemChkbox;
-  //Shall clear data from the spinner tables. does not include visit and configuration table
-  private CheckBox resetConfigurationChkBox;
+
   private EditText hostConfiguredIpAddressEditText;
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
@@ -22,23 +20,17 @@ public class ConfigureActivity extends ApplicationBaseActivity {
   }
   private void addBtnSubmitAction() {
     btnSubmit = (Button) findViewById(R.id.btn_config_submit);
-    resetSystemChkbox = (CheckBox) findViewById(R.id.chk_reset_system);
-    resetConfigurationChkBox = (CheckBox) findViewById(R.id.chk_reset_config);
     hostConfiguredIpAddressEditText = (EditText) findViewById(R.id.et_config_address);
-    final boolean resetSys = resetSystemChkbox.isChecked();
-    final boolean resetConfig = resetConfigurationChkBox.isChecked();
-    final String hostConfiguredIpAddress = hostConfiguredIpAddressEditText.getText().toString();
     btnSubmit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
-        if(resetSys){
-          sqLiteDbHandler.resetConfiguration(true);
-        }else if(resetConfig){
-          sqLiteDbHandler.resetConfiguration(false);
-        }
+        final String hostConfiguredIpAddress = hostConfiguredIpAddressEditText.getText().toString();
         if(hostConfiguredIpAddress != null && !AppValuesHolder.getHost().equals(hostConfiguredIpAddress)){
           AppValuesHolder.setHost(hostConfiguredIpAddress);
         }
+        Toast.makeText(context, "Configuration updated. Login to continue.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, LoginActivity.class);
+        startActivity(intent);
       }
     });
   }

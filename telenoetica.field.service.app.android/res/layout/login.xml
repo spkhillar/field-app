@@ -42,7 +42,6 @@
             android:background="@layout/footer_repeat"
             android:orientation="horizontal" >
             
-           
         </LinearLayout>
         <!-- Footer Ends -->
 
@@ -50,10 +49,11 @@
         <!-- Login Form -->
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:orientation="vertical"
+            android:gravity="center_horizontal"
             android:padding="10dip">
 
             <!-- Uid Label -->
@@ -90,7 +90,7 @@
             <EditText
                 android:id="@+id/et2_main_password"
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="5dip"
                 android:password="true"
                 android:singleLine="true" 
@@ -110,17 +110,14 @@
                 android:layout_marginTop="30dip"
                 android:text="LOGIN"
                 android:textColor="#FFFFFF"
-                
                 android:background="@drawable/button" />
-            
-            <Button
-                android:id="@+id/btn1_pass"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:text="PASS" 
-                android:textColor="#FFFFFF"
-                android:background="@drawable/button"/>
+          
+             <TextView
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="20dip"
+                 android:gravity="center"
+                 android:text="Copyright 2013 Telenoetica | Designed by Telenoetica" />
             
                        
              <TextView
@@ -129,6 +126,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="90dip"
                 android:layout_alignParentBottom="true"/>
+
             
         </LinearLayout>
         <!-- Login Form Ends -->

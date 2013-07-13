@@ -138,19 +138,13 @@ public class MainMenu extends ApplicationBaseActivity {
     btnExit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("com.package.ACTION_LOGOUT");
-        sendBroadcast(broadcastIntent);
-        AppValuesHolder.setCurrentUser(null);
-        AppValuesHolder.setCurrentUserPassword(null);
-        // Intent intent = new Intent(context, LoginActivity.class);
-        // startActivity(intent);
+        System.runFinalization();
+        System.exit(0);
       }
     });
   }
 
   public void doWithResponse(final RestResponse restResponse) {
-    AndroidVisitSqLiteModel androidVisitSqLiteModel = new AndroidVisitSqLiteModel();
     if (restResponse != null) {
       if (restResponse.getStatusCode() == 401) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -230,7 +224,7 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-        JsonMappingException, IOException {
+    JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 

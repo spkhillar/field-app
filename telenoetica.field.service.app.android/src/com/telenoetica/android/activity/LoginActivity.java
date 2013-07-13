@@ -35,7 +35,6 @@ public class LoginActivity extends ApplicationBaseActivity {
   protected void initializeActivity(final Bundle savedInstanceState) {
     setContentView(R.layout.login);
     addListenerOnButtonLogin();
-    addListenerOnButtonPass();
   }
 
 
@@ -98,16 +97,6 @@ public class LoginActivity extends ApplicationBaseActivity {
     AppValuesHolder.setCurrentUserPassword(pwd);
   }
 
-  public void addListenerOnButtonPass() {
-    buttonLogin = (Button) findViewById(R.id.btn1_pass);
-    buttonLogin.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(final View arg0) {
-        Intent intent = new Intent(context, MainMenu.class);
-        startActivity(intent);
-      }
-    });
-  }
 
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
     private ProgressDialog pd;
