@@ -119,7 +119,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="7"
-                    android:tag='drnNumber={"required":true,"min":1,"max":9999999}' />
+                    android:tag="drnNumber"/>
             </TableRow>
 
             <TableRow
@@ -179,7 +179,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag='transferredSite={"required":true}' />
+                    android:tag="transferredSite" />
             </TableRow>
 
             <TableRow
@@ -204,7 +204,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag='bulkNameOfVendor={"required":true}' />
+                    android:tag="bulkNameOfVendor" />
             </TableRow>
 
             <TableRow
@@ -231,7 +231,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="4"
-                    android:tag='dieselLevelT1BeforeVisit={"required":true,"min":1,"max":6000}' />
+                    android:tag="dieselLevelT1BeforeVisit" />
             </TableRow>
 
             <TableRow
@@ -258,7 +258,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="4"
-                    android:tag='dieselLevelT2BeforeVisit={"required":true,"min":1,"max":6000}' />
+                    android:tag="dieselLevelT2BeforeVisit" />
             </TableRow>
 
             <TableRow
@@ -285,7 +285,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="4"
-                    android:tag='dieselReceivedLtrs={"required":true,"min":1,"max":6000}' />
+                    android:tag="dieselReceivedLtrs" />
             </TableRow>
 
             <TableRow
@@ -312,7 +312,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="5"
-                    android:tag='runHourGen1={"required":true,"min":1,"max":30000}' />
+                    android:tag="runHourGen1" />
             </TableRow>
 
             <TableRow
@@ -339,7 +339,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="5"
-                    android:tag='runHourGen2={"required":true,"min":1,"max":30000}' />
+                    android:tag="runHourGen2" />
             </TableRow>
 
             <TableRow
@@ -465,7 +465,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="2"
-                    android:tag='phcnHrsPerDay={"required":true,"min":1,"max":24}' />
+                    android:tag="phcnHrsPerDay" />
             </TableRow>
 
             <TableRow
@@ -524,7 +524,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag='hybridOrPiuHrsPerDay={"required":true,"min":1,"max":24}' />
+                    android:tag="hybridOrPiuHrsPerDay" />
             </TableRow>
 
             <TableRow

@@ -115,7 +115,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='categoryOfMaintenance={"required":true}' />
+                    android:tag="categoryOfMaintenance" />
             </TableRow>
 
             <TableRow
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='sparesUsedItemsReplaced1={"required":true}' />
+                    android:tag="sparesUsedItemsReplaced1" />
             </TableRow>
 
             <TableRow
@@ -155,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='sparesUsedItemsReplaced2={"required":true}' />
+                    android:tag="sparesUsedItemsReplaced2" />
             </TableRow>
 
             <TableRow
@@ -175,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='sparesUsedItemsReplaced3={"required":true}' />
+                    android:tag="sparesUsedItemsReplaced3" />
             </TableRow>
 
             <TableRow
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='sparesUsedItemsReplaced4={"required":true}' />
+                    android:tag="sparesUsedItemsReplaced4" />
             </TableRow>
 
             <TableRow
@@ -215,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='sparesUsedItemsReplaced5={"required":true}' />
+                    android:tag="sparesUsedItemsReplaced5"/>
             </TableRow>
 
             <TableRow
@@ -235,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='sparesUsedItemsReplaced6={"required":true}' />
+                    android:tag="sparesUsedItemsReplaced6"/>
             </TableRow>
 
             <TableRow
@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='cosumablesUsed1={"required":true}' />
+                    android:tag="cosumablesUsed1" />
             </TableRow>
 
             <TableRow
@@ -275,7 +275,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='cosumablesUsed2={"required":true}' />
+                    android:tag="cosumablesUsed2" />
             </TableRow>
 
             <TableRow
@@ -295,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='cosumablesUsed3={"required":true}' />
+                    android:tag="cosumablesUsed3" />
             </TableRow>
 
             <TableRow
@@ -315,7 +315,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='cosumablesUsed4={"required":true}' />
+                    android:tag="cosumablesUsed4" />
             </TableRow>
 
             <TableRow
@@ -335,7 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='cosumablesUsed5={"required":true}' />
+                    android:tag="cosumablesUsed5" />
             </TableRow>
 
             <TableRow
@@ -355,7 +355,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='cosumablesUsed6={"required":true}' />
+                    android:tag="cosumablesUsed6" />
             </TableRow>
 
             <TableRow

@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.telenoetica.android.rest.JsonValidator;
 import com.telenoetica.android.rest.RestJsonUtils;
@@ -144,7 +146,8 @@ public class AbstractVisitActivity extends Activity {
     LOGGER.debug("Saving To DB.." + clazzName);
     try {
       String jsonString = RestJsonUtils.toJSONString(bean);
-      sqLiteDbHandler.insertVisit(jsonString, clazzName);
+      long insertedDB = sqLiteDbHandler.insertVisit(jsonString, clazzName);
+      showToast(insertedDB);
     } catch (JsonGenerationException e) {
       LOGGER.error("JsonGenerationException...", e);
     } catch (JsonMappingException e) {
@@ -152,6 +155,18 @@ public class AbstractVisitActivity extends Activity {
     } catch (IOException e) {
       LOGGER.error("IOException...", e);
     }
+
+  }
+
+  private void showToast(final long insertedDB) {
+    // TODO Auto-generated method stub
+    if (insertedDB != -1) {
+      Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+    } else {
+      Toast.makeText(this, "Save Unsuccessfull", Toast.LENGTH_SHORT).show();
+    }
+    Intent intent = new Intent(this, MainMenu.class);
+    startActivity(intent);
 
   }
 

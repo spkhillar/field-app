@@ -278,7 +278,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag='customer1Impacted={"required":true}' />
+                        android:tag="customer1Impacted" />
                 </TableRow>
 
                 <TableRow
@@ -298,7 +298,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag='customer2Impacted={"required":true}' />
+                        android:tag="customer2Impacted" />
                 </TableRow>
 
                 <TableRow
@@ -318,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag='customer3Impacted={"required":true}' />
+                        android:tag="customer3Impacted" />
                 </TableRow>
 
                 <TableRow
@@ -338,7 +338,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag='customer4Impacted={"required":true}' />
+                        android:tag="customer4Impacted" />
                 </TableRow>
 
                 <TableRow
@@ -357,7 +357,7 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:tag='mainCategoryOfFault={"required":true}' />
+                        android:tag="mainCategoryOfFault" />
                 </TableRow>
 
                 <TableRow
@@ -376,7 +376,7 @@
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:tag='equipmentComponentCausedFault={"required":true}' />
+                        android:tag="equipmentComponentCausedFault" />
                 </TableRow>
 
                 <TableRow
@@ -396,7 +396,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag='equipmentComponentRepaired={"required":true}' />
+                        android:tag="equipmentComponentRepaired" />
                 </TableRow>
 
                 <TableRow
@@ -416,7 +416,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:prompt="@string/spinner_title"
-                        android:tag='equipmentComponentReplaced={"required":true}' />
+                        android:tag="equipmentComponentReplaced" />
                 </TableRow>
 
                 <TableRow
@@ -435,7 +435,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:tag='fixResolutionTemporaryOrPermanent={"required":true}' >
+                        android:tag="fixResolutionTemporaryOrPermanent" >
 
                         <RadioButton
                             android:id="@+id/radiotemporary"
@@ -470,7 +470,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag='actionsRequiredForPermanentResolution={"required":true}'
+                    android:tag="actionsRequiredForPermanentResolution"
                     android:layout_marginLeft="4dip"
                     android:layout_marginRight="4dip"/>
 
