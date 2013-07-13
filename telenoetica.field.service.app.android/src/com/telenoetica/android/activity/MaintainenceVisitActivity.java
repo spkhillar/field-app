@@ -12,12 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.telenoetica.android.rest.AppValuesHolder;
-import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 
 public class MaintainenceVisitActivity extends AbstractVisitActivity {
@@ -25,14 +22,11 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
   private Button buttonReset;
 
   @Override
-  protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_NO_TITLE);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+  protected void initializeActivity(final Bundle savedInstanceState) {
+    //checkForUserIdandPassword();
     setContentView(R.layout.maintainence_visit);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
-    sqLiteDbHandler = new SQLiteDbHandler(this);
     addItemsOnSpinner(R.id.spinner_category_of_maintainence, AppValuesHolder.getMaintenanceCategories());
     addItemsOnSpinner(R.id.spinner_consumable1, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_consumable2, AppValuesHolder.getSpares());
@@ -76,7 +70,6 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
   }
 
   private void addListenerOnButtonReset() {
-    final Context context = this;
     buttonReset = (Button) findViewById(R.id.btn_mv_reset);
     buttonReset.setOnClickListener(new OnClickListener() {
 

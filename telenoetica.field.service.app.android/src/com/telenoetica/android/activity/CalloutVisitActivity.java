@@ -16,15 +16,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.telenoetica.android.rest.AppValuesHolder;
-import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.CallOutVisit;
 
 public class CalloutVisitActivity extends AbstractVisitActivity {
@@ -45,34 +42,6 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
   private static final int DATE_DIALOG_ID2 = 3;
   private static final int TIME_DIALOG_ID3 = 4;
   private static final int DATE_DIALOG_ID3 = 5;
-
-  @Override
-  protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_NO_TITLE);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    setContentView(R.layout.callout_visit);
-    dateDisplay1 = (TextView) findViewById(R.id.date1);
-    timeDisplay1 = (TextView) findViewById(R.id.time1);
-    dateDisplay2 = (TextView) findViewById(R.id.date2);
-    timeDisplay2 = (TextView) findViewById(R.id.time2);
-    dateDisplay3 = (TextView) findViewById(R.id.date3);
-    timeDisplay3 = (TextView) findViewById(R.id.time3);
-    sqLiteDbHandler = new SQLiteDbHandler(this);
-    addListenerOnButtonSubmit();
-    addListenerOnButtonReset();
-    OnDateAndTimeChangeListener1();
-    OnDateAndTimeChangeListener2();
-    OnDateAndTimeChangeListener3();
-    addItemsOnSpinner(R.id.spinner_main_category_of_fault, AppValuesHolder.getFaults());
-    addItemsOnSpinner(R.id.spinner_equipment_causing_fault, AppValuesHolder.getSpares());
-    addItemsOnSpinner(R.id.spinner_customer1, AppValuesHolder.getClients());
-    addItemsOnSpinner(R.id.spinner_customer2, AppValuesHolder.getClients());
-    addItemsOnSpinner(R.id.spinner_customer3, AppValuesHolder.getClients());
-    addItemsOnSpinner(R.id.spinner_customer4, AppValuesHolder.getClients());
-    addItemsOnSpinner(R.id.spinner_equip_comp_repaired, AppValuesHolder.getSpares());
-    addItemsOnSpinner(R.id.spinner_equip_comp_replaced, AppValuesHolder.getSpares());
-  }
 
   /*
    * public void showDateTime() { Context context; // Dialog dialog = new
@@ -294,4 +263,29 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       updatetime(timeDisplay3, hour3, minute3);
     }
   };
+
+  @Override
+  protected void initializeActivity(final Bundle savedInstanceState) {
+    //checkForUserIdandPassword();
+    setContentView(R.layout.callout_visit);
+    dateDisplay1 = (TextView) findViewById(R.id.date1);
+    timeDisplay1 = (TextView) findViewById(R.id.time1);
+    dateDisplay2 = (TextView) findViewById(R.id.date2);
+    timeDisplay2 = (TextView) findViewById(R.id.time2);
+    dateDisplay3 = (TextView) findViewById(R.id.date3);
+    timeDisplay3 = (TextView) findViewById(R.id.time3);
+    addListenerOnButtonSubmit();
+    addListenerOnButtonReset();
+    OnDateAndTimeChangeListener1();
+    OnDateAndTimeChangeListener2();
+    OnDateAndTimeChangeListener3();
+    addItemsOnSpinner(R.id.spinner_main_category_of_fault, AppValuesHolder.getFaults());
+    addItemsOnSpinner(R.id.spinner_equipment_causing_fault, AppValuesHolder.getSpares());
+    addItemsOnSpinner(R.id.spinner_customer1, AppValuesHolder.getClients());
+    addItemsOnSpinner(R.id.spinner_customer2, AppValuesHolder.getClients());
+    addItemsOnSpinner(R.id.spinner_customer3, AppValuesHolder.getClients());
+    addItemsOnSpinner(R.id.spinner_customer4, AppValuesHolder.getClients());
+    addItemsOnSpinner(R.id.spinner_equip_comp_repaired, AppValuesHolder.getSpares());
+    addItemsOnSpinner(R.id.spinner_equip_comp_replaced, AppValuesHolder.getSpares());
+  }
 }

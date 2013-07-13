@@ -11,28 +11,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.telenoetica.android.rest.AppValuesHolder;
-import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.DieselVisit;
 
 public class DieselVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
   private Button buttonReset;
 
-  @Override
-  protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_NO_TITLE);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    setContentView(R.layout.diesel_visit);
-    addListenerOnButtonSubmit();
-    addListenerOnButtonReset();
-    sqLiteDbHandler = new SQLiteDbHandler(this);
-  }
+
 
   public void addListenerOnButtonSubmit() {
     buttonSubmit = (Button) findViewById(R.id.btn_dv_submit);
@@ -66,5 +54,14 @@ public class DieselVisitActivity extends AbstractVisitActivity {
         r.clearForm(group);
       }
     });
+  }
+
+  @Override
+  protected void initializeActivity(final Bundle savedInstanceState) {
+    //checkForUserIdandPassword();
+    setContentView(R.layout.diesel_visit);
+    addListenerOnButtonSubmit();
+    addListenerOnButtonReset();
+
   }
 }

@@ -15,16 +15,12 @@ import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.HttpClientErrorException;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -34,13 +30,12 @@ import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestJsonUtils;
 import com.telenoetica.android.rest.RestResponse;
 import com.telenoetica.android.sqllite.AndroidVisitSqLiteModel;
-import com.telenoetica.android.sqllite.SQLiteDbHandler;
 import com.telenoetica.jpa.entities.CallOutVisit;
 import com.telenoetica.jpa.entities.DieselVisit;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.jpa.entities.RoutineVisit;
 
-public class MainMenu extends Activity {
+public class MainMenu extends ApplicationBaseActivity {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
   private Button btnRoutineVisit;
@@ -50,17 +45,11 @@ public class MainMenu extends Activity {
   private Button btnSendToServer;
   private Button btnConfigure;
   private Button btnExit;
-  private Context context;
-  private SQLiteDbHandler sqLiteDbHandler;
 
   @Override
-  protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    context = this;
-    requestWindowFeature(Window.FEATURE_NO_TITLE);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+  protected void initializeActivity(final Bundle savedInstanceState) {
+    //checkForUserIdandPassword();
     setContentView(R.layout.main_menu);
-    sqLiteDbHandler = new SQLiteDbHandler(this);
     addListenerOnButtonRV();
     addListenerOnButtonDV();
     addListenerOnButtonMV();
@@ -148,6 +137,8 @@ public class MainMenu extends Activity {
     btnExit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
+        AppValuesHolder.setCurrentUser(null);
+        AppValuesHolder.setCurrentUserPassword(null);
         Intent intent = new Intent(context, LoginActivity.class);
         startActivity(intent);
       }

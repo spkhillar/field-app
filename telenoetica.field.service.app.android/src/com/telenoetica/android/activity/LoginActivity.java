@@ -9,16 +9,12 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,28 +23,32 @@ import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.android.rest.AppValuesPopulator;
 import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestResponse;
-import com.telenoetica.android.sqllite.SQLiteDbHandler;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends ApplicationBaseActivity {
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
   private Button buttonLogin;
   private EditText userName;
   private EditText password;
-  private SQLiteDbHandler sqLiteDbHandler;
   private boolean userExistsInLocal;
-  private Context context;
 
   @Override
-  protected void onCreate(final Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    requestWindowFeature(Window.FEATURE_NO_TITLE);
-    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+  protected void initializeActivity(final Bundle savedInstanceState) {
     setContentView(R.layout.login);
     addListenerOnButtonLogin();
     addListenerOnButtonPass();
-    sqLiteDbHandler = new SQLiteDbHandler(this);
-    context = this;
   }
+
+
+
+  /** (non-Javadoc)
+   * @see android.app.Activity#onBackPressed()
+   */
+  @Override
+  public void onBackPressed() {
+    System.exit(0);
+  }
+
+
 
   public void addListenerOnButtonLogin() {
     buttonLogin = (Button) findViewById(R.id.btn1_main);

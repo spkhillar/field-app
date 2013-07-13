@@ -14,7 +14,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.view.View;
@@ -28,13 +27,10 @@ import android.widget.Toast;
 
 import com.telenoetica.android.rest.JsonValidator;
 import com.telenoetica.android.rest.RestJsonUtils;
-import com.telenoetica.android.sqllite.SQLiteDbHandler;
 
-public class AbstractVisitActivity extends Activity {
+public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
   protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractVisitActivity.class);
-
-  protected SQLiteDbHandler sqLiteDbHandler;
 
   public void addItemsOnSpinner(final int spinnerId, final List<String> spinnerValues) {
     Spinner spinner;
@@ -46,7 +42,6 @@ public class AbstractVisitActivity extends Activity {
   }
 
   public void getTargetObject(final ViewGroup group, final Map<String, Object> valueMap, final List<String> errorList) {
-    LOGGER.debug("Mapping fields to object map started");
     Object value = null;
     String tagValue = null;
     Object tag = null;
@@ -82,7 +77,6 @@ public class AbstractVisitActivity extends Activity {
         getTargetObject((ViewGroup) view, valueMap, errorList);
       }
     }
-    LOGGER.debug("Mapping fields to object map ends");
   }
 
   private void addValuesInMap(final View view, final Map<String, Object> valueMap, final Object value,
