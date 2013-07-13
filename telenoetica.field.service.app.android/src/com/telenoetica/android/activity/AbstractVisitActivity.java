@@ -2,7 +2,7 @@ package com.telenoetica.android.activity;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.telenoetica.android.rest.JsonValidator;
@@ -59,7 +60,9 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
         if ("Browse & Select".equals(value)) {
           value = null;
         }
-      } else if (view instanceof RadioGroup) {
+      } else if (view instanceof TextView){
+        value = ((TextView)view).getText();
+      }else if (view instanceof RadioGroup) {
         RadioGroup rg = (RadioGroup) view;
         int valuebutton = rg.getCheckedRadioButtonId();
         if (valuebutton != -1) {
@@ -153,14 +156,13 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
   }
 
   private void showToast(final long insertedDB) {
-    // TODO Auto-generated method stub
     if (insertedDB != -1) {
       Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+      Intent intent = new Intent(this, MainMenu.class);
+      startActivity(intent);
     } else {
-      Toast.makeText(this, "Save Unsuccessfull", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, "Save failed.", Toast.LENGTH_SHORT).show();
     }
-    Intent intent = new Intent(this, MainMenu.class);
-    startActivity(intent);
 
   }
 
@@ -179,4 +181,6 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
     throw new IllegalArgumentException(clazz.getName() + "Not in List");
   }
+
+
 }

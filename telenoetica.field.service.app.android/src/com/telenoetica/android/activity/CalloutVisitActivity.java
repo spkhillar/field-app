@@ -1,11 +1,16 @@
 package com.telenoetica.android.activity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.util.CollectionUtils;
 
 import android.app.DatePickerDialog;
@@ -27,15 +32,14 @@ import com.telenoetica.jpa.entities.CallOutVisit;
 public class CalloutVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
   private Button buttonReset;
-  private Button pickDate1, pickDate2, pickDate3;
-  private Button pickTime1, pickTime2, pickTime3;
-  private TextView dateDisplay1, dateDisplay2, dateDisplay3;
-  private TextView timeDisplay1, timeDisplay2, timeDisplay3;
-  private int year1, year2, year3;
-  private int month1, month2, month3;
-  private int day1, day2, day3;
-  private int hour1, hour2, hour3;
-  private int minute1, minute2, minute3;
+  private Button pickDate1, pickDate2;
+  private TextView complaintRecievedDateDisplay, timeReachedDateDisplay, faultResolvedDateDisplay;
+  private TextView complaintRecievedTimeDisplay, timeReachedTimeDisplay, faultResolvedTimeDisplay;
+  private int complaintRecievedYear, timeReachedYear, faultResolvedYear;
+  private int complaintRecievedMonth, timeReachedMonth, faultResolvedMonth;
+  private int complaintRecievedDay, timeReachedDay, faultResolvedDay;
+  private int complaintRecievedHour, timeReachedHour, faultResolvedHour;
+  private int complaintRecievedMinute, timeReachedMinute, faultResolvedMinute;
   private static final int TIME_DIALOG_ID1 = 0;
   private static final int DATE_DIALOG_ID1 = 1;
   private static final int TIME_DIALOG_ID2 = 2;
@@ -43,15 +47,6 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
   private static final int TIME_DIALOG_ID3 = 4;
   private static final int DATE_DIALOG_ID3 = 5;
 
-  /*
-   * public void showDateTime() { Context context; // Dialog dialog = new
-   * Dialog(context); dialog.setContentView(R.layout.callout_visit);
-   * dialog.setTitle("Choose Time & Date"); TimePicker tp = (TimePicker)
-   * dialog.findViewById(R.id.timePicker1); //
-   * tp.setOnTimeChangedListener(TimePicker.OnTimeChangedListener()));
-   * 
-   * }
-   */
   public void addListenerOnButtonSubmit() {
     buttonSubmit = (Button) findViewById(R.id.btn_cv_submit);
     final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
@@ -66,12 +61,47 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
         if (CollectionUtils.isEmpty(errorList)) {
           CallOutVisit callOutVisit = new CallOutVisit();
           callOutVisit.setUserId(AppValuesHolder.getCurrentUser());
+          Date date = getDateTime(R.id.faultResolvedDateTime);
+          callOutVisit.settimeFaultResolved(date);
+          date = getDateTime(R.id.complaintRecievedDateTime);
+          callOutVisit.setTimeComplainReceived(date);
+          date = getDateTime(R.id.timeReachedDateTime);
+          callOutVisit.setTimeReachedToSite(date);
+
           saveVisit(callOutVisit, valueMap);
         } else {
           LOGGER.error("Validation failed");
         }
       }
     });
+  }
+
+  private Date getDateTime(final int textViewId) {
+    TextView dateTimeTextView = (TextView) findViewById(textViewId);
+    String finalDate = dateTimeTextView.getText().toString();
+    return getDateInFormat(finalDate);
+  }
+
+  private Date getDateInFormat(final String date) {
+    if(StringUtils.isBlank(date)){
+      return null;
+    }
+    String format = "dd/MM/yyyy HH:mm:ss";
+    String [] dateTimeArray = StringUtils.split(date,"|");
+    String finalDate = dateTimeArray[0];
+    if(dateTimeArray.length == 2){
+      finalDate = finalDate+ " "+ dateTimeArray[1]+":00";
+    }else{
+      finalDate = finalDate+ " 00:00:00";
+    }
+    Date returnDate = null;
+    SimpleDateFormat sdf = new SimpleDateFormat(format,Locale.getDefault());
+    try {
+      returnDate= sdf.parse(finalDate);
+    } catch (ParseException e) {
+    }
+    return returnDate;
+
   }
 
   private void addListenerOnButtonReset() {
@@ -84,30 +114,33 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
         ViewGroup group = (ViewGroup) findViewById(R.id.ll4_cv);
         r.clearForm(group);
         TextView date1, date2, date3, time1, time2, time3;
-        date1 = (TextView) findViewById(R.id.date1);
+        date1 = (TextView) findViewById(R.id.complaintRecievedDate);
         date1.setText("");
-        date2 = (TextView) findViewById(R.id.date2);
+        date2 = (TextView) findViewById(R.id.timeReachedDate);
         date2.setText("");
-        date3 = (TextView) findViewById(R.id.date3);
+        date3 = (TextView) findViewById(R.id.faultResolvedDate);
         date3.setText("");
-        time1 = (TextView) findViewById(R.id.time1);
+        time1 = (TextView) findViewById(R.id.complaintRecievedTime);
         time1.setText("");
-        time2 = (TextView) findViewById(R.id.time2);
+        time2 = (TextView) findViewById(R.id.timeReachedTime);
         time2.setText("");
-        time3 = (TextView) findViewById(R.id.time3);
+        time3 = (TextView) findViewById(R.id.faultResolvedTime);
         time3.setText("");
       }
     });
   }
 
-  private void updateDate(final TextView DateDisplay, final int day, final int month, final int year) {
+  private String updateDate(final TextView dateDisplay, final int day, final int month, final int year) {
     // Month is 0 based so add 1
-    DateDisplay.setText(new StringBuilder().append(day).append("/").append(month + 1).append("/").append(year)
-      .append(" "));
+    StringBuilder sb = new StringBuilder().append(day).append("/").append(month + 1).append("/").append(year);
+    dateDisplay.setText(sb);
+    return sb.toString();
   }
 
-  public void updatetime(final TextView TimeDisplay, final int hour, final int minute) {
-    TimeDisplay.setText(new StringBuilder().append(pad(hour)).append(":").append(pad(minute)));
+  private String updateTime(final TextView timeDisplay, final int hour, final int minute) {
+    StringBuilder sb = new StringBuilder().append(pad(hour)).append(":").append(pad(minute));
+    timeDisplay.setText(sb);
+    return sb.toString();
   }
 
   public void OnDateAndTimeChangeListener1() {
@@ -121,11 +154,11 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       }
     });
     final Calendar c = Calendar.getInstance();
-    year1 = c.get(Calendar.YEAR);
-    month1 = c.get(Calendar.MONTH);
-    day1 = c.get(Calendar.DAY_OF_MONTH);
-    hour1 = c.get(Calendar.HOUR_OF_DAY);
-    minute1 = c.get(Calendar.MINUTE);
+    complaintRecievedYear = c.get(Calendar.YEAR);
+    complaintRecievedMonth = c.get(Calendar.MONTH);
+    complaintRecievedDay = c.get(Calendar.DAY_OF_MONTH);
+    complaintRecievedHour = c.get(Calendar.HOUR_OF_DAY);
+    complaintRecievedMinute = c.get(Calendar.MINUTE);
   }
 
   private static String pad(final int c) {
@@ -136,41 +169,70 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     }
   }
 
-  private DatePickerDialog.OnDateSetListener DateSetListener1 = new DatePickerDialog.OnDateSetListener() {
+  private DatePickerDialog.OnDateSetListener complaintRecievedDateListener = new DatePickerDialog.OnDateSetListener() {
+    @SuppressWarnings("deprecation")
     @Override
     public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
-      year1 = year;
-      month1 = monthOfYear;
-      day1 = dayOfMonth;
-      updateDate(dateDisplay1, day1, month1, year1);
+      complaintRecievedYear = year;
+      complaintRecievedMonth = monthOfYear;
+      complaintRecievedDay = dayOfMonth;
+      String date = updateDate(complaintRecievedDateDisplay, complaintRecievedDay, complaintRecievedMonth, complaintRecievedYear);
+      setDateAndTime(R.id.complaintRecievedDateTime,date,true);
       showDialog(TIME_DIALOG_ID1);
     }
   };
   // Timepicker dialog generation
-  private TimePickerDialog.OnTimeSetListener TimeSetListener1 = new TimePickerDialog.OnTimeSetListener() {
+  private TimePickerDialog.OnTimeSetListener complaintRecievedTimeListener = new TimePickerDialog.OnTimeSetListener() {
     @Override
     public void onTimeSet(final TimePicker view, final int hourOfDay, final int minute) {
-      hour1 = hourOfDay;
-      minute1 = minute;
-      updatetime(timeDisplay1, hour1, minute1);
+      complaintRecievedHour = hourOfDay;
+      complaintRecievedMinute = minute;
+      String time = updateTime(complaintRecievedTimeDisplay, complaintRecievedHour, complaintRecievedMinute);
+      setDateAndTime(R.id.complaintRecievedDateTime,time,false);
     }
   };
+
+
+
+  private void setDateAndTime(final int textViewId, final String dateTime, final boolean date) {
+    TextView dateTimeTextView = (TextView) findViewById(textViewId);
+    String finalDate = dateTimeTextView.getText().toString();
+    if(StringUtils.isBlank(finalDate)){
+      finalDate = dateTime + "|";
+    }else if(date) {
+      String [] dateTimeArray = StringUtils.split(finalDate,"|");
+      if(dateTimeArray.length ==2){
+        finalDate = dateTime + "|" + dateTimeArray[1];
+      }else{
+        finalDate = dateTime + "|";
+      }
+    }else{
+      String [] dateTimeArray = StringUtils.split(finalDate,"|");
+      if(dateTimeArray.length ==2){
+        finalDate = dateTimeArray[0] + "|" + dateTime;
+      }else{
+        finalDate = finalDate + dateTime;
+      }
+    }
+    LOGGER.debug("....setDateAndTime..."+finalDate);
+    dateTimeTextView.setText(finalDate);
+  }
 
   @Override
   protected Dialog onCreateDialog(final int id) {
     switch (id) {
     case DATE_DIALOG_ID1:
-      return new DatePickerDialog(this, DateSetListener1, year1, month1, day1);
+      return new DatePickerDialog(this, complaintRecievedDateListener, complaintRecievedYear, complaintRecievedMonth, complaintRecievedDay);
     case TIME_DIALOG_ID1:
-      return new TimePickerDialog(this, TimeSetListener1, hour1, minute1, false);
+      return new TimePickerDialog(this, complaintRecievedTimeListener, complaintRecievedHour, complaintRecievedMinute, false);
     case DATE_DIALOG_ID2:
-      return new DatePickerDialog(this, DateSetListener2, year2, month2, day2);
+      return new DatePickerDialog(this, timeReachedDateListener, timeReachedYear, timeReachedMonth, timeReachedDay);
     case TIME_DIALOG_ID2:
-      return new TimePickerDialog(this, TimeSetListener2, hour2, minute2, false);
+      return new TimePickerDialog(this, timeReachedTimeListener, timeReachedHour, timeReachedMinute, false);
     case DATE_DIALOG_ID3:
-      return new DatePickerDialog(this, DateSetListener3, year3, month3, day3);
+      return new DatePickerDialog(this, faultResolvedDateListener, faultResolvedYear, faultResolvedMonth, faultResolvedDay);
     case TIME_DIALOG_ID3:
-      return new TimePickerDialog(this, TimeSetListener3, hour3, minute3, false);
+      return new TimePickerDialog(this, faultResolvedTimeListener, faultResolvedHour, faultResolvedMinute, false);
     }
     return null;
   }
@@ -186,11 +248,11 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       }
     });
     final Calendar c = Calendar.getInstance();
-    year2 = c.get(Calendar.YEAR);
-    month2 = c.get(Calendar.MONTH);
-    day2 = c.get(Calendar.DAY_OF_MONTH);
-    hour2 = c.get(Calendar.HOUR_OF_DAY);
-    minute2 = c.get(Calendar.MINUTE);
+    timeReachedYear = c.get(Calendar.YEAR);
+    timeReachedMonth = c.get(Calendar.MONTH);
+    timeReachedDay = c.get(Calendar.DAY_OF_MONTH);
+    timeReachedHour = c.get(Calendar.HOUR_OF_DAY);
+    timeReachedMinute = c.get(Calendar.MINUTE);
   }
 
   private static String pad2(final int c) {
@@ -201,22 +263,24 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     }
   }
 
-  private DatePickerDialog.OnDateSetListener DateSetListener2 = new DatePickerDialog.OnDateSetListener() {
+  private DatePickerDialog.OnDateSetListener timeReachedDateListener = new DatePickerDialog.OnDateSetListener() {
     @Override
     public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
-      year2 = year;
-      month2 = monthOfYear;
-      day2 = dayOfMonth;
-      updateDate(dateDisplay2, day2, month2, year2);
+      timeReachedYear = year;
+      timeReachedMonth = monthOfYear;
+      timeReachedDay = dayOfMonth;
+      String date = updateDate(timeReachedDateDisplay, timeReachedDay, timeReachedMonth, timeReachedYear);
+      setDateAndTime(R.id.timeReachedDateTime,date,true);
       showDialog(TIME_DIALOG_ID2);
     }
   };
-  private TimePickerDialog.OnTimeSetListener TimeSetListener2 = new TimePickerDialog.OnTimeSetListener() {
+  private TimePickerDialog.OnTimeSetListener timeReachedTimeListener = new TimePickerDialog.OnTimeSetListener() {
     @Override
     public void onTimeSet(final TimePicker view, final int hourOfDay, final int minute) {
-      hour2 = hourOfDay;
-      minute2 = minute;
-      updatetime(timeDisplay2, hour2, minute2);
+      timeReachedHour = hourOfDay;
+      timeReachedMinute = minute;
+      String time = updateTime(timeReachedTimeDisplay, timeReachedHour, timeReachedMinute);
+      setDateAndTime(R.id.timeReachedDateTime,time,false);
     }
   };
 
@@ -230,11 +294,11 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       }
     });
     final Calendar c = Calendar.getInstance();
-    year3 = c.get(Calendar.YEAR);
-    month3 = c.get(Calendar.MONTH);
-    day3 = c.get(Calendar.DAY_OF_MONTH);
-    hour3 = c.get(Calendar.HOUR_OF_DAY);
-    minute3 = c.get(Calendar.MINUTE);
+    faultResolvedYear = c.get(Calendar.YEAR);
+    faultResolvedMonth = c.get(Calendar.MONTH);
+    faultResolvedDay = c.get(Calendar.DAY_OF_MONTH);
+    faultResolvedHour = c.get(Calendar.HOUR_OF_DAY);
+    faultResolvedMinute = c.get(Calendar.MINUTE);
   }
 
   private static String pad3(final int c) {
@@ -245,22 +309,24 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     }
   }
 
-  private DatePickerDialog.OnDateSetListener DateSetListener3 = new DatePickerDialog.OnDateSetListener() {
+  private DatePickerDialog.OnDateSetListener faultResolvedDateListener = new DatePickerDialog.OnDateSetListener() {
     @Override
     public void onDateSet(final DatePicker view, final int year, final int monthOfYear, final int dayOfMonth) {
-      year3 = year;
-      month3 = monthOfYear;
-      day3 = dayOfMonth;
-      updateDate(dateDisplay3, day3, month3, year3);
+      faultResolvedYear = year;
+      faultResolvedMonth = monthOfYear;
+      faultResolvedDay = dayOfMonth;
+      String date = updateDate(faultResolvedDateDisplay, faultResolvedDay, faultResolvedMonth, faultResolvedYear);
+      setDateAndTime(R.id.faultResolvedDateTime,date,true);
       showDialog(TIME_DIALOG_ID3);
     }
   };
-  private TimePickerDialog.OnTimeSetListener TimeSetListener3 = new TimePickerDialog.OnTimeSetListener() {
+  private TimePickerDialog.OnTimeSetListener faultResolvedTimeListener = new TimePickerDialog.OnTimeSetListener() {
     @Override
     public void onTimeSet(final TimePicker view, final int hourOfDay, final int minute) {
-      hour3 = hourOfDay;
-      minute3 = minute;
-      updatetime(timeDisplay3, hour3, minute3);
+      faultResolvedHour = hourOfDay;
+      faultResolvedMinute = minute;
+      String time = updateTime(faultResolvedTimeDisplay, faultResolvedHour, faultResolvedMinute);
+      setDateAndTime(R.id.faultResolvedDateTime,time,false);
     }
   };
 
@@ -268,12 +334,12 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
   protected void initializeActivity(final Bundle savedInstanceState) {
     //checkForUserIdandPassword();
     setContentView(R.layout.callout_visit);
-    dateDisplay1 = (TextView) findViewById(R.id.date1);
-    timeDisplay1 = (TextView) findViewById(R.id.time1);
-    dateDisplay2 = (TextView) findViewById(R.id.date2);
-    timeDisplay2 = (TextView) findViewById(R.id.time2);
-    dateDisplay3 = (TextView) findViewById(R.id.date3);
-    timeDisplay3 = (TextView) findViewById(R.id.time3);
+    complaintRecievedDateDisplay = (TextView) findViewById(R.id.complaintRecievedDate);
+    complaintRecievedTimeDisplay = (TextView) findViewById(R.id.complaintRecievedTime);
+    timeReachedDateDisplay = (TextView) findViewById(R.id.timeReachedDate);
+    timeReachedTimeDisplay = (TextView) findViewById(R.id.timeReachedTime);
+    faultResolvedDateDisplay = (TextView) findViewById(R.id.faultResolvedDate);
+    faultResolvedTimeDisplay = (TextView) findViewById(R.id.faultResolvedTime);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
     OnDateAndTimeChangeListener1();

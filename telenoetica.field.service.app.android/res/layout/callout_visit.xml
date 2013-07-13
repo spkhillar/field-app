@@ -144,22 +144,31 @@
 
           
             <LinearLayout
-                android:id="@+id/linearLayout1"
+                android:id="@+id/linearLayoutComplaint"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
                 android:gravity="right"
                 android:padding="10dip">
+                <TextView
+                  android:id="@+id/complaintRecievedDateTime"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:gravity="left"
+                  android:layout_marginLeft="50dip"
+                  android:layout_marginRight="10dip"
+                  android:text=""
+                  android:visibility="invisible"/>  
 
                 <TextView
-                    android:id="@+id/date1"
+                    android:id="@+id/complaintRecievedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text=""/>
                 
                 <TextView
-                    android:id="@+id/time1"
+                    android:id="@+id/complaintRecievedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
@@ -190,22 +199,31 @@
                 </TableRow>
 
                  <LinearLayout
-                android:id="@+id/linearLayout1"
+                android:id="@+id/linearLayoutSiteReached"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
                 android:gravity="right"
                 android:padding="10dip">
+                <TextView
+                  android:id="@+id/timeReachedDateTime"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:gravity="left"
+                  android:layout_marginLeft="50dip"
+                  android:layout_marginRight="10dip"
+                  android:text=""
+                  android:visibility="invisible"/>  
 
                 <TextView
-                    android:id="@+id/date2"
+                    android:id="@+id/timeReachedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text=""/>
                 
                 <TextView
-                    android:id="@+id/time2"
+                    android:id="@+id/timeReachedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
@@ -237,22 +255,31 @@
                 </TableRow>
 
                  <LinearLayout
-                android:id="@+id/linearLayout1"
+                android:id="@+id/linearLayoutFault"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
                 android:gravity="right"
                 android:padding="10dip">
+                 <TextView
+                    android:id="@+id/faultResolvedDateTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_marginLeft="50dip"
+                    android:layout_marginRight="10dip"
+                    android:text=""
+                    android:visibility="invisible"/>  
 
                 <TextView
-                    android:id="@+id/date3"
+                    android:id="@+id/faultResolvedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text=""/>
                 
                 <TextView
-                    android:id="@+id/time3"
+                    android:id="@+id/faultResolvedTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
