@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 
 import com.telenoetica.jpa.entities.MaintenanceVisit;
+import com.telenoetica.jpa.entities.Site;
 
 /**
  * The Interface MaintenanceVisitService.
@@ -87,4 +88,10 @@ public interface MaintenanceVisitService extends BaseService<MaintenanceVisit> {
    * @return the long
    */
   long findRecordCount(Map<String, Object> params);
+
+	/**
+	 * @param site
+	 * @return
+	 */
+	public List<MaintenanceVisit> findBySiteAndCreatedAtBetween(final Site site);
 }

@@ -5,6 +5,8 @@ package com.telenoetica.service.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -297,5 +299,18 @@ MaintenanceVisitService {
     String ejbql = "select count(*) from MaintenanceVisit where createdAt >= :startDate AND createdAt < :endDate";
     return genericQueryExecutorDAO.findCount(ejbql, params);
   }
+
+	@Override
+	public List<MaintenanceVisit> findBySiteAndCreatedAtBetween(final Site site) {
+		Date startDate;
+		Date endDate;
+		Calendar currentDate = Calendar.getInstance(); // Get the current date
+		endDate = currentDate.getTime();
+		currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance()
+				.getActualMinimum(Calendar.DAY_OF_MONTH));
+		startDate = currentDate.getTime();
+		return maintenanceVisitDAO.findBySiteAndCreatedAtBetween(site,
+				startDate, endDate);
+	}
 
 }

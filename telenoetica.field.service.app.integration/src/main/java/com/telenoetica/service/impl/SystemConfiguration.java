@@ -33,6 +33,7 @@ public class SystemConfiguration {
   @Value("${android.apk.source.file.name}")
   private String androidAppFilePath;
 
+<<<<<<< Updated upstream
   /**
    * Gets the diesel details report directory.
    *
@@ -41,6 +42,25 @@ public class SystemConfiguration {
   public String getDieselDetailsReportDirectory() {
     return dieselDetailsReportDirectory;
   }
+=======
+	@Value("${fieldapp.report.diselReport.template.path}")
+	private String dieselDetailsReportTemplate;
+
+	@Value("${fieldapp.report.spareUtilization.template.path}")
+	private String spareUtilizationReportTemplate;
+
+	public String getSpareUtilizationReportTemplate() {
+		return spareUtilizationReportTemplate;
+	}
+
+	public String getDieselDetailsReportTemplate() {
+		return dieselDetailsReportTemplate;
+	}
+
+	public String getDieselDetailsReportDirectory() {
+		return dieselDetailsReportDirectory;
+	}
+>>>>>>> Stashed changes
 
   /**
    * Gets the spares utilization report directory.

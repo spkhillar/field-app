@@ -43,7 +43,7 @@
 	function populateReportDownloadTableData(input) {
 		$.each(input, function(i, row) {
 			$('[name="reportTable"]').append(
-					"<tr><td>" + row.jobName + "</td><td>" + row.startTime
+					"<tr><td>" + row.description + "</td><td>" + row.startTime
 							+ "</td><td>" + '<a href="'+webContextPath+'/reportDownload/monthlyReport/export/'+ row.id+'" style="font-weight: bold">Download</a>'
 							+ "</td></tr>");
 		});

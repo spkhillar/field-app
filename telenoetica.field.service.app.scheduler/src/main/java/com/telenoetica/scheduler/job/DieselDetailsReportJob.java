@@ -3,6 +3,8 @@
  */
 package com.telenoetica.scheduler.job;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -20,6 +22,7 @@ import com.telenoetica.service.JobHistoryService;
  */
 public class DieselDetailsReportJob extends QuartzJobBean {
 
+<<<<<<< Updated upstream
   /** The Constant LOGGER. */
   private static final Logger LOGGER = Logger
       .getLogger(DieselDetailsReportJob.class);
@@ -77,9 +80,52 @@ public class DieselDetailsReportJob extends QuartzJobBean {
       jobHistory.setJobStatus(JobStatus.FAILED);
     }
     updateJobStatus(jobHistory);
+=======
+	private static final Logger LOGGER = Logger
+			.getLogger(DieselDetailsReportJob.class);
 
-  }
+	private JobHistoryService jobHistoryService;
 
+	private DieselDetailReportService dieselDetailReportService;
+
+	public void setDieselDetailReportService(
+			final DieselDetailReportService dieselDetailReportService) {
+		this.dieselDetailReportService = dieselDetailReportService;
+	}
+
+	public void setJobHistoryService(final JobHistoryService jobHistoryService) {
+		this.jobHistoryService = jobHistoryService;
+	}
+
+	@Override
+	protected void executeInternal(final JobExecutionContext context)
+			throws JobExecutionException {
+		LOGGER.debug("Job Started");
+		String reportPath = "";
+		Calendar cal = Calendar.getInstance();
+		String description = "DieselDetailReport"
+				+ (new SimpleDateFormat("MMM").format(cal.getTime()));
+		JobHistory jobHistory = new JobHistory("DieselDetailReportJob",
+				description, new Date(), null, JobStatus.RUNNING);
+		createJobStatus(jobHistory);
+		// setup the
+		// Do your work
+		try {
+			reportPath = dieselDetailReportService.createNewReport();
+			jobHistory.setPath(reportPath);
+			jobHistory.setEndTime(new Date());
+			jobHistory.setJobStatus(JobStatus.COMPLETED);
+		} catch (Exception e) {
+			LOGGER.error("Error while creating Report", e);
+			jobHistory.setEndTime(new Date());
+			jobHistory.setJobStatus(JobStatus.FAILED);
+		}
+		updateJobStatus(jobHistory);
+>>>>>>> Stashed changes
+
+	}
+
+<<<<<<< Updated upstream
   /**
    * Creates the job status.
    *
@@ -97,4 +143,13 @@ public class DieselDetailsReportJob extends QuartzJobBean {
   public void updateJobStatus(final JobHistory jobHistory) {
     jobHistoryService.saveOrUpdate(jobHistory);
   }
+=======
+	public void createJobStatus(final JobHistory jobHistory) {
+		jobHistoryService.saveOrUpdate(jobHistory);
+	}
+
+	public void updateJobStatus(final JobHistory jobHistory) {
+		jobHistoryService.saveOrUpdate(jobHistory);
+	}
+>>>>>>> Stashed changes
 }
