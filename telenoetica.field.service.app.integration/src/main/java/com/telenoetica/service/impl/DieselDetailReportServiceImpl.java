@@ -167,7 +167,9 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
 				.getDieselDetailsReportFileName());
 
 		String reportFilePath = systemConfiguration
-				.getDieselDetailsReportDirectory() + "\\" + reportName;
+				.getDieselDetailsReportDirectory()
+				+ File.pathSeparator
+				+ reportName;
 		File file = new File(reportFilePath);
 		// write the new changes to a new file
 		FileOutputStream fos = new FileOutputStream(file);

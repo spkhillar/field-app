@@ -283,7 +283,9 @@ public class SpareUtilizationReportServiceImpl implements
 				.getDieselDetailsReportFileName());
 
 		String reportFilePath = systemConfiguration
-				.getDieselDetailsReportDirectory() + "\\" + reportName;
+				.getDieselDetailsReportDirectory()
+				+ File.pathSeparator
+				+ reportName;
 		File file = new File(reportFilePath);
 		// write the new changes to a new file
 		FileOutputStream fos = new FileOutputStream(file);
