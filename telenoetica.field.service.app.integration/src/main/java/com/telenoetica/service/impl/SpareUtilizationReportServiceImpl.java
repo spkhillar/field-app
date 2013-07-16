@@ -209,29 +209,70 @@ public class SpareUtilizationReportServiceImpl implements
 				cell = row.createCell(2);
 				cell.setCellValue(pmVisitCounter);
 				cell = row.createCell(3);
-				cell.setCellValue((String) sparePMMap.keySet().toArray()[0]);
+				if (sparePMMap.size() > 0) {
+					cell.setCellValue((String) sparePMMap.keySet().toArray()[0]);
+				}
 				cell = row.createCell(4);
-				cell.setCellValue((String) sparePMMap.values().toArray()[0]);
+				if (sparePMMap.size() > 0) {
+					cell.setCellValue((Integer) sparePMMap.values().toArray()[0]);
+				}
 				cell = row.createCell(5);
-				cell.setCellValue((String) spareCMMap.keySet().toArray()[0]);
+				if (spareCMMap.size() > 0) {
+					cell.setCellValue((String) spareCMMap.keySet().toArray()[0]);
+				}
 				cell = row.createCell(6);
-				cell.setCellValue((String) spareCMMap.values().toArray()[0]);
-				for (int k = 0; k < sparePMMap.size(); k++) {
+				if (spareCMMap.size() > 0) {
+					cell.setCellValue((Integer) spareCMMap.values().toArray()[0]);
+				}
+				int maxCount = 0;
+				if (sparePMMap.size() > spareCMMap.size()) {
+					maxCount = sparePMMap.size();
+				} else {
+					maxCount = spareCMMap.size();
+				}
+				for (int k = 1; k < maxCount; k++) {
 
 					row = sheet.createRow(rNum++);
 					cell = row.createCell(0);
 					cell = row.createCell(1);
 					cell = row.createCell(2);
 					cell = row.createCell(3);
-					cell.setCellValue((String) sparePMMap.keySet().toArray()[k]);
+					if (sparePMMap.size() > k) {
+						cell.setCellValue((String) sparePMMap.keySet()
+								.toArray()[k]);
+					} else {
+						cell.setCellValue("");
+					}
 					cell = row.createCell(4);
-					cell.setCellValue((String) sparePMMap.values().toArray()[k]);
+					if (sparePMMap.size() > k) {
+						cell.setCellValue((Integer) sparePMMap.values()
+								.toArray()[k]);
+					} else {
+						cell.setCellValue("");
+
+					}
 					cell = row.createCell(5);
-					cell.setCellValue((String) spareCMMap.keySet().toArray()[k]);
+					if (spareCMMap.size() > k) {
+						cell.setCellValue((String) spareCMMap.keySet()
+								.toArray()[k]);
+					} else {
+						cell.setCellValue("");
+
+					}
 					cell = row.createCell(6);
-					cell.setCellValue((String) spareCMMap.values().toArray()[k]);
+					if (spareCMMap.size() > k) {
+						cell.setCellValue((Integer) spareCMMap.values()
+								.toArray()[k]);
+					} else {
+						cell.setCellValue("");
+
+					}
 
 				}
+			}
+			if ((rNumPrev != rNum) && ((rNum - rNumPrev) > 1)) {
+				sheet.groupRow(rNumPrev + 2, rNum);
+				sheet.setRowGroupCollapsed(rNumPrev + 2, true);
 			}
 			resetVisitFields();
 		}
