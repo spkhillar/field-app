@@ -105,7 +105,7 @@
 </head>
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-	<div style="height: 650px;">
+	<div style="height: 700px;">
 	<div id="chartdiv" style="height:200px;width:600px; margin-left:130px;">
 	
 	</div>
