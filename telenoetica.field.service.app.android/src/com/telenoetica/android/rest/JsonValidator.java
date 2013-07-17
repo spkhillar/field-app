@@ -77,7 +77,7 @@ public class JsonValidator {
     if (valid && siteIdCheck) {
       valid = AppValuesHolder.getSites().contains(value);
       if (!valid) {
-        message = "Site Id does not exists in the system";
+        message = "Site ID does not exist in the system";
       }
       return valid;
     }

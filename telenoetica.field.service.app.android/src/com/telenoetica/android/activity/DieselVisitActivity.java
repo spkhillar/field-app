@@ -20,8 +20,6 @@ public class DieselVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
   private Button buttonReset;
 
-
-
   public void addListenerOnButtonSubmit() {
     buttonSubmit = (Button) findViewById(R.id.btn_dv_submit);
     final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
@@ -58,10 +56,11 @@ public class DieselVisitActivity extends AbstractVisitActivity {
 
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
-    //checkForUserIdandPassword();
+    // checkForUserIdandPassword();
     setContentView(R.layout.diesel_visit);
     addListenerOnButtonSubmit();
     addListenerOnButtonReset();
 
   }
+
 }

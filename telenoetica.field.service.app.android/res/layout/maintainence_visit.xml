@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
-                    android:text="MAINTAINENCE VISIT"
+                    android:text="MAINTEINANCE VISIT"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ffffff"
                     android:textStyle="bold" />
@@ -381,8 +381,8 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:maxLength="2"
-                    android:tag='runHoursAfterPmdG1={"required":true,"min":1,"max":24}' />
+                    android:maxLength="5"
+                    android:tag='runHoursAfterPmdG1={"required":true,"min":1,"max":30000}' />
             </TableRow>
 
             <TableRow
@@ -408,8 +408,8 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:maxLength="2"
-                    android:tag='runHoursAfterPmdG2={"required":true,"min":1,"max":24}' />
+                    android:maxLength="5"
+                    android:tag='runHoursAfterPmdG2={"required":true,"min":1,"max":30000}' />
             </TableRow>
 
             <TableRow
@@ -424,7 +424,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Submit"
+                    android:text="Save"
                      android:layout_marginRight="2dip"
                         android:textColor="#FFFFFF"
                         android:background="@drawable/button" />

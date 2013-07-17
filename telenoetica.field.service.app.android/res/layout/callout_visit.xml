@@ -129,7 +129,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Complaint recieved"
+                    android:text="Complaint received"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
                 
                 <Button
@@ -516,7 +516,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dip"
                         android:layout_weight="1"
-                        android:text="Submit" 
+                        android:text="Save" 
                         android:layout_marginRight="2dip"
                         android:textColor="#FFFFFF"
                         android:background="@drawable/button"/>
