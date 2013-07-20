@@ -18,7 +18,6 @@ import com.telenoetica.jpa.entities.DieselVisit;
 
 public class DieselVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
-  private Button buttonReset;
 
   public void addListenerOnButtonSubmit() {
     buttonSubmit = (Button) findViewById(R.id.btn_dv_submit);
@@ -42,25 +41,11 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     });
   }
 
-  private void addListenerOnButtonReset() {
-    buttonReset = (Button) findViewById(R.id.btn_dv_reset);
-    buttonReset.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(final View arg0) {
-        Reset r = new Reset();
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll2_dv);
-        r.clearForm(group);
-      }
-    });
-  }
-
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     // checkForUserIdandPassword();
     setContentView(R.layout.diesel_visit);
     addListenerOnButtonSubmit();
-    addListenerOnButtonReset();
-
   }
 
 }

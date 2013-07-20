@@ -165,7 +165,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Transfer from Site"
+                    android:text="Transfer from Site ID"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -542,17 +542,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/button"
                     android:text="Save"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:id="@+id/btn_dv_reset"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dip"
-                    android:layout_marginTop="10dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/button"
-                    android:text="Reset"
                     android:textColor="#FFFFFF" />
             </TableRow>
         </TableLayout>

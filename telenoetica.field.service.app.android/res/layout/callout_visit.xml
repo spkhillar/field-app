@@ -521,16 +521,6 @@
                         android:textColor="#FFFFFF"
                         android:background="@drawable/button"/>
 
-                    <Button
-                        android:id="@+id/btn_cv_reset"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dip"
-                        android:layout_weight="1"
-                        android:text="Reset"
-                        android:layout_marginLeft="2dip"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/button" />
                 </TableRow>
 
                 </TableLayout>

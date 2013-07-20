@@ -31,7 +31,6 @@ import com.telenoetica.jpa.entities.CallOutVisit;
 
 public class CalloutVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
-  private Button buttonReset;
   private Button pickDate1, pickDate2;
   private TextView complaintRecievedDateDisplay, timeReachedDateDisplay, faultResolvedDateDisplay;
   private TextView complaintRecievedTimeDisplay, timeReachedTimeDisplay, faultResolvedTimeDisplay;
@@ -83,51 +82,24 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
   }
 
   private Date getDateInFormat(final String date) {
-    if(StringUtils.isBlank(date)){
+    if (StringUtils.isBlank(date)) {
       return null;
     }
     String format = "dd/MM/yyyy HH:mm:ss";
-    String [] dateTimeArray = StringUtils.split(date,"|");
+    String[] dateTimeArray = StringUtils.split(date, "|");
     String finalDate = dateTimeArray[0];
-    if(dateTimeArray.length == 2){
-      finalDate = finalDate+ " "+ dateTimeArray[1]+":00";
-    }else{
-      finalDate = finalDate+ " 00:00:00";
+    if (dateTimeArray.length == 2) {
+      finalDate = finalDate + " " + dateTimeArray[1] + ":00";
+    } else {
+      finalDate = finalDate + " 00:00:00";
     }
     Date returnDate = null;
-    SimpleDateFormat sdf = new SimpleDateFormat(format,Locale.getDefault());
+    SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
     try {
-      returnDate= sdf.parse(finalDate);
-    } catch (ParseException e) {
-    }
+      returnDate = sdf.parse(finalDate);
+    } catch (ParseException e) {}
     return returnDate;
 
-  }
-
-  private void addListenerOnButtonReset() {
-    final Context context = this;
-    buttonReset = (Button) findViewById(R.id.btn_cv_reset);
-    buttonReset.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(final View arg0) {
-        Reset r = new Reset();
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll4_cv);
-        r.clearForm(group);
-        TextView date1, date2, date3, time1, time2, time3;
-        date1 = (TextView) findViewById(R.id.complaintRecievedDate);
-        date1.setText("");
-        date2 = (TextView) findViewById(R.id.timeReachedDate);
-        date2.setText("");
-        date3 = (TextView) findViewById(R.id.faultResolvedDate);
-        date3.setText("");
-        time1 = (TextView) findViewById(R.id.complaintRecievedTime);
-        time1.setText("");
-        time2 = (TextView) findViewById(R.id.timeReachedTime);
-        time2.setText("");
-        time3 = (TextView) findViewById(R.id.faultResolvedTime);
-        time3.setText("");
-      }
-    });
   }
 
   private String updateDate(final TextView dateDisplay, final int day, final int month, final int year) {
@@ -176,8 +148,9 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       complaintRecievedYear = year;
       complaintRecievedMonth = monthOfYear;
       complaintRecievedDay = dayOfMonth;
-      String date = updateDate(complaintRecievedDateDisplay, complaintRecievedDay, complaintRecievedMonth, complaintRecievedYear);
-      setDateAndTime(R.id.complaintRecievedDateTime,date,true);
+      String date =
+          updateDate(complaintRecievedDateDisplay, complaintRecievedDay, complaintRecievedMonth, complaintRecievedYear);
+      setDateAndTime(R.id.complaintRecievedDateTime, date, true);
       showDialog(TIME_DIALOG_ID1);
     }
   };
@@ -188,33 +161,31 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       complaintRecievedHour = hourOfDay;
       complaintRecievedMinute = minute;
       String time = updateTime(complaintRecievedTimeDisplay, complaintRecievedHour, complaintRecievedMinute);
-      setDateAndTime(R.id.complaintRecievedDateTime,time,false);
+      setDateAndTime(R.id.complaintRecievedDateTime, time, false);
     }
   };
-
-
 
   private void setDateAndTime(final int textViewId, final String dateTime, final boolean date) {
     TextView dateTimeTextView = (TextView) findViewById(textViewId);
     String finalDate = dateTimeTextView.getText().toString();
-    if(StringUtils.isBlank(finalDate)){
+    if (StringUtils.isBlank(finalDate)) {
       finalDate = dateTime + "|";
-    }else if(date) {
-      String [] dateTimeArray = StringUtils.split(finalDate,"|");
-      if(dateTimeArray.length ==2){
+    } else if (date) {
+      String[] dateTimeArray = StringUtils.split(finalDate, "|");
+      if (dateTimeArray.length == 2) {
         finalDate = dateTime + "|" + dateTimeArray[1];
-      }else{
+      } else {
         finalDate = dateTime + "|";
       }
-    }else{
-      String [] dateTimeArray = StringUtils.split(finalDate,"|");
-      if(dateTimeArray.length ==2){
+    } else {
+      String[] dateTimeArray = StringUtils.split(finalDate, "|");
+      if (dateTimeArray.length == 2) {
         finalDate = dateTimeArray[0] + "|" + dateTime;
-      }else{
+      } else {
         finalDate = finalDate + dateTime;
       }
     }
-    LOGGER.debug("....setDateAndTime..."+finalDate);
+    LOGGER.debug("....setDateAndTime..." + finalDate);
     dateTimeTextView.setText(finalDate);
   }
 
@@ -222,15 +193,18 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
   protected Dialog onCreateDialog(final int id) {
     switch (id) {
     case DATE_DIALOG_ID1:
-      return new DatePickerDialog(this, complaintRecievedDateListener, complaintRecievedYear, complaintRecievedMonth, complaintRecievedDay);
+      return new DatePickerDialog(this, complaintRecievedDateListener, complaintRecievedYear, complaintRecievedMonth,
+        complaintRecievedDay);
     case TIME_DIALOG_ID1:
-      return new TimePickerDialog(this, complaintRecievedTimeListener, complaintRecievedHour, complaintRecievedMinute, false);
+      return new TimePickerDialog(this, complaintRecievedTimeListener, complaintRecievedHour, complaintRecievedMinute,
+        false);
     case DATE_DIALOG_ID2:
       return new DatePickerDialog(this, timeReachedDateListener, timeReachedYear, timeReachedMonth, timeReachedDay);
     case TIME_DIALOG_ID2:
       return new TimePickerDialog(this, timeReachedTimeListener, timeReachedHour, timeReachedMinute, false);
     case DATE_DIALOG_ID3:
-      return new DatePickerDialog(this, faultResolvedDateListener, faultResolvedYear, faultResolvedMonth, faultResolvedDay);
+      return new DatePickerDialog(this, faultResolvedDateListener, faultResolvedYear, faultResolvedMonth,
+        faultResolvedDay);
     case TIME_DIALOG_ID3:
       return new TimePickerDialog(this, faultResolvedTimeListener, faultResolvedHour, faultResolvedMinute, false);
     }
@@ -270,7 +244,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       timeReachedMonth = monthOfYear;
       timeReachedDay = dayOfMonth;
       String date = updateDate(timeReachedDateDisplay, timeReachedDay, timeReachedMonth, timeReachedYear);
-      setDateAndTime(R.id.timeReachedDateTime,date,true);
+      setDateAndTime(R.id.timeReachedDateTime, date, true);
       showDialog(TIME_DIALOG_ID2);
     }
   };
@@ -280,7 +254,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       timeReachedHour = hourOfDay;
       timeReachedMinute = minute;
       String time = updateTime(timeReachedTimeDisplay, timeReachedHour, timeReachedMinute);
-      setDateAndTime(R.id.timeReachedDateTime,time,false);
+      setDateAndTime(R.id.timeReachedDateTime, time, false);
     }
   };
 
@@ -316,7 +290,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       faultResolvedMonth = monthOfYear;
       faultResolvedDay = dayOfMonth;
       String date = updateDate(faultResolvedDateDisplay, faultResolvedDay, faultResolvedMonth, faultResolvedYear);
-      setDateAndTime(R.id.faultResolvedDateTime,date,true);
+      setDateAndTime(R.id.faultResolvedDateTime, date, true);
       showDialog(TIME_DIALOG_ID3);
     }
   };
@@ -326,13 +300,13 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
       faultResolvedHour = hourOfDay;
       faultResolvedMinute = minute;
       String time = updateTime(faultResolvedTimeDisplay, faultResolvedHour, faultResolvedMinute);
-      setDateAndTime(R.id.faultResolvedDateTime,time,false);
+      setDateAndTime(R.id.faultResolvedDateTime, time, false);
     }
   };
 
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
-    //checkForUserIdandPassword();
+    // checkForUserIdandPassword();
     setContentView(R.layout.callout_visit);
     complaintRecievedDateDisplay = (TextView) findViewById(R.id.complaintRecievedDate);
     complaintRecievedTimeDisplay = (TextView) findViewById(R.id.complaintRecievedTime);
@@ -341,7 +315,6 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     faultResolvedDateDisplay = (TextView) findViewById(R.id.faultResolvedDate);
     faultResolvedTimeDisplay = (TextView) findViewById(R.id.faultResolvedTime);
     addListenerOnButtonSubmit();
-    addListenerOnButtonReset();
     OnDateAndTimeChangeListener1();
     OnDateAndTimeChangeListener2();
     OnDateAndTimeChangeListener3();

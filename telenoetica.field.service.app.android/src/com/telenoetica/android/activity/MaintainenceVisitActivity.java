@@ -19,14 +19,12 @@ import com.telenoetica.jpa.entities.MaintenanceVisit;
 
 public class MaintainenceVisitActivity extends AbstractVisitActivity {
   private Button buttonSubmit;
-  private Button buttonReset;
 
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
-    //checkForUserIdandPassword();
+    // checkForUserIdandPassword();
     setContentView(R.layout.maintainence_visit);
     addListenerOnButtonSubmit();
-    addListenerOnButtonReset();
     addItemsOnSpinner(R.id.spinner_category_of_maintainence, AppValuesHolder.getMaintenanceCategories());
     addItemsOnSpinner(R.id.spinner_consumable1, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_consumable2, AppValuesHolder.getSpares());
@@ -68,20 +66,4 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
       }
     });
   }
-
-  private void addListenerOnButtonReset() {
-    buttonReset = (Button) findViewById(R.id.btn_mv_reset);
-    buttonReset.setOnClickListener(new OnClickListener() {
-
-      @Override
-      public void onClick(final View arg0) {
-        Reset r = new Reset();
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll3_mv);
-        r.clearForm(group);
-
-      }
-
-    });
-  }
-
 }

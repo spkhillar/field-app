@@ -60,9 +60,9 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
         if ("Browse & Select".equals(value)) {
           value = null;
         }
-      } else if (view instanceof TextView){
-        value = ((TextView)view).getText();
-      }else if (view instanceof RadioGroup) {
+      } else if (view instanceof TextView) {
+        value = ((TextView) view).getText();
+      } else if (view instanceof RadioGroup) {
         RadioGroup rg = (RadioGroup) view;
         int valuebutton = rg.getCheckedRadioButtonId();
         if (valuebutton != -1) {
@@ -171,7 +171,10 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     if (ClassUtils.isAssignable(clazz, Long.class)) {
       return Long.parseLong(value);
     } else if (ClassUtils.isAssignable(clazz, Boolean.class)) {
-      return Boolean.valueOf(value);
+      if ("Yes".equals(value)) {
+        return Boolean.TRUE;
+      }
+      return Boolean.FALSE;
     } else if (ClassUtils.isAssignable(clazz, Integer.class)) {
       return Integer.parseInt(value);
     } else if (ClassUtils.isAssignable(clazz, Date.class)) {
@@ -181,6 +184,5 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
     throw new IllegalArgumentException(clazz.getName() + "Not in List");
   }
-
 
 }

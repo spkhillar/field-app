@@ -32,13 +32,12 @@
                     android:layout_marginLeft="10dip"
                     android:src="@drawable/logo" />
                 <!-- Logo Ends -->
-                
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center|top"
-                    android:text="MAINTEINANCE VISIT"
+                    android:text="MAINTENANCE VISIT"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#ffffff"
                     android:textStyle="bold" />
@@ -48,8 +47,8 @@
                 android:id="@+id/tr1_mv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dip"
-                android:layout_marginTop="15dip"  >
+                android:layout_marginTop="15dip"
+                android:padding="10dip" >
 
                 <TextView
                     android:id="@+id/tv1_mv"
@@ -67,7 +66,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag='siteId={"required":true,"siteIdCheck":true}' />
+                    android:tag="siteId={&quot;required&quot;:true,&quot;siteIdCheck&quot;:true}" />
             </TableRow>
 
             <TableRow
@@ -94,7 +93,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:tag='accessCode={"required":true}' />
+                    android:tag="accessCode={&quot;required&quot;:true}" />
             </TableRow>
 
             <TableRow
@@ -215,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced5"/>
+                    android:tag="sparesUsedItemsReplaced5" />
             </TableRow>
 
             <TableRow
@@ -235,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="sparesUsedItemsReplaced6"/>
+                    android:tag="sparesUsedItemsReplaced6" />
             </TableRow>
 
             <TableRow
@@ -366,7 +365,7 @@
 
                 <TextView
                     android:id="@+id/tv21_mv"
-                    android:text="Run-Hours after PM of DG1 "
+                    android:text="Run-Hours after Maint. of DG1"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -377,12 +376,12 @@
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
                     android:inputType="number"
+                    android:maxLength="5"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:maxLength="5"
-                    android:tag='runHoursAfterPmdG1={"required":true,"min":1,"max":30000}' />
+                    android:tag="runHoursAfterPmdG1={&quot;required&quot;:true,&quot;min&quot;:1,&quot;max&quot;:30000}" />
             </TableRow>
 
             <TableRow
@@ -393,7 +392,7 @@
 
                 <TextView
                     android:id="@+id/tv22_mv"
-                    android:text="Run-Hours after PM of DG2"
+                    android:text="Run-Hours after Maint. of DG2"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -404,12 +403,12 @@
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
                     android:inputType="number"
+                    android:maxLength="5"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:maxLength="5"
-                    android:tag='runHoursAfterPmdG2={"required":true,"min":1,"max":30000}' />
+                    android:tag="runHoursAfterPmdG2={&quot;required&quot;:true,&quot;min&quot;:1,&quot;max&quot;:30000}" />
             </TableRow>
 
             <TableRow
@@ -422,23 +421,12 @@
                     android:id="@+id/btn_mv_submit"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="2dip"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
+                    android:background="@drawable/button"
                     android:text="Save"
-                     android:layout_marginRight="2dip"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/button" />
-
-                <Button
-                    android:id="@+id/btn_mv_reset"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
-                    android:layout_weight="1"
-                    android:text="Reset"
-                     android:layout_marginLeft="2dip"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/button" />
+                    android:textColor="#FFFFFF" />
             </TableRow>
         </TableLayout>
     </ScrollView>

@@ -4,49 +4,48 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
-    
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-        
+
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
-            
+
             <LinearLayout
-            android:id="@+id/header"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@layout/header_gradient"
-            android:paddingBottom="5dip"
-            android:paddingTop="5dip"
-            android:orientation="horizontal" >
-
-            <!-- Logo Start -->
-
-            <ImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/header"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:src="@drawable/logo" />
-            <!-- Logo Ends -->
+                android:background="@layout/header_gradient"
+                android:orientation="horizontal"
+                android:paddingBottom="5dip"
+                android:paddingTop="5dip" >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ROUTINE VISIT"
-                android:textStyle="bold"
-                android:gravity="bottom|center"
-                android:textColor="#ffffff"
-                android:textAppearance="?android:attr/textAppearanceLarge"  />
+                <!-- Logo Start -->
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:src="@drawable/logo" />
+                <!-- Logo Ends -->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom|center"
+                    android:text="ROUTINE VISIT"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dip"
-                android:layout_marginTop="15dip" >
+                android:layout_marginTop="15dip"
+                android:padding="10dip" >
 
                 <TextView
                     android:text="Site ID"
@@ -62,8 +61,8 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:singleLine="true" 
-                    android:tag='siteId={"required":true,"siteIdCheck":true}'/>
+                    android:singleLine="true"
+                    android:tag="siteId={&quot;required&quot;:true,&quot;siteIdCheck&quot;:true}" />
             </TableRow>
 
             <TableRow
@@ -82,12 +81,12 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag='accessCode={"required":true}'/>
+                    android:singleLine="true"
+                    android:tag="accessCode={&quot;required&quot;:true}" />
             </TableRow>
 
             <TableRow
@@ -106,13 +105,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="4"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag='dieselLevelT1={"required":true,"min":1,"max":600}'/>
+                    android:singleLine="true"
+                    android:tag="dieselLevelT1={&quot;required&quot;:true,&quot;min&quot;:1,&quot;max&quot;:6000}" />
             </TableRow>
 
             <TableRow
@@ -131,13 +130,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="4"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="4"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="dieselLevelT2"/>
+                    android:singleLine="true"
+                    android:tag="dieselLevelT2" />
             </TableRow>
 
             <TableRow
@@ -156,13 +155,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="5"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="5"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="runHourGen1"/>
+                    android:singleLine="true"
+                    android:tag="runHourGen1" />
             </TableRow>
 
             <TableRow
@@ -181,13 +180,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="5"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="5"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="runHourGen2"/>
+                    android:singleLine="true"
+                    android:tag="runHourGen2" />
             </TableRow>
 
             <TableRow
@@ -206,13 +205,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="voltageNrVolts"/>
+                    android:singleLine="true"
+                    android:tag="voltageNrVolts" />
             </TableRow>
 
             <TableRow
@@ -231,13 +230,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
                     android:singleLine="true"
-                    android:tag="voltageNyVolts"/>
+                    android:tag="voltageNyVolts" />
             </TableRow>
 
             <TableRow
@@ -256,13 +255,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="voltageNbVolts"/>
+                    android:singleLine="true"
+                    android:tag="voltageNbVolts" />
             </TableRow>
 
             <TableRow
@@ -281,13 +280,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
                     android:singleLine="true"
-                    android:tag="loadRPhaseAmps"/>
+                    android:tag="loadRPhaseAmps" />
             </TableRow>
 
             <TableRow
@@ -306,13 +305,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="loadYPhaseAmps"/>
+                    android:singleLine="true"
+                    android:tag="loadYPhaseAmps" />
             </TableRow>
 
             <TableRow
@@ -331,13 +330,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="loadBPhaseAmps"/>
+                    android:singleLine="true"
+                    android:tag="loadBPhaseAmps" />
             </TableRow>
 
             <TableRow
@@ -356,13 +355,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="2"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="2"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="rectifierOpVoltage"/>
+                    android:singleLine="true"
+                    android:tag="rectifierOpVoltage" />
             </TableRow>
 
             <TableRow
@@ -381,13 +380,13 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag="rectifierOpCurrentAmp"/>
+                    android:singleLine="true"
+                    android:tag="rectifierOpCurrentAmp" />
             </TableRow>
 
             <TableRow
@@ -409,17 +408,14 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="4"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag='batteryCapcityV={"required":true,"min":50,"max":2000}'/>
+                    android:singleLine="true"
+                    android:tag="batteryCapcityV={&quot;required&quot;:true,&quot;min&quot;:50,&quot;max&quot;:2000}" />
             </TableRow>
-            
 
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                 android:padding="10dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:text="ATS Functional "
@@ -429,8 +425,8 @@
                     android:id="@+id/rg_rv_atsfunctional"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" 
-                    android:tag='atsFunctional={"required":true}'>
+                    android:orientation="horizontal"
+                    android:tag="atsFunctional={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_atsfunctional_yes"
@@ -450,7 +446,7 @@
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-              android:padding="10dip" >
+                android:padding="10dip" >
 
                 <TextView
                     android:text="ATS Synchronising"
@@ -461,7 +457,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:tag='atsSysncronising={"required":true}'>
+                    android:tag="atsSysncronising={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_atssynchronising_yes"
@@ -477,8 +473,8 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-            
-             <TableRow
+
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
@@ -491,8 +487,8 @@
                     android:id="@+id/rb_rv_atssynchronising"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" 
-                    android:tag='drnBookAtSite={"required":true}'>
+                    android:orientation="horizontal"
+                    android:tag="drnBookAtSite={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_atssynchronising_yes"
@@ -508,7 +504,7 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-           
+
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -522,8 +518,8 @@
                     android:id="@+id/rg_rv_diesellogbookmaintained"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" 
-                    android:tag='dieselLogBookMaintained={"required":true}'>
+                    android:orientation="horizontal"
+                    android:tag="dieselLogBookMaintained={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rg_rv_diesellogbookmaintained_yes"
@@ -539,8 +535,8 @@
                         android:text="@string/No" />
                 </RadioGroup>
             </TableRow>
-            
-             <TableRow
+
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
@@ -553,8 +549,8 @@
                     android:id="@+id/rb_rv_airconofshelter1cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" 
-                    android:tag='airconShelter1Cooling={"required":true}'>
+                    android:orientation="vertical"
+                    android:tag="airconShelter1Cooling={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter1cooling_yes"
@@ -568,7 +564,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/No" />
-                    
+
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter1cooling_na"
                         android:layout_width="wrap_content"
@@ -576,8 +572,8 @@
                         android:text="@string/Not_Applicable" />
                 </RadioGroup>
             </TableRow>
-            
-              <TableRow
+
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
@@ -590,8 +586,8 @@
                     android:id="@+id/rb_rv_airconofshelter2cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" 
-                    android:tag='airconShelter2Cooling={"required":true}'>
+                    android:orientation="vertical"
+                    android:tag="airconShelter2Cooling={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter2cooling_yes"
@@ -605,7 +601,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/No" />
-                    
+
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter2cooling_na"
                         android:layout_width="wrap_content"
@@ -613,7 +609,8 @@
                         android:text="@string/Not_Applicable" />
                 </RadioGroup>
             </TableRow>
-             <TableRow
+
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
@@ -626,7 +623,8 @@
                     android:id="@+id/rb_rv_airconofshelter3cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"  android:tag="airconShelter3Cooling">
+                    android:orientation="vertical"
+                    android:tag="airconShelter3Cooling" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter3cooling_yes"
@@ -640,17 +638,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/No" />
-                    
+
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter3cooling_na"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Not_Applicable"/>
-                    
+                        android:text="@string/Not_Applicable" />
                 </RadioGroup>
             </TableRow>
-            
-              <TableRow
+
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dip" >
@@ -663,8 +660,8 @@
                     android:id="@+id/rb_rv_airconofshelter4cooling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" 
-                     android:tag='airconShelter4Cooling={"required":true}'>
+                    android:orientation="vertical"
+                    android:tag="airconShelter4Cooling={&quot;required&quot;:true}" >
 
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter4cooling_yes"
@@ -678,7 +675,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/No" />
-                    
+
                     <RadioButton
                         android:id="@+id/rb_rv_airconofshelter4cooling_na"
                         android:layout_width="wrap_content"
@@ -686,8 +683,7 @@
                         android:text="@string/Not_Applicable" />
                 </RadioGroup>
             </TableRow>
-            
-              
+
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -697,23 +693,12 @@
                     android:id="@+id/btn_rv_submit"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dip"
-                     android:layout_marginRight="2dip"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/button"
-                    android:text="Save" />
-
-                <Button
-                    android:id="@+id/btn_rv_reset"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dip"
                     android:layout_marginTop="10dip"
                     android:layout_weight="1"
-                    android:text="Reset" 
-                     android:layout_marginLeft="2dip"
-                        android:textColor="#FFFFFF"
-                        android:background="@drawable/button"/>
+                    android:background="@drawable/button"
+                    android:text="Save"
+                    android:textColor="#FFFFFF" />
             </TableRow>
         </TableLayout>
     </ScrollView>

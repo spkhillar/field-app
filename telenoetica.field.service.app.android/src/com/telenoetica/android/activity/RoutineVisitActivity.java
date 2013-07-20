@@ -18,14 +18,12 @@ import com.telenoetica.jpa.entities.RoutineVisit;
 
 public class RoutineVisitActivity extends AbstractVisitActivity {
   private Button button1;
-  private Button button2;
 
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
-    //checkForUserIdandPassword();
+    // checkForUserIdandPassword();
     setContentView(R.layout.routine_visit);
     addListenerOnButtonSubmit();
-    addListenerOnButtonReset();
   }
 
   public void addListenerOnButtonSubmit() {
@@ -38,26 +36,14 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
         // startActivity(intent);
         ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
         List<String> errorList = new ArrayList<String>();
-        getTargetObject(group, valueMap,errorList);
-        if(CollectionUtils.isEmpty(errorList)){
+        getTargetObject(group, valueMap, errorList);
+        if (CollectionUtils.isEmpty(errorList)) {
           RoutineVisit routineVisit = new RoutineVisit();
           routineVisit.setUserId(AppValuesHolder.getCurrentUser());
           saveVisit(routineVisit, valueMap);
-        }else{
+        } else {
           LOGGER.error("Validation failed");
         }
-      }
-    });
-  }
-
-  private void addListenerOnButtonReset() {
-    button2 = (Button) findViewById(R.id.btn_rv_reset);
-    button2.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(final View arg0) {
-        Reset r = new Reset();
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
-        r.clearForm(group);
       }
     });
   }
