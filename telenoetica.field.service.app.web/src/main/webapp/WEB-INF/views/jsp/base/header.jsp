@@ -8,14 +8,14 @@
 <html>
 <head>
 <spring:url value="/resources/css/templatemo_style.css" var="resourceCssUrl"/>
-<spring:url value="/resources/css/cupertino/jquery-ui-1.10.2.custom.min.css" var="resourceJqUiCssUrl"/>
+<spring:url value="/resources/css/custom-theme/jquery-ui-1.10.3.custom.min.css" var="resourceJqUiCssUrl"/>
 <spring:url value="/resources/css/ui.jqgrid.css" var="resourceJqGridCssUrl"/>
 <spring:url value="/resources/css/menu.css" var="resourceMenuCssUrl"/>
 
 <spring:url value="/resources/js/jquery-1.9.1.min.js" var="resourceJqUrl"/>
 <spring:url value="/resources/js/jquery.validate.min.js" var="resourceJqvUrl"/>
 <spring:url value="/resources/js/application.js" var="resourceAppJsUrl"/>
-<spring:url value="/resources/js/jquery-ui-1.10.2.custom.js" var="resourceJqUiUrl"/>
+<spring:url value="/resources/js/jquery-ui-1.10.3.custom.min.js" var="resourceJqUiUrl"/>
 <spring:url value="/resources/js/grid.locale-en.js" var="resourceJqGridLocaleUrl"/>
 <spring:url value="/resources/js/jquery.jqGrid.min.js" var="resourceJqGridUrl"/>
 <spring:url value="/resources/js/jquery-ui-timepicker-addon.js" var="dateTimePicKerJs"/>
