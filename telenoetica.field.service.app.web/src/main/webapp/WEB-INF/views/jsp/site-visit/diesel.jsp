@@ -26,7 +26,7 @@
 				},
 				"drnNumber" : {
 					number : true,
-					range : [ 1, 9999999 ]
+					range : [ 0, 9999999 ]
 				},
 				"bulkNameOfVendor" : {
 					vendorNameCheck : true,
@@ -38,31 +38,31 @@
 				},
 				"dieselLevelT1BeforeVisit" : {
 					number : true,
-					range : [ 1, 6000 ]
+					range : [ 0, 6000 ]
 				},
 				"dieselLevelT2BeforeVisit" : {
 					number : true,
-					range : [ 1, 6000 ]
+					range : [ 0, 6000 ]
 				},
 				"dieselReceivedLtrs" : {
 					number : true,
-					range : [ 1, 6000 ]
+					range : [ 0, 6000 ]
 				},
 				"runHourGen1" : {
 					number : true,
-					range : [ 1, 30000 ]
+					range : [ 0, 30000 ]
 				},
 				"runHourGen2" : {
 					number : true,
-					range : [ 1, 30000 ]
+					range : [ 0, 30000 ]
 				},
 				"phcnHrsPerDay" : {
 					number : true,
-					range : [ 1, 24 ]
+					range : [ 0, 24 ]
 				},
 				"hybridOrPiuHrsPerDay" : {
 					number : true,
-					range : [ 1, 24 ]
+					range : [ 0, 24 ]
 				}
 			}
 		});
@@ -95,8 +95,68 @@
 		}, "Transferred site is required for site diesel transfer.");
 		$("#save").button();
 		$("#reset").button();
+		initializeDefaultSelection();
+		bulkOrTransferEnableText();
+		radioBtnPiuInstalledEnableText();
+		radioBtnPhcnInstalledText();
 	});
+	
+	function initializeDefaultSelection(){
+		$("#transferredSiteId").attr("disabled", "disabled");
+		$("#hybridOrPiuHrsPerDay").attr("disabled", "disabled"); 
+		$("#phcnHrsPerDay").attr("disabled", "disabled"); 
+	}
+	function bulkOrTransferEnableText(){
+		$("#radioBtnBulkOrSupply input[type=radio]").each(function(i){
+		    $(this).click(function () {
+		    	if(i==0) { //Bulk selected
+		    		$("#transferredSiteId").attr("disabled", "disabled"); 
+		    		$("#bulkNameOfVendor").removeAttr("disabled"); 
+		    		$("#bulkNameOfVendor").val("");
+		    		$("#transferredSiteId").val("");
+		    	}
+		    	else { //Transfer selectedbulkNameOfVendor
+		    		$("#bulkNameOfVendor").attr("disabled", "disabled"); 
+		    		$("#transferredSiteId").removeAttr("disabled"); 
+		    		$("#bulkNameOfVendor").val("");
+		    		$("#transferredSiteId").val("");
+		    	}
+		      });
 
+		  });
+	}
+	
+	function radioBtnPhcnInstalledText(){
+		$("#radioBtnPhcnInstalled input[type=radio]").each(function(i){
+		    $(this).click(function () {
+		    	if(i==0) { //Bulk selected
+		    		$("#phcnHrsPerDay").removeAttr("disabled"); 
+		    		$("#phcnHrsPerDay").val("");
+		    	}
+		    	else { //Transfer selectedbulkNameOfVendor
+		    		$("#phcnHrsPerDay").attr("disabled", "disabled"); 
+		    		$("#phcnHrsPerDay").val("");
+		    	}
+		      });
+
+		  });
+	}
+	
+	function radioBtnPiuInstalledEnableText(){
+		$("#radioBtnPiuInstalled input[type=radio]").each(function(i){
+		    $(this).click(function () {
+		    	if(i==0) { //Bulk selected
+		    		$("#hybridOrPiuHrsPerDay").removeAttr("disabled"); 
+		    		$("#hybridOrPiuHrsPerDay").val("");
+		    	}
+		    	else { //Transfer selectedbulkNameOfVendor
+		    		$("#hybridOrPiuHrsPerDay").attr("disabled", "disabled"); 
+		    		$("#hybridOrPiuHrsPerDay").val("");
+		    	}
+		      });
+
+		  });
+	}
 	function test() {
 
 		/* messages: {
@@ -180,9 +240,11 @@
 					<form:input path="drnNumber" />
 				</p>
 				<p>
+					<span id="radioBtnBulkOrSupply">
 					<label><spring:message code="fieldapp.label.dv.transfer.or.bulk.supply"/></label> 
 					<label style="width: 50px;"><form:radiobutton path="dieselTransferOrBulkSupply" value="Bulk" /><spring:message code="fieldapp.label.dv.bulk.transfer"/></label>
 					<label style="width: 50px;"><form:radiobutton path="dieselTransferOrBulkSupply" value="Site" /><spring:message code="fieldapp.label.dv.site.transfer"/></label>
+					</span>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.dv.transfer.site"/></label> 
@@ -223,18 +285,22 @@
 					<label style="width: 50px;"><form:radiobutton path="dieselLogBookMaintained" value="false" /><spring:message code="fieldapp.label.no.value"/></label>
 				</p>
 				<p>
+				<span id="radioBtnPhcnInstalled">
 					<label><spring:message code="fieldapp.label.dv.phcn.installed"/> </label> 
 					<label style="width: 50px;"><form:radiobutton path="phcnInstalled" value="true" /><spring:message code="fieldapp.label.yes.value"/></label>
 					<label style="width: 50px;"><form:radiobutton path="phcnInstalled" value="false" /><spring:message code="fieldapp.label.no.value"/></label>
+				</span>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.dv.phcn.hrs.per.day"/></label> 
 					<form:input path="phcnHrsPerDay" />
 				</p>
 				<p>
+				<span id="radioBtnPiuInstalled">
 					<label><spring:message code="fieldapp.label.dv.hybrid.piu.installed"/> </label> 
 					<label style="width: 50px;"><form:radiobutton path="hybridOrPiuInstalled" value="true" /><spring:message code="fieldapp.label.yes.value"/></label>
 					<label style="width: 50px;"><form:radiobutton path="hybridOrPiuInstalled" value="false" /><spring:message code="fieldapp.label.no.value"/></label>
+				</span>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.dv.hybrid.piu.hrs.per.day"/></label> 
