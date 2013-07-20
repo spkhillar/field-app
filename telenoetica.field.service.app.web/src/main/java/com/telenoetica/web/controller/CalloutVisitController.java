@@ -96,7 +96,7 @@ public class CalloutVisitController extends AbstractJqGridFilterController {
    */
   @RequestMapping(value = "/new")
   public String create(final Model model) {
-    model.addAttribute("currentViewTitle", "Callout Visit");
+    model.addAttribute("currentViewTitle", "Call-Out Visit");
     return "callout.new";
   }
 

@@ -198,11 +198,11 @@
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.mv.run.hours.dg.1"/>  <em>*</em> </label> 
+					<label><spring:message code="fieldapp.label.mv.run.hours.dg.1"/>  </label> 
 					<form:input path="runHoursAfterPmdG1"/>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.mv.run.hours.dg.2"/>  <em>*</em> </label> 
+					<label><spring:message code="fieldapp.label.mv.run.hours.dg.2"/>  </label> 
 					<form:input path="runHourAfterPmdG2"/>
 				</p>
 		</fieldset>

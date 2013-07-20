@@ -70,7 +70,7 @@ webContextPath="${pageContext.request.contextPath}";
 				</li>
 				<li><a href="${contextPath}/diesel/new">Diesel Visit</a>
 				</li>
-				<li><a href="${contextPath}/callout/new">Call Out Visit</a>			
+				<li><a href="${contextPath}/callout/new">Call-Out Visit</a>			
 				</li>
 				<li><a href="${contextPath}/maintenance/new">Maintenance Visit</a>
 				</li>
@@ -81,7 +81,7 @@ webContextPath="${pageContext.request.contextPath}";
 			<ul>
 				<li><a href="${contextPath}/routine/list">Routine Visit</a></li>
 				<li><a href="${contextPath}/diesel/list">Diesel Visit</a></li>
-				<li><a href="${contextPath}/callout/list">Call Out Visit</a></li>
+				<li><a href="${contextPath}/callout/list">Call-Out Visit</a></li>
 				<li><a href="${contextPath}/maintenance/list">Maintenance Visit</a></li>
 				<li><a href="${contextPath}/reportDownload/monthlyReport/diesel">Diesel Details</a></li>
 				<li><a href="${contextPath}/reportDownload/monthlyReport/spares">Spares Utilization</a></li>

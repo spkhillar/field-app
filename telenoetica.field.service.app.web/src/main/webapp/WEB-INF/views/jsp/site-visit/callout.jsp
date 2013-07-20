@@ -28,7 +28,6 @@
 				  required : true
 		       },
 		      "callOutCsrOrTtNumber" : {
-				  number : true,
 				  required : true
 			   },
 				"timeComplainReceived" : {
@@ -62,7 +61,7 @@
 	        }
 			}
 			return true;
-		}, "Time enterd is not in correct sequence.");
+		}, "Time entered is not in correct sequence.");
 		
 		var timeOptions={
 				dateFormat : "dd/mm/yy",
@@ -90,11 +89,28 @@
 		$('#equipmentComponentCausedFault').html(htmlEquipmentOptions);
 		$('#equipmentComponentRepaired').html(htmlEquipmentOptions);
 		$('#equipmentComponentReplaced').html(htmlEquipmentOptions);
+		bulkOrTransferEnableText();
 		$("#save").button();
 		$("#reset").button();
 		
 		
 	});
+	
+	function bulkOrTransferEnableText(){
+		$("#fixResolutionEnable input[type=radio]").each(function(i){
+		    $(this).click(function () {
+		    	if(i==1) { //Permanent
+		    		$("#actionsRequiredForPermanentResolution").attr("disabled", "disabled"); 
+		    		$("#actionsRequiredForPermanentResolution").val("");
+		    	}
+		    	else { //Temp
+		    		$("#actionsRequiredForPermanentResolution").removeAttr("disabled"); 
+		    		$("#actionsRequiredForPermanentResolution").val("");
+		    	}
+		      });
+
+		  });
+	}
 	
 	function test(){
 
@@ -220,19 +236,21 @@ function refreshCalloutData(){
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.cv.equipment.componenet.repaired"/></label> 
+					<label><spring:message code="fieldapp.label.cv.equipment.component.repaired"/></label> 
 					<form:select id="equipmentComponentRepaired" path="equipmentComponentRepaired">
 					</form:select>
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.cv.equipment.componenet.replaced"/></label> 
+					<label><spring:message code="fieldapp.label.cv.equipment.component.replaced"/></label> 
 					<form:select id="equipmentComponentReplaced" path="equipmentComponentReplaced">
 					</form:select>
 				</p>
 				<p>
+				<span id="fixResolutionEnable">
 					<label><spring:message code="fieldapp.label.cv.fix.temporary.permanent"/> </label> 
-					<label style="width: 50px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Temporary" /><spring:message code="fieldapp.label.yes.value"/> </label>
-					<label style="width: 50px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Permanent" /><spring:message code="fieldapp.label.no.value"/></label>
+					<label style="width: 100px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Temporary" /><spring:message code="fieldapp.label.temporary.value"/> </label>
+					<label style="width: 100px;"><form:radiobutton path="fixResolutionTemporaryOrPermanent" value="Permanent" /><spring:message code="fieldapp.label.permanent.value"/></label>
+					</span>
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.cv.actions.required.for.permanent.resolution"/></label> 

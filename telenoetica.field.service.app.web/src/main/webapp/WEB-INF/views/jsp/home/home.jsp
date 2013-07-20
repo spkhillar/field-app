@@ -77,7 +77,7 @@
 	}
 	function drawGraph(input) {
 		$.jqplot.config.enablePlugins = true;
-		var ticks = [ 'Routine Visit', 'Callout Visit', 'Diesel Visit',
+		var ticks = [ 'Routine Visit', 'Call-Out Visit', 'Diesel Visit',
 				'Maintenance Visit' ];
 		plot1 = $.jqplot('chartdiv', [ input ], {
 			// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
