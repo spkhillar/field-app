@@ -45,7 +45,6 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
 
     final Context context = this;
     buttonSubmit = (Button) findViewById(R.id.btn_mv_submit);
-    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
     buttonSubmit.setOnClickListener(new OnClickListener() {
 
       @Override
@@ -53,17 +52,24 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
 
         // Intent intent = new Intent(context, CalloutVisit.class);
         // startActivity(intent);
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll3_mv);
-        List<String> errorList = new ArrayList<String>();
-        getTargetObject(group, valueMap, errorList);
-        if (CollectionUtils.isEmpty(errorList)) {
-          MaintenanceVisit maintenanceVisit = new MaintenanceVisit();
-          maintenanceVisit.setUserId(AppValuesHolder.getCurrentUser());
-          saveVisit(maintenanceVisit, valueMap);
-        } else {
-          LOGGER.error("Validation failed");
-        }
+        renderConfirmationDialog();
       }
     });
   }
+
+  @Override
+  public void saveCurrentActivity() {
+    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
+    ViewGroup group = (ViewGroup) findViewById(R.id.ll3_mv);
+    List<String> errorList = new ArrayList<String>();
+    getTargetObject(group, valueMap, errorList);
+    if (CollectionUtils.isEmpty(errorList)) {
+      MaintenanceVisit maintenanceVisit = new MaintenanceVisit();
+      maintenanceVisit.setUserId(AppValuesHolder.getCurrentUser());
+      saveVisit(maintenanceVisit, valueMap);
+    } else {
+      LOGGER.error("Validation failed");
+    }
+  }
+
 }

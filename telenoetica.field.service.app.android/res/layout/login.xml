@@ -59,6 +59,7 @@
             <!-- Uid Label -->
 
             <TextView
+                android:id="@+id/textViewUserId"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="User ID"
@@ -82,6 +83,7 @@
             <!-- Password Label -->
 
             <TextView
+                android:id="@+id/textViewPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Password"
@@ -109,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dip"
                 android:text="LOGIN"
-                android:textColor="#FFFFFF"
+                android:textColor="#333333"
                 android:background="@drawable/button" />
           
              <TextView

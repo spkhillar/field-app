@@ -64,7 +64,7 @@
                 android:layout_marginTop="30dip"
                 android:background="@drawable/button"
                 android:text="Routine Visit"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
 
             <Button
                 android:id="@+id/button_dv"
@@ -75,7 +75,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Diesel Visit"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
 
             <Button
                 android:id="@+id/button_mv"
@@ -86,7 +86,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Maintenance Visit"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
 
             <Button
                 android:id="@+id/button_cv"
@@ -97,7 +97,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Call-Out Visit"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
             
              <Button
                 android:id="@+id/button_send_to_server"
@@ -108,7 +108,7 @@
                 android:background="@drawable/button"
                 android:layout_marginTop="10dip"
                 android:text="Send To Server"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
 
             <Button
                 android:id="@+id/button_configure"
@@ -119,7 +119,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Configure"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
 
             <Button
                 android:id="@+id/button_exit"
@@ -130,7 +130,7 @@
                 android:layout_marginTop="10dip"
                 android:background="@drawable/button"
                 android:text="Exit"
-                android:textColor="#FFFFFF" />
+                android:textColor="#333333" />
         </LinearLayout>
 
         <!-- Main Menu Form -->

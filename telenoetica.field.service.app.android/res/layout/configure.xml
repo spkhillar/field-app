@@ -68,7 +68,7 @@
         android:background="@drawable/button"
         android:layout_height="wrap_content"
         android:text="Save"
-        android:textColor="#FFFFFF" />
+        android:textColor="#333333" />
    
 </TableLayout>
 </LinearLayout>

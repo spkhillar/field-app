@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.telenoetica.android.rest.AppValuesHolder;
@@ -30,16 +31,22 @@ public class LoginActivity extends ApplicationBaseActivity {
   private EditText userName;
   private EditText password;
   private boolean userExistsInLocal;
+  private TextView uid;
+  private TextView pwd;
 
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     setContentView(R.layout.login);
     addListenerOnButtonLogin();
+    uid = (TextView) findViewById(R.id.textViewUserId);
+    pwd = (TextView) findViewById(R.id.textViewPassword);
+    uid.setTextSize(20);
+    pwd.setTextSize(20);
   }
 
-
-
-  /** (non-Javadoc)
+  /**
+   * (non-Javadoc)
+   * 
    * @see android.app.Activity#onBackPressed()
    */
   @Override
@@ -47,9 +54,8 @@ public class LoginActivity extends ApplicationBaseActivity {
     System.exit(0);
   }
 
-
-
   public void addListenerOnButtonLogin() {
+
     buttonLogin = (Button) findViewById(R.id.btn1_main);
     buttonLogin.setOnClickListener(new OnClickListener() {
       @Override
@@ -96,7 +102,6 @@ public class LoginActivity extends ApplicationBaseActivity {
     AppValuesHolder.setCurrentUser(uname);
     AppValuesHolder.setCurrentUserPassword(pwd);
   }
-
 
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
     private ProgressDialog pd;

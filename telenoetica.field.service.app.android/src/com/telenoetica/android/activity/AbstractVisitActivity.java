@@ -14,6 +14,8 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.Editable;
 import android.view.View;
@@ -184,5 +186,31 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
     throw new IllegalArgumentException(clazz.getName() + "Not in List");
   }
+
+  public void renderConfirmationDialog() {
+
+    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+    alertDialog.setTitle("Save");
+    alertDialog.setMessage("Are you sure you want save this?");
+
+    alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(final DialogInterface dialog, final int which) {
+        saveCurrentActivity();
+      }
+    });
+
+    alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(final DialogInterface dialog, final int which) {
+        // Write your code here to invoke NO event
+        dialog.cancel();
+      }
+    });
+    alertDialog.show();
+
+  }
+
+  public abstract void saveCurrentActivity();
 
 }

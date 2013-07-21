@@ -134,7 +134,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
-                    android:id="@+id/radioyesno"
+                    android:id="@+id/radioTransferBulk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -142,14 +142,14 @@
                     >
 
                     <RadioButton
-                        android:id="@+id/radiotransfer"
+                        android:id="@+id/radioTransfer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
                         android:text="@string/Transfer" />
 
                     <RadioButton
-                        android:id="@+id/radiobulk"
+                        android:id="@+id/radioBulk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
@@ -169,7 +169,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/button1"
+                    android:id="@+id/etTransfer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
@@ -194,7 +194,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/button1"
+                    android:id="@+id/etBulk"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
@@ -354,7 +354,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
-                    android:id="@+id/radioyesno"
+                    android:id="@+id/radioDrnBookAtSite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -387,7 +387,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
-                    android:id="@+id/radioyesno"
+                    android:id="@+id/radioDieselLogBookMaintained"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -420,21 +420,21 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
-                    android:id="@+id/radioyesno"
+                    android:id="@+id/radioPhcnInstalled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:tag="phcnInstalled" >
 
                     <RadioButton
-                        android:id="@+id/radioyes"
+                        android:id="@+id/radioPhcnInstalledYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
                         android:text="@string/Yes" />
 
                     <RadioButton
-                        android:id="@+id/radiono"
+                        android:id="@+id/radioPhcnInstalledNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/No" />
@@ -453,7 +453,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editTextPHCNHoursPerDay"
+                    android:id="@+id/etPHCNHoursPerDay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
@@ -480,21 +480,21 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RadioGroup
-                    android:id="@+id/radioyesno"
+                    android:id="@+id/radioHybridPiuInstalled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:tag="hybridOrPiuInstalled" >
 
                     <RadioButton
-                        android:id="@+id/radioyes"
+                        android:id="@+id/radioHybridPiuInstalledYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
                         android:text="@string/Yes" />
 
                     <RadioButton
-                        android:id="@+id/radiono"
+                        android:id="@+id/radioHybridPiuInstalledNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/No" />
@@ -513,7 +513,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/button1"
+                    android:id="@+id/etHybridPiuHoursPerDay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
@@ -542,7 +542,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button"
                     android:text="Save"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#333333" />
             </TableRow>
         </TableLayout>
     </ScrollView>

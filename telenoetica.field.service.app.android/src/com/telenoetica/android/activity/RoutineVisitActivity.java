@@ -28,23 +28,32 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
 
   public void addListenerOnButtonSubmit() {
     button1 = (Button) findViewById(R.id.btn_rv_submit);
-    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
     button1.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
         // Intent intent = new Intent(context, MainMenu.class);
         // startActivity(intent);
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
-        List<String> errorList = new ArrayList<String>();
-        getTargetObject(group, valueMap, errorList);
-        if (CollectionUtils.isEmpty(errorList)) {
-          RoutineVisit routineVisit = new RoutineVisit();
-          routineVisit.setUserId(AppValuesHolder.getCurrentUser());
-          saveVisit(routineVisit, valueMap);
-        } else {
-          LOGGER.error("Validation failed");
-        }
+        // Write your code here to invoke YES event
+        // Toast.makeText(getApplicationContext(), "You clicked on YES",
+        // Toast.LENGTH_SHORT).show();
+        renderConfirmationDialog();
       }
     });
   }
+
+  @Override
+  public void saveCurrentActivity() {
+    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
+    ViewGroup group = (ViewGroup) findViewById(R.id.ll1_rv);
+    List<String> errorList = new ArrayList<String>();
+    getTargetObject(group, valueMap, errorList);
+    if (CollectionUtils.isEmpty(errorList)) {
+      RoutineVisit routineVisit = new RoutineVisit();
+      routineVisit.setUserId(AppValuesHolder.getCurrentUser());
+      saveVisit(routineVisit, valueMap);
+    } else {
+      LOGGER.error("Validation failed");
+    }
+  }
+
 }

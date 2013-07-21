@@ -563,6 +563,7 @@
                         android:id="@+id/rb_rv_airconofshelter1cooling_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="@string/No" />
 
                     <RadioButton
@@ -600,6 +601,7 @@
                         android:id="@+id/rb_rv_airconofshelter2cooling_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="@string/No" />
 
                     <RadioButton
@@ -637,6 +639,7 @@
                         android:id="@+id/rb_rv_airconofshelter3cooling_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="@string/No" />
 
                     <RadioButton
@@ -674,6 +677,7 @@
                         android:id="@+id/rb_rv_airconofshelter4cooling_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="@string/No" />
 
                     <RadioButton
@@ -698,7 +702,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button"
                     android:text="Save"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#333333" />
             </TableRow>
         </TableLayout>
     </ScrollView>

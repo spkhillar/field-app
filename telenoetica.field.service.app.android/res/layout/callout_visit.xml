@@ -113,7 +113,6 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
-                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
@@ -138,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:text="Date and Time"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#333333"
                     android:background="@drawable/button"/>
             </TableRow>
 
@@ -185,7 +184,7 @@
 
                     <TextView
                         android:id="@+id/textView1"
-                        android:text="Time Reached"
+                        android:text="Site arrival time"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
                     
                     <Button
@@ -193,7 +192,7 @@
                         android:layout_width="0dip"
                         android:background="@drawable/button"
                         android:layout_height="wrap_content"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#333333"
                         android:layout_weight="50"
                         android:text="Date and Time" />
                 </TableRow>
@@ -240,7 +239,7 @@
 
                     <TextView
                         android:id="@+id/textView1"
-                        android:text="Fault resolved"
+                        android:text="Fault Resolution Time"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
                     
                     
@@ -250,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:background="@drawable/button"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#333333"
                         android:text="Date and Time" />
                 </TableRow>
 
@@ -518,7 +517,7 @@
                         android:layout_weight="1"
                         android:text="Save" 
                         android:layout_marginRight="2dip"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#333333"
                         android:background="@drawable/button"/>
 
                 </TableRow>

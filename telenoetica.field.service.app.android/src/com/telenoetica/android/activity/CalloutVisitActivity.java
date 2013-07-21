@@ -48,29 +48,12 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
 
   public void addListenerOnButtonSubmit() {
     buttonSubmit = (Button) findViewById(R.id.btn_cv_submit);
-    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
     buttonSubmit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
         // Intent intent = new Intent(context, MainMenu.class);
         // startActivity(intent);
-        ViewGroup group = (ViewGroup) findViewById(R.id.ll4_cv);
-        List<String> errorList = new ArrayList<String>();
-        getTargetObject(group, valueMap, errorList);
-        if (CollectionUtils.isEmpty(errorList)) {
-          CallOutVisit callOutVisit = new CallOutVisit();
-          callOutVisit.setUserId(AppValuesHolder.getCurrentUser());
-          Date date = getDateTime(R.id.faultResolvedDateTime);
-          callOutVisit.settimeFaultResolved(date);
-          date = getDateTime(R.id.complaintRecievedDateTime);
-          callOutVisit.setTimeComplainReceived(date);
-          date = getDateTime(R.id.timeReachedDateTime);
-          callOutVisit.setTimeReachedToSite(date);
-
-          saveVisit(callOutVisit, valueMap);
-        } else {
-          LOGGER.error("Validation failed");
-        }
+        renderConfirmationDialog();
       }
     });
   }
@@ -327,4 +310,28 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     addItemsOnSpinner(R.id.spinner_equip_comp_repaired, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_equip_comp_replaced, AppValuesHolder.getSpares());
   }
+
+  @Override
+  public void saveCurrentActivity() {
+    // TODO Auto-generated method stub
+    final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();
+    ViewGroup group = (ViewGroup) findViewById(R.id.ll4_cv);
+    List<String> errorList = new ArrayList<String>();
+    getTargetObject(group, valueMap, errorList);
+    if (CollectionUtils.isEmpty(errorList)) {
+      CallOutVisit callOutVisit = new CallOutVisit();
+      callOutVisit.setUserId(AppValuesHolder.getCurrentUser());
+      Date date = getDateTime(R.id.faultResolvedDateTime);
+      callOutVisit.settimeFaultResolved(date);
+      date = getDateTime(R.id.complaintRecievedDateTime);
+      callOutVisit.setTimeComplainReceived(date);
+      date = getDateTime(R.id.timeReachedDateTime);
+      callOutVisit.setTimeReachedToSite(date);
+
+      saveVisit(callOutVisit, valueMap);
+    } else {
+      LOGGER.error("Validation failed");
+    }
+  }
+
 }
