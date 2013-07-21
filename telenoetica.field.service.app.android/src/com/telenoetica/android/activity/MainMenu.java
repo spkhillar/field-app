@@ -15,7 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.HttpClientErrorException;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -76,6 +78,7 @@ public class MainMenu extends ApplicationBaseActivity {
         }
       }
     });
+
   }
 
   public void addListenerOnButtonRV() {
@@ -138,8 +141,7 @@ public class MainMenu extends ApplicationBaseActivity {
     btnExit.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
-        System.runFinalization();
-        System.exit(0);
+        exitConfirmationDialog();
       }
     });
   }
@@ -216,6 +218,8 @@ public class MainMenu extends ApplicationBaseActivity {
       LOGGER.debug("...Total Time..." + total);
       if (errorCode == 0) {
         response = new RestResponse(0, "Sent successfully.");
+        Intent intent = new Intent(context, ReportActivity.class);
+        startActivity(intent);
       } else {
         response = new RestResponse(1, "Sending failed.");
       }
@@ -224,7 +228,7 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-    JsonMappingException, IOException {
+        JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 
@@ -247,6 +251,31 @@ public class MainMenu extends ApplicationBaseActivity {
       pd.dismiss();
       doWithResponse(restResponse);
     }
+  }
+
+  public void exitConfirmationDialog() {
+
+    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+    alertDialog.setTitle("Exit");
+    alertDialog.setMessage("Are you sure?");
+
+    alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(final DialogInterface dialog, final int which) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        startActivity(intent);
+      }
+    });
+
+    alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(final DialogInterface dialog, final int which) {
+        // Write your code here to invoke NO event
+        dialog.cancel();
+      }
+    });
+    alertDialog.show();
+
   }
 
 }

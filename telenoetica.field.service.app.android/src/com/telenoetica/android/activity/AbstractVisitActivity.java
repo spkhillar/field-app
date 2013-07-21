@@ -191,7 +191,7 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
     alertDialog.setTitle("Save");
-    alertDialog.setMessage("Are you sure you want save this?");
+    alertDialog.setMessage("Are you sure?");
 
     alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
       @Override

@@ -53,6 +53,11 @@
             android:name=".ConfigureActivity"
             android:label="@string/app_name">
         </activity>
+        
+         <activity
+            android:name=".ReportActivity"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>
