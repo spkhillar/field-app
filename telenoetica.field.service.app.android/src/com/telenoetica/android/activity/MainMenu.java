@@ -147,6 +147,8 @@ public class MainMenu extends ApplicationBaseActivity {
   }
 
   public void doWithResponse(final RestResponse restResponse) {
+    List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
+    int count = dataList.size();
     if (restResponse != null) {
       if (restResponse.getStatusCode() == 401) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -156,7 +158,7 @@ public class MainMenu extends ApplicationBaseActivity {
       } else if (restResponse.getStatusCode() != 0) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
       } else {
-        Toast.makeText(this, "Send to server successfull", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Send to server successfull." + count + "records sent.", Toast.LENGTH_SHORT).show();
       }
 
     }

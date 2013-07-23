@@ -15,6 +15,6 @@
     <string name="Not_Applicable">Not Applicable</string>
     <string name="btn_display">Display</string>
     <string name="spinner_title">Browse and Select</string>
-    <string name="host_id">http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp</string>
+    <string name="host_id">http://192.168.1.102:8080/fieldapp</string>
 	
 </resources>

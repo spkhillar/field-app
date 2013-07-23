@@ -22,7 +22,7 @@ public class AppValuesHolder {
 
   private static String currentUserPassword;
 
-  private static String host="http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp";
+  private static String host = "http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp";
 
   public static List<String> getSites() {
     return sites;
@@ -88,7 +88,7 @@ public class AppValuesHolder {
     AppValuesHolder.host = host;
   }
 
-  public static void resetConfigData(){
+  public static void resetConfigData() {
     AppValuesHolder.clients.clear();
     AppValuesHolder.clients.add(DEFAULT_ITEM[0]);
     AppValuesHolder.faults.clear();

@@ -15,19 +15,20 @@ public class CalloutAsyncTask extends AsyncTask<Object, Void, String> {
   protected String doInBackground(final Object... params) {
 
     System.err.println("...spring app- rest123--");
-    String url = "http://192.168.1.2:8080/fieldapp/rest/auth";
+    String url = "http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp";
     String userName = params[0].toString();
     String password = params[1].toString();
     CallOutVisit visit = (CallOutVisit) params[2];
-   
-    url="http://192.168.1.2:8080/fieldapp/callout/rest";
-    RestResponse response = RestClient.INSTANCE.executeRest(url,userName,password, HttpMethod.POST, visit, RestResponse.class, MediaType.APPLICATION_JSON);
-    if(response != null){
-      System.err.println("..callout request..."+response.getMessage());
+
+    url = "http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp";
+    RestResponse response =
+        RestClient.INSTANCE.executeRest(url, userName, password, HttpMethod.POST, visit, RestResponse.class,
+          MediaType.APPLICATION_JSON);
+    if (response != null) {
+      System.err.println("..callout request..." + response.getMessage());
     }
 
     return null;
   }
-
 
 }
