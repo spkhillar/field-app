@@ -53,7 +53,9 @@
 		$('#cosumablesUsed6').html(htmlEquipmentOptions);
 		$("#save").button();
 		$("#reset").button();
-
+		$( "#siteId" ).autocomplete({
+		      source: homeSiteArray
+		    });
 	});
 
 	function test() {

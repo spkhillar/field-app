@@ -92,7 +92,9 @@
 		bulkOrTransferEnableText();
 		$("#save").button();
 		$("#reset").button();
-		
+		$( "#siteId" ).autocomplete({
+		      source: homeSiteArray
+		    });
 		
 	});
 	

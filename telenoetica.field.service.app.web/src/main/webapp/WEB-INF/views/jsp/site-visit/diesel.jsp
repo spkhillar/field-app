@@ -99,7 +99,9 @@
 		bulkOrTransferEnableText();
 		radioBtnPiuInstalledEnableText();
 		radioBtnPhcnInstalledText();
-		
+		$( "#siteId" ).autocomplete({
+		      source: homeSiteArray
+		    });
 		$('#bulkNameOfVendor').html(htmlDieselVendorOptions);		
 	});
 	
