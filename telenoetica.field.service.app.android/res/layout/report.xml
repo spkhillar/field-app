@@ -28,6 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
+                    android:textStyle="bold"
                     android:src="@drawable/logo" />
                 <!-- Logo Ends -->
 
@@ -49,18 +50,21 @@
 
                 <TextView
                     android:text="Routine Visit"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" 
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/tvReportSiteId"
+                    android:id="@+id/reportRoutineVisit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
-                    android:text="1"
-                    android:singleLine="true"/>
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
             
              <TableRow
@@ -71,18 +75,21 @@
 
                 <TextView
                     android:text="Diesel Visit"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                     android:textAppearance="?android:attr/textAppearanceLarge" 
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvReportSiteId"
+                    android:id="@+id/reportDieselVisit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
-                    android:text="2"
-                    android:singleLine="true"/>
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
             
               <TableRow
@@ -93,18 +100,21 @@
 
                 <TextView
                     android:text="Maintenance Visit"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceLarge" 
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/tvReportSiteId"
+                    android:id="@+id/reportMaintenanceVisit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
+                    android:text="0"
+                    android:textStyle="bold"
                     android:paddingRight="10dip"
-                    android:text="3"
-                    android:singleLine="true"/>
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
             
                <TableRow
@@ -114,19 +124,22 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Callout Visit"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:text="Call-Out Visit"
+                     android:textAppearance="?android:attr/textAppearanceLarge" 
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/tvReportSiteId"
+                    android:id="@+id/reportCalloutVisit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:gravity="center_horizontal"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
-                    android:text="4"
-                    android:singleLine="true"/>
+                    android:text="0"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
             </TableRow>
             
                <LinearLayout

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Spinner;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.DieselVisit;
@@ -43,6 +44,8 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     registerListenerForDieselTransferOrBulk();
     registerListenerForPhcn();
     registerListenerForHybridPiu();
+    addItemsOnSpinner(R.id.etBulk, AppValuesHolder.getDieselVendors());
+
   }
 
   @Override
@@ -68,11 +71,11 @@ public class DieselVisitActivity extends AbstractVisitActivity {
       public void onCheckedChanged(final RadioGroup group, final int checkedId) {
         // checkedId is the RadioButton selected
         if (R.id.radioBulk == checkedId) {
-          EditText edt = (EditText) findViewById(R.id.etBulk);
-          edt.setEnabled(true);
-          edt.setInputType(InputType.TYPE_CLASS_NUMBER);
-          edt.setFocusableInTouchMode(true);
-          edt.requestFocus();
+
+          Spinner spinnerDieselVendor = (Spinner) findViewById(R.id.etBulk);
+          spinnerDieselVendor.setEnabled(true);
+          spinnerDieselVendor.setFocusableInTouchMode(true);
+          spinnerDieselVendor.requestFocus();
           EditText edt2 = (EditText) findViewById(R.id.etTransfer);
           edt2.setEnabled(false);
           edt2.setInputType(InputType.TYPE_NULL);
@@ -86,11 +89,10 @@ public class DieselVisitActivity extends AbstractVisitActivity {
           edt.setInputType(InputType.TYPE_CLASS_NUMBER);
           edt.setFocusableInTouchMode(true);
           edt.requestFocus();
-          EditText edt2 = (EditText) findViewById(R.id.etBulk);
-          edt2.setEnabled(false);
-          edt2.setInputType(InputType.TYPE_NULL);
-          edt2.setFocusableInTouchMode(false);
-          edt2.clearFocus();
+          Spinner spinnerDieselVendor = (Spinner) findViewById(R.id.etBulk);
+          spinnerDieselVendor.setEnabled(false);
+          spinnerDieselVendor.setFocusableInTouchMode(false);
+          spinnerDieselVendor.clearFocus();
         }
 
       }

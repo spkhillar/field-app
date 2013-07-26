@@ -26,7 +26,7 @@ public class AppValuesHolder {
 
   private static String currentUserPassword;
 
-  private static String host = "http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp";
+  private static String host = "http://192.168.1.100:8082/fieldapp";
 
   private static Map<String, Long> sendToServerCountMap = new HashMap<String, Long>();
 
@@ -94,10 +94,11 @@ public class AppValuesHolder {
   }
 
   /**
-   * @param dieselVendors the dieselVendors to set
+   * @param dieselVendors
+   *          the dieselVendors to set
    */
   public static void setDieselVendors(final List<String> dieselVendors) {
-    AppValuesHolder.dieselVendors = dieselVendors;
+    AppValuesHolder.dieselVendors.addAll(dieselVendors);
   }
 
   public static String getHost() {
@@ -108,17 +109,21 @@ public class AppValuesHolder {
     AppValuesHolder.host = host;
   }
 
-  public static void addSentRecord(final String clazz){
+  public static void addSentRecord(final String clazz) {
     Long currentCount = AppValuesHolder.sendToServerCountMap.get(clazz);
-    if(currentCount == null){
+    if (currentCount == null) {
       AppValuesHolder.sendToServerCountMap.put(clazz, 1l);
-    }else{
+    } else {
       AppValuesHolder.sendToServerCountMap.put(clazz, currentCount.longValue() + 1l);
     }
   }
 
-  public static void clearSentRecordCount(){
+  public static void clearSentRecordCount() {
     AppValuesHolder.sendToServerCountMap.clear();
+  }
+
+  public static Map<String, Long> getSentRecordCountMap() {
+    return AppValuesHolder.sendToServerCountMap;
   }
 
   public static void resetConfigData() {

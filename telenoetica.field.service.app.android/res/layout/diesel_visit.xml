@@ -194,17 +194,12 @@
                     android:text="Bulk Vendor Name"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/etBulk"
-                    android:layout_width="0dp"
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:background="@drawable/shape"
-                    android:gravity="center_horizontal"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="10dip"
-                    android:shape="rectangle"
-                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:prompt="@string/spinner_title"
                     android:tag="bulkNameOfVendor" />
             </TableRow>
 
