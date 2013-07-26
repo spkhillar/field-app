@@ -59,7 +59,7 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
 
   /** The system configuration. */
   @Autowired
-  SystemConfiguration systemConfiguration;
+  private SystemConfiguration systemConfiguration;
 
   /**
    * Gets the android home object.
@@ -81,8 +81,10 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
           String.class);
     List<String> spares = genericQueryExecutorDAO.executeQuery(
       "select name from Spare", String.class);
+    List<String> dieselVendors = genericQueryExecutorDAO.executeQuery(
+      "select name from DieselVendor", String.class);
     HomeAndroidObject homeAndroidObject = new HomeAndroidObject(sites,
-      spares, clients, faults, maintenanceCategories);
+      spares, clients, faults, maintenanceCategories,dieselVendors);
     return homeAndroidObject;
   }
 

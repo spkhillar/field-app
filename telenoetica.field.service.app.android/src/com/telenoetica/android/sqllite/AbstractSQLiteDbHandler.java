@@ -26,7 +26,7 @@ public abstract class AbstractSQLiteDbHandler extends SQLiteOpenHelper {
   private Context context;
 
   protected static final String[] SPINNER_TABLE_NAMES =
-      new String[] { "spare", "client", "fault", "site", "maintenance" };
+      new String[] { "spare", "client", "fault", "site", "maintenance","diesel_vendor" };
 
   protected static final List<String> FINAL_TABLE_LIST = new ArrayList<String>(Arrays.asList(SPINNER_TABLE_NAMES));
 
@@ -130,15 +130,19 @@ public abstract class AbstractSQLiteDbHandler extends SQLiteOpenHelper {
     return FINAL_TABLE_LIST.get(4);
   }
 
-  public String getConfigurationsTable(){
+  public String getDieselVendor(){
     return FINAL_TABLE_LIST.get(5);
   }
 
-  public String getCredentialsTable(){
+  public String getConfigurationsTable(){
     return FINAL_TABLE_LIST.get(6);
   }
 
-  public String getVistisTable(){
+  public String getCredentialsTable(){
     return FINAL_TABLE_LIST.get(7);
+  }
+
+  public String getVistisTable(){
+    return FINAL_TABLE_LIST.get(8);
   }
 }

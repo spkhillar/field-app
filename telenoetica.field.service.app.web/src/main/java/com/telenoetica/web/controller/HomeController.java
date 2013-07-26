@@ -77,18 +77,23 @@ public class HomeController {
   @Autowired
   private MaintenanceVisitCategoryService maintenanceVisitCategoryService;
 
+  /** The call out visit service. */
   @Autowired
   private CallOutVisitService callOutVisitService;
 
+  /** The diesel visit service. */
   @Autowired
   private DieselVisitService dieselVisitService;
 
+  /** The routine visit service. */
   @Autowired
   private RoutineVisitService routineVisitService;
 
+  /** The maintenance visit service. */
   @Autowired
   private MaintenanceVisitService maintenanceVisitService;
 
+  /** The android home service. */
   @Autowired
   private AndroidHomeService androidHomeService;
 
@@ -104,15 +109,11 @@ public class HomeController {
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String home(final Locale locale, final Model model) {
     logger.info("Welcome home! The client locale is {}.", locale);
-
     Date date = new Date();
     DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
       DateFormat.LONG, locale);
-
     String formattedDate = dateFormat.format(date);
-
     model.addAttribute("serverTime", formattedDate);
-
     return "home";
   }
 
@@ -202,39 +203,54 @@ public class HomeController {
     return webHomeData;
   }
 
+  /**
+   * Under construction.
+   *
+   * @return the string
+   */
   @RequestMapping(value = "/underconstruction", method = RequestMethod.GET)
   public String underConstruction() {
     return "under.construction";
   }
 
+  /**
+   * Android home data.
+   *
+   * @return the home android object
+   */
   @RequestMapping(value = "/rest/home", method = RequestMethod.GET, produces = "application/json")
   @ResponseBody
   public HomeAndroidObject androidHomeData() {
-
     Date start = new Date();
     HomeAndroidObject homeAndroidObject = androidHomeService
         .getAndroidHomeObject();
-
     System.err.println("...." + homeAndroidObject);
-
     Date end = new Date();
     long total = end.getTime() - start.getTime();
-
     System.err.println(total + "-----HomeAndroidObject.......End-----"
         + new Date());
     return homeAndroidObject;
   }
 
+  /**
+   * Help.
+   *
+   * @return the string
+   */
   @RequestMapping(value = "/help", method = RequestMethod.GET)
   public String help() {
     return "app.help";
   }
 
-	@RequestMapping(value = "/downloadAndroidApp")
-	@ResponseBody
-	public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
-
-		androidHomeService.exportAndroidApp(httpServletResponse);
-	}
+  /**
+   * Export android app.
+   *
+   * @param httpServletResponse the http servlet response
+   */
+  @RequestMapping(value = "/downloadAndroidApp")
+  @ResponseBody
+  public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
+    androidHomeService.exportAndroidApp(httpServletResponse);
+  }
 
 }

@@ -18,6 +18,8 @@ public class AppValuesHolder {
 
   private static List<String> maintenanceCategories = new ArrayList<String>(Arrays.asList(DEFAULT_ITEM));
 
+  private static List<String> dieselVendors = new ArrayList<String>(Arrays.asList(DEFAULT_ITEM));
+
   private static String currentUser;
 
   private static String currentUserPassword;
@@ -80,6 +82,20 @@ public class AppValuesHolder {
     AppValuesHolder.currentUserPassword = currentUserPassword;
   }
 
+  /**
+   * @return the dieselVendors
+   */
+  public static List<String> getDieselVendors() {
+    return dieselVendors;
+  }
+
+  /**
+   * @param dieselVendors the dieselVendors to set
+   */
+  public static void setDieselVendors(final List<String> dieselVendors) {
+    AppValuesHolder.dieselVendors = dieselVendors;
+  }
+
   public static String getHost() {
     return host;
   }
@@ -99,6 +115,8 @@ public class AppValuesHolder {
     AppValuesHolder.sites.add(DEFAULT_ITEM[0]);
     AppValuesHolder.spares.clear();
     AppValuesHolder.spares.add(DEFAULT_ITEM[0]);
+    AppValuesHolder.dieselVendors.clear();
+    AppValuesHolder.dieselVendors.add(DEFAULT_ITEM[0]);
   }
 
 }

@@ -25,7 +25,7 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     SQLiteDatabase db = getWritableDatabase();
     String selectQuery =
         "SELECT  * FROM " + getCredentialsTable() + " where username='" + username + "' and password='" + password
-            + "'";
+        + "'";
     LOGGER.debug("validateUser .. Checking " + username + " in Phone Db.");
     boolean found = false;
     try {
@@ -120,6 +120,11 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     if (AppValuesHolder.getSpares().size() == 1) {
       dataList = getNamesList(db, selectQuery);
       AppValuesHolder.setSpares(dataList);
+    }
+    selectQuery = baseQuery + getDieselVendor();
+    if (AppValuesHolder.getDieselVendors().size() == 1) {
+      dataList = getNamesList(db, selectQuery);
+      AppValuesHolder.setDieselVendors(dataList);
     }
     db.close();
   }
@@ -262,6 +267,10 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     if (!CollectionUtils.isEmpty(AppValuesHolder.getSites())) {
       sql = getBaseDataInsertSql(getSitesTable());
       insertBaseData(db, sql, AppValuesHolder.getSites());
+    }
+    if (!CollectionUtils.isEmpty(AppValuesHolder.getDieselVendors())) {
+      sql = getBaseDataInsertSql(getDieselVendor());
+      insertBaseData(db, sql, AppValuesHolder.getDieselVendors());
     }
   }
 

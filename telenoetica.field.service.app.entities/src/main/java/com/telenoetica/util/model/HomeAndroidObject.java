@@ -35,7 +35,11 @@ public class HomeAndroidObject {
 
   /** The maintenance categories. */
   @JsonProperty
-  List<String> maintenanceCategories = new ArrayList<String>(10);
+  private List<String> maintenanceCategories = new ArrayList<String>(10);
+
+  /** The maintenance categories. */
+  @JsonProperty
+  private List<String> dieselVendors = new ArrayList<String>(10);
 
 
 
@@ -56,13 +60,14 @@ public class HomeAndroidObject {
    * @param maintenanceCategories the maintenance categories
    */
   public HomeAndroidObject(final List<String> sites, final List<String> spares, final List<String> clients, final List<String> faults,
-      final List<String> maintenanceCategories) {
+      final List<String> maintenanceCategories,final List<String> dieselVendors ) {
     super();
     this.sites = sites;
     this.spares = spares;
     this.clients = clients;
     this.faults = faults;
     this.maintenanceCategories = maintenanceCategories;
+    this.dieselVendors = dieselVendors;
   }
 
 
@@ -157,17 +162,61 @@ public class HomeAndroidObject {
     this.maintenanceCategories = maintenanceCategories;
   }
 
+
+
+  /**
+   * @return the dieselVendors
+   */
+  public List<String> getDieselVendors() {
+    return dieselVendors;
+  }
+
+  /**
+   * @param dieselVendors the dieselVendors to set
+   */
+  public void setDieselVendors(final List<String> dieselVendors) {
+    this.dieselVendors = dieselVendors;
+  }
+
   /* (non-Javadoc)
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
-    return "HomeAndroidObject [sites=" + sites.size() + ", spares=" + spares.size() + ", clients=" + clients.size() + ", faults=" + faults.size()
-        + ", maintenanceCategories=" + maintenanceCategories.size() + "]";
+    StringBuilder builder = new StringBuilder();
+    builder.append("HomeAndroidObject [");
+    if (sites != null) {
+      builder.append("sites=");
+      builder.append(sites.size());
+      builder.append(", ");
+    }
+    if (spares != null) {
+      builder.append("spares=");
+      builder.append(spares.size());
+      builder.append(", ");
+    }
+    if (clients != null) {
+      builder.append("clients=");
+      builder.append(clients.size());
+      builder.append(", ");
+    }
+    if (faults != null) {
+      builder.append("faults=");
+      builder.append(faults.size());
+      builder.append(", ");
+    }
+    if (maintenanceCategories != null) {
+      builder.append("maintenanceCategories=");
+      builder.append(maintenanceCategories.size());
+      builder.append(", ");
+    }
+    if (dieselVendors != null) {
+      builder.append("dieselVendors=");
+      builder.append(dieselVendors.size());
+    }
+    builder.append("]");
+    return builder.toString();
   }
-
-
-
 
 
 }
