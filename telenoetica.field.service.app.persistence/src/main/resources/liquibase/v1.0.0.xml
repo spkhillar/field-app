@@ -9167,4 +9167,139 @@
 				<column name="version" valueNumeric="0" />
 			</insert>
 		</changeSet>
+		
+	  <changeSet author="Shiv" id="1374504651071-1">
+        <createTable tableName="diesel_vendor">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="version" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+	   <changeSet author="shivprasak (generated)" id="1374865179138-1">
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="8Bolls"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="A.O.Okofu"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="Accuracy Oil"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="4"/>
+            <column name="name" value="Ajomme"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="5"/>
+            <column name="name" value="Avidor"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="6"/>
+            <column name="name" value="B.J Bison"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="7"/>
+            <column name="name" value="Dav-Ric"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="8"/>
+            <column name="name" value="Diamond well"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="9"/>
+            <column name="name" value="Dose Marine"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="10"/>
+            <column name="name" value="Emmat Engineering"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="11"/>
+            <column name="name" value="Fen Global"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="12"/>
+            <column name="name" value="Fluid Management Services"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="13"/>
+            <column name="name" value="Imbol"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="14"/>
+            <column name="name" value="Jibeco"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="15"/>
+            <column name="name" value="Made Global"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="16"/>
+            <column name="name" value="Mejicom"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="17"/>
+            <column name="name" value="Miger Oil"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="18"/>
+            <column name="name" value="NIPCO"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="19"/>
+            <column name="name" value="OANDO"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="20"/>
+            <column name="name" value="Oceanteam"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="21"/>
+            <column name="name" value="Olap Logistics"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="22"/>
+            <column name="name" value="Sterard oil"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+        <insert tableName="diesel_vendor">
+            <column name="id" valueNumeric="23"/>
+            <column name="name" value="Technical Ventures"/>
+            <column name="version" valueNumeric="0"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
