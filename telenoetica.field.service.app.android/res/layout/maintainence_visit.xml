@@ -66,6 +66,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
+                    android:hint="XX/XX/XX/NUM"
                     android:tag="siteId={&quot;required&quot;:true,&quot;siteIdCheck&quot;:true}" />
             </TableRow>
 
@@ -381,6 +382,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
+                    android:hint="[1-30000]"
                     android:tag="runHoursAfterPmdG1={&quot;required&quot;:true,&quot;min&quot;:1,&quot;max&quot;:30000}" />
             </TableRow>
 
@@ -408,6 +410,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
+                    android:hint="[1-30000]"
                     android:tag="runHoursAfterPmdG2={&quot;required&quot;:true,&quot;min&quot;:1,&quot;max&quot;:30000}" />
             </TableRow>
 

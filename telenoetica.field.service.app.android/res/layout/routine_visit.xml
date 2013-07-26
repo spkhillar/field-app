@@ -63,6 +63,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true" 
+                    android:hint="XX/XX/XX/NUM"
                     android:tag='siteId={"required":true,"siteIdCheck":true}'/>
             </TableRow>
 
@@ -112,11 +113,9 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true" 
+                    android:hint="[1-600]"
                     android:tag='dieselLevelT1={"required":true,"min":1,"max":600}'/>
-                    android:maxLength="4"
-                    android:inputType="number"
-                    android:singleLine="true" 
-                    android:tag='dieselLevelT1={"required":true,"min":1,"max":600}'/>
+                   
             </TableRow>
 
             <TableRow
@@ -141,7 +140,8 @@
                     android:maxLength="4"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:tag="dieselLevelT2"/>
+                    android:hint="[1-600]"
+                    android:tag='dieselLevelT2={"required":true,"min":1,"max":600}'/>
             </TableRow>
 
             <TableRow
@@ -416,6 +416,7 @@
                     android:maxLength="4"
                     android:inputType="number"
                     android:singleLine="true" 
+                    android:hint="[50-2000]"
                     android:tag='batteryCapcityV={"required":true,"min":50,"max":2000}'/>
             </TableRow>
             
