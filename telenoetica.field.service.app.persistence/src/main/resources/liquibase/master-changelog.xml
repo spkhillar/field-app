@@ -802,5 +802,53 @@
 		<modifySql dbms="mysql">
 			<append value=" after status"/>
 		</modifySql>
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1367592120329-39">
+    <dropForeignKeyConstraint
+            baseTableName="call_out_visit"
+            constraintName="call_out_visit_ibfk_2"/>
+	</changeSet>	
+	<changeSet author="satyam srivastava" id="1367592120329-40">
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="call_out_visit" constraintName="call_out_visit_ibfk_2"
+			deferrable="false" initiallyDeferred="false" onDelete="CASCADE"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1367592120329-41">
+    <dropForeignKeyConstraint
+            baseTableName="diesel_visit"
+            constraintName="diesel_visit_ibfk_2"/>
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1367592120329-42">
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="diesel_visit" constraintName="diesel_visit_ibfk_2"
+			deferrable="false" initiallyDeferred="false" onDelete="CASCADE"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1367592120329-43">
+    <dropForeignKeyConstraint
+            baseTableName="maintenance_visit"
+            constraintName="maintenance_visit_ibfk_2"/>
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1366412359126-44">
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="maintenance_visit" constraintName="maintenance_visit_ibfk_2"
+			deferrable="false" initiallyDeferred="false" onDelete="CASCADE"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
+			referencesUniqueColumn="false" />
+	</changeSet>
+	<changeSet author="satyam srivastava" id="1367592120329-45">
+    <dropForeignKeyConstraint
+            baseTableName="routine_visit"
+            constraintName="routine_visit_ibfk_2"/>
+	</changeSet>
+	<changeSet author="shiv prasad khillar" id="1366412359126-46">
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="routine_visit" constraintName="routine_visit_ibfk_2"
+			deferrable="false" initiallyDeferred="false" onDelete="CASCADE"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
+			referencesUniqueColumn="false" />
 	</changeSet>	
 </databaseChangeLog>

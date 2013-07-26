@@ -99,6 +99,8 @@
 		bulkOrTransferEnableText();
 		radioBtnPiuInstalledEnableText();
 		radioBtnPhcnInstalledText();
+		
+		$('#bulkNameOfVendor').html(htmlDieselVendorOptions);		
 	});
 	
 	function initializeDefaultSelection(){
@@ -251,8 +253,9 @@
 					<form:input path="transferredSiteId" />
 				</p>
 				<p>
-					<label><spring:message code="fieldapp.label.dv.bulk.vendor.name"/></label> 
-					<form:input path="bulkNameOfVendor" />
+					<label><spring:message code="fieldapp.label.dv.bulk.vendor.name"/></label>
+					<form:select id="bulkNameOfVendor" path="bulkNameOfVendor">
+					</form:select> 
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.dv.level.t1"/></label> 

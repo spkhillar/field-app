@@ -10,6 +10,7 @@ var htmlFaultOptions = '<option value=""></option>';
 var htmlEquipmentOptions = '<option value=""></option>';
 var htmlMaintenanceCategoriesOptions = '<option value=""></option>';
 var temproryPermanentOption = "Temporary:Temporary;Permanent:Permanent";
+var htmlDieselVendorOptions = '<option value=""></option>';
 
 $(document).ready(function() {
 
@@ -45,6 +46,7 @@ $(document).ready(function() {
 	getClientsForDropDown();
 	getFaultsForDropDown();
 	getEquipmentForDropDown();
+	getDieselVendorForDropDown();
 	getMaintenanceCategoriesForDropDown();
 	$('#loggedInTime').text(getDateTime());
 	startTime();
@@ -141,6 +143,16 @@ function getMaintenanceCategoriesForDropDown() {
 
 	});
 	htmlMaintenanceCategoriesOptions += '</option>';
+}
+
+function getDieselVendorForDropDown() {
+	var dieselVendorArray = homeDataObject.dieselVendor;
+	$.each(dieselVendorArray, function(index, value) {
+		htmlDieselVendorOptions += '<option value="' + value.name + '">'
+				+ value.name + '</option>';
+
+	});
+	htmlDieselVendorOptions += '</option>';
 }
 
 function showVisitMessage(inputMessage) {

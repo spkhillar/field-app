@@ -20,17 +20,17 @@
 	    <property name="volatility" value="true"/>    
 	    <property name="misfireInstructionName" value="MISFIRE_INSTRUCTION_DO_NOTHING"></property>
 		<!-- run every day 00:10 -->
-		<!--<property name="cronExpression" value="0 0 12 1/1 * ? *" />-->
+		<property name="cronExpression" value="0 0 12 1/1 * ? *" />
 		<!-- Every 1 minute Cron Expression -->
-		<property name="cronExpression" value="0 0/1 * 1/1 * ? *" /> 
+		<!--<property name="cronExpression" value="0 0/1 * 1/1 * ? *" /> -->
 	</bean>
 	<bean id="spareUtilizationReportJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="spareUtilizationReportJob" />
 	    <property name="volatility" value="true"/>    
 	    <property name="misfireInstructionName" value="MISFIRE_INSTRUCTION_DO_NOTHING"></property>
 		<!-- run every day 00:10 -->
-		<!--<property name="cronExpression" value="0 0 12 1/1 * ? *" />-->
+		<property name="cronExpression" value="0 0 12 1/1 * ? *" />
 		<!-- Every 3 minute Cron Expression -->
-		<property name="cronExpression" value="0 0/3 * 1/1 * ? *" /> 
+		<!--<property name="cronExpression" value="0 0/3 * 1/1 * ? *" /> -->
 	</bean>
 </beans>
