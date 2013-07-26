@@ -6,9 +6,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -26,7 +31,7 @@ import com.telenoetica.service.SiteService;
 import com.telenoetica.service.SpareUtilizationReportService;
 import com.telenoetica.service.util.ServiceUtil;
 
-@Service("SpareUtilizationReportService")
+@Service("spareUtilizationReportService")
 public class SpareUtilizationReportServiceImpl implements
 		SpareUtilizationReportService {
 
@@ -138,6 +143,9 @@ public class SpareUtilizationReportServiceImpl implements
 	private int totalFuelfilterhousing;
 	private int totalEngineOil;
 
+	int totalCmVisitCounter = 0;
+	int totalPmVisitCounter = 0;
+
 	@Autowired
 	private SiteService siteService;
 
@@ -161,19 +169,50 @@ public class SpareUtilizationReportServiceImpl implements
 		POIFSFileSystem fs = new POIFSFileSystem(is);
 
 		workbook = new HSSFWorkbook(fs);
-		setSheetData(workbook.getSheetAt(1), siteList);
+		setSheetTwoData(workbook.getSheetAt(1), siteList);
+		// get total for sheet 1
+		Map<String, String> sortedMap = getSpareFinalMap();
+		setSheetOneData(workbook.getSheetAt(0), sortedMap);
 		String reportName = closeReport();
 		return reportName;
 	}
 
-	private void setSheetData(final HSSFSheet sheet, final List<Site> siteList) {
+	private void setSheetOneData(final HSSFSheet sheet,
+			final Map<String, String> sortedMap) {
+		HSSFRow row;
+		HSSFCell cell;
+		int rNum = 3;
+		row = sheet.getRow(rNum++);
+		cell = row.getCell(3);
+		cell.setCellValue(totalCmVisitCounter + totalPmVisitCounter);
+		row = sheet.getRow(rNum++);
+		cell = row.getCell(3);
+		cell.setCellValue(totalPmVisitCounter);
+		row = sheet.getRow(rNum++);
+		cell = row.getCell(3);
+		cell.setCellValue(totalCmVisitCounter);
+		row = sheet.getRow(rNum++);
+		row = sheet.getRow(rNum++);
+		for (int i = 1; i < 11; i++) {
+			row = sheet.getRow(rNum++);
+			if (sortedMap.size() > i - 1) {
+				cell = row.getCell(2);
+				cell.setCellValue((String) sortedMap.keySet().toArray()[sortedMap
+						.size() - i]);
+				cell = row.getCell(3);
+				cell.setCellValue((Integer) sortedMap.values().toArray()[sortedMap
+						.size() - i]);
+			}
+		}
+	}
+
+	private void setSheetTwoData(final HSSFSheet sheet,
+			final List<Site> siteList) {
 		HSSFRow row;
 		HSSFCell cell;
 		int rNum = 2;
 		int cmVisitCounter = 0;
 		int pmVisitCounter = 0;
-		int totalkCmVisitCounter = 0;
-		int totalPmVisitCounter = 0;
 		resetVisitFields();
 		for (int i = 0; i < siteList.size(); i++) {
 			Site siteName = siteList.get(i);
@@ -182,20 +221,20 @@ public class SpareUtilizationReportServiceImpl implements
 			int rNumPrev = rNum;
 			String siteid = "";
 			for (int j = 0; j < maintenanceVisitL.size(); j++) {
-				row = sheet.createRow(rNum++);
 				MaintenanceVisit maintenanceVisit = maintenanceVisitL.get(j);
 				siteid = maintenanceVisit.getSiteId();
 				if (maintenanceVisit.getCategoryOfMaintenance()
 						.startsWith("PM")) {
 					countPMVisits(maintenanceVisit);
 					cmVisitCounter = cmVisitCounter + 1;
+					totalPmVisitCounter = totalPmVisitCounter + pmVisitCounter;
+
 				} else {
 					countCMVisits(maintenanceVisit);
 					pmVisitCounter = pmVisitCounter + 1;
+					totalCmVisitCounter = totalCmVisitCounter + cmVisitCounter;
 				}
 			}
-			totalkCmVisitCounter = totalkCmVisitCounter + cmVisitCounter;
-			totalPmVisitCounter = totalPmVisitCounter + pmVisitCounter;
 			HashMap sparePMMap = new HashMap();
 			HashMap spareCMMap = new HashMap();
 			sparePMMap = preparePMSpareMap(sparePMMap);
@@ -271,8 +310,8 @@ public class SpareUtilizationReportServiceImpl implements
 				}
 			}
 			if ((rNumPrev != rNum) && ((rNum - rNumPrev) > 1)) {
-				sheet.groupRow(rNumPrev + 2, rNum);
-				sheet.setRowGroupCollapsed(rNumPrev + 2, true);
+				sheet.groupRow(rNumPrev + 1, rNum);
+				sheet.setRowGroupCollapsed(rNumPrev + 1, true);
 			}
 			resetVisitFields();
 		}
@@ -280,11 +319,11 @@ public class SpareUtilizationReportServiceImpl implements
 
 	public String closeReport() throws Exception {
 		String reportName = addTimeInFileName(systemConfiguration
-				.getDieselDetailsReportFileName());
+				.getSparesUtilizationReportFileName());
 
 		String reportFilePath = systemConfiguration
-				.getDieselDetailsReportDirectory()
-				+ File.pathSeparator
+				.getSparesUtilizationReportDirectory()
+				+ File.separator
 				+ reportName;
 		File file = new File(reportFilePath);
 		// write the new changes to a new file
@@ -719,6 +758,134 @@ public class SpareUtilizationReportServiceImpl implements
 
 		return spareCMMap;
 
+	}
+
+	private Map getSpareFinalMap() {
+
+		HashMap spareFinalMap = new HashMap();
+		if (totalTopGasketkit != 0) {
+			spareFinalMap.put("topGasketkit", totalTopGasketkit);
+		}
+		if (totalBottomgasketkit != 0) {
+			spareFinalMap.put("Bottomgasketkit", totalBottomgasketkit);
+		}
+		if (totalCylinderheadgasket != 0) {
+			spareFinalMap.put("Cylinderheadgasket", totalCylinderheadgasket);
+		}
+		if (totalFrontoilseal != 0) {
+			spareFinalMap.put("Frontoilseal", totalFrontoilseal);
+		}
+		if (totalBackOilseal != 0) {
+			spareFinalMap.put("BackOilseal", totalBackOilseal);
+		}
+		if (totalValveseal != 0) {
+			spareFinalMap.put("Valveseal", totalValveseal);
+		}
+		if (totalPiston != 0) {
+			spareFinalMap.put("Piston", totalPiston);
+		}
+		if (totalPistonassembly != 0) {
+			spareFinalMap.put("Pistonassembly", totalPistonassembly);
+		}
+		if (totalFuelLiftpump != 0) {
+			spareFinalMap.put("FuelLiftpump(Ecoplus)", totalFuelLiftpump);
+		}
+		if (totalWaterPump != 0) {
+			spareFinalMap.put("WaterPump", totalWaterPump);
+		}
+		if (totalConnectingrodbearing != 0) {
+			spareFinalMap
+					.put("Connectingrodbearing", totalConnectingrodbearing);
+		}
+		if (totalMainBearing != 0) {
+			spareFinalMap.put("MainBearing", totalMainBearing);
+		}
+		if (totalTrustwasher != 0) {
+			spareFinalMap.put("Trustwasher", totalTrustwasher);
+		}
+		if (totalRadiatorCoolant != 0) {
+			spareFinalMap.put("RadiatorCoolant", totalRadiatorCoolant);
+		}
+		if (totalTophose != 0) {
+			spareFinalMap.put("Tophose", totalTophose);
+		}
+		if (totalBottomHose != 0) {
+			spareFinalMap.put("BottomHose", totalBottomHose);
+		}
+		if (totalHighwatertemp != 0) {
+			spareFinalMap.put("Highwatertemp:Switch(Big)", totalHighwatertemp);
+		}
+		if (totalLowoilPressureSwitch != 0) {
+			spareFinalMap
+					.put("LowoilPressureSwitch", totalLowoilPressureSwitch);
+		}
+		if (totalRadiatorHoseClips != 0) {
+			spareFinalMap.put("RadiatorHoseClips", totalRadiatorHoseClips);
+		}
+		if (totalFanBelt != 0) {
+			spareFinalMap.put("FanBelt", totalFanBelt);
+		}
+		if (totalAirFilter != 0) {
+			spareFinalMap.put("AirFilter", totalAirFilter);
+		}
+		if (totalFuelFilter != 0) {
+			spareFinalMap.put("FuelFilter", totalFuelFilter);
+		}
+		if (totalOilFilter != 0) {
+			spareFinalMap.put("OilFilter", totalOilFilter);
+		}
+		if (totalInjectorpumprotor != 0) {
+			spareFinalMap.put("Injectorpumprotor(NewModel)",
+					totalInjectorpumprotor);
+		}
+		if (totalKickStarter != 0) {
+			spareFinalMap.put("KickStarter", totalKickStarter);
+		}
+		if (totalChargingAlternator != 0) {
+			spareFinalMap.put("ChargingAlternator", totalChargingAlternator);
+		}
+		if (totalInjectorpumpbrush != 0) {
+			spareFinalMap.put("Injectorpumpbrush", totalInjectorpumpbrush);
+		}
+		if (totalInjectorpumpcamroller != 0) {
+			spareFinalMap.put("Injectorpumpcamroller",
+					totalInjectorpumpcamroller);
+		}
+		if (totalRelay12volt != 0) {
+			spareFinalMap.put("Relay12volt", totalRelay12volt);
+		}
+		if (totalRadiator != 0) {
+			spareFinalMap.put("Radiator", totalRadiator);
+		}
+		if (totalBattery != 0) {
+			spareFinalMap.put("Battery(100Amps)", totalBattery);
+		}
+		if (totalFuelfilterhousing != 0) {
+			spareFinalMap.put("Fuelfilterhousing", totalFuelfilterhousing);
+		}
+		if (totalEngineOil != 0) {
+			spareFinalMap.put("EngineOil", totalEngineOil);
+		}
+		Map<String, String> sortedSpareFinalMap = sortByComparator(spareFinalMap);
+		return sortedSpareFinalMap;
+	}
+
+	private static Map sortByComparator(final Map unsortMap) {
+
+		List list = new LinkedList(unsortMap.entrySet());
+		Collections.sort(list, new Comparator() {
+			@Override
+			public int compare(final Object o1, final Object o2) {
+				return ((Comparable) ((Map.Entry) (o1)).getValue())
+						.compareTo(((Map.Entry) (o2)).getValue());
+			}
+		});
+		Map sortedMap = new LinkedHashMap();
+		for (Iterator it = list.iterator(); it.hasNext();) {
+			Map.Entry entry = (Map.Entry) it.next();
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+		return sortedMap;
 	}
 
 	private void resetVisitFields() {

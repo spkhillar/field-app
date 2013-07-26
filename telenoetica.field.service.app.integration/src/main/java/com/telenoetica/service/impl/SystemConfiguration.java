@@ -33,6 +33,42 @@ public class SystemConfiguration {
 	@Value("${android.apk.source.file.name}")
 	private String androidAppFilePath;
 
+	/** The mail service host. */
+	@Value("${mail.host}")
+	private String host;
+
+	/** The mail service host. */
+	@Value("${mail.port}")
+	private String port;
+
+	/** The mail service username. */
+	@Value("${mail.username}")
+	private String username;
+
+	/** The mail service password. */
+	@Value("${mail.password}")
+	private String password;
+
+	/** The mail service host. */
+	@Value("${mail.transport.protocol}")
+	private String transport_protocol;
+
+	/** The mail service auth. */
+	@Value("${mail.smtp.auth}")
+	private String auth;
+
+	/** The mail service smtp.starttls.enable. */
+	@Value("${mail.smtp.starttls.enable}")
+	private String starttls_enable;
+
+	/** The mail service debug. */
+	@Value("${mail.debug}")
+	private String debug;
+
+	/** The mail service to. */
+	@Value("${mail.to}")
+	private String to;
+
 	/**
 	 * Gets the diesel details report directory.
 	 * 
@@ -90,6 +126,42 @@ public class SystemConfiguration {
 	 */
 	public String getAndroidAppFilePath() {
 		return androidAppFilePath;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public String getPort() {
+		return port;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getTransport_protocol() {
+		return transport_protocol;
+	}
+
+	public String getAuth() {
+		return auth;
+	}
+
+	public String getStarttls_enable() {
+		return starttls_enable;
+	}
+
+	public String getDebug() {
+		return debug;
+	}
+
+	public String getTo() {
+		return to;
 	}
 
 }

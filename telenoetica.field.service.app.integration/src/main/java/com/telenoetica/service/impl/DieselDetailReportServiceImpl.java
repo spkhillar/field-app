@@ -6,6 +6,8 @@ package com.telenoetica.service.impl;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -23,7 +25,9 @@ import com.telenoetica.jpa.entities.DieselVisit;
 import com.telenoetica.jpa.entities.Site;
 import com.telenoetica.service.DieselDetailReportService;
 import com.telenoetica.service.DieselVisitService;
+import com.telenoetica.service.EmailService;
 import com.telenoetica.service.SiteService;
+import com.telenoetica.service.mail.EmailTemplate;
 import com.telenoetica.service.util.ServiceUtil;
 
 /**
@@ -51,6 +55,9 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
 	@Autowired
 	private SystemConfiguration systemConfiguration;
 
+	@Autowired
+	private EmailService emailService;
+
 	/**
 	 * Creates the new report.
 	 * 
@@ -75,6 +82,7 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
 		workbook = new HSSFWorkbook(fs);
 		setSheetData(workbook.getSheetAt(0), siteList);
 		String reportName = closeReport();
+		sendEmail(reportName);
 		return reportName;
 	}
 
@@ -90,7 +98,7 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
 		HSSFRow row;
 		HSSFCell cell;
 		int rNum = 2;
-		for (int i = 0; i < siteList.size(); i++) {
+		for (int i = 0; i < 10; i++) {
 			Site siteName = siteList.get(i);
 			List<DieselVisit> dieselVisitL = dieselVisitService
 					.findBySiteAndCreatedAtBetween(siteName);
@@ -168,7 +176,7 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
 
 		String reportFilePath = systemConfiguration
 				.getDieselDetailsReportDirectory()
-				+ File.pathSeparator
+				+ File.separator
 				+ reportName;
 		File file = new File(reportFilePath);
 		// write the new changes to a new file
@@ -200,6 +208,21 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
 				+ seconds + ".xls";
 		LOGGER.debug("Creating new excel doc named: " + name);
 		return name;
+	}
+
+	private void sendEmail(final String reportFilePath) {
+
+		LOGGER.debug("Sending Diesel detail report in email");
+		String recipient = systemConfiguration.getTo();
+		File attachment = new File(reportFilePath);
+		List<String> toAddress = new ArrayList(Arrays.asList(recipient
+				.split(",")));
+		toAddress.add(recipient);
+		EmailTemplate emailTemplate = new EmailTemplate(toAddress,
+				"***** Auto-Generated Message...Please DO NOT Reply *****",
+				"Diesel Detail Report ");
+		emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
+		emailService.sendEmail(emailTemplate);
 	}
 
 }

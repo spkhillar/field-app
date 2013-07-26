@@ -11,22 +11,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.telenoetica.service.EmailService;
 import com.telenoetica.service.mail.EmailTemplate;
 
-public class TestEmailService extends BaseServiceTest{
-  
-  @Autowired
-  private EmailService emailService;
+public class TestEmailService extends BaseServiceTest {
 
-  @Test
-  public void mailTest() throws IOException{
+	@Autowired
+	private EmailService emailService;
 
-    File f = new File("dummy.txt");
-   // System.err.println("...File.."+f.getAbsolutePath());
-    List<String> toAddress = new ArrayList<String>();
-    toAddress.add("shivprasad.khillar@gmail.com");
-    toAddress.add("satyamit2001@gmail.com");
-    EmailTemplate emailTemplate = new EmailTemplate(toAddress,"Test Email","Routine Visit");
-    emailTemplate.setAttachmentFileName(f.getAbsolutePath());
-    //emailService.sendEmail(emailTemplate);
-  }
-  
+	@Test
+	public void mailTest() throws IOException {
+
+		File f = new File("dummy.txt");
+		// System.err.println("...File.."+f.getAbsolutePath());
+		List<String> toAddress = new ArrayList<String>();
+		toAddress.add("shivprasad.khillar@gmail.com");
+		toAddress.add("satyamit2001@gmail.com");
+		EmailTemplate emailTemplate = new EmailTemplate(toAddress,
+				"Test Email", "Routine Visit");
+		emailTemplate.setAttachmentFileName(f.getAbsolutePath());
+		emailService.sendEmail(emailTemplate);
+	}
+
 }

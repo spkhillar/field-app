@@ -9,6 +9,7 @@
 		<property name="triggers">
 			<list>
 				<ref bean="dieselDetailsReportJobTrigger" />
+				<ref bean="spareUtilizationReportJobTrigger" />
 			</list>
 		</property>
 		<property name="jobFactory" ref="jobFactory" />
@@ -24,14 +25,17 @@
 				<entry key="jobHistoryService">
 					<ref bean="jobHistoryService"/>
 				</entry>
-			<!-- 	<entry key="dieselVisitService">
+				<entry key="dieselVisitService">
 					<ref bean="routineVisitService" />
 				</entry>
 				<entry key="maintenanceVisitService">
 					<ref bean="maintenanceVisitService" />
-				</entry> -->
+				</entry>
 				<entry key="dieselDetailReportService">
 					<ref bean="dieselDetailReportService"/>
+				</entry>
+				<entry key="spareUtilizationReportService">
+					<ref bean="spareUtilizationReportService"/>
 				</entry>
 			</map>
 		</property>
