@@ -41,8 +41,6 @@ public class HomeAndroidObject {
   @JsonProperty
   private List<String> dieselVendors = new ArrayList<String>(10);
 
-
-
   /**
    * Instantiates a new home android object.
    */

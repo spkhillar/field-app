@@ -183,9 +183,11 @@ public class MainMenu extends ApplicationBaseActivity {
       long errorCode = 0;
       Date start = new Date();
       RestResponse response = null;
+      AppValuesHolder.clearSentRecordCount();
       for (AndroidVisitSqLiteModel androidVisitSqLiteModel : params) {
         try {
           Class<?> currentClazz = Class.forName(androidVisitSqLiteModel.getClazzName());
+          AppValuesHolder.addSentRecord(currentClazz.getSimpleName());
           String url = AppValuesHolder.getHost() + determinePath(currentClazz);
           LOGGER.debug(androidVisitSqLiteModel + "....invoking..." + url);
           Object postObject = determinePostObject(currentClazz, androidVisitSqLiteModel.getJson());
@@ -206,6 +208,8 @@ public class MainMenu extends ApplicationBaseActivity {
             HttpStatus status = ((HttpClientErrorException) e.getCause()).getStatusCode();
             if (HttpStatus.UNAUTHORIZED.equals(status)) {
               response = new RestResponse(401, "Invalid Credentials. Check username and password");
+            } else if (HttpStatus.FORBIDDEN.equals(status)) {
+              response = new RestResponse(403, "Invalid Credentials. Check username and password");
             }
           } else {
             response = new RestResponse(500, "System Exception...");
@@ -230,7 +234,7 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-        JsonMappingException, IOException {
+    JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 

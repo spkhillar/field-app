@@ -2,7 +2,9 @@ package com.telenoetica.android.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AppValuesHolder {
 
@@ -25,6 +27,8 @@ public class AppValuesHolder {
   private static String currentUserPassword;
 
   private static String host = "http://ec2-54-234-57-223.compute-1.amazonaws.com:8080/fieldapp";
+
+  private static Map<String, Long> sendToServerCountMap = new HashMap<String, Long>();
 
   public static List<String> getSites() {
     return sites;
@@ -102,6 +106,19 @@ public class AppValuesHolder {
 
   public static void setHost(final String host) {
     AppValuesHolder.host = host;
+  }
+
+  public static void addSentRecord(final String clazz){
+    Long currentCount = AppValuesHolder.sendToServerCountMap.get(clazz);
+    if(currentCount == null){
+      AppValuesHolder.sendToServerCountMap.put(clazz, 1l);
+    }else{
+      AppValuesHolder.sendToServerCountMap.put(clazz, currentCount.longValue() + 1l);
+    }
+  }
+
+  public static void clearSentRecordCount(){
+    AppValuesHolder.sendToServerCountMap.clear();
   }
 
   public static void resetConfigData() {
