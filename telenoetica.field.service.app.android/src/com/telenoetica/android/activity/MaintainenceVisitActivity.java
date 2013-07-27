@@ -38,6 +38,7 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
     addItemsOnSpinner(R.id.spinner_spares4, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares5, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_spares6, AppValuesHolder.getSpares());
+    setupAutoCompleteSite();
 
   }
 

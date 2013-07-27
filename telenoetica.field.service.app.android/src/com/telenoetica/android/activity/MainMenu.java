@@ -32,10 +32,6 @@ import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestJsonUtils;
 import com.telenoetica.android.rest.RestResponse;
 import com.telenoetica.android.sqllite.AndroidVisitSqLiteModel;
-import com.telenoetica.jpa.entities.CallOutVisit;
-import com.telenoetica.jpa.entities.DieselVisit;
-import com.telenoetica.jpa.entities.MaintenanceVisit;
-import com.telenoetica.jpa.entities.RoutineVisit;
 
 public class MainMenu extends ApplicationBaseActivity {
 
@@ -73,7 +69,7 @@ public class MainMenu extends ApplicationBaseActivity {
           task.execute(dataList.toArray(array));
         } else {
           RestResponse response = new RestResponse(501, "No pending visit records available in system");
-          doWithResponse(response);
+          doWithSendToServerResponse(response);
 
         }
       }
@@ -146,9 +142,8 @@ public class MainMenu extends ApplicationBaseActivity {
     });
   }
 
-  public void doWithResponse(final RestResponse restResponse) {
+  public void doWithSendToServerResponse(final RestResponse restResponse) {
     List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
-    int count = dataList.size();
     if (restResponse != null) {
       if (restResponse.getStatusCode() == 401) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
@@ -158,7 +153,7 @@ public class MainMenu extends ApplicationBaseActivity {
       } else if (restResponse.getStatusCode() != 0) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
       } else {
-        Toast.makeText(this, "Send to server successfull." + count + "records sent.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Send to server successfull.", Toast.LENGTH_SHORT).show();
       }
 
     }
@@ -234,28 +229,14 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-    JsonMappingException, IOException {
+        JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
-    }
-
-    private String determinePath(final Class<?> currentClazz) {
-
-      if (RoutineVisit.class.isAssignableFrom(currentClazz)) {
-        return AndroidConstants.ROUTINE_VISIT_SAVE_REST_URL;
-      } else if (CallOutVisit.class.isAssignableFrom(currentClazz)) {
-        return AndroidConstants.CALLOUT_VISIT_SAVE_REST_URL;
-      } else if (DieselVisit.class.isAssignableFrom(currentClazz)) {
-        return AndroidConstants.DIESEL_VISIT_SAVE_REST_URL;
-      } else if (MaintenanceVisit.class.isAssignableFrom(currentClazz)) {
-        return AndroidConstants.MAINTENANCE_VISIT_SAVE_REST_URL;
-      }
-      throw new RuntimeException("clazzName not configured in system");
     }
 
     @Override
     protected void onPostExecute(final RestResponse restResponse) {
       pd.dismiss();
-      doWithResponse(restResponse);
+      doWithSendToServerResponse(restResponse);
     }
   }
 

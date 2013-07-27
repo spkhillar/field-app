@@ -50,8 +50,9 @@
 
                 <TextView
                     android:text="Routine Visit"
-                    android:textAppearance="?android:attr/textAppearanceLarge" 
-                    android:textStyle="bold"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="20dp"
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/reportRoutineVisit"
@@ -75,8 +76,9 @@
 
                 <TextView
                     android:text="Diesel Visit"
-                     android:textAppearance="?android:attr/textAppearanceLarge" 
-                    android:textStyle="bold" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="20dp"
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/reportDieselVisit"
@@ -100,8 +102,9 @@
 
                 <TextView
                     android:text="Maintenance Visit"
-                    android:textAppearance="?android:attr/textAppearanceLarge" 
-                    android:textStyle="bold"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="20dp"
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/reportMaintenanceVisit"
@@ -125,8 +128,9 @@
 
                 <TextView
                     android:text="Call-Out Visit"
-                     android:textAppearance="?android:attr/textAppearanceLarge" 
-                    android:textStyle="bold"/>
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="20dp"
+                    android:textStyle="normal" />
 
                 <TextView
                     android:id="@+id/reportCalloutVisit"

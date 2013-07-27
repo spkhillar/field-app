@@ -45,7 +45,7 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     registerListenerForPhcn();
     registerListenerForHybridPiu();
     addItemsOnSpinner(R.id.etBulk, AppValuesHolder.getDieselVendors());
-
+    setupAutoCompleteSite();
   }
 
   @Override

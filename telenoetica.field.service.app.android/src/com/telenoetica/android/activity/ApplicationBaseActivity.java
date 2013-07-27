@@ -9,8 +9,13 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.telenoetica.android.rest.AndroidConstants;
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.android.sqllite.SQLiteDbHandler;
+import com.telenoetica.jpa.entities.CallOutVisit;
+import com.telenoetica.jpa.entities.DieselVisit;
+import com.telenoetica.jpa.entities.MaintenanceVisit;
+import com.telenoetica.jpa.entities.RoutineVisit;
 
 public abstract class ApplicationBaseActivity extends Activity {
 
@@ -33,6 +38,20 @@ public abstract class ApplicationBaseActivity extends Activity {
       Intent intent = new Intent(context, LoginActivity.class);
       startActivity(intent);
     }
+  }
+
+  public String determinePath(final Class<?> currentClazz) {
+
+    if (RoutineVisit.class.isAssignableFrom(currentClazz)) {
+      return AndroidConstants.ROUTINE_VISIT_SAVE_REST_URL;
+    } else if (CallOutVisit.class.isAssignableFrom(currentClazz)) {
+      return AndroidConstants.CALLOUT_VISIT_SAVE_REST_URL;
+    } else if (DieselVisit.class.isAssignableFrom(currentClazz)) {
+      return AndroidConstants.DIESEL_VISIT_SAVE_REST_URL;
+    } else if (MaintenanceVisit.class.isAssignableFrom(currentClazz)) {
+      return AndroidConstants.MAINTENANCE_VISIT_SAVE_REST_URL;
+    }
+    throw new RuntimeException("clazzName not configured in system");
   }
 
   protected abstract void initializeActivity(Bundle savedInstanceState);

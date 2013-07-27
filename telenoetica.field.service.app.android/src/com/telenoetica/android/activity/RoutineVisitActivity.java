@@ -24,6 +24,7 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
     // checkForUserIdandPassword();
     setContentView(R.layout.routine_visit);
     addListenerOnButtonSubmit();
+    setupAutoCompleteSite();
   }
 
   public void addListenerOnButtonSubmit() {

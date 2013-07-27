@@ -309,6 +309,7 @@ public class CalloutVisitActivity extends AbstractVisitActivity {
     addItemsOnSpinner(R.id.spinner_customer4, AppValuesHolder.getClients());
     addItemsOnSpinner(R.id.spinner_equip_comp_repaired, AppValuesHolder.getSpares());
     addItemsOnSpinner(R.id.spinner_equip_comp_replaced, AppValuesHolder.getSpares());
+    setupAutoCompleteSite();
   }
 
   @Override

@@ -55,8 +55,8 @@
                     android:text="Site ID"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <EditText
-                    android:id="@+id/button1"
+                <AutoCompleteTextView
+                    android:id="@+id/visitSiteId"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="50"

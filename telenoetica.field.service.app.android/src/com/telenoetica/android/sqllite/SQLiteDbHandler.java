@@ -25,7 +25,7 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     SQLiteDatabase db = getWritableDatabase();
     String selectQuery =
         "SELECT  * FROM " + getCredentialsTable() + " where username='" + username + "' and password='" + password
-        + "'";
+            + "'";
     LOGGER.debug("validateUser .. Checking " + username + " in Phone Db.");
     boolean found = false;
     try {
@@ -189,15 +189,17 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     try {
       Cursor cursor = db.rawQuery(selectQuery, null);
       // looping through all rows and adding to list
-      cursor.moveToFirst();
-      do {
-        androidVisitSqLiteModel =
-            new AndroidVisitSqLiteModel(cursor.getLong(0), cursor.getString(1), cursor.getString(2),
-              cursor.getString(3), cursor.getInt(4));
-        LOGGER.debug("Found visit data.." + androidVisitSqLiteModel);
-        dataList.add(androidVisitSqLiteModel);
-      } while (cursor.moveToNext());
-      cursor.close();
+      boolean hasRecords = cursor.moveToFirst();
+      if (hasRecords) {
+        do {
+          androidVisitSqLiteModel =
+              new AndroidVisitSqLiteModel(cursor.getLong(0), cursor.getString(1), cursor.getString(2),
+                cursor.getString(3), cursor.getInt(4));
+          LOGGER.debug("Found visit data.." + androidVisitSqLiteModel);
+          dataList.add(androidVisitSqLiteModel);
+        } while (cursor.moveToNext());
+        cursor.close();
+      }
     } catch (Exception e) {
       LOGGER.error("Error getVisitsInSystem..", e);
     }
@@ -225,6 +227,29 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     int deleteCount = db.delete(getVistisTable(), "id=" + id, null);
     LOGGER.debug(id + "..Visit deleting Rows Affected..." + deleteCount);
     db.close();
+  }
+
+  public AndroidVisitSqLiteModel findVisit(final Long id) {
+    SQLiteDatabase db = getWritableDatabase();
+    String selectQuery = "SELECT  * FROM " + getVistisTable() + " where status id =" + id;
+    LOGGER.debug("getVisit .. " + id + "--" + selectQuery + " in Phone Db.");
+    AndroidVisitSqLiteModel androidVisitSqLiteModel = null;
+    try {
+      Cursor cursor = db.rawQuery(selectQuery, null);
+      // looping through all rows and adding to list
+      cursor.moveToFirst();
+      do {
+        androidVisitSqLiteModel =
+            new AndroidVisitSqLiteModel(cursor.getLong(0), cursor.getString(1), cursor.getString(2),
+              cursor.getString(3), cursor.getInt(4));
+        LOGGER.debug("Found visit data.." + androidVisitSqLiteModel);
+      } while (cursor.moveToNext());
+      cursor.close();
+    } catch (Exception e) {
+      LOGGER.error("Error getVisitsInSystem..", e);
+    }
+    db.close();
+    return androidVisitSqLiteModel;
   }
 
   private List<String> getNamesList(final SQLiteDatabase db, final String selectQuery) {

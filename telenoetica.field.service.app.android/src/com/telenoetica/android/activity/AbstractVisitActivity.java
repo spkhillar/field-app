@@ -13,14 +13,21 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.HttpClientErrorException;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,12 +35,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.telenoetica.android.rest.ActivityRestResponse;
+import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.android.rest.JsonValidator;
+import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestJsonUtils;
+import com.telenoetica.android.rest.RestResponse;
 
 public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
   protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractVisitActivity.class);
+
+  protected void setupAutoCompleteSite() {
+    AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.visitSiteId);
+    ArrayAdapter<String> arrayAdapter =
+        new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, AppValuesHolder.getSites());
+    autoCompleteTextView.setAdapter(arrayAdapter);
+  }
 
   public void addItemsOnSpinner(final int spinnerId, final List<String> spinnerValues) {
     Spinner spinner;
@@ -141,30 +159,21 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
   }
 
   private void saveJsonToDB(final Object bean, final Class<?> clazz) {
-    String clazzName = clazz.getCanonicalName();
-    LOGGER.debug("Saving To DB.." + clazzName);
-    try {
-      String jsonString = RestJsonUtils.toJSONString(bean);
-      long insertedDB = sqLiteDbHandler.insertVisit(jsonString, clazzName);
-      showToast(insertedDB);
-    } catch (JsonGenerationException e) {
-      LOGGER.error("JsonGenerationException...", e);
-    } catch (JsonMappingException e) {
-      LOGGER.error("JsonMappingException...", e);
-    } catch (IOException e) {
-      LOGGER.error("IOException...", e);
-    }
+    // try sending visit information to the server.
+    Object serverRequestParams[] = new Object[] { bean, clazz };
+    SendToServerAsyncTask sendToServerAsyncTask = new SendToServerAsyncTask();
+    sendToServerAsyncTask.execute(serverRequestParams);
 
   }
 
   private void showToast(final long insertedDB) {
     if (insertedDB != -1) {
       Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
-      Intent intent = new Intent(this, MainMenu.class);
-      startActivity(intent);
     } else {
-      Toast.makeText(this, "Save failed.", Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, "Sending failed. Try sending after sometime.", Toast.LENGTH_SHORT).show();
     }
+    Intent intent = new Intent(this, MainMenu.class);
+    startActivity(intent);
 
   }
 
@@ -209,6 +218,87 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     });
     alertDialog.show();
 
+  }
+
+  private class SendToServerAsyncTask extends AsyncTask<Object, Void, ActivityRestResponse> {
+    private ProgressDialog pd;
+
+    @Override
+    protected void onPreExecute() {
+      pd = new ProgressDialog(context);
+      pd.setTitle("Processing...");
+      pd.setMessage("Please wait.");
+      pd.setCancelable(false);
+      pd.setIndeterminate(true);
+      pd.show();
+    }
+
+    @Override
+    protected ActivityRestResponse doInBackground(final Object... params) {
+      ActivityRestResponse activityRestResponse = new ActivityRestResponse();
+      RestResponse response = null;
+      Class<?> currentClazz = null;
+      Object postObject = null;
+      Date start = new Date();
+      try {
+        currentClazz = (Class<?>) params[1];
+        String url = AppValuesHolder.getHost() + determinePath(currentClazz);
+        LOGGER.debug("Sending to server....invoking..." + url);
+        postObject = params[0];
+        response =
+            RestClient.INSTANCE.executeRest(url, AppValuesHolder.getCurrentUser(),
+              AppValuesHolder.getCurrentUserPassword(), HttpMethod.POST, postObject, RestResponse.class,
+              MediaType.APPLICATION_JSON);
+      } catch (Exception e) {
+        LOGGER.error("Exception send to server...", e);
+        if (e.getCause() instanceof HttpClientErrorException) {
+          HttpStatus status = ((HttpClientErrorException) e.getCause()).getStatusCode();
+          if (HttpStatus.UNAUTHORIZED.equals(status)) {
+            response = new RestResponse(401, "Invalid Credentials. Check username and password");
+          } else if (HttpStatus.FORBIDDEN.equals(status)) {
+            response = new RestResponse(403, "Invalid Credentials. Check username and password");
+          }
+        } else {
+          response = new RestResponse(500, "Error while sending information to server...");
+        }
+      }
+
+      Date end = new Date();
+      long total = end.getTime() - start.getTime();
+      LOGGER.debug("...Total Time save and send..." + total);
+      activityRestResponse.setStatusCode(response.getStatusCode());
+      activityRestResponse.setMessage(response.getMessage());
+      if (response.getStatusCode() != 0) {
+        activityRestResponse.setVisitObject(postObject);
+        activityRestResponse.setVisitClassType(currentClazz);
+      }
+      return activityRestResponse;
+
+    }
+
+    @Override
+    protected void onPostExecute(final ActivityRestResponse restResponse) {
+      pd.dismiss();
+      doWithSendToServerResponse(restResponse);
+    }
+  }
+
+  public void doWithSendToServerResponse(final ActivityRestResponse restResponse) {
+    if (restResponse.getStatusCode() == 0) {
+      showToast(1);
+    } else {
+      try {
+        String jsonString = RestJsonUtils.toJSONString(restResponse.getVisitObject());
+        sqLiteDbHandler.insertVisit(jsonString, restResponse.getVisitClassType().getCanonicalName());
+      } catch (JsonGenerationException e) {
+        LOGGER.error("Exception while saving", e);
+      } catch (JsonMappingException e) {
+        LOGGER.error("Exception while saving", e);
+      } catch (IOException e) {
+        LOGGER.error("Exception while saving", e);
+      }
+      showToast(-1);
+    }
   }
 
   public abstract void saveCurrentActivity();
