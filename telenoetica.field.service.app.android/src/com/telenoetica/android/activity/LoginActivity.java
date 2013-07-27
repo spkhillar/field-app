@@ -134,6 +134,8 @@ public class LoginActivity extends ApplicationBaseActivity {
           HttpStatus status = ((HttpClientErrorException) e.getCause()).getStatusCode();
           if (HttpStatus.UNAUTHORIZED.equals(status)) {
             response = new RestResponse(500, "Invalid Credentials. Check username and password");
+          } else if (HttpStatus.FORBIDDEN.equals(status)) {
+            response = new RestResponse(403, "Invalid Credentials. Check username and password");
           }
         }
       }

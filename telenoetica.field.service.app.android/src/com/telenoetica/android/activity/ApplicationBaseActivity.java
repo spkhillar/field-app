@@ -1,6 +1,8 @@
 package com.telenoetica.android.activity;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +21,7 @@ import com.telenoetica.jpa.entities.RoutineVisit;
 
 public abstract class ApplicationBaseActivity extends Activity {
 
+  protected static final Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
   protected SQLiteDbHandler sqLiteDbHandler;
   protected Context context;
 

@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.util.CollectionUtils;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,16 +42,10 @@ public class MaintainenceVisitActivity extends AbstractVisitActivity {
   }
 
   public void addListenerOnButtonSubmit() {
-
-    final Context context = this;
     buttonSubmit = (Button) findViewById(R.id.btn_mv_submit);
     buttonSubmit.setOnClickListener(new OnClickListener() {
-
       @Override
       public void onClick(final View arg0) {
-
-        // Intent intent = new Intent(context, CalloutVisit.class);
-        // startActivity(intent);
         renderConfirmationDialog();
       }
     });

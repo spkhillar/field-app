@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,8 +32,6 @@ import com.telenoetica.android.rest.RestResponse;
 import com.telenoetica.android.sqllite.AndroidVisitSqLiteModel;
 
 public class MainMenu extends ApplicationBaseActivity {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
   private Button btnRoutineVisit;
   private Button btnDieselVisit;
   private Button btnMaintenanceVisit;
@@ -143,7 +139,6 @@ public class MainMenu extends ApplicationBaseActivity {
   }
 
   public void doWithSendToServerResponse(final RestResponse restResponse) {
-    List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
     if (restResponse != null) {
       if (restResponse.getStatusCode() == 401) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
