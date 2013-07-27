@@ -55,6 +55,11 @@ public class MainMenu extends ApplicationBaseActivity {
 
   private void addListenerOnButtonSendToServer() {
     btnSendToServer = (Button) findViewById(R.id.button_send_to_server);
+    List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
+    if (!CollectionUtils.isEmpty(dataList)) {
+      int sendToServerRecordCount = dataList.size();
+      btnSendToServer.setText("Send To Server(" + sendToServerRecordCount + ")");
+    }
     btnSendToServer.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(final View arg0) {
