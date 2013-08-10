@@ -500,6 +500,7 @@
                 android:paddingRight="10dip"
                 android:shape="rectangle"
                 android:singleLine="true"
+                android:hint="[50 characters]"
                 android:tag="actionsRequiredForPermanentResolution" />
 
             <LinearLayout

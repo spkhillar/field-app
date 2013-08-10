@@ -12,6 +12,7 @@ import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -76,23 +77,23 @@ public class DieselVisitActivity extends AbstractVisitActivity {
           spinnerDieselVendor.setEnabled(true);
           spinnerDieselVendor.setFocusableInTouchMode(true);
           spinnerDieselVendor.requestFocus();
-          EditText edt2 = (EditText) findViewById(R.id.etTransfer);
-          edt2.setEnabled(false);
-          edt2.setInputType(InputType.TYPE_NULL);
-          edt2.setFocusableInTouchMode(false);
-          edt2.clearFocus();
+          AutoCompleteTextView autoTransfer = (AutoCompleteTextView) findViewById(R.id.etTransfer);
+          autoTransfer.setEnabled(false);
+          autoTransfer.setFocusableInTouchMode(false);
+          autoTransfer.clearFocus();
+          autoTransfer.setText("");
 
         }
         if (R.id.radioTransfer == checkedId) {
-          EditText edt = (EditText) findViewById(R.id.etTransfer);
-          edt.setEnabled(true);
-          edt.setInputType(InputType.TYPE_CLASS_NUMBER);
-          edt.setFocusableInTouchMode(true);
-          edt.requestFocus();
+          AutoCompleteTextView autoTransfer = (AutoCompleteTextView) findViewById(R.id.etTransfer);
+          autoTransfer.setEnabled(true);
+          autoTransfer.setFocusableInTouchMode(true);
+          autoTransfer.requestFocus();
           Spinner spinnerDieselVendor = (Spinner) findViewById(R.id.etBulk);
           spinnerDieselVendor.setEnabled(false);
           spinnerDieselVendor.setFocusableInTouchMode(false);
           spinnerDieselVendor.clearFocus();
+          spinnerDieselVendor.setSelection(0);
         }
 
       }
