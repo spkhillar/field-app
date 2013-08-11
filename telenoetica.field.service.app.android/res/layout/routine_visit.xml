@@ -111,11 +111,11 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
+                    android:maxLength="4"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-600]"
-                    android:tag='dieselLevelT1={"required":true,"min":1,"max":600}'/>
+                    android:hint="[0-6000]"
+                    android:tag='dieselLevelT1={"required":true,"min":0,"max":6000}'/>
                    
             </TableRow>
 
@@ -138,11 +138,11 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
-                    android:maxLength="3"
+                    android:maxLength="4"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-600]"
-                    android:tag='dieselLevelT2={"required":true,"min":1,"max":600}'/>
+                    android:hint="[0-6000]"
+                    android:tag='dieselLevelT2={"required":true,"min":0,"max":6000}'/>
             </TableRow>
 
             <TableRow
@@ -167,8 +167,8 @@
                     android:maxLength="5"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-30000]"
-                    android:tag='runHourGen1={"required":true,"min":1,"max":30000}'/>
+                    android:hint="[0-30000]"
+                    android:tag='runHourGen1={"required":true,"min":0,"max":30000}'/>
             </TableRow>
 
             <TableRow
@@ -193,8 +193,8 @@
                     android:maxLength="5"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:hint="[1-30000]" 
-                    android:tag='runHourGen2={"required":true,"min":1,"max":30000}'/>
+                    android:hint="[0-30000]" 
+                    android:tag='runHourGen2={"required":true,"min":0,"max":30000}'/>
             </TableRow>
 
             <TableRow
@@ -219,8 +219,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:hint="[1-400]" 
-                    android:tag='voltageNrVolts={"required":true,"min":1,"max":400}'/>
+                    android:hint="[0-400]" 
+                    android:tag='voltageNrVolts={"required":true,"min":0,"max":400}'/>
             </TableRow>
 
             <TableRow
@@ -245,8 +245,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:hint="[1-400]"
-                    android:tag='voltageNyVolts={"required":true,"min":1,"max":400}'/>
+                    android:hint="[0-400]"
+                    android:tag='voltageNyVolts={"required":true,"min":0,"max":400}'/>
             </TableRow>
 
             <TableRow
@@ -271,8 +271,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:hint="[1-400]" 
-                    android:tag='voltageNbVolts={"required":true,"min":1,"max":400}'/>
+                    android:hint="[0-400]" 
+                    android:tag='voltageNbVolts={"required":true,"min":0,"max":400}'/>
             </TableRow>
 
             <TableRow
@@ -297,8 +297,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true"
-                    android:hint="[1-999]"
-                    android:tag="loadRPhaseAmps"/>
+                    android:hint="[0-999]"
+                    android:tag='loadRPhaseAmps={"required":true,"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -323,8 +323,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-999]"
-                    android:tag="loadYPhaseAmps"/>
+                    android:hint="[0-999]"
+                    android:tag='loadYPhaseAmps={"required":true,"min":0,"max":999}'"/>
             </TableRow>
 
             <TableRow
@@ -349,8 +349,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-999]"
-                    android:tag="loadBPhaseAmps"/>
+                    android:hint="[0-999]"
+                    android:tag='loadBPhaseAmps={"required":true,"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -375,8 +375,8 @@
                     android:maxLength="2"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-99]"
-                    android:tag="rectifierOpVoltage"/>
+                    android:hint="[0-99]"
+                    android:tag='rectifierOpVoltage={"required":true,"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -401,8 +401,8 @@
                     android:maxLength="3"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[1-999]"
-                    android:tag="rectifierOpCurrentAmp"/>
+                    android:hint="[0-999]"
+                    android:tag='rectifierOpCurrentAmp={"required":true,"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow

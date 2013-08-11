@@ -93,6 +93,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
+                    android:hint="Num- N digits"
                     android:tag="accessCode={&quot;required&quot;:true}" />
             </TableRow>
 
