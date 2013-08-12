@@ -72,13 +72,15 @@ public class SpareUtilizationReportJob extends QuartzJobBean {
 		// Do your work
 		try {
 			reportPath = spareUtilizationReportService.createNewReport();
+			jobHistory.setPath(reportPath);
+			jobHistory.setEndTime(new Date());
+			jobHistory.setJobStatus(JobStatus.COMPLETED);
 		} catch (Exception e) {
 			LOGGER.debug("Error while creating Report");
 			e.printStackTrace();
+			jobHistory.setEndTime(new Date());
+			jobHistory.setJobStatus(JobStatus.FAILED);
 		}
-		jobHistory.setPath(reportPath);
-		jobHistory.setEndTime(new Date());
-		jobHistory.setJobStatus(JobStatus.COMPLETED);
 		updateJobStatus(jobHistory);
 
 	}

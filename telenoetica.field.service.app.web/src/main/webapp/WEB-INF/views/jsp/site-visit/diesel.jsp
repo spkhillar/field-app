@@ -29,7 +29,6 @@
 					range : [ 0, 9999999 ]
 				},
 				"bulkNameOfVendor" : {
-					vendorNameCheck : true,
 					bulkCheck: true
 				},
 				"transferredSiteId" : {
@@ -66,11 +65,6 @@
 				}
 			}
 		});
-
-		jQuery.validator.addMethod('vendorNameCheck', function(value) {
-			console.log('..option..',$('input:radio[name=dieselTransferOrBulkSupply]:checked').val());
-			return value.match(/^([a-zA-Z0-9_-]){0,20}$/);
-		}, "Vendor name is Alphanumeric with max 20 characters.");
 		
 		jQuery.validator.addMethod('bulkCheck', function(value) {
 			var transfer = $('input:radio[name=dieselTransferOrBulkSupply]:checked').val();
@@ -100,6 +94,9 @@
 		radioBtnPiuInstalledEnableText();
 		radioBtnPhcnInstalledText();
 		$( "#siteId" ).autocomplete({
+		      source: homeSiteArray
+		    });
+		$( "#transferredSiteId" ).autocomplete({
 		      source: homeSiteArray
 		    });
 		$('#bulkNameOfVendor').html(htmlDieselVendorOptions);		

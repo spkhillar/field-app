@@ -85,6 +85,7 @@ public class DieselDetailsReportJob extends QuartzJobBean {
 			jobHistory.setEndTime(new Date());
 			jobHistory.setJobStatus(JobStatus.FAILED);
 		}
+		updateJobStatus(jobHistory);
 	}
 
 	/**
