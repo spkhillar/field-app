@@ -324,7 +324,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-999]"
-                    android:tag='loadYPhaseAmps={"required":true,"min":0,"max":999}'"/>
+                    android:tag='loadYPhaseAmps={"required":true,"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow

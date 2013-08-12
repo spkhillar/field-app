@@ -10,9 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -119,7 +121,15 @@ public class LoginActivity extends ApplicationBaseActivity {
     @Override
     protected RestResponse doInBackground(final String... params) {
       Date start = new Date();
-      String url = AppValuesHolder.getHost() + "/rest/auth";
+      TelephonyManager   telephonyManager  =  ( TelephonyManager
+          )getSystemService( Context.TELEPHONY_SERVICE );
+
+      /*
+       * getDeviceId() function Returns the unique device ID.
+       * for example,the IMEI for GSM and the MEID or ESN for CDMA phones.
+       */
+      String imeistring = telephonyManager.getDeviceId();
+      String url = AppValuesHolder.getHost() + "/rest/auth/"+imeistring;
       RestResponse response = null;
       try {
         LOGGER.debug("invoking..." + url);

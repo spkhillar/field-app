@@ -851,4 +851,30 @@
 			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
 			referencesUniqueColumn="false" />
 	</changeSet>	
+	
+	<changeSet author="shiv prasad khillar" id="1366412359126-47">
+		<createTable tableName="android_application_download_history">
+			<column autoIncrement="true" name="id" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" />
+			</column>
+			<column name="user_id" type="BIGINT" />
+			<column name="user_device_id" type="VARCHAR(250)" />
+			<column defaultValueComputed="CURRENT_TIMESTAMP" name="created_at"
+				type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="version" type="INT" />
+		</createTable>
+		<modifySql dbms="mysql">
+			<append value=" engine innodb" />
+		</modifySql>
+	</changeSet>
+	
+	<changeSet author="shiv prasad khillar" id="1366412359126-48">
+		<addForeignKeyConstraint baseColumnNames="user_id"
+			baseTableName="android_application_download_history" constraintName="android_application_download_history_user_fk1"
+			deferrable="false" initiallyDeferred="false" onDelete="CASCADE"
+			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
+			referencesUniqueColumn="false" />
+	</changeSet>	
 </databaseChangeLog>

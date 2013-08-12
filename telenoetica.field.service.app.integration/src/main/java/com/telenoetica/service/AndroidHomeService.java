@@ -33,6 +33,7 @@ public interface AndroidHomeService {
    * Export android app.
    *
    * @param httpServletResponse the http servlet response
+   * @return
    */
-  public void exportAndroidApp(HttpServletResponse httpServletResponse);
+  public boolean exportAndroidApp(HttpServletResponse httpServletResponse);
 }

@@ -3,6 +3,7 @@
  */
 package com.telenoetica.service.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.telenoetica.jpa.entities.Site;
@@ -15,6 +16,8 @@ import com.telenoetica.service.util.ApplicationServiceException;
  * The Class AbstractBaseService.
  */
 public abstract class AbstractBaseService {
+
+  protected static final Logger logger = Logger.getLogger(AbstractBaseService.class);
 
   /** The user service. */
   @Autowired

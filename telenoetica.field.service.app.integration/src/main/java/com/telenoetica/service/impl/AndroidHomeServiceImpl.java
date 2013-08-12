@@ -125,8 +125,8 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
    * @see com.telenoetica.service.AndroidHomeService#exportAndroidApp(javax.servlet.http.HttpServletResponse)
    */
   @Override
-  public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
-
+  public boolean exportAndroidApp(final HttpServletResponse httpServletResponse) {
+    boolean downloaded = true;
     String appFilePath = systemConfiguration.getAndroidAppFilePath();
     LOGGER.debug("Downalod starts from source.."+appFilePath);
     File file = new File(appFilePath);
@@ -149,7 +149,9 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
       LOGGER.debug("Downalod ends from source.."+appFilePath);
     } catch (Exception e) {
       LOGGER.error("Exception while downloading...",e);
+      downloaded = false;
     }
+    return downloaded;
   }
 
 }
