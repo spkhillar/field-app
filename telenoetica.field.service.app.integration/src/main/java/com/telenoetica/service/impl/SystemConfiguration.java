@@ -69,6 +69,10 @@ public class SystemConfiguration {
 	@Value("${mail.to}")
 	private String to;
 
+	/** The android app file path. */
+	@Value("${android.help.file.name}")
+	private String androidAppHelpFilePath;
+
 	/**
 	 * Gets the diesel details report directory.
 	 * 
@@ -126,6 +130,15 @@ public class SystemConfiguration {
 	 */
 	public String getAndroidAppFilePath() {
 		return androidAppFilePath;
+	}
+
+	/**
+	 * Gets the android app file path.
+	 * 
+	 * @return the android app file path
+	 */
+	public String getAndroidAppHelpFilePath() {
+		return androidAppHelpFilePath;
 	}
 
 	public String getHost() {

@@ -57,207 +57,234 @@ import com.telenoetica.web.rest.WebHomeData;
 @Controller
 public class HomeController extends BaseController {
 
-  /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	/** The Constant logger. */
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
 
-  /** The fault service. */
-  @Autowired
-  private FaultService faultService;
+	/** The fault service. */
+	@Autowired
+	private FaultService faultService;
 
-  /** The site service. */
-  @Autowired
-  private SiteService siteService;
+	/** The site service. */
+	@Autowired
+	private SiteService siteService;
 
-  /** The spare service. */
-  @Autowired
-  private SpareService spareService;
+	/** The spare service. */
+	@Autowired
+	private SpareService spareService;
 
-  /** The client service. */
-  @Autowired
-  private ClientService clientService;
+	/** The client service. */
+	@Autowired
+	private ClientService clientService;
 
-  /** The maintenance visit category service. */
-  @Autowired
-  private MaintenanceVisitCategoryService maintenanceVisitCategoryService;
+	/** The maintenance visit category service. */
+	@Autowired
+	private MaintenanceVisitCategoryService maintenanceVisitCategoryService;
 
-  /** The call out visit service. */
-  @Autowired
-  private CallOutVisitService callOutVisitService;
+	/** The call out visit service. */
+	@Autowired
+	private CallOutVisitService callOutVisitService;
 
-  /** The diesel visit service. */
-  @Autowired
-  private DieselVisitService dieselVisitService;
+	/** The diesel visit service. */
+	@Autowired
+	private DieselVisitService dieselVisitService;
 
-  /** The routine visit service. */
-  @Autowired
-  private RoutineVisitService routineVisitService;
+	/** The routine visit service. */
+	@Autowired
+	private RoutineVisitService routineVisitService;
 
-  /** The maintenance visit service. */
-  @Autowired
-  private MaintenanceVisitService maintenanceVisitService;
+	/** The maintenance visit service. */
+	@Autowired
+	private MaintenanceVisitService maintenanceVisitService;
 
-  /** The android home service. */
-  @Autowired
-  private AndroidHomeService androidHomeService;
+	/** The android home service. */
+	@Autowired
+	private AndroidHomeService androidHomeService;
 
-  @Autowired
-  private DieselVendorService dieselVendorService;
+	@Autowired
+	private DieselVendorService dieselVendorService;
 
-  @Autowired
-  private AndroidApplicationDownloadHistoryService androidApplicationDownloadHistoryService;
-  /**
-   * Simply selects the home view to render by returning its name.
-   * 
-   * @param locale
-   *          the locale
-   * @param model
-   *          the model
-   * @return the string
-   */
-  @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String home(final Locale locale, final Model model) {
-    logger.info("Welcome home! The client locale is {}.", locale);
-    Date date = new Date();
-    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-    String formattedDate = dateFormat.format(date);
-    model.addAttribute("serverTime", formattedDate);
-    return "home";
-  }
+	@Autowired
+	private AndroidApplicationDownloadHistoryService androidApplicationDownloadHistoryService;
 
-  /**
-   * Gets the routine visit.
-   * 
-   * @return the routine visit
-   */
-  @RequestMapping(value = "/rt", method = RequestMethod.GET)
-  @ResponseBody
-  public CallOutVisit getRoutineVisit() {
-    User user = new User();
-    Site site = new Site();
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @return the string
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(final Locale locale, final Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+				DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
+		return "home";
+	}
 
-    user.setEmail("shivprasad.khillar@gmial.com");
-    user.setEnabled(true);
-    user.setFirstName("Shiv");
-    user.setLastName("khillar");
-    user.setUserName("spkhillar");
-    user.setId(1L);
+	/**
+	 * Gets the routine visit.
+	 * 
+	 * @return the routine visit
+	 */
+	@RequestMapping(value = "/rt", method = RequestMethod.GET)
+	@ResponseBody
+	public CallOutVisit getRoutineVisit() {
+		User user = new User();
+		Site site = new Site();
 
-    site.setName("Bellandur");
-    site.setId(2L);
+		user.setEmail("shivprasad.khillar@gmial.com");
+		user.setEnabled(true);
+		user.setFirstName("Shiv");
+		user.setLastName("khillar");
+		user.setUserName("spkhillar");
+		user.setId(1L);
 
-    CallOutVisit callOutVisit = new CallOutVisit();
-    callOutVisit.setAccessCode("AAA");
+		site.setName("Bellandur");
+		site.setId(2L);
 
-    callOutVisit.setUser(user);
-    callOutVisit.setSite(site);
-    callOutVisit.setTimeComplainReceived(new Date());
-    callOutVisit.settimeFaultResolved(new Date());
-    callOutVisit.setTimeReachedToSite(new Date());
+		CallOutVisit callOutVisit = new CallOutVisit();
+		callOutVisit.setAccessCode("AAA");
 
-    return callOutVisit;
-  }
+		callOutVisit.setUser(user);
+		callOutVisit.setSite(site);
+		callOutVisit.setTimeComplainReceived(new Date());
+		callOutVisit.settimeFaultResolved(new Date());
+		callOutVisit.setTimeReachedToSite(new Date());
 
-  /**
-   * Home objects.
-   * 
-   * @return the home data object
-   */
-  @RequestMapping(value = "/home", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  private HomeDataObject homeObjects() {
-    List<Fault> faults = faultService.getFaults();
-    List<Site> sites = siteService.getSites();
-    List<Client> clients = clientService.getClients();
-    List<Spare> spares = spareService.getSpares();
-    List<DieselVendor> dieselVendor = dieselVendorService.getDieselVendor();
+		return callOutVisit;
+	}
 
-    List<MaintenanceVisitCategory> maintenanceCategories = maintenanceVisitCategoryService.getCategories();
-    HomeDataObject homeDataObject =
-        new HomeDataObject(sites, spares, clients, faults, maintenanceCategories, dieselVendor);
-    return homeDataObject;
-  }
+	/**
+	 * Home objects.
+	 * 
+	 * @return the home data object
+	 */
+	@RequestMapping(value = "/home", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	private HomeDataObject homeObjects() {
+		List<Fault> faults = faultService.getFaults();
+		List<Site> sites = siteService.getSites();
+		List<Client> clients = clientService.getClients();
+		List<Spare> spares = spareService.getSpares();
+		List<DieselVendor> dieselVendor = dieselVendorService.getDieselVendor();
 
-  /**
-   * android rest login.
-   * 
-   * @return the home data object
-   */
-  @RequestMapping(value = "/rest/auth/{userDeviceId}", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  private RestResponse restAuth( @PathVariable final String userDeviceId) {
-    androidApplicationDownloadHistoryService.createOrUpdateDownloadForUser(userDeviceId, getCurrentLoggedinUserName());
-    return new RestResponse(0, "Logged In");
-  }
+		List<MaintenanceVisitCategory> maintenanceCategories = maintenanceVisitCategoryService
+				.getCategories();
+		HomeDataObject homeDataObject = new HomeDataObject(sites, spares,
+				clients, faults, maintenanceCategories, dieselVendor);
+		return homeDataObject;
+	}
 
-  /**
-   * android rest login.
-   * 
-   * @return the home data object
-   */
-  @RequestMapping(value = "/rest/webHomeData", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  public WebHomeData chartData() {
-    Page<RoutineVisit> routineVisits = routineVisitService.findALL(1, 5, "desc", "createdAt");
-    Page<CallOutVisit> callOutVisits = callOutVisitService.findALL(1, 5, "desc", "createdAt");
-    Page<DieselVisit> dieselVisits = dieselVisitService.findALL(1, 5, "desc", "createdAt");
-    Page<MaintenanceVisit> maintenanceVisits = maintenanceVisitService.findALL(1, 5, "desc", "createdAt");
-    List<Integer> chartData = androidHomeService.getchartData();
-    WebHomeData webHomeData =
-        new WebHomeData(chartData, maintenanceVisits.getContent(), callOutVisits.getContent(),
-          routineVisits.getContent(), dieselVisits.getContent());
-    return webHomeData;
-  }
+	/**
+	 * android rest login.
+	 * 
+	 * @return the home data object
+	 */
+	@RequestMapping(value = "/rest/auth/{userDeviceId}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	private RestResponse restAuth(@PathVariable final String userDeviceId) {
+		androidApplicationDownloadHistoryService.createOrUpdateDownloadForUser(
+				userDeviceId, getCurrentLoggedinUserName());
+		return new RestResponse(0, "Logged In");
+	}
 
-  /**
-   * Under construction.
-   * 
-   * @return the string
-   */
-  @RequestMapping(value = "/underconstruction", method = RequestMethod.GET)
-  public String underConstruction() {
-    return "under.construction";
-  }
+	/**
+	 * android rest login.
+	 * 
+	 * @return the home data object
+	 */
+	@RequestMapping(value = "/rest/webHomeData", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public WebHomeData chartData() {
+		Page<RoutineVisit> routineVisits = routineVisitService.findALL(1, 5,
+				"desc", "createdAt");
+		Page<CallOutVisit> callOutVisits = callOutVisitService.findALL(1, 5,
+				"desc", "createdAt");
+		Page<DieselVisit> dieselVisits = dieselVisitService.findALL(1, 5,
+				"desc", "createdAt");
+		Page<MaintenanceVisit> maintenanceVisits = maintenanceVisitService
+				.findALL(1, 5, "desc", "createdAt");
+		List<Integer> chartData = androidHomeService.getchartData();
+		WebHomeData webHomeData = new WebHomeData(chartData,
+				maintenanceVisits.getContent(), callOutVisits.getContent(),
+				routineVisits.getContent(), dieselVisits.getContent());
+		return webHomeData;
+	}
 
-  /**
-   * Android home data.
-   * 
-   * @return the home android object
-   */
-  @RequestMapping(value = "/rest/home", method = RequestMethod.GET, produces = "application/json")
-  @ResponseBody
-  public HomeAndroidObject androidHomeData() {
-    Date start = new Date();
-    HomeAndroidObject homeAndroidObject = androidHomeService.getAndroidHomeObject();
-    System.err.println("...." + homeAndroidObject);
-    Date end = new Date();
-    long total = end.getTime() - start.getTime();
-    System.err.println(total + "-----HomeAndroidObject.......End-----" + new Date());
-    return homeAndroidObject;
-  }
+	/**
+	 * Under construction.
+	 * 
+	 * @return the string
+	 */
+	@RequestMapping(value = "/underconstruction", method = RequestMethod.GET)
+	public String underConstruction() {
+		return "under.construction";
+	}
 
-  /**
-   * Help.
-   * 
-   * @return the string
-   */
-  @RequestMapping(value = "/help", method = RequestMethod.GET)
-  public String help() {
-    return "app.help";
-  }
+	/**
+	 * Android home data.
+	 * 
+	 * @return the home android object
+	 */
+	@RequestMapping(value = "/rest/home", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public HomeAndroidObject androidHomeData() {
+		Date start = new Date();
+		HomeAndroidObject homeAndroidObject = androidHomeService
+				.getAndroidHomeObject();
+		System.err.println("...." + homeAndroidObject);
+		Date end = new Date();
+		long total = end.getTime() - start.getTime();
+		System.err.println(total + "-----HomeAndroidObject.......End-----"
+				+ new Date());
+		return homeAndroidObject;
+	}
 
-  /**
-   * Export android app.
-   * 
-   * @param httpServletResponse
-   *          the http servlet response
-   */
-  @RequestMapping(value = "/downloadAndroidApp")
-  @ResponseBody
-  public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
-    boolean downloaded = androidHomeService.exportAndroidApp(httpServletResponse);
-    if(downloaded){
-      androidApplicationDownloadHistoryService.createOrUpdateDownloadForUser(null, getCurrentLoggedinUserName());
-    }
-  }
+	/**
+	 * Help.
+	 * 
+	 * @return the string
+	 */
+	@RequestMapping(value = "/help", method = RequestMethod.GET)
+	public String help() {
+		return "app.help";
+	}
+
+	/**
+	 * Export android app.
+	 * 
+	 * @param httpServletResponse
+	 *            the http servlet response
+	 */
+	@RequestMapping(value = "/downloadAndroidApp")
+	@ResponseBody
+	public void exportAndroidApp(final HttpServletResponse httpServletResponse) {
+		boolean downloaded = androidHomeService
+				.exportAndroidApp(httpServletResponse);
+		if (downloaded) {
+			androidApplicationDownloadHistoryService
+					.createOrUpdateDownloadForUser(null,
+							getCurrentLoggedinUserName());
+		}
+	}
+
+	/**
+	 * Export android app.
+	 * 
+	 * @param httpServletResponse
+	 *            the http servlet response
+	 */
+	@RequestMapping(value = "help/downloadAndroidAppHelp")
+	@ResponseBody
+	public void exportAndroidAppHelp(
+			final HttpServletResponse httpServletResponse) {
+		androidHomeService.exportAndroidAppHelp(httpServletResponse);
+	}
 
 }
