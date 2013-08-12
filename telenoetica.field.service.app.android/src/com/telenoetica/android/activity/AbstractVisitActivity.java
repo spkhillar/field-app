@@ -47,12 +47,14 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
   protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractVisitActivity.class);
 
   protected void setupAutoCompleteSite() {
-    AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.visitSiteId);
-    AutoCompleteTextView autoCompleteTextView2 = (AutoCompleteTextView) findViewById(R.id.etTransfer);
+    AutoCompleteTextView siteAutoCompleteView = (AutoCompleteTextView) findViewById(R.id.visitSiteId);
+    AutoCompleteTextView dieselTransferAutoCompleteView = (AutoCompleteTextView) findViewById(R.id.etTransfer);
     ArrayAdapter<String> arrayAdapter =
         new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, AppValuesHolder.getSites());
-    autoCompleteTextView.setAdapter(arrayAdapter);
-    autoCompleteTextView2.setAdapter(arrayAdapter);
+    siteAutoCompleteView.setAdapter(arrayAdapter);
+    if (dieselTransferAutoCompleteView != null) {
+      dieselTransferAutoCompleteView.setAdapter(arrayAdapter);
+    }
   }
 
   public void addItemsOnSpinner(final int spinnerId, final List<String> spinnerValues) {

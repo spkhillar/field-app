@@ -204,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag="bulkNameOfVendor" />
+                    android:tag='bulkNameOfVendor{"required":true}' />
             </TableRow>
 
             <TableRow
@@ -260,7 +260,7 @@
                     android:singleLine="true"
                     android:maxLength="4"
                     android:hint="[0-6000]"
-                    android:tag='dieselLevelT2BeforeVisit={"required":true,"min":0,"max":6000}' />
+                    android:tag='dieselLevelT2BeforeVisit={"min":0,"max":6000}' />
             </TableRow>
 
             <TableRow
@@ -288,7 +288,7 @@
                     android:singleLine="true"
                     android:maxLength="4"
                     android:hint="[0-6000]"
-                    android:tag='dieselReceivedLtrs={"required":true,"min":0,"max":6000}' />
+                    android:tag='dieselReceivedLtrs={"min":0,"max":6000}' />
             </TableRow>
 
             <TableRow
@@ -316,7 +316,7 @@
                     android:singleLine="true"
                     android:maxLength="5"
                     android:hint="[0-30000]"
-                    android:tag='runHourGen1={"required":true,"min":0,"max":30000}' />
+                    android:tag='runHourGen1={"min":0,"max":30000}' />
             </TableRow>
 
             <TableRow
@@ -344,7 +344,7 @@
                     android:singleLine="true"
                     android:maxLength="5"
                     android:hint="[0-30000]"
-                    android:tag='runHourGen2={"required":true,"min":0,"max":30000}' />
+                    android:tag='runHourGen2={"min":0,"max":30000}' />
             </TableRow>
 
             <TableRow
@@ -471,7 +471,7 @@
                     android:singleLine="true"
                     android:maxLength="2"
                     android:hint="[0-24]"
-                    android:tag='phcnHrsPerDay={"required":true,"min":0,"max":24}' />
+                    android:tag='phcnHrsPerDay={"min":0,"max":24}' />
             </TableRow>
 
             <TableRow
@@ -532,7 +532,7 @@
                     android:singleLine="true"
                     android:maxLength="2"
                     android:hint="[0-24]"
-                    android:tag='hybridOrPiuHrsPerDay={"required":true,"min":1,"max":24}' />
+                    android:tag='hybridOrPiuHrsPerDay={"min":0,"max":24}' />
             </TableRow>
 
             <LinearLayout

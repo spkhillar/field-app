@@ -72,8 +72,10 @@ public class DieselVisitActivity extends AbstractVisitActivity {
       public void onCheckedChanged(final RadioGroup group, final int checkedId) {
         // checkedId is the RadioButton selected
         if (R.id.radioBulk == checkedId) {
-
           Spinner spinnerDieselVendor = (Spinner) findViewById(R.id.etBulk);
+          if (spinnerDieselVendor != null) {
+            LOGGER.error("Mandatory Field");
+          }
           spinnerDieselVendor.setEnabled(true);
           spinnerDieselVendor.setFocusableInTouchMode(true);
           spinnerDieselVendor.requestFocus();

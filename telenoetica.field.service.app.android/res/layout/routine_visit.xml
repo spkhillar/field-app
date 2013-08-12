@@ -142,7 +142,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-6000]"
-                    android:tag='dieselLevelT2={"required":true,"min":0,"max":6000}'/>
+                    android:tag='dieselLevelT2={"min":0,"max":6000}'/>
             </TableRow>
 
             <TableRow
@@ -168,7 +168,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-30000]"
-                    android:tag='runHourGen1={"required":true,"min":0,"max":30000}'/>
+                    android:tag='runHourGen1={"min":0,"max":30000}'/>
             </TableRow>
 
             <TableRow
@@ -194,7 +194,7 @@
                     android:inputType="number"
                     android:singleLine="true"
                     android:hint="[0-30000]" 
-                    android:tag='runHourGen2={"required":true,"min":0,"max":30000}'/>
+                    android:tag='runHourGen2={"min":0,"max":30000}'/>
             </TableRow>
 
             <TableRow
@@ -220,7 +220,7 @@
                     android:inputType="number"
                     android:singleLine="true"
                     android:hint="[0-400]" 
-                    android:tag='voltageNrVolts={"required":true,"min":0,"max":400}'/>
+                    android:tag='voltageNrVolts={"min":0,"max":400}'/>
             </TableRow>
 
             <TableRow
@@ -246,7 +246,7 @@
                     android:inputType="number"
                     android:singleLine="true"
                     android:hint="[0-400]"
-                    android:tag='voltageNyVolts={"required":true,"min":0,"max":400}'/>
+                    android:tag='voltageNyVolts={"min":0,"max":400}'/>
             </TableRow>
 
             <TableRow
@@ -272,7 +272,7 @@
                     android:inputType="number"
                     android:singleLine="true"
                     android:hint="[0-400]" 
-                    android:tag='voltageNbVolts={"required":true,"min":0,"max":400}'/>
+                    android:tag='voltageNbVolts={"min":0,"max":400}'/>
             </TableRow>
 
             <TableRow
@@ -298,7 +298,7 @@
                     android:inputType="number"
                     android:singleLine="true"
                     android:hint="[0-999]"
-                    android:tag='loadRPhaseAmps={"required":true,"min":0,"max":999}'/>
+                    android:tag='loadRPhaseAmps={"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -324,7 +324,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-999]"
-                    android:tag='loadYPhaseAmps={"required":true,"min":0,"max":999}'/>
+                    android:tag='loadYPhaseAmps={"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -350,7 +350,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-999]"
-                    android:tag='loadBPhaseAmps={"required":true,"min":0,"max":999}'/>
+                    android:tag='loadBPhaseAmps={"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -376,7 +376,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-99]"
-                    android:tag='rectifierOpVoltage={"required":true,"min":0,"max":999}'/>
+                    android:tag='rectifierOpVoltage={"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -402,7 +402,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[0-999]"
-                    android:tag='rectifierOpCurrentAmp={"required":true,"min":0,"max":999}'/>
+                    android:tag='rectifierOpCurrentAmp={"min":0,"max":999}'/>
             </TableRow>
 
             <TableRow
@@ -428,7 +428,7 @@
                     android:inputType="number"
                     android:singleLine="true" 
                     android:hint="[50-2000]"
-                    android:tag='batteryCapcityV={"required":true,"min":50,"max":2000}'/>
+                    android:tag='batteryCapcityV={"min":50,"max":2000}'/>
             </TableRow>
             
 

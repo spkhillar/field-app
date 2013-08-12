@@ -82,7 +82,7 @@ public class JsonValidator {
       return valid;
     }
 
-    if (valid && min > 0 && max > 0) {
+    if (valid && min >= 0 && max > 0) {
       int intValue = Integer.parseInt(value);
       valid = (intValue >= min && intValue <= max);
       if (!valid) {
