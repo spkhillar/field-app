@@ -27,7 +27,7 @@ public enum RestClient {
     // Create a new RestTemplate instance
     HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory =
         new HttpComponentsClientHttpRequestFactory();
-    httpComponentsClientHttpRequestFactory.setConnectTimeout(250);
+    httpComponentsClientHttpRequestFactory.setConnectTimeout(8000);
     RestTemplate restTemplate = new RestTemplate(httpComponentsClientHttpRequestFactory);
     restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
     ResponseEntity<T> response = null;

@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -281,12 +282,18 @@ DieselVisitService {
     Date startDate;
     Date endDate;
     Calendar currentDate = Calendar.getInstance(); // Get the current date
-    endDate = currentDate.getTime();
-    currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance()
-      .getActualMinimum(Calendar.DAY_OF_MONTH));
+    endDate = new Date();
+    endDate = DateUtils.addDays(endDate, -1);
+    endDate = DateUtils.truncate(endDate, Calendar.DATE);;
+    Date finalEndDate = DateUtils.addMinutes(endDate, 59);;
+    finalEndDate = DateUtils.addSeconds(finalEndDate, 59);
+    finalEndDate = DateUtils.addHours(finalEndDate, 23);
+    currentDate.setTime(endDate);
+    currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().getActualMinimum(Calendar.DAY_OF_MONTH));
     startDate = currentDate.getTime();
+    logger.debug(" Site ="+site.getName()+". Finding Diesel Visit Data from "+startDate + " TO "+finalEndDate);
     return dieselVisitDAO.findBySiteAndCreatedAtBetween(site, startDate,
-      endDate);
+      finalEndDate);
   }
 
   /**
