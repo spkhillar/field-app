@@ -99,6 +99,7 @@
 		$( "#transferredSiteId" ).autocomplete({
 		      source: homeSiteArray
 		    });
+		$('#dieselDensity').html(htmlDieselDensityOptions);
 		$('#bulkNameOfVendor').html(htmlDieselVendorOptions);		
 	});
 	
@@ -267,6 +268,11 @@
 				<p>
 					<label><spring:message code="fieldapp.label.dv.diesel.received"/></label> 
 					<form:input path="dieselReceivedLtrs" />
+				</p>
+				<p>
+					<label><spring:message code="fieldapp.label.dv.diesel.density"/></label>
+					<form:select id="dieselDensity" path="dieselDensity">
+					</form:select> 
 				</p>
 				<p>
 					<label><spring:message code="fieldapp.label.rv.run.hr.gen1"/></label> 

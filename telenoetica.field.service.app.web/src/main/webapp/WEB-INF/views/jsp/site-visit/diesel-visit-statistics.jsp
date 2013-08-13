@@ -18,7 +18,7 @@
 							"Diesel Supply Type", "Transfer Site",
 							"Vendor Name", "Diesel Level T1 before receipt",
 							"Diesel Level T2 before receipt",
-							"Diesel received (Ltrs)", "Run Hour Gen 1",
+							"Diesel received (Ltrs)", "diesel density", "Run Hour Gen 1",
 							"Run Hour Gen 2", "DRN booked at site",
 							"Diesel log book maintained", "PHCN Installed",
 							"PHCN Hrs per day", "Hybrid/PIU installed",
@@ -82,6 +82,10 @@
 					}, {
 						name : 'dieselReceivedLtrs',
 						index : 'dieselReceivedLtrs',
+						width : 150
+					},{
+						name : 'dieselDensity',
+						index : 'dieselDensity',
 						width : 150
 					}, {
 						name : 'runHourGen1',

@@ -877,4 +877,13 @@
 			onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="user"
 			referencesUniqueColumn="false" />
 	</changeSet>	
+	
+	<changeSet author="satyam srivastava" id="1366412359126-49">
+		<addColumn tableName="diesel_visit">
+			<column name="diesel_density" type="float(3,2)"></column>
+		</addColumn>
+		<modifySql dbms="mysql">
+			<append value=" after diesel_received_ltrs"/>
+		</modifySql>
+	</changeSet>
 </databaseChangeLog>
