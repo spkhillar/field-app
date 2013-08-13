@@ -83,10 +83,12 @@ public class JsonValidator {
     }
 
     if (valid && min >= 0 && max > 0) {
-      int intValue = Integer.parseInt(value);
-      valid = (intValue >= min && intValue <= max);
-      if (!valid) {
-        message = getStringInFormat(AndroidConstants.RANGE_MESSAGE, new Object[] { value, min, max });
+      if(StringUtils.isNotBlank(value)){
+        int intValue = Integer.parseInt(value);
+        valid = (intValue >= min && intValue <= max);
+        if (!valid) {
+          message = getStringInFormat(AndroidConstants.RANGE_MESSAGE, new Object[] { value, min, max });
+        }
       }
     }
     return valid;

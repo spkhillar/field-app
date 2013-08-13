@@ -115,17 +115,15 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     } else {
       try {
         JsonValidator jsonValidator = RestJsonUtils.fromJSONString(tagAndValidation[1], JsonValidator.class);
-        if (value != null && StringUtils.isNotBlank(value.toString())) {
-          valid = jsonValidator.validate(value.toString());
-          if (!valid) {
-            if (view instanceof EditText) {
-              EditText editable = (EditText) view;
-              editable.setError(jsonValidator.getMessage());
-            }
-            errorList.add("Error");
-          } else {
-            valueMap.put(tagAndValidation[0], value);
+        valid = jsonValidator.validate(value.toString());
+        if (!valid) {
+          if (view instanceof EditText) {
+            EditText editable = (EditText) view;
+            editable.setError(jsonValidator.getMessage());
           }
+          errorList.add("Error");
+        } else {
+          valueMap.put(tagAndValidation[0], value);
         }
       } catch (JsonParseException e) {
         e.printStackTrace();
