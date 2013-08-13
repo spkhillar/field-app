@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.util.CollectionUtils;
 
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.DieselVisit;
@@ -56,12 +58,35 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     ViewGroup group = (ViewGroup) findViewById(R.id.ll2_dv);
     List<String> errorList = new ArrayList<String>();
     getTargetObject(group, valueMap, errorList);
+    validateDieselSupply(errorList);
     if (CollectionUtils.isEmpty(errorList)) {
       DieselVisit dieselVisit = new DieselVisit();
       dieselVisit.setUserId(AppValuesHolder.getCurrentUser());
       saveVisit(dieselVisit, valueMap);
     } else {
       LOGGER.error("Validation failed");
+    }
+  }
+
+  private void validateDieselSupply(final List<String> errorList) {
+    RadioGroup rg = (RadioGroup) findViewById(R.id.radioTransferBulk);
+    int checkedRadioButtonId = rg.getCheckedRadioButtonId();
+    if (R.id.radioBulk == checkedRadioButtonId) {
+      Spinner spinnerDieselVendor = (Spinner) findViewById(R.id.etBulk);
+      if (spinnerDieselVendor.getSelectedItem() != null
+          && "Browse & Select".equals(spinnerDieselVendor.getSelectedItem())) {
+        // show toast diesel vendor is required
+        errorList.add("Diesel Vendor is required");
+        Toast.makeText(this, "Diesel Vendor is required", Toast.LENGTH_LONG).show();
+      }
+    } else {
+      AutoCompleteTextView autoCompleteTextViewTransfer = (AutoCompleteTextView) findViewById(R.id.etTransfer);
+      if (autoCompleteTextViewTransfer != null
+          && StringUtils.isNotBlank(autoCompleteTextViewTransfer.getText().toString())) {
+        // show toast transferred site id is required
+        errorList.add("Transferred Site Id is required");
+      }
+      Toast.makeText(this, "Transferred Site Id is required", Toast.LENGTH_LONG).show();
     }
   }
 

@@ -204,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:prompt="@string/spinner_title"
-                    android:tag='bulkNameOfVendor{"required":true}' />
+                    android:tag="bulkNameOfVendor" />
             </TableRow>
 
             <TableRow
