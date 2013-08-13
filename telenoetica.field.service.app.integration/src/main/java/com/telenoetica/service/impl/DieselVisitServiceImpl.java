@@ -236,7 +236,11 @@ public class DieselVisitServiceImpl extends AbstractBaseService implements
 					.getDieselLevelT2BeforeVisit()));
 			values.add(ServiceUtil.checkAndReturnValue(dieselVisit
 					.getDieselReceivedLtrs()));
-			values.add(dieselVisit.getDieselDensity());
+			if (dieselVisit.getDieselDensity() != null) {
+				values.add(dieselVisit.getDieselDensity().toString());
+			} else {
+				values.add(dieselVisit.getDieselDensity());
+			}
 			values.add(ServiceUtil.checkAndReturnValue(dieselVisit
 					.getRunHourGen1()));
 			values.add(ServiceUtil.checkAndReturnValue(dieselVisit

@@ -128,8 +128,9 @@ public class DieselVisit implements java.io.Serializable, BaseEntity {
 	private String transferredSiteId;
 
 	/**
-	 * 
+	 * the dieselDensity
 	 */
+	@JsonProperty
 	private Float dieselDensity;
 
 	/**
