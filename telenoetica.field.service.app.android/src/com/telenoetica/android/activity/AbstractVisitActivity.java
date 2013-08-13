@@ -196,6 +196,8 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
       return null;
     } else if (ClassUtils.isAssignable(clazz, String.class)) {
       return value;
+    } else if (ClassUtils.isAssignable(clazz, Float.class)) {
+      return Float.valueOf(value);
     }
     throw new IllegalArgumentException(clazz.getName() + "Not in List");
   }

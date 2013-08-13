@@ -13,6 +13,7 @@ import android.text.InputType;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +50,20 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     registerListenerForHybridPiu();
     addItemsOnSpinner(R.id.etBulk, AppValuesHolder.getDieselVendors());
     setupAutoCompleteSite();
+    addValuesOnSpinnerDieselDensity();
+  }
+
+  private void addValuesOnSpinnerDieselDensity() {
+    Spinner spinnerDieselDensity = (Spinner) findViewById(R.id.spinnerDieselDensity);
+    String dieselDensityArray[] =
+        new String[] { "0.75", "0.76", "0.77", "0.78", "0.79", "0.80", "0.81", "0.82", "0.83", "0.84", "0.85", "0.86",
+            "0.87", "0.88", "0.89", "0.90", "0.91", "0.92", "0.93", "0.94", "0.95" };
+
+    ArrayAdapter<String> dataAdapter =
+        new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dieselDensityArray);
+    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    spinnerDieselDensity.setAdapter(dataAdapter);
+
   }
 
   @Override
@@ -85,8 +100,9 @@ public class DieselVisitActivity extends AbstractVisitActivity {
           && StringUtils.isNotBlank(autoCompleteTextViewTransfer.getText().toString())) {
         // show toast transferred site id is required
         errorList.add("Transferred Site Id is required");
+        Toast.makeText(this, "Transferred Site Id is required", Toast.LENGTH_LONG).show();
       }
-      Toast.makeText(this, "Transferred Site Id is required", Toast.LENGTH_LONG).show();
+
     }
   }
 
