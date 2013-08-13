@@ -232,7 +232,7 @@
                     android:singleLine="true"
                     android:maxLength="4"
                     android:hint="[0-6000]"
-                    android:tag='dieselLevelT1BeforeVisit ={"min":0,"max":6000}'/>
+                    android:tag='dieselLevelT1BeforeVisit={"min":0,"max":6000}'/>
             </TableRow>
 
             <TableRow
