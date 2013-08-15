@@ -6,8 +6,6 @@ package com.telenoetica.service.impl;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -26,16 +24,14 @@ import com.telenoetica.jpa.entities.DieselVisit;
 import com.telenoetica.jpa.entities.Site;
 import com.telenoetica.service.DieselDetailReportService;
 import com.telenoetica.service.DieselVisitService;
-import com.telenoetica.service.EmailService;
 import com.telenoetica.service.SiteService;
-import com.telenoetica.service.mail.EmailTemplate;
 import com.telenoetica.service.util.ServiceUtil;
 
 /**
  * The Class DieselDetailReportServiceImpl.
  */
 @Service("dieselDetailReportService")
-public class DieselDetailReportServiceImpl implements DieselDetailReportService {
+public class DieselDetailReportServiceImpl extends AbstractBaseService implements DieselDetailReportService {
 
   /** The Constant LOGGER. */
   private static final Logger LOGGER = Logger
@@ -48,13 +44,6 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
   /** The site service. */
   @Autowired
   private SiteService siteService;
-
-  /** The system configuration. */
-  @Autowired
-  private SystemConfiguration systemConfiguration;
-
-  @Autowired
-  private EmailService emailService;
 
   /**
    * Creates the new report.
@@ -206,21 +195,6 @@ public class DieselDetailReportServiceImpl implements DieselDetailReportService 
         + seconds + ".xls";
     LOGGER.debug("Creating new excel doc named: " + name);
     return name;
-  }
-
-  private void sendEmail(final String reportFilePath) {
-
-    LOGGER.debug("Sending Diesel detail report in email");
-    String recipient = systemConfiguration.getTo();
-    File attachment = new File(reportFilePath);
-    List<String> toAddress = new ArrayList(Arrays.asList(recipient
-      .split(",")));
-    toAddress.add(recipient);
-    EmailTemplate emailTemplate = new EmailTemplate(toAddress,
-      "***** Auto-Generated Message...Please DO NOT Reply *****",
-        "Diesel Detail Report ");
-    emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
-    emailService.sendEmail(emailTemplate);
   }
 
 }

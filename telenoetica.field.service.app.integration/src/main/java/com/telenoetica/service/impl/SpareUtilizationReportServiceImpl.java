@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,15 +27,13 @@ import org.springframework.stereotype.Service;
 
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.jpa.entities.Site;
-import com.telenoetica.service.EmailService;
 import com.telenoetica.service.MaintenanceVisitService;
 import com.telenoetica.service.SiteService;
 import com.telenoetica.service.SpareUtilizationReportService;
-import com.telenoetica.service.mail.EmailTemplate;
 import com.telenoetica.service.util.ServiceUtil;
 
 @Service("spareUtilizationReportService")
-public class SpareUtilizationReportServiceImpl implements
+public class SpareUtilizationReportServiceImpl extends AbstractBaseService implements
 SpareUtilizationReportService {
 
   private static final Logger LOGGER = Logger
@@ -152,12 +149,6 @@ SpareUtilizationReportService {
 
   @Autowired
   private SiteService siteService;
-
-  @Autowired
-  private SystemConfiguration systemConfiguration;
-
-  @Autowired
-  private EmailService emailService;
 
   @Override
   public String createNewReport(final Date forDate) throws Exception {
@@ -964,21 +955,6 @@ SpareUtilizationReportService {
     fuelfilterhousingCM = 0;
     engineOilCM = 0;
 
-  }
-
-  private void sendEmail(final String reportFilePath) {
-
-    LOGGER.debug("Sending Spare detail report in email");
-    String recipient = systemConfiguration.getTo();
-    File attachment = new File(reportFilePath);
-    List<String> toAddress = new ArrayList(Arrays.asList(recipient
-      .split(",")));
-    toAddress.add(recipient);
-    EmailTemplate emailTemplate = new EmailTemplate(toAddress,
-      "***** Auto-Generated Message...Please DO NOT Reply *****",
-        "Diesel Detail Report ");
-    emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
-    emailService.sendEmail(emailTemplate);
   }
 
 }
