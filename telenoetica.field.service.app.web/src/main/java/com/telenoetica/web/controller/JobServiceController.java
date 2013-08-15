@@ -74,7 +74,7 @@ public class JobServiceController extends BaseController {
     if (type.equals("diesel")) {
       jobName = "DieselDetailReportJob";
     } else {
-      jobName = "SpareUtilizationReportJob";
+      jobName = "SparesUtilizationReportJob";
     }
     List<JobHistory> listReport = jobHistoryService
         .findOneYearJobList(jobName);
