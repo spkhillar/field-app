@@ -3,6 +3,8 @@
  */
 package com.telenoetica.service;
 
+import java.util.Date;
+
 /**
  * The Interface DieselDetailReportService.
  */
@@ -14,6 +16,6 @@ public interface DieselDetailReportService {
    * @return the string
    * @throws Exception the exception
    */
-  public String createNewReport() throws Exception;
+  public String createNewReport(final Date forDate) throws Exception;
 
 }

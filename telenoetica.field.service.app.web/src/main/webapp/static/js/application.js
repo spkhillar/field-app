@@ -44,6 +44,10 @@ $(document).ready(function() {
 
 		return found;
 	}, "Site does not match sites available in the system");
+	
+	jQuery.validator.addMethod("alphanumeric", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
+	},"Fiels must contain only alphabets and numbers."); 
 
 	getClientsForDropDown();
 	getFaultsForDropDown();

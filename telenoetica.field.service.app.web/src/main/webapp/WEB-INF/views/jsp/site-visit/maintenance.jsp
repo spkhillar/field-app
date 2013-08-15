@@ -25,16 +25,16 @@
 					siteIdCheck : true
 				},
 				"accessCode" : {
-					number : true,
-					required : true
+					required : true,
+					alphanumeric : true
 				},
 				"runHoursAfterPmdG1" : {
 					number : true,
-					range : [ 1, 30000 ]
+					range : [ 0, 30000 ]
 				},
 				"runHoursAfterPmdG2" : {
 					number : true,
-					range : [ 1, 30000 ]
+					range : [ 0, 30000 ]
 				},
 			}
 		});
@@ -97,7 +97,7 @@
 				url : actionUrl,
 				async : false,
 				success : function(data, textStatus) {
-					showVisitMessage(data);
+					showVisitMessage("Saved Successfuly.");
 					$("#save").hide();
 				},
 				error : function(textStatus, errorThrown) {

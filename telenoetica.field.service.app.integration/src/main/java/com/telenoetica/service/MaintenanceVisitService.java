@@ -3,6 +3,7 @@
  */
 package com.telenoetica.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -89,9 +90,9 @@ public interface MaintenanceVisitService extends BaseService<MaintenanceVisit> {
    */
   long findRecordCount(Map<String, Object> params);
 
-	/**
-	 * @param site
-	 * @return
-	 */
-	public List<MaintenanceVisit> findBySiteAndCreatedAtBetween(final Site site);
+  /**
+   * @param site
+   * @return
+   */
+  public List<MaintenanceVisit> findBySiteAndCreatedAtBetween(final Site site,Date forDate);
 }

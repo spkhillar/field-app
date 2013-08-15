@@ -21,12 +21,12 @@
 					siteIdCheck : true
 				},
 				"accessCode" : {
-					number : true,
-					required : true
+					required : true,
+					alphanumeric : true
 				},
 				"drnNumber" : {
-					number : true,
-					range : [ 0, 9999999 ]
+					required : true,
+					alphanumeric : true
 				},
 				"bulkNameOfVendor" : {
 					bulkCheck: true
@@ -200,7 +200,7 @@
 					url : actionUrl,
 					async : false,
 					success : function(data, textStatus) {
-				    	showVisitMessage(data);
+				    	showVisitMessage("Saved Successfuly.");
 					    $("#save").hide();
 					},
 					error : function(textStatus, errorThrown) {

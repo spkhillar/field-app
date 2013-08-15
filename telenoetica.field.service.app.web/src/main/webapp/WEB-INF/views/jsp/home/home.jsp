@@ -126,7 +126,7 @@
 			<a href="${contextPath}/routine/list" style="float:right; font-weight: bold">View All</a>
 		</div>
 		<div class="col_w420 float_r">
-			<h5>Callout Visit</h5>
+			<h5>Call-Out Visit</h5>
 			<table id="newspaper-b" name="calloutTable" style="float: right">
 				<thead>
 					<tr>

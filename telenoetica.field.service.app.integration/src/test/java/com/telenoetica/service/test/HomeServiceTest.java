@@ -39,7 +39,7 @@ public class HomeServiceTest extends BaseServiceTest {
   @Autowired
   private AndroidHomeService androidHomeService;
 
-  //@Test
+  @Test
   public void testAll(){
     List<Fault> faults = faultService.getFaults();
     System.err.println("..Fault..."+faults.size());

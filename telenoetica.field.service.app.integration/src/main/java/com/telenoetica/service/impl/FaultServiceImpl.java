@@ -6,6 +6,7 @@ package com.telenoetica.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.telenoetica.jpa.entities.Fault;
@@ -69,7 +70,7 @@ public class FaultServiceImpl implements FaultService {
   @Override
   public List<Fault> getFaults() {
     // TODO Auto-generated method stub
-    return faultDAO.findAll();
+    return faultDAO.findAll(new Sort("name"));
   }
 
 }

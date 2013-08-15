@@ -24,8 +24,8 @@
 			      siteIdCheck:true
 			   },
 			  "accessCode" : {
-				  number : true,
-				  required : true
+					required : true,
+					alphanumeric : true
 		       },
 		      "callOutCsrOrTtNumber" : {
 				  required : true
@@ -43,7 +43,7 @@
 					required : true
 				},
 		       "actionsRequiredForPermanentResolution":{
-		      		maxlength : 50
+		      		maxlength : 200
 		      },
 		    }
 		});
@@ -89,7 +89,7 @@
 		$('#equipmentComponentCausedFault').html(htmlEquipmentOptions);
 		$('#equipmentComponentRepaired').html(htmlEquipmentOptions);
 		$('#equipmentComponentReplaced').html(htmlEquipmentOptions);
-		bulkOrTransferEnableText();
+		fixResoultationEnableOrDisable();
 		$("#save").button();
 		$("#reset").button();
 		$( "#siteId" ).autocomplete({
@@ -98,15 +98,15 @@
 		
 	});
 	
-	function bulkOrTransferEnableText(){
+	function fixResoultationEnableOrDisable(){
 		$("#fixResolutionEnable input[type=radio]").each(function(i){
 		    $(this).click(function () {
 		    	if(i==1) { //Permanent
-		    		$("#actionsRequiredForPermanentResolution").attr("disabled", "disabled"); 
+		    		//$("#actionsRequiredForPermanentResolution").attr("disabled", "disabled"); 
 		    		$("#actionsRequiredForPermanentResolution").val("");
 		    	}
 		    	else { //Temp
-		    		$("#actionsRequiredForPermanentResolution").removeAttr("disabled"); 
+		    		//$("#actionsRequiredForPermanentResolution").removeAttr("disabled"); 
 		    		$("#actionsRequiredForPermanentResolution").val("");
 		    	}
 		      });
@@ -153,7 +153,7 @@ function submitCalloutData(){
 		    url:actionUrl,
 		    async: false,
 		    success: function(data, textStatus){
-		    	showVisitMessage(data);
+		    	showVisitMessage("Saved Successfuly.");
 			    $("#save").hide();
 		    },
 		    error: function(textStatus,errorThrown){

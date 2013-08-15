@@ -3,6 +3,7 @@
  */
 package com.telenoetica.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -78,7 +79,7 @@ public interface DieselVisitService extends BaseService<DieselVisit> {
    * @param site
    * @return
    */
-  public List<DieselVisit> findBySiteAndCreatedAtBetween(final Site site);
+  public List<DieselVisit> findBySiteAndCreatedAtBetween(final Site site,Date forDate);
 
   /**
    * @param params

@@ -295,20 +295,23 @@ public class MaintenanceVisitServiceImpl extends AbstractBaseService implements 
    * @see com.telenoetica.service.MaintenanceVisitService#findBySiteAndCreatedAtBetween(com.telenoetica.jpa.entities.Site)
    */
   @Override
-  public List<MaintenanceVisit> findBySiteAndCreatedAtBetween(final Site site) {
+  public List<MaintenanceVisit> findBySiteAndCreatedAtBetween(final Site site,final Date forDate) {
     Date startDate;
     Date endDate;
     Calendar currentDate = Calendar.getInstance(); // Get the current date
-    endDate = new Date();
-    endDate = DateUtils.addDays(endDate, -1);
+    if(forDate == null){
+      endDate = new Date();
+      endDate = DateUtils.addDays(endDate, -1);
+    }else{
+      endDate = forDate;
+    }
     endDate = DateUtils.truncate(endDate, Calendar.DATE);
-    ;
     Date finalEndDate = DateUtils.addMinutes(endDate, 59);
-    ;
     finalEndDate = DateUtils.addSeconds(finalEndDate, 59);
     finalEndDate = DateUtils.addHours(finalEndDate, 23);
     currentDate.setTime(endDate);
-    currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance().getActualMinimum(Calendar.DAY_OF_MONTH));
+    currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance()
+      .getActualMinimum(Calendar.DAY_OF_MONTH));
     startDate = currentDate.getTime();
     logger.debug(" Site =" + site.getName() + ". Finding Diesel Visit Data from " + startDate + " TO " + finalEndDate);
     return maintenanceVisitDAO.findBySiteAndCreatedAtBetween(site, startDate, finalEndDate);

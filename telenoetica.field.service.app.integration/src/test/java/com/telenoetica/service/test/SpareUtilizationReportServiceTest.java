@@ -11,21 +11,21 @@ import com.telenoetica.service.SpareUtilizationReportService;
 
 public class SpareUtilizationReportServiceTest extends BaseServiceTest {
 
-	@Autowired
-	private SpareUtilizationReportService service;
+  @Autowired
+  private SpareUtilizationReportService service;
 
-	@Autowired
-	private SiteDAO siteDAO;
+  @Autowired
+  private SiteDAO siteDAO;
 
-	@Test
-	public void test() {
+  @Test
+  public void test() {
 
-		List<Site> siteList = siteDAO.findAll();
-		try {
-			service.createNewReport();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    List<Site> siteList = siteDAO.findAll();
+    try {
+      service.createNewReport(null);
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
 }

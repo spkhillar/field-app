@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -36,193 +37,190 @@ import com.telenoetica.service.util.ServiceUtil;
 @Service("dieselDetailReportService")
 public class DieselDetailReportServiceImpl implements DieselDetailReportService {
 
-	/** The Constant LOGGER. */
-	private static final Logger LOGGER = Logger
-			.getLogger(DieselDetailReportService.class);
+  /** The Constant LOGGER. */
+  private static final Logger LOGGER = Logger
+      .getLogger(DieselDetailReportService.class);
 
-	/** The diesel visit service. */
-	@Autowired
-	private DieselVisitService dieselVisitService;
+  /** The diesel visit service. */
+  @Autowired
+  private DieselVisitService dieselVisitService;
 
-	/** The site service. */
-	@Autowired
-	private SiteService siteService;
+  /** The site service. */
+  @Autowired
+  private SiteService siteService;
 
-	/** The workbook. */
-	private HSSFWorkbook workbook = null;
+  /** The system configuration. */
+  @Autowired
+  private SystemConfiguration systemConfiguration;
 
-	/** The system configuration. */
-	@Autowired
-	private SystemConfiguration systemConfiguration;
+  @Autowired
+  private EmailService emailService;
 
-	@Autowired
-	private EmailService emailService;
+  /**
+   * Creates the new report.
+   * 
+   * @return the string
+   * @throws Exception
+   *             the exception
+   * @see com.telenoetica.service.DieselDetailReportService#createNewReport()
+   */
+  @Override
+  public String createNewReport(final Date forDate) throws Exception {
+    LOGGER.debug("Service DieselDetailReportService Started");
+    List<Site> siteList = siteService.getSites();
+    String configuredFileName = systemConfiguration
+        .getDieselDetailsReportTemplate();
+    LOGGER.debug("DieselDetailReport template is : " + configuredFileName);
+    InputStream is = this.getClass()
+        .getResourceAsStream(configuredFileName);
+    // create a POIFSFileSystem object to read the data
 
-	/**
-	 * Creates the new report.
-	 * 
-	 * @return the string
-	 * @throws Exception
-	 *             the exception
-	 * @see com.telenoetica.service.DieselDetailReportService#createNewReport()
-	 */
-	@Override
-	public String createNewReport() throws Exception {
-		LOGGER.debug("Service DieselDetailReportService Started");
-		List<Site> siteList = siteService.getSites();
-		String configuredFileName = systemConfiguration
-				.getDieselDetailsReportTemplate();
-		LOGGER.debug("DieselDetailReport template is : " + configuredFileName);
-		InputStream is = this.getClass()
-				.getResourceAsStream(configuredFileName);
-		// create a POIFSFileSystem object to read the data
+    POIFSFileSystem fs = new POIFSFileSystem(is);
+    HSSFWorkbook workbook = new HSSFWorkbook(fs);
+    setSheetData(workbook.getSheetAt(0), siteList,forDate);
+    String reportName = closeReport(workbook);
+    sendEmail(reportName);
+    return reportName;
+  }
 
-		POIFSFileSystem fs = new POIFSFileSystem(is);
+  /**
+   * Sets the sheet data.
+   * 
+   * @param sheet
+   *            the sheet
+   * @param siteList
+   *            the site list
+   */
+  private void setSheetData(final HSSFSheet sheet, final List<Site> siteList,final Date forDate) {
+    HSSFRow row;
+    HSSFCell cell;
+    int rNum = 2;
+    for (int i = 0; i < 10; i++) {
+      Site siteName = siteList.get(i);
+      List<DieselVisit> dieselVisitL = dieselVisitService
+          .findBySiteAndCreatedAtBetween(siteName,forDate);
+      int rNumPrev = rNum;
+      for (int j = 0; j < dieselVisitL.size(); j++) {
+        row = sheet.createRow(rNum++);
+        DieselVisit dieselVisit = dieselVisitL.get(j);
+        cell = row.createCell(0);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getSiteId()));
+        cell = row.createCell(1);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getDieselLevelT1BeforeVisit()));
+        cell = row.createCell(2);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getDieselLevelT2BeforeVisit()));
+        cell = row.createCell(3);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getRunHourGen1()));
+        cell = row.createCell(4);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getRunHourGen2()));
+        cell = row.createCell(5);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getCreatedAt()));
+        cell = row.createCell(6);
+        if (ServiceUtil.checkAndReturnValue(
+          dieselVisit.getDieselTransferOrBulkSupply())
+          .equalsIgnoreCase("bulk")) {
+          cell.setCellValue(dieselVisit.getDrnNumber());
+        }
+        cell = row.createCell(7);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getTransferredSiteId()));
+        cell = row.createCell(8);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getUserId()));
+        cell = row.createCell(9);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getDieselReceivedLtrs()));
+        cell = row.createCell(10);
+        if (ServiceUtil.checkAndReturnValue(
+          dieselVisit.getDieselTransferOrBulkSupply())
+          .equalsIgnoreCase("site")) {
+          cell.setCellValue(dieselVisit.getDrnNumber());
+        }
+        cell = row.createCell(11);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getAccessCode()));
+        cell = row.createCell(12);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getPhcnHrsPerDay()));
+        cell = row.createCell(13);
+        cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
+          .getHybridOrPiuHrsPerDay()));
+      }
+      if ((rNumPrev != rNum) && ((rNum - rNumPrev) > 1)) {
+        sheet.groupRow(rNumPrev + 1, rNum);
+        sheet.setRowGroupCollapsed(rNumPrev + 1, true);
+      }
 
-		workbook = new HSSFWorkbook(fs);
-		setSheetData(workbook.getSheetAt(0), siteList);
-		String reportName = closeReport();
-		sendEmail(reportName);
-		return reportName;
-	}
+    }
+  }
 
-	/**
-	 * Sets the sheet data.
-	 * 
-	 * @param sheet
-	 *            the sheet
-	 * @param siteList
-	 *            the site list
-	 */
-	private void setSheetData(final HSSFSheet sheet, final List<Site> siteList) {
-		HSSFRow row;
-		HSSFCell cell;
-		int rNum = 2;
-		for (int i = 0; i < 10; i++) {
-			Site siteName = siteList.get(i);
-			List<DieselVisit> dieselVisitL = dieselVisitService
-					.findBySiteAndCreatedAtBetween(siteName);
-			int rNumPrev = rNum;
-			for (int j = 0; j < dieselVisitL.size(); j++) {
-				row = sheet.createRow(rNum++);
-				DieselVisit dieselVisit = dieselVisitL.get(j);
-				cell = row.createCell(0);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getSiteId()));
-				cell = row.createCell(1);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getDieselLevelT1BeforeVisit()));
-				cell = row.createCell(2);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getDieselLevelT2BeforeVisit()));
-				cell = row.createCell(3);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getRunHourGen1()));
-				cell = row.createCell(4);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getRunHourGen2()));
-				cell = row.createCell(5);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getCreatedAt()));
-				cell = row.createCell(6);
-				if (ServiceUtil.checkAndReturnValue(
-						dieselVisit.getDieselTransferOrBulkSupply())
-						.equalsIgnoreCase("bulk")) {
-					cell.setCellValue(dieselVisit.getDrnNumber());
-				}
-				cell = row.createCell(7);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getTransferredSiteId()));
-				cell = row.createCell(8);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getUserId()));
-				cell = row.createCell(9);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getDieselReceivedLtrs()));
-				cell = row.createCell(10);
-				if (ServiceUtil.checkAndReturnValue(
-						dieselVisit.getDieselTransferOrBulkSupply())
-						.equalsIgnoreCase("site")) {
-					cell.setCellValue(dieselVisit.getDrnNumber());
-				}
-				cell = row.createCell(11);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getAccessCode()));
-				cell = row.createCell(12);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getPhcnHrsPerDay()));
-				cell = row.createCell(13);
-				cell.setCellValue(ServiceUtil.checkAndReturnValue(dieselVisit
-						.getHybridOrPiuHrsPerDay()));
-			}
-			if ((rNumPrev != rNum) && ((rNum - rNumPrev) > 1)) {
-				sheet.groupRow(rNumPrev + 1, rNum);
-				sheet.setRowGroupCollapsed(rNumPrev + 1, true);
-			}
+  /**
+   * Close report.
+   * @param workbook
+   * 
+   * @return the string
+   * @throws Exception
+   *             the exception
+   */
+  public String closeReport(final HSSFWorkbook workbook) throws Exception {
+    String reportName = addTimeInFileName(systemConfiguration
+      .getDieselDetailsReportFileName());
 
-		}
-	}
+    String reportFilePath = systemConfiguration
+        .getDieselDetailsReportDirectory()
+        + File.separator
+        + reportName;
+    File file = new File(reportFilePath);
+    // write the new changes to a new file
+    FileOutputStream fos = new FileOutputStream(file);
 
-	/**
-	 * Close report.
-	 * 
-	 * @return the string
-	 * @throws Exception
-	 *             the exception
-	 */
-	public String closeReport() throws Exception {
-		String reportName = addTimeInFileName(systemConfiguration
-				.getDieselDetailsReportFileName());
+    LOGGER.debug("RETURNED FILE PATH: " + file.getAbsolutePath());
+    workbook.write(fos);
+    fos.flush();
+    fos.close();
+    return reportFilePath;
+  }
 
-		String reportFilePath = systemConfiguration
-				.getDieselDetailsReportDirectory()
-				+ File.separator
-				+ reportName;
-		File file = new File(reportFilePath);
-		// write the new changes to a new file
-		FileOutputStream fos = new FileOutputStream(file);
+  /**
+   * Adds the time in file name.
+   * 
+   * @param name
+   *            the name
+   * @return the string
+   */
+  private String addTimeInFileName(String name) {
+    Calendar cal = new GregorianCalendar();
+    int month = cal.get(Calendar.MONTH);
+    int hour = cal.get(Calendar.HOUR_OF_DAY);
+    int minute = cal.get(Calendar.MINUTE);
+    int seconds = cal.get(Calendar.SECOND);
 
-		LOGGER.debug("RETURNED FILE PATH: " + file.getAbsolutePath());
-		workbook.write(fos);
-		fos.flush();
-		fos.close();
-		return reportFilePath;
-	}
+    name += month + "_" + cal.get(Calendar.DAY_OF_MONTH) + "_"
+        + cal.get(Calendar.YEAR) + "_" + hour + "_" + minute + "_"
+        + seconds + ".xls";
+    LOGGER.debug("Creating new excel doc named: " + name);
+    return name;
+  }
 
-	/**
-	 * Adds the time in file name.
-	 * 
-	 * @param name
-	 *            the name
-	 * @return the string
-	 */
-	private String addTimeInFileName(String name) {
-		Calendar cal = new GregorianCalendar();
-		int month = cal.get(Calendar.MONTH);
-		int hour = cal.get(Calendar.HOUR_OF_DAY);
-		int minute = cal.get(Calendar.MINUTE);
-		int seconds = cal.get(Calendar.SECOND);
+  private void sendEmail(final String reportFilePath) {
 
-		name += month + "_" + cal.get(Calendar.DAY_OF_MONTH) + "_"
-				+ cal.get(Calendar.YEAR) + "_" + hour + "_" + minute + "_"
-				+ seconds + ".xls";
-		LOGGER.debug("Creating new excel doc named: " + name);
-		return name;
-	}
-
-	private void sendEmail(final String reportFilePath) {
-
-		LOGGER.debug("Sending Diesel detail report in email");
-		String recipient = systemConfiguration.getTo();
-		File attachment = new File(reportFilePath);
-		List<String> toAddress = new ArrayList(Arrays.asList(recipient
-				.split(",")));
-		toAddress.add(recipient);
-		EmailTemplate emailTemplate = new EmailTemplate(toAddress,
-				"***** Auto-Generated Message...Please DO NOT Reply *****",
-				"Diesel Detail Report ");
-		emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
-		emailService.sendEmail(emailTemplate);
-	}
+    LOGGER.debug("Sending Diesel detail report in email");
+    String recipient = systemConfiguration.getTo();
+    File attachment = new File(reportFilePath);
+    List<String> toAddress = new ArrayList(Arrays.asList(recipient
+      .split(",")));
+    toAddress.add(recipient);
+    EmailTemplate emailTemplate = new EmailTemplate(toAddress,
+      "***** Auto-Generated Message...Please DO NOT Reply *****",
+        "Diesel Detail Report ");
+    emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
+    emailService.sendEmail(emailTemplate);
+  }
 
 }

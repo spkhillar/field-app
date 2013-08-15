@@ -1,7 +1,10 @@
 package com.telenoetica.service;
 
+import java.util.Date;
+
 public interface SpareUtilizationReportService {
 
-	public String createNewReport() throws Exception;
+
+  String createNewReport(Date forDate) throws Exception;
 
 }

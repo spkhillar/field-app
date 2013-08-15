@@ -54,7 +54,14 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	<div style="height: 650px;">
 		<div class="col_w420 lp_box float_l">
-			<h2>Diesel Detail Report list</h2>
+			<c:choose>
+				<c:when test="${type eq 'diesel'}">
+					<h2>Diesel Detail Report list</h2>
+			    </c:when>
+				<c:otherwise>
+					<h2>Spares Utilization Report</h2>
+			    </c:otherwise>
+			</c:choose>
 			<h5>(Last 12 Months Report)</h5>
 			<table id="newspaper-b" name="reportTable">
 				<thead>

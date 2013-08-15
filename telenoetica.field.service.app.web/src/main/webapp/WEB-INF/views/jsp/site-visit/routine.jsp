@@ -24,8 +24,8 @@
 			        siteIdCheck:true
 			   },
 					"accessCode" : {
-			        	number : true,
-						required : true
+						required : true,
+						alphanumeric : true
 		      },
 		      "dieselLevelT1" : {
 		    	  required : true,
@@ -134,7 +134,7 @@ function submitRoutineData(){
 		    url:actionUrl,
 		    async: false,
 		    success: function(data, textStatus){
-		    	showVisitMessage(data);
+		    	showVisitMessage("Saved Successfuly.");
 		    	$("#save").hide();
 		       //$("#save").attr("disabled","disabled");
 		       //$("#save").css("background-color","silver");
