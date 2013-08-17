@@ -48,7 +48,7 @@ public class MainMenu extends ApplicationBaseActivity {
     addListenerOnButtonDV();
     addListenerOnButtonMV();
     addListenerOnButtonCV();
-    addListenerOnButtonConfigure();
+    // addListenerOnButtonConfigure();
     addListenerOnButtonSendToServer();
     addListenerOnButtonExit();
   }
@@ -122,16 +122,14 @@ public class MainMenu extends ApplicationBaseActivity {
     });
   }
 
-  public void addListenerOnButtonConfigure() {
-    btnConfigure = (Button) findViewById(R.id.button_configure);
-    btnConfigure.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(final View arg0) {
-        Intent intent = new Intent(context, ConfigureActivity.class);
-        startActivity(intent);
-      }
-    });
-  }
+  /*
+   * public void addListenerOnButtonConfigure() { btnConfigure = (Button)
+   * findViewById(R.id.button_configure); btnConfigure.setOnClickListener(new
+   * OnClickListener() {
+   * 
+   * @Override public void onClick(final View arg0) { Intent intent = new
+   * Intent(context, ConfigureActivity.class); startActivity(intent); } }); }
+   */
 
   public void addListenerOnButtonExit() {
     btnExit = (Button) findViewById(R.id.button_exit);
@@ -229,7 +227,7 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-    JsonMappingException, IOException {
+        JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 
@@ -251,8 +249,8 @@ public class MainMenu extends ApplicationBaseActivity {
       public void onClick(final DialogInterface dialog, final int which) {
         finish();
         System.exit(0);
-        //Intent intent = new Intent(context, LoginActivity.class);
-        //startActivity(intent);
+        // Intent intent = new Intent(context, LoginActivity.class);
+        // startActivity(intent);
       }
     });
 
