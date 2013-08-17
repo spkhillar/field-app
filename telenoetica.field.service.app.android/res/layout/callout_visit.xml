@@ -88,12 +88,11 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
-                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:hint="Num- N digits"
+                    android:hint="N Characters"
                     android:tag="accessCode={&quot;required&quot;:true}" />
             </TableRow>
 
