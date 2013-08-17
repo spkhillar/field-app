@@ -53,12 +53,12 @@
 			var timeComplainReceived = $("#timeComplainReceived").val();
 			var timeFaultResolved = $("#timeFaultResolved").val();
 			if((timeReachedToSite != "")&& (timeComplainReceived != "")&&(timeFaultResolved != "")){
-			if((Date.parse(timeComplainReceived)<Date.parse(timeReachedToSite)) && (Date.parse(timeReachedToSite)<Date.parse(timeFaultResolved)))
-	        {
-				return true;
-	        }else{
-			return false;
-	        }
+				if((checkAndCreateDate(timeComplainReceived)<checkAndCreateDate(timeReachedToSite)) && (checkAndCreateDate(timeReachedToSite)<checkAndCreateDate(timeFaultResolved)))
+		        {
+					return true;
+		        }else{
+					return false;
+		        }
 			}
 			return true;
 		}, "Time entered is not in correct sequence.");
@@ -97,6 +97,20 @@
 		    });
 		
 	});
+		
+	function checkAndCreateDate(inputDate){
+
+		var mainSplit = inputDate.split(' ');
+		var dateMainPart = mainSplit[0];
+		var timeMainPart = mainSplit[1];
+		var dateParts = dateMainPart.split('/');
+		var timeParts = timeMainPart.split(':');
+		
+		console.log(dateParts,'...',timeParts);
+		var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0],timeParts[0], timeParts[1], timeParts[2]); //Y M D H M S
+		console.log('...date...',date);
+		return date;
+	}
 	
 	function fixResoultationEnableOrDisable(){
 		$("#fixResolutionEnable input[type=radio]").each(function(i){
