@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.rest;
 
 import java.util.Collections;
@@ -14,9 +17,27 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * The Enum RestClient.
+ */
 public enum RestClient {
+
+  /** The instance. */
   INSTANCE;
 
+  /**
+   * Execute rest.
+   *
+   * @param <T> the generic type
+   * @param url the url
+   * @param userName the user name
+   * @param password the password
+   * @param httpMethod the http method
+   * @param requestObject the request object
+   * @param returnType the return type
+   * @param contentType the content type
+   * @return the t
+   */
   public <T> T executeRest(final String url, final String userName, final String password, final HttpMethod httpMethod,
       final Object requestObject, final Class<T> returnType, final MediaType contentType) {
     HttpAuthentication authHeader = new HttpBasicAuthentication(userName, password);

@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import java.util.ArrayList;
@@ -16,9 +19,20 @@ import android.widget.Button;
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.RoutineVisit;
 
+/**
+ * The Class RoutineVisitActivity.
+ */
 public class RoutineVisitActivity extends AbstractVisitActivity {
+
+  /** The button1. */
   private Button button1;
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see com.telenoetica.android.activity.ApplicationBaseActivity#initializeActivity(android.os.Bundle)
+   */
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     // checkForUserIdandPassword();
@@ -27,6 +41,9 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
     setupAutoCompleteSite();
   }
 
+  /**
+   * Adds the listener on button submit.
+   */
   public void addListenerOnButtonSubmit() {
     button1 = (Button) findViewById(R.id.btn_rv_submit);
     button1.setOnClickListener(new OnClickListener() {
@@ -42,6 +59,11 @@ public class RoutineVisitActivity extends AbstractVisitActivity {
     });
   }
 
+  /**
+   * Save current activity.
+   *
+   * @see com.telenoetica.android.activity.AbstractVisitActivity#saveCurrentActivity()
+   */
   @Override
   public void saveCurrentActivity() {
     final Map<String, Object> valueMap = new LinkedHashMap<String, Object>();

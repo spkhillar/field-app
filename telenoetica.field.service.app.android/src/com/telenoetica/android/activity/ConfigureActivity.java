@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import android.content.Intent;
@@ -10,11 +13,23 @@ import android.widget.Toast;
 
 import com.telenoetica.android.rest.AppValuesHolder;
 
+/**
+ * The Class ConfigureActivity.
+ */
 public class ConfigureActivity extends ApplicationBaseActivity {
+
+  /** The btn submit. */
   private Button btnSubmit;
 
+  /** The host configured ip address edit text. */
   private EditText hostConfiguredIpAddressEditText;
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see com.telenoetica.android.activity.ApplicationBaseActivity#initializeActivity(android.os.Bundle)
+   */
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     // checkForUserIdandPassword();
@@ -24,6 +39,9 @@ public class ConfigureActivity extends ApplicationBaseActivity {
     addBtnSubmitAction();
   }
 
+  /**
+   * Adds the btn submit action.
+   */
   private void addBtnSubmitAction() {
     btnSubmit = (Button) findViewById(R.id.btn_config_submit);
     hostConfiguredIpAddressEditText = (EditText) findViewById(R.id.et_config_address);

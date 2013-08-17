@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,12 +22,26 @@ import com.telenoetica.jpa.entities.DieselVisit;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.jpa.entities.RoutineVisit;
 
+/**
+ * The Class ApplicationBaseActivity.
+ */
 public abstract class ApplicationBaseActivity extends Activity {
 
+  /** The Constant LOGGER. */
   protected static final Logger LOGGER = LoggerFactory.getLogger(MainMenu.class);
+
+  /** The sq lite db handler. */
   protected SQLiteDbHandler sqLiteDbHandler;
+
+  /** The context. */
   protected Context context;
 
+  /**
+   * On create.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see android.app.Activity#onCreate(android.os.Bundle)
+   */
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -35,6 +52,9 @@ public abstract class ApplicationBaseActivity extends Activity {
     initializeActivity(savedInstanceState);
   }
 
+  /**
+   * Check for user idand password.
+   */
   protected void checkForUserIdandPassword() {
     if (StringUtils.isBlank(AppValuesHolder.getCurrentUser())
         || StringUtils.isBlank(AppValuesHolder.getCurrentUserPassword())) {
@@ -43,6 +63,12 @@ public abstract class ApplicationBaseActivity extends Activity {
     }
   }
 
+  /**
+   * Determine path.
+   *
+   * @param currentClazz the current clazz
+   * @return the string
+   */
   public String determinePath(final Class<?> currentClazz) {
 
     if (RoutineVisit.class.isAssignableFrom(currentClazz)) {
@@ -57,6 +83,11 @@ public abstract class ApplicationBaseActivity extends Activity {
     throw new RuntimeException("clazzName not configured in system");
   }
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   */
   protected abstract void initializeActivity(Bundle savedInstanceState);
 
 }

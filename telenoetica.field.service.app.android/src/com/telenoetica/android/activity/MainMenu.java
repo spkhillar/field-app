@@ -31,15 +31,35 @@ import com.telenoetica.android.rest.RestJsonUtils;
 import com.telenoetica.android.rest.RestResponse;
 import com.telenoetica.android.sqllite.AndroidVisitSqLiteModel;
 
+/**
+ * The Class MainMenu.
+ */
 public class MainMenu extends ApplicationBaseActivity {
+
+  /** The btn routine visit. */
   private Button btnRoutineVisit;
+
+  /** The btn diesel visit. */
   private Button btnDieselVisit;
+
+  /** The btn maintenance visit. */
   private Button btnMaintenanceVisit;
+
+  /** The btn callout visit. */
   private Button btnCalloutVisit;
+
+  /** The btn send to server. */
   private Button btnSendToServer;
   // private Button btnConfigure;
+  /** The btn exit. */
   private Button btnExit;
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see com.telenoetica.android.activity.ApplicationBaseActivity#initializeActivity(android.os.Bundle)
+   */
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     // checkForUserIdandPassword();
@@ -53,6 +73,9 @@ public class MainMenu extends ApplicationBaseActivity {
     addListenerOnButtonExit();
   }
 
+  /**
+   * Adds the listener on button send to server.
+   */
   private void addListenerOnButtonSendToServer() {
     btnSendToServer = (Button) findViewById(R.id.button_send_to_server);
     List<AndroidVisitSqLiteModel> dataList = sqLiteDbHandler.getVisitsInSystem();
@@ -78,6 +101,9 @@ public class MainMenu extends ApplicationBaseActivity {
 
   }
 
+  /**
+   * Adds the listener on button rv.
+   */
   public void addListenerOnButtonRV() {
     btnRoutineVisit = (Button) findViewById(R.id.button_rv);
     btnRoutineVisit.setOnClickListener(new OnClickListener() {
@@ -89,6 +115,9 @@ public class MainMenu extends ApplicationBaseActivity {
     });
   }
 
+  /**
+   * Adds the listener on button dv.
+   */
   public void addListenerOnButtonDV() {
     btnDieselVisit = (Button) findViewById(R.id.button_dv);
     btnDieselVisit.setOnClickListener(new OnClickListener() {
@@ -100,6 +129,9 @@ public class MainMenu extends ApplicationBaseActivity {
     });
   }
 
+  /**
+   * Adds the listener on button mv.
+   */
   public void addListenerOnButtonMV() {
     btnMaintenanceVisit = (Button) findViewById(R.id.button_mv);
     btnMaintenanceVisit.setOnClickListener(new OnClickListener() {
@@ -111,6 +143,9 @@ public class MainMenu extends ApplicationBaseActivity {
     });
   }
 
+  /**
+   * Adds the listener on button cv.
+   */
   public void addListenerOnButtonCV() {
     btnCalloutVisit = (Button) findViewById(R.id.button_cv);
     btnCalloutVisit.setOnClickListener(new OnClickListener() {
@@ -131,6 +166,9 @@ public class MainMenu extends ApplicationBaseActivity {
    * Intent(context, ConfigureActivity.class); startActivity(intent); } }); }
    */
 
+  /**
+   * Adds the listener on button exit.
+   */
   public void addListenerOnButtonExit() {
     btnExit = (Button) findViewById(R.id.button_exit);
     btnExit.setOnClickListener(new OnClickListener() {
@@ -141,6 +179,11 @@ public class MainMenu extends ApplicationBaseActivity {
     });
   }
 
+  /**
+   * Do with send to server response.
+   *
+   * @param restResponse the rest response
+   */
   public void doWithSendToServerResponse(final RestResponse restResponse) {
     if (restResponse != null) {
       if (restResponse.getStatusCode() == 401) {
@@ -158,9 +201,19 @@ public class MainMenu extends ApplicationBaseActivity {
 
   }
 
+  /**
+   * The Class SendToServerAsyncTask.
+   */
   private class SendToServerAsyncTask extends AsyncTask<AndroidVisitSqLiteModel, Void, RestResponse> {
+
+    /** The pd. */
     private ProgressDialog pd;
 
+    /**
+     * On pre execute.
+     *
+     * @see android.os.AsyncTask#onPreExecute()
+     */
     @Override
     protected void onPreExecute() {
       pd = new ProgressDialog(context);
@@ -171,6 +224,13 @@ public class MainMenu extends ApplicationBaseActivity {
       pd.show();
     }
 
+    /**
+     * Do in background.
+     *
+     * @param params the params
+     * @return the rest response
+     * @see android.os.AsyncTask#doInBackground(Params[])
+     */
     @Override
     protected RestResponse doInBackground(final AndroidVisitSqLiteModel... params) {
       long errorCode = 0;
@@ -226,11 +286,27 @@ public class MainMenu extends ApplicationBaseActivity {
 
     }
 
+    /**
+     * Determine post object.
+     *
+     * @param currentClazz the current clazz
+     * @param json the json
+     * @return the object
+     * @throws JsonParseException the json parse exception
+     * @throws JsonMappingException the json mapping exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
     JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 
+    /**
+     * On post execute.
+     *
+     * @param restResponse the rest response
+     * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+     */
     @Override
     protected void onPostExecute(final RestResponse restResponse) {
       pd.dismiss();
@@ -238,6 +314,9 @@ public class MainMenu extends ApplicationBaseActivity {
     }
   }
 
+  /**
+   * Exit confirmation dialog.
+   */
   public void exitConfirmationDialog() {
 
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);

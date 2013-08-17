@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import java.io.BufferedReader;
@@ -17,12 +20,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+/**
+ * The Class CustomHttpClient.
+ */
 public class CustomHttpClient {
 
-  /** The time it takes for our client to timeout */
+  /** The time it takes for our client to timeout. */
   public static final int HTTP_TIMEOUT = 30 * 1000; // milliseconds
 
-  /** Single instance of our HttpClient */
+  /** Single instance of our HttpClient. */
   private static HttpClient mHttpClient;
 
   /**
@@ -44,13 +50,11 @@ public class CustomHttpClient {
   /**
    * Performs an HTTP Post request to the specified url with the specified
    * parameters.
-   * 
-   * @param url
-   *          The web address to post the request to
-   * @param postParameters
-   *          The parameters to send via the request
+   *
+   * @param url The web address to post the request to
+   * @param postParameters The parameters to send via the request
    * @return The result of the request
-   * @throws Exception
+   * @throws Exception the exception
    */
   public static String executeHttpPost(final String url, final ArrayList<NameValuePair> postParameters)
       throws Exception {
@@ -86,11 +90,10 @@ public class CustomHttpClient {
 
   /**
    * Performs an HTTP GET request to the specified url.
-   * 
-   * @param url
-   *          The web address to post the request to
+   *
+   * @param url The web address to post the request to
    * @return The result of the request
-   * @throws Exception
+   * @throws Exception the exception
    */
   public static String executeHttpGet(final String url) throws Exception {
     BufferedReader in = null;

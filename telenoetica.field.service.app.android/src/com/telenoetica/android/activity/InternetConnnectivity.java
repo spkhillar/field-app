@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import android.app.Activity;
@@ -5,32 +8,38 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.widget.Toast;
 
+/**
+ * The Class InternetConnnectivity.
+ */
 public class InternetConnnectivity extends Activity {
-	
-	public void  checkNetworkStatus(){
 
-	    final ConnectivityManager connMgr = (ConnectivityManager)
-	     this.getSystemService(Context.CONNECTIVITY_SERVICE);
+  /**
+   * Check network status.
+   */
+  public void  checkNetworkStatus(){
 
-	     final android.net.NetworkInfo wifi =
-	     connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+    final ConnectivityManager connMgr = (ConnectivityManager)
+        getSystemService(Context.CONNECTIVITY_SERVICE);
 
-	     final android.net.NetworkInfo mobile =
-	     connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+    final android.net.NetworkInfo wifi =
+        connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-	     if( wifi.isAvailable() ){
+    final android.net.NetworkInfo mobile =
+        connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-	     Toast.makeText(this, "Wifi" , Toast.LENGTH_LONG).show();
-	     }
-	     else if( mobile.isAvailable() ){
+    if( wifi.isAvailable() ){
 
-	     Toast.makeText(this, "Mobile 3G " , Toast.LENGTH_LONG).show();
-	     }
-	     else
-	     {
+      Toast.makeText(this, "Wifi" , Toast.LENGTH_LONG).show();
+    }
+    else if( mobile.isAvailable() ){
 
-	         Toast.makeText(this, "No Network " , Toast.LENGTH_LONG).show();
-	     }
+      Toast.makeText(this, "Mobile 3G " , Toast.LENGTH_LONG).show();
+    }
+    else
+    {
 
-	}
+      Toast.makeText(this, "No Network " , Toast.LENGTH_LONG).show();
+    }
+
+  }
 }

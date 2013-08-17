@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import android.view.View;
@@ -6,8 +9,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
+/**
+ * The Class Reset.
+ */
 public class Reset {
 
+  /**
+   * Clear form.
+   *
+   * @param group the group
+   */
   public void clearForm(final ViewGroup group) {
     for (int i = 0, count = group.getChildCount(); i < count; ++i) {
       View view = group.getChildAt(i);

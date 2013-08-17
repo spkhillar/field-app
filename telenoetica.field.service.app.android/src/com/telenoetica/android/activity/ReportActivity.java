@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import java.util.Map;
@@ -15,9 +18,20 @@ import com.telenoetica.jpa.entities.DieselVisit;
 import com.telenoetica.jpa.entities.MaintenanceVisit;
 import com.telenoetica.jpa.entities.RoutineVisit;
 
+/**
+ * The Class ReportActivity.
+ */
 public class ReportActivity extends ApplicationBaseActivity {
+
+  /** The btn report. */
   Button btnReport;
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see com.telenoetica.android.activity.ApplicationBaseActivity#initializeActivity(android.os.Bundle)
+   */
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     // TODO Auto-generated method stub
@@ -26,6 +40,9 @@ public class ReportActivity extends ApplicationBaseActivity {
     populateReport();
   }
 
+  /**
+   * Populate report.
+   */
   private void populateReport() {
     TextView reportTextView = null;
     for (Map.Entry<String, Long> report : AppValuesHolder.getSentRecordCountMap().entrySet()) {
@@ -47,6 +64,9 @@ public class ReportActivity extends ApplicationBaseActivity {
     AppValuesHolder.clearSentRecordCount();
   }
 
+  /**
+   * Adds the listener on button ok.
+   */
   public void addListenerOnButtonOk() {
     btnReport = (Button) findViewById(R.id.btnReportOk);
     btnReport.setOnClickListener(new OnClickListener() {

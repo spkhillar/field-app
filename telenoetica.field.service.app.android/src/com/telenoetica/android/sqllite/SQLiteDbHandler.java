@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.sqllite;
 
 import java.util.ArrayList;
@@ -15,17 +18,32 @@ import android.database.sqlite.SQLiteStatement;
 import com.telenoetica.android.rest.AndroidConstants;
 import com.telenoetica.android.rest.AppValuesHolder;
 
+/**
+ * The Class SQLiteDbHandler.
+ */
 public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
 
+  /**
+   * Instantiates a new sQ lite db handler.
+   *
+   * @param context the context
+   */
   public SQLiteDbHandler(final Context context) {
     super(context);
   }
 
+  /**
+   * Validate user.
+   *
+   * @param username the username
+   * @param password the password
+   * @return true, if successful
+   */
   public boolean validateUser(final String username, final String password) {
     SQLiteDatabase db = getWritableDatabase();
     String selectQuery =
         "SELECT  * FROM " + getCredentialsTable() + " where username='" + username + "' and password='" + password
-            + "'";
+        + "'";
     LOGGER.debug("validateUser .. Checking " + username + " in Phone Db.");
     boolean found = false;
     try {
@@ -44,6 +62,12 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return found;
   }
 
+  /**
+   * Validate user.
+   *
+   * @param username the username
+   * @return true, if successful
+   */
   public boolean validateUser(final String username) {
     SQLiteDatabase db = getReadableDatabase();
     String selectQuery = "SELECT  * FROM " + getCredentialsTable() + " where username='" + username + "'";
@@ -65,6 +89,12 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return found;
   }
 
+  /**
+   * Insert or update user.
+   *
+   * @param username the username
+   * @param password the password
+   */
   public void insertOrUpdateUser(final String username, final String password) {
     SQLiteDatabase db = null;
     ;
@@ -87,6 +117,9 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close(); // Closing database connection
   }
 
+  /**
+   * Check base data in system.
+   */
   public void checkBaseDataInSystem() {
     SQLiteDatabase db = getWritableDatabase();
     String baseQuery = "SELECT name FROM ";
@@ -129,6 +162,9 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
+  /**
+   * Check and insert base data.
+   */
   public void checkAndInsertBaseData() {
     SQLiteDatabase db = getWritableDatabase();
     long count = DatabaseUtils.queryNumEntries(db, getMaintenanceTable());
@@ -148,6 +184,11 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     checkBaseDataInSystem();
   }
 
+  /**
+   * Reset configuration.
+   *
+   * @param resetSystem the reset system
+   */
   public void resetConfiguration(final boolean resetSystem) {
     SQLiteDatabase db = getWritableDatabase();
     for (String tableName : SPINNER_TABLE_NAMES) {
@@ -160,6 +201,13 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
+  /**
+   * Insert visit.
+   *
+   * @param jsonString the json string
+   * @param clazzName the clazz name
+   * @return the long
+   */
   public long insertVisit(final String jsonString, final String clazzName) {
     SQLiteDatabase db = getWritableDatabase();
     long insertedDbRowId = -1;
@@ -178,6 +226,11 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return insertedDbRowId;
   }
 
+  /**
+   * Gets the visits in system.
+   *
+   * @return the visits in system
+   */
   public List<AndroidVisitSqLiteModel> getVisitsInSystem() {
     SQLiteDatabase db = getWritableDatabase();
     List<AndroidVisitSqLiteModel> dataList = new ArrayList<AndroidVisitSqLiteModel>();
@@ -207,6 +260,11 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return dataList;
   }
 
+  /**
+   * Update visit.
+   *
+   * @param androidVisitSqLiteModel the android visit sq lite model
+   */
   public void updateVisit(final AndroidVisitSqLiteModel androidVisitSqLiteModel) {
     SQLiteDatabase db = getWritableDatabase();
     LOGGER.debug("updateVisit .. " + androidVisitSqLiteModel.getId() + " in Phone Db.");
@@ -222,6 +280,11 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
+  /**
+   * Delete visit.
+   *
+   * @param id the id
+   */
   public void deleteVisit(final Long id) {
     SQLiteDatabase db = getWritableDatabase();
     int deleteCount = db.delete(getVistisTable(), "id=" + id, null);
@@ -229,6 +292,12 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     db.close();
   }
 
+  /**
+   * Find visit.
+   *
+   * @param id the id
+   * @return the android visit sq lite model
+   */
   public AndroidVisitSqLiteModel findVisit(final Long id) {
     SQLiteDatabase db = getWritableDatabase();
     String selectQuery = "SELECT  * FROM " + getVistisTable() + " where status id =" + id;
@@ -252,6 +321,13 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return androidVisitSqLiteModel;
   }
 
+  /**
+   * Gets the names list.
+   *
+   * @param db the db
+   * @param selectQuery the select query
+   * @return the names list
+   */
   private List<String> getNamesList(final SQLiteDatabase db, final String selectQuery) {
     List<String> dataList = new ArrayList<String>();
     try {
@@ -269,6 +345,11 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     return dataList;
   }
 
+  /**
+   * Insert android base data.
+   *
+   * @param db the db
+   */
   private void insertAndroidBaseData(final SQLiteDatabase db) {
     String sql = null;
     if (!CollectionUtils.isEmpty(AppValuesHolder.getSpares())) {
@@ -299,6 +380,13 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     }
   }
 
+  /**
+   * Insert base data.
+   *
+   * @param db the db
+   * @param sql the sql
+   * @param data the data
+   */
   private void insertBaseData(final SQLiteDatabase db, final String sql, final List<String> data) {
     SQLiteStatement stmt = db.compileStatement(sql);
     for (int i = 1; i < data.size(); i++) {
@@ -309,6 +397,12 @@ public class SQLiteDbHandler extends AbstractSQLiteDbHandler {
     }
   }
 
+  /**
+   * Gets the base data insert sql.
+   *
+   * @param tableName the table name
+   * @return the base data insert sql
+   */
   private String getBaseDataInsertSql(final String tableName) {
     String sql = "INSERT INTO " + tableName + " (name) VALUES (?)";
     return sql;

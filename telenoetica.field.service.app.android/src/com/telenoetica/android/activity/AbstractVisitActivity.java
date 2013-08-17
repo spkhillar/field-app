@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import java.io.IOException;
@@ -42,10 +45,17 @@ import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestJsonUtils;
 import com.telenoetica.android.rest.RestResponse;
 
+/**
+ * The Class AbstractVisitActivity.
+ */
 public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
+  /** The Constant LOGGER. */
   protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractVisitActivity.class);
 
+  /**
+   * Setup auto complete site.
+   */
   protected void setupAutoCompleteSite() {
     AutoCompleteTextView siteAutoCompleteView = (AutoCompleteTextView) findViewById(R.id.visitSiteId);
     AutoCompleteTextView dieselTransferAutoCompleteView = (AutoCompleteTextView) findViewById(R.id.etTransfer);
@@ -57,6 +67,12 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
   }
 
+  /**
+   * Adds the items on spinner.
+   *
+   * @param spinnerId the spinner id
+   * @param spinnerValues the spinner values
+   */
   public void addItemsOnSpinner(final int spinnerId, final List<String> spinnerValues) {
     Spinner spinner;
     spinner = (Spinner) findViewById(spinnerId);
@@ -66,6 +82,14 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     spinner.setAdapter(spinnerAdapter);
   }
 
+  /**
+   * Gets the target object.
+   *
+   * @param group the group
+   * @param valueMap the value map
+   * @param errorList the error list
+   * @return the target object
+   */
   public void getTargetObject(final ViewGroup group, final Map<String, Object> valueMap, final List<String> errorList) {
     Object value = null;
     String tagValue = null;
@@ -106,6 +130,15 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
   }
 
+  /**
+   * Adds the values in map.
+   *
+   * @param view the view
+   * @param valueMap the value map
+   * @param value the value
+   * @param tagValue the tag value
+   * @param errorList the error list
+   */
   private void addValuesInMap(final View view, final Map<String, Object> valueMap, final Object value,
       final String tagValue, final List<String> errorList) {
     String tagAndValidation[] = StringUtils.split(tagValue, "=");
@@ -135,6 +168,12 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
   }
 
+  /**
+   * Save visit.
+   *
+   * @param bean the bean
+   * @param valueMap the value map
+   */
   @SuppressWarnings("rawtypes")
   public void saveVisit(final Object bean, final Map<String, Object> valueMap) {
     LOGGER.debug("saveVisit starts");
@@ -162,6 +201,12 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     LOGGER.debug("saveVisit ends.." + bean);
   }
 
+  /**
+   * Save json to db.
+   *
+   * @param bean the bean
+   * @param clazz the clazz
+   */
   private void saveJsonToDB(final Object bean, final Class<?> clazz) {
     // try sending visit information to the server.
     Object serverRequestParams[] = new Object[] { bean, clazz };
@@ -170,6 +215,11 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
   }
 
+  /**
+   * Show toast.
+   *
+   * @param insertedDB the inserted db
+   */
   private void showToast(final long insertedDB) {
     if (insertedDB != -1) {
       Toast.makeText(this, "Saved Successfully", Toast.LENGTH_SHORT).show();
@@ -181,6 +231,13 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
   }
 
+  /**
+   * Gets the typed value.
+   *
+   * @param clazz the clazz
+   * @param value the value
+   * @return the typed value
+   */
   @SuppressWarnings("rawtypes")
   public Object getTypedValue(final Class clazz, final String value) {
     if (ClassUtils.isAssignable(clazz, Long.class)) {
@@ -202,6 +259,9 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     throw new IllegalArgumentException(clazz.getName() + "Not in List");
   }
 
+  /**
+   * Render confirmation dialog.
+   */
   public void renderConfirmationDialog() {
 
     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
@@ -226,9 +286,19 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
   }
 
+  /**
+   * The Class SendToServerAsyncTask.
+   */
   private class SendToServerAsyncTask extends AsyncTask<Object, Void, ActivityRestResponse> {
+
+    /** The pd. */
     private ProgressDialog pd;
 
+    /**
+     * On pre execute.
+     *
+     * @see android.os.AsyncTask#onPreExecute()
+     */
     @Override
     protected void onPreExecute() {
       pd = new ProgressDialog(context);
@@ -239,6 +309,13 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
       pd.show();
     }
 
+    /**
+     * Do in background.
+     *
+     * @param params the params
+     * @return the activity rest response
+     * @see android.os.AsyncTask#doInBackground(Params[])
+     */
     @Override
     protected ActivityRestResponse doInBackground(final Object... params) {
       ActivityRestResponse activityRestResponse = new ActivityRestResponse();
@@ -282,6 +359,12 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
 
     }
 
+    /**
+     * On post execute.
+     *
+     * @param restResponse the rest response
+     * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+     */
     @Override
     protected void onPostExecute(final ActivityRestResponse restResponse) {
       pd.dismiss();
@@ -289,6 +372,11 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
   }
 
+  /**
+   * Do with send to server response.
+   *
+   * @param restResponse the rest response
+   */
   public void doWithSendToServerResponse(final ActivityRestResponse restResponse) {
     if (restResponse.getStatusCode() == 0) {
       showToast(1);
@@ -307,6 +395,9 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
     }
   }
 
+  /**
+   * Save current activity.
+   */
   public abstract void saveCurrentActivity();
 
 }

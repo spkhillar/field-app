@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.rest;
 
 import org.json.JSONException;
@@ -8,14 +11,28 @@ import org.springframework.http.MediaType;
 
 import com.telenoetica.util.model.HomeAndroidObject;
 
+/**
+ * The Class AppValuesPopulator.
+ */
 public final class AppValuesPopulator {
 
+  /** The Constant LOGGER. */
   private static final Logger LOGGER = LoggerFactory.getLogger(AppValuesPopulator.class);
 
+  /**
+   * Instantiates a new app values populator.
+   */
   private AppValuesPopulator() {
 
   }
 
+  /**
+   * Populate values.
+   *
+   * @param userName the user name
+   * @param password the password
+   * @throws JSONException the jSON exception
+   */
   public static void populateValues(final String userName, final String password) throws JSONException {
     String url = AppValuesHolder.getHost() + "/rest/home";
     HomeAndroidObject homeAndroidObject =

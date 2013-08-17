@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import java.util.ArrayList;
@@ -25,9 +28,17 @@ import android.widget.Toast;
 import com.telenoetica.android.rest.AppValuesHolder;
 import com.telenoetica.jpa.entities.DieselVisit;
 
+/**
+ * The Class DieselVisitActivity.
+ */
 public class DieselVisitActivity extends AbstractVisitActivity {
+
+  /** The button submit. */
   private Button buttonSubmit;
 
+  /**
+   * Adds the listener on button submit.
+   */
   public void addListenerOnButtonSubmit() {
     buttonSubmit = (Button) findViewById(R.id.btn_dv_submit);
     buttonSubmit.setOnClickListener(new OnClickListener() {
@@ -40,6 +51,12 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     });
   }
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see com.telenoetica.android.activity.ApplicationBaseActivity#initializeActivity(android.os.Bundle)
+   */
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     // checkForUserIdandPassword();
@@ -53,11 +70,14 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     addValuesOnSpinnerDieselDensity();
   }
 
+  /**
+   * Adds the values on spinner diesel density.
+   */
   private void addValuesOnSpinnerDieselDensity() {
     Spinner spinnerDieselDensity = (Spinner) findViewById(R.id.spinnerDieselDensity);
     String dieselDensityArray[] =
         new String[] { "0.75", "0.76", "0.77", "0.78", "0.79", "0.80", "0.81", "0.82", "0.83", "0.84", "0.85", "0.86",
-            "0.87", "0.88", "0.89", "0.90", "0.91", "0.92", "0.93", "0.94", "0.95" };
+        "0.87", "0.88", "0.89", "0.90", "0.91", "0.92", "0.93", "0.94", "0.95" };
 
     ArrayAdapter<String> dataAdapter =
         new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dieselDensityArray);
@@ -66,6 +86,11 @@ public class DieselVisitActivity extends AbstractVisitActivity {
 
   }
 
+  /**
+   * Save current activity.
+   *
+   * @see com.telenoetica.android.activity.AbstractVisitActivity#saveCurrentActivity()
+   */
   @Override
   public void saveCurrentActivity() {
     // TODO Auto-generated method stub
@@ -83,6 +108,11 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     }
   }
 
+  /**
+   * Validate diesel supply.
+   *
+   * @param errorList the error list
+   */
   private void validateDieselSupply(final List<String> errorList) {
     RadioGroup rg = (RadioGroup) findViewById(R.id.radioTransferBulk);
     int checkedRadioButtonId = rg.getCheckedRadioButtonId();
@@ -106,6 +136,9 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     }
   }
 
+  /**
+   * Register listener for diesel transfer or bulk.
+   */
   public void registerListenerForDieselTransferOrBulk() {
     final RadioGroup rg = (RadioGroup) findViewById(R.id.radioTransferBulk);
     rg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -143,6 +176,9 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     });
   }
 
+  /**
+   * Register listener for phcn.
+   */
   public void registerListenerForPhcn() {
 
     final RadioGroup rg1 = (RadioGroup) findViewById(R.id.radioPhcnInstalled);
@@ -169,6 +205,9 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     });
   }
 
+  /**
+   * Register listener for hybrid piu.
+   */
   public void registerListenerForHybridPiu() {
 
     final RadioGroup rg = (RadioGroup) findViewById(R.id.radioHybridPiuInstalled);

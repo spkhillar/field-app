@@ -1,3 +1,6 @@
+/*
+ * Copyright (C) 2013 Telenoetica, Inc. All rights reserved
+ */
 package com.telenoetica.android.activity;
 
 import java.util.Date;
@@ -27,15 +30,38 @@ import com.telenoetica.android.rest.AppValuesPopulator;
 import com.telenoetica.android.rest.RestClient;
 import com.telenoetica.android.rest.RestResponse;
 
+/**
+ * The Class LoginActivity.
+ */
 public class LoginActivity extends ApplicationBaseActivity {
+
+  /** The Constant LOGGER. */
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginActivity.class);
+
+  /** The button login. */
   private Button buttonLogin;
+
+  /** The user name. */
   private EditText userName;
+
+  /** The password. */
   private EditText password;
+
+  /** The user exists in local. */
   private boolean userExistsInLocal;
+
+  /** The uid. */
   private TextView uid;
+
+  /** The pwd. */
   private TextView pwd;
 
+  /**
+   * Initialize activity.
+   *
+   * @param savedInstanceState the saved instance state
+   * @see com.telenoetica.android.activity.ApplicationBaseActivity#initializeActivity(android.os.Bundle)
+   */
   @Override
   protected void initializeActivity(final Bundle savedInstanceState) {
     setContentView(R.layout.login);
@@ -47,8 +73,8 @@ public class LoginActivity extends ApplicationBaseActivity {
   }
 
   /**
-   * (non-Javadoc)
-   * 
+   * (non-Javadoc).
+   *
    * @see android.app.Activity#onBackPressed()
    */
   @Override
@@ -56,6 +82,9 @@ public class LoginActivity extends ApplicationBaseActivity {
     System.exit(0);
   }
 
+  /**
+   * Adds the listener on button login.
+   */
   public void addListenerOnButtonLogin() {
 
     buttonLogin = (Button) findViewById(R.id.btn1_main);
@@ -85,6 +114,11 @@ public class LoginActivity extends ApplicationBaseActivity {
     });
   }
 
+  /**
+   * Do with response.
+   *
+   * @param result the result
+   */
   private void doWithResponse(final RestResponse result) {
     LOGGER.info("Logging to the system. done.." + result);
     int statusCode = result.getStatusCode();
@@ -105,9 +139,19 @@ public class LoginActivity extends ApplicationBaseActivity {
     AppValuesHolder.setCurrentUserPassword(pwd);
   }
 
+  /**
+   * The Class LoginAsyncTask.
+   */
   private class LoginAsyncTask extends AsyncTask<String, Void, RestResponse> {
+
+    /** The pd. */
     private ProgressDialog pd;
 
+    /**
+     * On pre execute.
+     *
+     * @see android.os.AsyncTask#onPreExecute()
+     */
     @Override
     protected void onPreExecute() {
       pd = new ProgressDialog(context);
@@ -118,6 +162,13 @@ public class LoginActivity extends ApplicationBaseActivity {
       pd.show();
     }
 
+    /**
+     * Do in background.
+     *
+     * @param params the params
+     * @return the rest response
+     * @see android.os.AsyncTask#doInBackground(Params[])
+     */
     @Override
     protected RestResponse doInBackground(final String... params) {
       Date start = new Date();
@@ -158,6 +209,12 @@ public class LoginActivity extends ApplicationBaseActivity {
       return response;
     }
 
+    /**
+     * On post execute.
+     *
+     * @param restResponse the rest response
+     * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+     */
     @Override
     protected void onPostExecute(final RestResponse restResponse) {
       pd.dismiss();
