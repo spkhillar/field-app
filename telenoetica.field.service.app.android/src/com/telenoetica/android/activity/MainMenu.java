@@ -229,7 +229,7 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-        JsonMappingException, IOException {
+    JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 
@@ -249,8 +249,10 @@ public class MainMenu extends ApplicationBaseActivity {
     alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
       @Override
       public void onClick(final DialogInterface dialog, final int which) {
-        Intent intent = new Intent(context, LoginActivity.class);
-        startActivity(intent);
+        finish();
+        System.exit(0);
+        //Intent intent = new Intent(context, LoginActivity.class);
+        //startActivity(intent);
       }
     });
 
