@@ -9302,4 +9302,11 @@
             <column name="version" valueNumeric="0"/>
         </insert>
     </changeSet>
+    <changeSet author="Shiv" id="1374865179138-2">
+			<update tableName="user">
+				<column name="version" value="1"></column>
+				<column name="phone" value="1111111"></column>
+				<where>id=1</where>
+			</update>
+	</changeSet>
 </databaseChangeLog>
