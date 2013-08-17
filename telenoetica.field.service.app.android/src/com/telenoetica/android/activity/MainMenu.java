@@ -37,7 +37,7 @@ public class MainMenu extends ApplicationBaseActivity {
   private Button btnMaintenanceVisit;
   private Button btnCalloutVisit;
   private Button btnSendToServer;
-  private Button btnConfigure;
+  // private Button btnConfigure;
   private Button btnExit;
 
   @Override
@@ -227,7 +227,7 @@ public class MainMenu extends ApplicationBaseActivity {
     }
 
     private Object determinePostObject(final Class<?> currentClazz, final String json) throws JsonParseException,
-        JsonMappingException, IOException {
+    JsonMappingException, IOException {
       return RestJsonUtils.fromJSONString(json, currentClazz);
     }
 
@@ -248,7 +248,7 @@ public class MainMenu extends ApplicationBaseActivity {
       @Override
       public void onClick(final DialogInterface dialog, final int which) {
         finish();
-        System.exit(0);
+        moveTaskToBack(true);
         // Intent intent = new Intent(context, LoginActivity.class);
         // startActivity(intent);
       }

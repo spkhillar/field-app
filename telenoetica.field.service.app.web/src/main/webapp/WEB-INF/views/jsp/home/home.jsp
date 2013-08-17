@@ -110,7 +110,9 @@
 	
 	</div>
 	<br>
-		<div class="col_w420 lp_box float_l">
+	<table>
+		<tr>
+		<td>		
 			<h5>Routine Visit</h5>
 			<table id="newspaper-b" name="routineTable">
 				<thead>
@@ -124,24 +126,9 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/routine/list" style="float:right; font-weight: bold">View All</a>
-		</div>
-		<div class="col_w420 float_r">
-			<h5>Call-Out Visit</h5>
-			<table id="newspaper-b" name="calloutTable" style="float: right">
-				<thead>
-					<tr>
-						<th scope="col">Site</th>
-						<th scope="col">Visit Time</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-			<a href="${contextPath}/callout/list" style="float:right; font-weight: bold">View All</a>
-		</div>
-		<br/>
-		<div class="col_w420 lp_box float_l">
-			<h5>Diesel Visit</h5>
+		</td>
+		<td>
+		<h5>Diesel Visit</h5>
 			<table id="newspaper-b" name="dieselTable">
 				<thead>
 					<tr>
@@ -154,8 +141,24 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/diesel/list" style="float:right; font-weight: bold">View All</a>
-		</div>
-		<div class="col_w420 float_r">
+		</td>
+		</tr>
+		<tr>
+		<td>
+			<h5>Call-Out Visit</h5>
+			<table id="newspaper-b" name="calloutTable">
+				<thead>
+					<tr>
+						<th scope="col">Site</th>
+						<th scope="col">Visit Time</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<a href="${contextPath}/callout/list" style="float:right; font-weight: bold">View All</a>
+		</td>
+		<td>
 			<h5>Maintenance Visit</h5>
 			<table id="newspaper-b" name="maintenanceTable" style="float: right">
 				<thead>
@@ -168,7 +171,9 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/maintenance/list" style="float:right; font-weight: bold">View All</a>
-		</div>
+		</td>
+		</tr>
+		</table>
 	</div>
 </body>
 </html>
