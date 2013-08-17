@@ -113,7 +113,7 @@ public class DieselVisit implements java.io.Serializable, BaseEntity {
 
 	/** The created at. */
 	@JsonProperty
-	private Date createdAt;
+	private Date createdAt = new Date();
 
 	/** The user id. */
 	@JsonProperty
