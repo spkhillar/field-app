@@ -24,71 +24,78 @@ import com.telenoetica.service.util.ApplicationServiceException;
  */
 public abstract class AbstractBaseService {
 
-  protected static final Logger logger = Logger.getLogger(AbstractBaseService.class);
+	protected static final Logger logger = Logger
+			.getLogger(AbstractBaseService.class);
 
-  /** The user service. */
-  @Autowired
-  protected UserService userService;
+	/** The user service. */
+	@Autowired
+	protected UserService userService;
 
-  /** The site service. */
-  @Autowired
-  protected SiteService siteService;
+	/** The site service. */
+	@Autowired
+	protected SiteService siteService;
 
-  @Autowired
-  protected EmailService emailService;
+	@Autowired
+	protected EmailService emailService;
 
-  /** The system configuration. */
-  @Autowired
-  protected SystemConfiguration systemConfiguration;
+	/** The system configuration. */
+	@Autowired
+	protected SystemConfiguration systemConfiguration;
 
-  /**
-   * Gets the user.
-   *
-   * @param username the username
-   * @return the user
-   */
-  public User getUser(final String username) {
-    User user = userService.findByUserName(username);
-    if (user == null) {
-      throw new ApplicationServiceException("User " + username
-        + "not found in system");
-    }
-    return user;
-  }
+	/**
+	 * Gets the user.
+	 * 
+	 * @param username
+	 *            the username
+	 * @return the user
+	 */
+	public User getUser(final String username) {
+		User user = userService.findByUserName(username);
+		if (user == null) {
+			throw new ApplicationServiceException("User " + username
+					+ "not found in system");
+		}
+		return user;
+	}
 
-  /**
-   * Gets the site.
-   *
-   * @param siteName the site name
-   * @return the site
-   */
-  public Site getSite(final String siteName) {
-    Site site = siteService.findSite(siteName);
-    if (site == null) {
-      throw new ApplicationServiceException("Site \"" + siteName
-        + "\" not found in system");
-    }
-    return site;
-  }
+	/**
+	 * Gets the site.
+	 * 
+	 * @param siteName
+	 *            the site name
+	 * @return the site
+	 */
+	public Site getSite(final String siteName) {
+		Site site = siteService.findSite(siteName);
+		if (site == null) {
+			throw new ApplicationServiceException("Site \"" + siteName
+					+ "\" not found in system");
+		}
+		return site;
+	}
 
-
-
-  public void sendEmail(final String reportFilePath) {
-    logger.debug("Sending Diesel detail report in email");
-    String recipient = systemConfiguration.getTo();
-    File attachment = new File(reportFilePath);
-    List<String> toAddress = new ArrayList(Arrays.asList(recipient
-      .split(",")));
-    toAddress.add(recipient);
-    EmailTemplate emailTemplate = new EmailTemplate(toAddress,
-      "***** Auto-Generated Message...Please DO NOT Reply *****",
-        "Diesel Detail Report ");
-    emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
-    try {
-      emailService.sendEmail(emailTemplate);
-    } catch (Exception e) {
-      logger.error("mail sending failed..", e);
-    }
-  }
+	public void sendEmail(final String reportFilePath) {
+		logger.debug("Sending Diesel detail report in email");
+		String recipient = systemConfiguration.getTo();
+		File attachment = new File(reportFilePath);
+		List<String> toAddress = new ArrayList(Arrays.asList(recipient
+				.split(",")));
+		String subject = "";
+		if (reportFilePath.contains("diesel")) {
+			subject = "Diesel Detail Report ";
+		} else {
+			subject = "Spare Utilization Report ";
+		}
+		toAddress.add(recipient);
+		EmailTemplate emailTemplate = new EmailTemplate(toAddress,
+				"***** Auto-Generated Message...Please DO NOT Reply *****",
+				subject);
+		emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
+		try {
+			emailService.sendEmail(emailTemplate);
+		} catch (Exception e) {
+			logger.error("mail sending failed..", e);
+		}
+	}
 
 }
