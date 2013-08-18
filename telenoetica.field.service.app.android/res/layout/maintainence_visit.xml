@@ -383,7 +383,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:hint="[0-30000]"
-                    android:tag="runHoursAfterPmdG1={&quot;required&quot;:true,&quot;min&quot;:0,&quot;max&quot;:30000}" />
+                    android:tag="runHoursAfterPmdG1={&quot;min&quot;:0,&quot;max&quot;:30000}" />
             </TableRow>
 
             <TableRow
@@ -411,7 +411,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:hint="[0-30000]"
-                    android:tag="runHoursAfterPmdG2={&quot;required&quot;:true,&quot;min&quot;:0,&quot;max&quot;:30000}" />
+                    android:tag="runHoursAfterPmdG2={&quot;min&quot;:0,&quot;max&quot;:30000}" />
             </TableRow>
 
             <LinearLayout
