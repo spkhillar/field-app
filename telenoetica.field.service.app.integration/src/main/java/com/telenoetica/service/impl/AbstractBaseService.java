@@ -86,9 +86,9 @@ public abstract class AbstractBaseService {
 		} else {
 			subject = "Spare Utilization Report ";
 		}
-		toAddress.add(recipient);
+		// toAddress.add(recipient);
 		EmailTemplate emailTemplate = new EmailTemplate(toAddress,
-				"***** Auto-Generated Message...Please DO NOT Reply *****",
+				"***** System-Generated Message...Please DO NOT Reply *****",
 				subject);
 		emailTemplate.setAttachmentFileName(attachment.getAbsolutePath());
 		try {
