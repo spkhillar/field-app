@@ -102,6 +102,23 @@
 
 	}
 </script>
+<style type="text/css">
+div.container {
+	border: 0px solid #000000;
+	overflow: hidden;
+	width: 100%;
+}
+
+div.left {
+	width: 430px;
+	float: left;
+}
+
+div.right {
+	width: 440px;
+	float: right;
+}
+</style>
 </head>
 <body>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -110,9 +127,8 @@
 	
 	</div>
 	<br>
-	<table>
-		<tr>
-		<td>		
+	<div class="container" style="overflow: hidden; width: 100%">	
+		<div class="left">	
 			<h5>Routine Visit</h5>
 			<table id="newspaper-b" name="routineTable">
 				<thead>
@@ -126,8 +142,8 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/routine/list" style="float:right; font-weight: bold">View All</a>
-		</td>
-		<td>
+		</div>
+		<div class="right">
 		<h5>Diesel Visit</h5>
 			<table id="newspaper-b" name="dieselTable">
 				<thead>
@@ -141,10 +157,10 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/diesel/list" style="float:right; font-weight: bold">View All</a>
-		</td>
-		</tr>
-		<tr>
-		<td>
+		</div>
+		</div>
+		<div class="container" style="overflow: hidden; width: 100%">
+		<div class="left">		
 			<h5>Call-Out Visit</h5>
 			<table id="newspaper-b" name="calloutTable">
 				<thead>
@@ -157,8 +173,8 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/callout/list" style="float:right; font-weight: bold">View All</a>
-		</td>
-		<td>
+		</div>
+		<div class="right">	
 			<h5>Maintenance Visit</h5>
 			<table id="newspaper-b" name="maintenanceTable" style="float: right">
 				<thead>
@@ -171,9 +187,8 @@
 				</tbody>
 			</table>
 			<a href="${contextPath}/maintenance/list" style="float:right; font-weight: bold">View All</a>
-		</td>
-		</tr>
-		</table>
+		</div>
+		</div>
 	</div>
 </body>
 </html>
