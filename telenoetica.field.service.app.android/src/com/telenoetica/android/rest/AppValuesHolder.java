@@ -42,7 +42,7 @@ public class AppValuesHolder {
   private static String currentUserPassword;
 
   /** The host. */
-  private static String host = "http://54.225.71.93:8080/fieldapp";
+  private static String host = "http://197.242.243.7:8080/fieldapp";
 
   /** The send to server count map. */
   private static Map<String, Long> sendToServerCountMap = new HashMap<String, Long>();
