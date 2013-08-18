@@ -724,7 +724,7 @@
                     android:background="@drawable/button"
                     android:paddingLeft="45dip"
                     android:paddingRight="45dip"
-                    android:text="Save"
+                    android:text="Submit"
                     android:gravity="center"
                     android:textColor="#333333" />
            </LinearLayout>
