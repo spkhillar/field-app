@@ -99,6 +99,8 @@ public class DieselDetailReportServiceImpl extends AbstractBaseService
 				cell = row.createCell(0);
 				siteidForPrint = ServiceUtil.checkAndReturnValue(dieselVisit
 						.getSiteId());
+				LOGGER.debug("Adding report for siteid : "
+						+ dieselVisit.getSiteId());
 				if (!siteidForPrint.equals(prevSiteidForPrint)) {
 					cell.setCellValue(ServiceUtil
 							.checkAndReturnValue(dieselVisit.getSiteId()));
