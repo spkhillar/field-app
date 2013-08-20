@@ -174,10 +174,12 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
     File file = new File(appFilePath);
     FileInputStream fileIn;
     try {
-      httpServletResponse.setContentType("application/vnd.ms-word");
+      httpServletResponse.setContentType("application/octet-stream");
       httpServletResponse
       .setHeader("Content-Disposition", "Attachment;filename= "
-          + "HTN_FIELD_APP_ANDROID_HELP.docx");
+          + "HTN_FIELD_APP_ANDROID_HELP.pdf");
+      httpServletResponse.setContentLength((int) file.length());
+
       fileIn = new FileInputStream(file);
       ServletOutputStream out = httpServletResponse.getOutputStream();
 
