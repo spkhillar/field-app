@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -302,11 +303,14 @@ DieselVisitService {
     currentDate.set(Calendar.DAY_OF_MONTH, Calendar.getInstance()
       .getActualMinimum(Calendar.DAY_OF_MONTH));
     startDate = currentDate.getTime();
-    logger.debug(" Site =" + site.getName()
-      + ". Finding Diesel Visit Data from " + startDate + " TO "
-      + finalEndDate);
-    return dieselVisitDAO.findBySiteAndCreatedAtBetween(site, startDate,
+    List<DieselVisit> listDieselVisit = dieselVisitDAO.findBySiteAndCreatedAtBetween(site, startDate,
       finalEndDate);
+    if(CollectionUtils.isNotEmpty(listDieselVisit)){
+      logger.debug(" Site =" + site.getName()
+        + ". Finding Diesel Visit Data from " + startDate + " TO "
+        + finalEndDate+"::Found-Data::"+listDieselVisit.size());
+    }
+    return listDieselVisit;
   }
 
   /**
