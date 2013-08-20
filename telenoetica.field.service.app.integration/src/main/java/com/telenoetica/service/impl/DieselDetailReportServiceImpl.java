@@ -62,7 +62,7 @@ implements DieselDetailReportService {
     List<Site> siteList = siteService.getSites();
     String configuredFileName = systemConfiguration
         .getDieselDetailsReportTemplate();
-    LOGGER.debug("DieselDetailReport template is : " + configuredFileName);
+    LOGGER.debug(siteList.size()+"=SITELISTSIZE::DieselDetailReport template is : " + configuredFileName);
     InputStream is = this.getClass()
         .getResourceAsStream(configuredFileName);
     // create a POIFSFileSystem object to read the data
@@ -88,8 +88,7 @@ implements DieselDetailReportService {
     HSSFRow row;
     HSSFCell cell;
     int rNum = 2;
-    for (int i = 0; i < 10; i++) {
-      Site siteName = siteList.get(i);
+    for ( Site siteName : siteList) {
       List<DieselVisit> dieselVisitL = dieselVisitService
           .findBySiteAndCreatedAtBetween(siteName, forDate);
       int rNumPrev = rNum;
