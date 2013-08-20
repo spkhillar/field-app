@@ -6,7 +6,6 @@ package com.telenoetica.service.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,8 +14,8 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +32,7 @@ import com.telenoetica.util.model.HomeAndroidObject;
  * The Class AndroidHomeServiceImpl.
  */
 @Service("androidHomeService")
-public class AndroidHomeServiceImpl implements AndroidHomeService {
+public class AndroidHomeServiceImpl extends AbstractBaseService implements AndroidHomeService {
 
   private static final Logger LOGGER = Logger
       .getLogger(AndroidHomeServiceImpl.class);
@@ -99,19 +98,19 @@ public class AndroidHomeServiceImpl implements AndroidHomeService {
   @Transactional(readOnly = true)
   public List<Integer> getchartData() {
     Date startDate;
-    Date endDate;
-    Calendar currentDate = Calendar.getInstance(); // Get the current date
-    endDate = currentDate.getTime();
-    startDate = new DateTime(endDate).minusDays(30).toDate();
+    Date endDate = new Date();
+    startDate = DateUtils.addDays(endDate, -7);
     Map<String, Object> param = new HashMap<String, Object>(1);
-    param.put("endDate", endDate);
     param.put("startDate", startDate);
+    param.put("endDate", endDate);
     List<Integer> chartData = new ArrayList<Integer>(4);
 
     long rvCount = routineVisitService.findRecordCount(param);
     long cvCount = callOutVisitService.findRecordCount(param);
     long dvCount = dieselVisitService.findRecordCount(param);
     long mvCount = maintenanceVisitService.findRecordCount(param);
+
+    LOGGER.debug("FROM"+startDate+"--TO--"+endDate+".....rvCount="+rvCount+":..cvCount="+cvCount+":dvCount="+dvCount+":mvCount="+mvCount);
     chartData.add((int) rvCount);
     chartData.add((int) cvCount);
     chartData.add((int) dvCount);
