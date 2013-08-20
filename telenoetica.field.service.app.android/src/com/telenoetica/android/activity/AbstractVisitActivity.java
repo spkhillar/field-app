@@ -227,6 +227,7 @@ public abstract class AbstractVisitActivity extends ApplicationBaseActivity {
       Toast.makeText(this, "Sending failed. Try sending after sometime.", Toast.LENGTH_SHORT).show();
     }
     Intent intent = new Intent(this, MainMenu.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
 
   }

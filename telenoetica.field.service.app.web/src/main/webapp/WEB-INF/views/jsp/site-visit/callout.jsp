@@ -160,7 +160,6 @@ function submitCalloutData(){
 	console.log('Form Valid...',isValid);
 	if(isValid){
 		var str = $("#calloutCreateForm").serialize();
-		console.log('values...',str);
 		$.ajax({
 		    type:"post",
 		    data:str,
@@ -168,12 +167,22 @@ function submitCalloutData(){
 		    async: false,
 		    success: function(data, textStatus){
 		    	showVisitMessage("Saved Successfuly.");
-			    $("#save").hide();
+		    	$("#save").hide();
 		    },
 		    error: function(textStatus,errorThrown){
-			       alert(textStatus+""+errorThrown);
+			       var jsonReturned = textStatus.responseText;
+			       if(jsonReturned != null && jsonReturned.indexOf("message") > 0){
+			    	   var jsonObject = $.parseJSON(jsonReturned);
+			    	   alert("Saving failed with error:"+jsonObject.message);
+			       }else{
+			    	   alert("Saving failed. Contact System Administrator");
+			       }
 			}
 		});
+	}else{
+		$('html, body').animate({
+		    scrollTop: ($('.error').first().offset().top)
+		},500);
 	}
 }
 

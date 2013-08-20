@@ -136,13 +136,21 @@ function submitRoutineData(){
 		    success: function(data, textStatus){
 		    	showVisitMessage("Saved Successfuly.");
 		    	$("#save").hide();
-		       //$("#save").attr("disabled","disabled");
-		       //$("#save").css("background-color","silver");
 		    },
 		    error: function(textStatus,errorThrown){
-			       alert(textStatus+""+errorThrown);
+			       var jsonReturned = textStatus.responseText;
+			       if(jsonReturned != null && jsonReturned.indexOf("message") > 0){
+			    	   var jsonObject = $.parseJSON(jsonReturned);
+			    	   alert("Saving failed with error:"+jsonObject.message);
+			       }else{
+			    	   alert("Saving failed. Contact System Administrator");
+			       }
 			}
 		});
+	}else{
+		$('html, body').animate({
+		    scrollTop: ($('.error').first().offset().top)
+		},500);
 	}
 }
 

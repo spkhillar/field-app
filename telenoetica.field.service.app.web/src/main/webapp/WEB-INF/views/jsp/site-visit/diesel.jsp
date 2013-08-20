@@ -193,20 +193,29 @@
 		console.log('Form Valid...', isValid);
 		if (isValid) {
 			var str = $("#dieselCreateForm").serialize();
-			console.log('values...', str);
 			$.ajax({
-					type : "post",
-					data : str,
-					url : actionUrl,
-					async : false,
-					success : function(data, textStatus) {
-				    	showVisitMessage("Saved Successfuly.");
-					    $("#save").hide();
-					},
-					error : function(textStatus, errorThrown) {
-						alert(textStatus + "" + errorThrown);
-					}
-				});
+			    type:"post",
+			    data:str,
+			    url:actionUrl,
+			    async: false,
+			    success: function(data, textStatus){
+			    	showVisitMessage("Saved Successfuly.");
+			    	$("#save").hide();
+			    },
+			    error: function(textStatus,errorThrown){
+				       var jsonReturned = textStatus.responseText;
+				       if(jsonReturned != null && jsonReturned.indexOf("message") > 0){
+				    	   var jsonObject = $.parseJSON(jsonReturned);
+				    	   alert("Saving failed with error:"+jsonObject.message);
+				       }else{
+				    	   alert("Saving failed. Contact System Administrator");
+				       }
+				}
+			});
+		}else{
+			$('html, body').animate({
+			    scrollTop: ($('.error').first().offset().top)
+			},500);
 		}
 	}
 
@@ -245,7 +254,7 @@
 					<span id="radioBtnBulkOrSupply">
 					<label><spring:message code="fieldapp.label.dv.transfer.or.bulk.supply"/></label> 
 					<label style="width: 50px;"><form:radiobutton path="dieselTransferOrBulkSupply" value="Bulk" /><spring:message code="fieldapp.label.dv.bulk.transfer"/></label>
-					<label style="width: 50px;"><form:radiobutton path="dieselTransferOrBulkSupply" value="Site" /><spring:message code="fieldapp.label.dv.site.transfer"/></label>
+					<label style="width: 75px;"><form:radiobutton path="dieselTransferOrBulkSupply" value="Site" /><spring:message code="fieldapp.label.dv.site.transfer"/></label>
 					</span>
 				</p>
 				<p>

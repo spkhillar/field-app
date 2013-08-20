@@ -103,7 +103,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="DRN Number"
+                    android:text="DRN/DTN Number"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -113,13 +113,12 @@
                     android:layout_weight="50"
                     android:background="@drawable/shape"
                     android:gravity="center_horizontal"
-                    android:inputType="number"
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:maxLength="7"
-                    android:hint="Num- 7 digit"
+                    android:hint="N Characters"
                     android:tag="drnNumber"/>
             </TableRow>
 

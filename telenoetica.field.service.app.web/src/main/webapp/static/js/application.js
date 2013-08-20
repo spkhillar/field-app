@@ -47,7 +47,7 @@ $(document).ready(function() {
 	
 	jQuery.validator.addMethod("alphanumeric", function(value, element) {
         return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
-	},"Fiels must contain only alphabets and numbers."); 
+	},"Fields must contain only alphabets and numbers."); 
 
 	getClientsForDropDown();
 	getFaultsForDropDown();

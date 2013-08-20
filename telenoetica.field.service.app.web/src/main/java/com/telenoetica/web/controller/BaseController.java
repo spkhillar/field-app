@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.telenoetica.web.rest.RestResponse;
 
@@ -48,6 +50,7 @@ public class BaseController {
    */
   @ExceptionHandler(Throwable.class)
   @ResponseBody
+  @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
   public RestResponse handleInternalServiceException(final Exception ex,
       final HttpServletRequest request) {
     logger.error("handleInternalServiceException-User-", ex);

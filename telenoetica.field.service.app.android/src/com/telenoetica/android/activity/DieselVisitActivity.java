@@ -127,10 +127,10 @@ public class DieselVisitActivity extends AbstractVisitActivity {
     } else {
       AutoCompleteTextView autoCompleteTextViewTransfer = (AutoCompleteTextView) findViewById(R.id.etTransfer);
       if (autoCompleteTextViewTransfer != null
-          && StringUtils.isNotBlank(autoCompleteTextViewTransfer.getText().toString())) {
+          && StringUtils.isBlank(autoCompleteTextViewTransfer.getText().toString())) {
         // show toast transferred site id is required
-        errorList.add("Transferred Site Id is required");
-        Toast.makeText(this, "Transferred Site Id is required", Toast.LENGTH_LONG).show();
+        errorList.add("Transfer from Site ID is required");
+        Toast.makeText(this, "Transfer from Site ID is required", Toast.LENGTH_LONG).show();
       }
 
     }

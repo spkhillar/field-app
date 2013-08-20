@@ -327,7 +327,7 @@ public class MainMenu extends ApplicationBaseActivity {
       @Override
       public void onClick(final DialogInterface dialog, final int which) {
         finish();
-        moveTaskToBack(true);
+        System.exit(0);
         // Intent intent = new Intent(context, LoginActivity.class);
         // startActivity(intent);
       }
