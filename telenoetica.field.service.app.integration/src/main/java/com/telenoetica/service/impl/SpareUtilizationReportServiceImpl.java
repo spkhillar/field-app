@@ -221,8 +221,10 @@ public class SpareUtilizationReportServiceImpl extends AbstractBaseService
 			for (int j = 0; j < maintenanceVisitL.size(); j++) {
 				MaintenanceVisit maintenanceVisit = maintenanceVisitL.get(j);
 				siteid = maintenanceVisit.getSiteId();
-				if (maintenanceVisit.getCategoryOfMaintenance()
-						.startsWith("PM")) {
+				if (maintenanceVisit.getCategoryOfMaintenance() != null
+						&& maintenanceVisit.getCategoryOfMaintenance() != ""
+						&& maintenanceVisit.getCategoryOfMaintenance()
+								.startsWith("PM")) {
 					countPMVisits(maintenanceVisit);
 					pmVisitCounter = pmVisitCounter + 1;
 					totalPmVisitCounter = totalPmVisitCounter + pmVisitCounter;
