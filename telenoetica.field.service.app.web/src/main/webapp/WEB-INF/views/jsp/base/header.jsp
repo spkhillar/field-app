@@ -56,7 +56,7 @@ webContextPath="${pageContext.request.contextPath}";
         </div>
        <ul id="menu">
 		<li><a href="${homeUrl}">Home</a></li>
-		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
+		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_ADMIN')">
 		<li><a href="#">Administration</a>
 			<ul>
 				<li>
@@ -65,6 +65,7 @@ webContextPath="${pageContext.request.contextPath}";
 			</ul>
 		</li>
 		</sec:authorize>
+		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_ADMIN')">
 		<li><a href="#">Site Visit</a>
 			<ul>
 				<li><a href="${contextPath}/routine/new">Routine Visit</a>							
@@ -77,6 +78,7 @@ webContextPath="${pageContext.request.contextPath}";
 				</li>
 			</ul>
 		</li>
+		</sec:authorize>
 		<sec:authorize access="hasAnyRole('ROLE_CSOE','ROLE_OPS_MANAGER','ROLE_ADMIN')">
 		<li><a href="#">Reports</a>
 			<ul>
@@ -89,8 +91,10 @@ webContextPath="${pageContext.request.contextPath}";
 			</ul>	
 		</li>
 		</sec:authorize>
+		<sec:authorize access="hasAnyRole('ROLE_FSE','ROLE_ADMIN')">
 		<li><a href="${contextPath}/downloadAndroidApp">Download Android App</a>
 		</li>
+		</sec:authorize>
 		<li><a href="${contextPath}/help">Help</a>
 		</li>
 	</ul>
