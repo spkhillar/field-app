@@ -410,7 +410,7 @@
                 android:padding="10dip" >
 
                 <TextView
-                    android:text="Battery capacity(V/AH)"
+                    android:text="Battery capacity(V)"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -423,11 +423,37 @@
                     android:paddingLeft="10dip"
                     android:paddingRight="10dip"
                     android:shape="rectangle"
+                    android:maxLength="2"
+                    android:inputType="number"
+                    android:singleLine="true" 
+                    android:hint="[0-50]"
+                    android:tag='batteryCapcityV={"min":0,"max":50}'/>
+            </TableRow>
+            
+             <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dip" >
+
+                <TextView
+                    android:text="Battery capacity(AH)"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/et_rv_batterycapacityAh"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:background="@drawable/shape"
+                    android:gravity="center_horizontal"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:shape="rectangle"
                     android:maxLength="4"
                     android:inputType="number"
                     android:singleLine="true" 
-                    android:hint="[50-2000]"
-                    android:tag='batteryCapcityV={"min":50,"max":2000}'/>
+                    android:hint="[0-2000]"
+                    android:tag='batteryCapcityAh={"min":0,"max":2000}'/>
             </TableRow>
             
 
