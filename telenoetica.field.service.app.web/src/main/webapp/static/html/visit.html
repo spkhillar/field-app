@@ -5,30 +5,16 @@
 <title>Visit</title>
 </head>
 <script>
- function OpenClose(obj) {
-   HeadObj = eval(obj + "_Head");
-   BodyObj = eval(obj + "_Body");
-
-   if (BodyObj.style.display=='block') {
-     BodyObj.style.display='none';
-	 SignOffset = HeadObj.innerHTML.indexOf("-");
-	 HeadObj.innerHTML = "+" + HeadObj.innerHTML.substring(SignOffset+1);
-   } else {
-     BodyObj.style.display='block';
- 	 SignOffset = HeadObj.innerHTML.indexOf("+");
- 	 HeadObj.innerHTML = "-" + HeadObj.innerHTML.substring(SignOffset+1);
-   }
- }
 </script>
 <body>
 <p>This Section contains 4 pages, one for each visit from where user can submit visit information. 
 This web page can be used by field service engineer only when he is not able to submit the information from his android application. 
 There are 4 kinds of visits supported by field application system and 4 pages for the same:</p>
 
-<div id="ClickMe1_Head" onClick="OpenClose('ClickMe1')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeVisit1_Head" onClick="OpenClose('ClickMeVisit1')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Routine Visit</b> 
 </div>
-<div id="ClickMe1_Body" style="display:none; margin-left:20px">
+<div id="ClickMeVisit1_Body" style="display:none; margin-left:20px">
 <p><b>Routine Visit page contains following fields</b></p>
 <p>		
 <BR><b>Site ID :</b> Site where visit is happening.Autofill text with pattern "HX/XX/XX/NNN".Click on the input field and start typing, application will suggest you the possible values</BR>
@@ -58,10 +44,10 @@ There are 4 kinds of visits supported by field application system and 4 pages fo
 </p>
 </div>
 
-<div id="ClickMe2_Head" onClick="OpenClose('ClickMe2')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeVisit2_Head" onClick="OpenClose('ClickMeVisit2')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Diesel Visit</b> 
 </div>
-<div id="ClickMe2_Body" style="display:none; margin-left:20px">
+<div id="ClickMeVisit2_Body" style="display:none; margin-left:20px">
 <p><b>Diesel Visit page contains following fields</b></p>
 <p>		
 <BR><b>Site ID :</b> Site where visit is happening.Autofill text with pattern "HX/XX/XX/NNN".Click on the input field and start typing, application will suggest you the possible values</BR>
@@ -84,10 +70,10 @@ There are 4 kinds of visits supported by field application system and 4 pages fo
 </p>
 </div>
 
-<div id="ClickMe3_Head" onClick="OpenClose('ClickMe3')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeVisit3_Head" onClick="OpenClose('ClickMeVisit3')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Callout Visit</b> 
 </div>
-<div id="ClickMe3_Body" style="display:none; margin-left:20px">
+<div id="ClickMeVisit3_Body" style="display:none; margin-left:20px">
 <p><b>Diesel Visit page contains following fields</b></p>
 <p>		
 <BR><b>Site ID :</b> Site where visit is happening.Autofill text with pattern "HX/XX/XX/NNN".Click on the input field and start typing, application will suggest you the possible values</BR>
@@ -109,10 +95,10 @@ There are 4 kinds of visits supported by field application system and 4 pages fo
 </p>
 </div>
 
-<div id="ClickMe4_Head" onClick="OpenClose('ClickMe4')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeVisit4_Head" onClick="OpenClose('ClickMeVisit4')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Maintenance Visit</b> 
 </div>
-<div id="ClickMe4_Body" style="display:none; margin-left:20px">
+<div id="ClickMeVisit4_Body" style="display:none; margin-left:20px">
 <p><b>Maintenance Visit page contains following fields</b></p>
 <p>		
 <BR><b>Site ID :</b> Site where visit is happening.Autofill text with pattern "HX/XX/XX/NNN".Click on the input field and start typing, application will suggest you the possible values</BR>

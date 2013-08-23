@@ -26,7 +26,7 @@
 				},
 				"drnNumber" : {
 					required : true,
-					alphanumeric : true
+					alphanumericwithdash : true
 				},
 				"bulkNameOfVendor" : {
 					bulkCheck: true

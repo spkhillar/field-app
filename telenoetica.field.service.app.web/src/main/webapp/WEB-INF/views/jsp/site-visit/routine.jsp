@@ -28,7 +28,7 @@
 						alphanumeric : true
 		      },
 		      "dieselLevelT1" : {
-		    	  required : true,
+		    	  number : true,
 		    	  range:[0,6000]
 		      },
 		      "dieselLevelT2" : {

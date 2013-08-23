@@ -5,20 +5,6 @@
 <title>Insert title here</title>
 </head>
 <script>
- function OpenClose(obj) {
-   HeadObj = eval(obj + "_Head");
-   BodyObj = eval(obj + "_Body");
-
-   if (BodyObj.style.display=='block') {
-     BodyObj.style.display='none';
-	 SignOffset = HeadObj.innerHTML.indexOf("-");
-	 HeadObj.innerHTML = "+" + HeadObj.innerHTML.substring(SignOffset+1);
-   } else {
-     BodyObj.style.display='block';
- 	 SignOffset = HeadObj.innerHTML.indexOf("+");
- 	 HeadObj.innerHTML = "-" + HeadObj.innerHTML.substring(SignOffset+1);
-   }
- }
 </script>
 <body>
 <p><b>This section contains 6 pages : </b></p>
@@ -33,10 +19,10 @@ Spares Utilization reports are generated on month end and send via email to conf
 
 </p>Other common buttons(functions) at the bottom of the page are:</p>
 
-<div id="ClickMe1_Head" onClick="OpenClose('ClickMe1')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeReport1_Head" onClick="OpenClose('ClickMeReport1')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Filter</b> 
 </div>
-<div id="ClickMe1_Body" style="display:none; margin-left:20px">
+<div id="ClickMeReport1_Body" style="display:none; margin-left:20px">
 <p><b>Filter allow you to manage the list of information on grid. To create a filter:</b></p>
 <p>		1.	Click the filter button in your page. A window that allows you to specify your search criteria will appear.</p>
 <p>		2.	Enter your search criteria. If you want to check that your search worked correctly, click the find button..</p>
@@ -44,18 +30,18 @@ Spares Utilization reports are generated on month end and send via email to conf
 <p>		4.	If you want to remove a search criteria then use (-) sign appearing next to criteria</p>
 <p>		5.	Use reset to remove all search criteria</p></div>
 
-<div id="ClickMe2_Head" onClick="OpenClose('ClickMe2')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeReport2_Head" onClick="OpenClose('ClickMeReport2')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Refresh</b> 
 </div>
-<div id="ClickMe2_Body" style="display:none; margin-left:20px">
+<div id="ClickMeReport2_Body" style="display:none; margin-left:20px">
 <p><b>A refresh or reload will cause the browser to re-check with the web server to make sure it has the latest copy of the web page you are viewing.To refresh the grid: </b></p>
 <p>		1.	Click the Refresh button in your page. Grid data will be reloaded from the server to ensure that you are viewing the latest copy.</p>
 </div>
 
-<div id="ClickMe6_Head" onClick="OpenClose('ClickMe6')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+<div id="ClickMeReport6_Head" onClick="OpenClose('ClickMeReport6')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Export</b> 
 </div>
-<div id="ClickMe6_Body" style="display:none; margin-left:20px">
+<div id="ClickMeReport6_Body" style="display:none; margin-left:20px">
 <p><b>Export allow you to To export the data in excel format on user system. If filter is applied then only filtered record from the screen will be exported to excel. To export:</b></p>
 <p>		1.	Click the export button in your page. A window will appear to save or open in the excel.</p>
 <p>		2.	Based on your selection file will be saved on system.</p></div>

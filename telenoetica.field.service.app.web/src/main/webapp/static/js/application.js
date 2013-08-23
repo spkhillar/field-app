@@ -48,6 +48,10 @@ $(document).ready(function() {
 	jQuery.validator.addMethod("alphanumeric", function(value, element) {
         return this.optional(element) || /^[a-zA-Z0-9]+$/.test(value);
 	},"Fields must contain only alphabets and numbers."); 
+	
+	jQuery.validator.addMethod("alphanumericwithdash", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9-]+$/.test(value);
+	},"Field must contain only alphanumeric and hyphen(-)."); 
 
 	getClientsForDropDown();
 	getFaultsForDropDown();
@@ -182,4 +186,20 @@ function getDieselDensityForDropDown() {
 }
 function showVisitMessage(inputMessage) {
 	$('#messageSpanId').text(inputMessage);
+}
+
+
+function OpenClose(obj) {
+  var HeadObj = eval(obj + "_Head");
+  var BodyObj = eval(obj + "_Body");
+
+  if (BodyObj.style.display=='block') {
+    BodyObj.style.display='none';
+	 var SignOffset = HeadObj.innerHTML.indexOf("-");
+	 HeadObj.innerHTML = "+" + HeadObj.innerHTML.substring(SignOffset+1);
+  } else {
+    BodyObj.style.display='block';
+	 var SignOffset = HeadObj.innerHTML.indexOf("+");
+	 HeadObj.innerHTML = "-" + HeadObj.innerHTML.substring(SignOffset+1);
+  }
 }
