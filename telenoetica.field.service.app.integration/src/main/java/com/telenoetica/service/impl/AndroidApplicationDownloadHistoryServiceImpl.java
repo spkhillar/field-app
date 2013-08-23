@@ -9,7 +9,6 @@ import com.telenoetica.jpa.entities.AndroidApplicationDownloadHistory;
 import com.telenoetica.jpa.entities.User;
 import com.telenoetica.jpa.repositories.AndroidApplicationDownloadHistoryDAO;
 import com.telenoetica.service.AndroidApplicationDownloadHistoryService;
-import com.telenoetica.service.impl.AbstractBaseService;
 import com.telenoetica.service.util.ApplicationServiceException;
 
 @Service("androidApplicationDownloadHistoryService")
@@ -55,9 +54,6 @@ public class AndroidApplicationDownloadHistoryServiceImpl extends AbstractBaseSe
         returnedApplicationDownloadHistory = saveOrUpdate(applicationDownloadHistory);
       }else if(StringUtils.isNotBlank(userDeviceId) && !StringUtils.equals(userDeviceId,applicationDownloadHistory.getUserDeviceId())){
         logger.debug("### Device is not assigned to current user...###"+userDeviceId);
-        throw new ApplicationServiceException("Device is not assigned to current user.");
-      }else{
-        logger.debug("### Download history exists but cannot update with a new Device Id...###"+userDeviceId);
         throw new ApplicationServiceException("Device is not assigned to current user.");
       }
     }
