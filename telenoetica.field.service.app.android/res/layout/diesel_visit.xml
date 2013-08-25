@@ -52,7 +52,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Site ID"
+                    android:text="Site ID*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <AutoCompleteTextView
@@ -66,7 +66,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:hint="XX/XX/XX/NUM"
+                    android:hint="HT/XX/XX/NUM"
                     android:tag='siteId={"required":true,"siteIdCheck":true}'/>
             </TableRow>
 
@@ -78,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Access Code"
+                    android:text="Access Code*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -117,7 +117,6 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:maxLength="7"
                     android:hint="N Characters"
                     android:tag="drnNumber"/>
             </TableRow>
@@ -179,10 +178,10 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:hint="XX/XX/XX/NUM"
-                    android:tag="transferredSite" />
+                    android:hint="HT/XX/XX/NUM"
+                    android:tag='transferredSiteId={"transferredSiteIdCheck":true}' /> 
 
-            </TableRow>
+                 </TableRow>
 
             <TableRow
                 android:id="@+id/tableRow1"

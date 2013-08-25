@@ -52,7 +52,7 @@
 
                 <TextView
                     android:id="@+id/tv1_mv"
-                    android:text="Site ID"
+                    android:text="Site ID*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <AutoCompleteTextView
@@ -66,7 +66,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:hint="XX/XX/XX/NUM"
+                    android:hint="HT/XX/XX/NUM"
                     android:tag="siteId={&quot;required&quot;:true,&quot;siteIdCheck&quot;:true}" />
             </TableRow>
 
@@ -78,8 +78,7 @@
 
                 <TextView
                     android:id="@+id/tv2_mv"
-                    android:ems="5"
-                    android:text="Access Code"
+                    android:text="Access Code*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -411,7 +410,7 @@
                     android:shape="rectangle"
                     android:singleLine="true"
                     android:hint="[0-30000]"
-                    android:tag="runHoursAfterPmdG2={&quot;min&quot;:0,&quot;max&quot;:30000}" />
+                    android:tag="runHourAfterPmdG2={&quot;min&quot;:0,&quot;max&quot;:30000}" />
             </TableRow>
 
             <LinearLayout

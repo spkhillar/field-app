@@ -52,7 +52,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Site ID"
+                    android:text="Site ID*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <AutoCompleteTextView
@@ -66,7 +66,7 @@
                     android:paddingRight="10dip"
                     android:shape="rectangle"
                     android:singleLine="true"
-                    android:hint="XX/XX/XX/NUM"
+                    android:hint="HT/XX/XX/NUM"
                     android:tag="siteId={&quot;required&quot;:true,&quot;siteIdCheck&quot;:true}" />
             </TableRow>
 
@@ -78,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Access Code"
+                    android:text="Access Code*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
@@ -104,7 +104,7 @@
 
                 <TextView
                     android:id="@+id/textView1"
-                    android:text="Call-out CSR  Number"
+                    android:text="Call-out CSR  Number*"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
