@@ -201,6 +201,8 @@ public class LoginActivity extends ApplicationBaseActivity {
           }else{
             errorMessage = e.getMessage();
           }
+        }else{
+          errorMessage = e.getMessage();
         }
       }
       if (response == null) {
