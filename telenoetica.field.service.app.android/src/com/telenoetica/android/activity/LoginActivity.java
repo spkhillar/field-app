@@ -182,6 +182,7 @@ public class LoginActivity extends ApplicationBaseActivity {
       String imeistring = telephonyManager.getDeviceId();
       String url = AppValuesHolder.getHost() + "/rest/auth/"+imeistring;
       RestResponse response = null;
+      String errorMessage= "";
       try {
         LOGGER.debug("invoking..." + url);
         response =
@@ -197,11 +198,13 @@ public class LoginActivity extends ApplicationBaseActivity {
             response = new RestResponse(500, "Invalid Credentials. Check username and password");
           } else if (HttpStatus.FORBIDDEN.equals(status)) {
             response = new RestResponse(403, "Invalid Credentials. Check username and password");
+          }else{
+            errorMessage = e.getMessage();
           }
         }
       }
       if (response == null) {
-        response = new RestResponse(500, "System Exception...");
+        response = new RestResponse(500, "System Exception..."+errorMessage);
       }
       Date end = new Date();
       long total = end.getTime() - start.getTime();
