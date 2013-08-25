@@ -112,7 +112,7 @@ public class DefaultExcelLayoutService extends AbstractExcelLayoutService {
     Font font = worksheet.getWorkbook().createFont();
     font.setBoldweight(Font.BOLDWEIGHT_BOLD);
     HSSFPalette hssfPalette = worksheet.getWorkbook().getCustomPalette();
-    HSSFColor myColor = hssfPalette.findSimilarColor(255, 153, 0);
+    HSSFColor myColor = hssfPalette.findSimilarColor(255, 192, 0);
     short palIndex = myColor.getIndex();
     // Create cell style for the headers
     CellStyle headerCellStyle = worksheet.getWorkbook()
