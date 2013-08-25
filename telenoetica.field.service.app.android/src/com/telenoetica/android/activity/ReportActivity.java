@@ -5,10 +5,7 @@ package com.telenoetica.android.activity;
 
 import java.util.Map;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -36,7 +33,6 @@ public class ReportActivity extends ApplicationBaseActivity {
   protected void initializeActivity(final Bundle savedInstanceState) {
     // TODO Auto-generated method stub
     setContentView(R.layout.report);
-    addListenerOnButtonOk();
     populateReport();
   }
 
@@ -62,19 +58,5 @@ public class ReportActivity extends ApplicationBaseActivity {
       reportTextView.setText(report.getValue().toString());
     }
     AppValuesHolder.clearSentRecordCount();
-  }
-
-  /**
-   * Adds the listener on button ok.
-   */
-  public void addListenerOnButtonOk() {
-    btnReport = (Button) findViewById(R.id.btnReportOk);
-    btnReport.setOnClickListener(new OnClickListener() {
-      @Override
-      public void onClick(final View arg0) {
-        Intent intent = new Intent(context, MainMenu.class);
-        startActivity(intent);
-      }
-    });
   }
 }

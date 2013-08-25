@@ -68,7 +68,7 @@
 						index : 'runHourGen1',
 						width : 100
 					}, {
-						name : 'runHourGen1',
+						name : 'runHourGen2',
 						index : 'runHourGen2',
 						width : 100
 					}, {

@@ -194,7 +194,8 @@ public class MainMenu extends ApplicationBaseActivity {
       } else if (restResponse.getStatusCode() != 0) {
         Toast.makeText(this, restResponse.getMessage(), Toast.LENGTH_SHORT).show();
       } else {
-        Toast.makeText(this, "Send to server successfull.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, ReportActivity.class);
+        startActivity(intent);
       }
 
     }
@@ -277,8 +278,6 @@ public class MainMenu extends ApplicationBaseActivity {
       LOGGER.debug("...Total Time..." + total);
       if (errorCode == 0) {
         response = new RestResponse(0, "Sent successfully.");
-        Intent intent = new Intent(context, ReportActivity.class);
-        startActivity(intent);
       } else {
         response = new RestResponse(1, "Sending failed.");
       }
