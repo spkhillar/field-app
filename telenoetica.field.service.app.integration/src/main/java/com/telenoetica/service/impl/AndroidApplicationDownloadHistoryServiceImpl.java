@@ -54,6 +54,8 @@ public class AndroidApplicationDownloadHistoryServiceImpl extends AbstractBaseSe
         returnedApplicationDownloadHistory = saveOrUpdate(applicationDownloadHistory);
       }else if(StringUtils.isNotBlank(userDeviceId) && !StringUtils.equals(userDeviceId,applicationDownloadHistory.getUserDeviceId())){
         logger.debug(applicationDownloadHistory.getUserDeviceId()+"### Device is not assigned to current user...###"+userDeviceId);
+      }else{
+        returnedApplicationDownloadHistory = applicationDownloadHistory;
       }
     }
     return returnedApplicationDownloadHistory;
