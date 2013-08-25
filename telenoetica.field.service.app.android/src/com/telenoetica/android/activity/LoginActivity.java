@@ -133,7 +133,7 @@ public class LoginActivity extends ApplicationBaseActivity {
       Intent intent = new Intent(this, MainMenu.class);
       startActivity(intent);
     } else {
-      Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+      Toast.makeText(LoginActivity.this, result.getMessage(), Toast.LENGTH_LONG).show();
     }
     AppValuesHolder.setCurrentUser(uname);
     AppValuesHolder.setCurrentUserPassword(pwd);
@@ -187,7 +187,7 @@ public class LoginActivity extends ApplicationBaseActivity {
         LOGGER.debug("invoking..." + url);
         response =
             RestClient.INSTANCE.executeRest(url, params[0], params[1], HttpMethod.GET, null, RestResponse.class, null);
-        if (AppValuesHolder.getClients().size() == 1) {
+        if (response.getStatusCode() ==0 && AppValuesHolder.getClients().size() == 1) {
           AppValuesPopulator.populateValues(params[0], params[1]);
         }
       } catch (Exception e) {
