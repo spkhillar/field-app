@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -37,7 +38,7 @@ public class DefaultExcelLayoutService extends AbstractExcelLayoutService {
    */
   @Override
   public void buildHeaders(final ExcelRendererModel excelRendererModel) {
-    HSSFCellStyle headerCellStyle = getCellStyle(excelRendererModel
+    CellStyle headerCellStyle = getCellStyle(excelRendererModel
       .getWorksheet());
     int startRowIndex = excelRendererModel.getStartRowIndex();
     int startColIndex = excelRendererModel.getStartColIndex();
@@ -107,15 +108,17 @@ public class DefaultExcelLayoutService extends AbstractExcelLayoutService {
    *            the worksheet
    * @return the cell style
    */
-  private HSSFCellStyle getCellStyle(final HSSFSheet worksheet) {
+  private CellStyle getCellStyle(final HSSFSheet worksheet) {
     Font font = worksheet.getWorkbook().createFont();
     font.setBoldweight(Font.BOLDWEIGHT_BOLD);
-
+    HSSFPalette hssfPalette = worksheet.getWorkbook().getCustomPalette();
+    HSSFColor myColor = hssfPalette.findSimilarColor(255, 153, 0);
+    short palIndex = myColor.getIndex();
     // Create cell style for the headers
-    HSSFCellStyle headerCellStyle = worksheet.getWorkbook()
+    CellStyle headerCellStyle = worksheet.getWorkbook()
         .createCellStyle();
-    headerCellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
-    headerCellStyle.setFillPattern(CellStyle.FINE_DOTS);
+    headerCellStyle.setFillForegroundColor(palIndex);
+    headerCellStyle.setFillPattern(CellStyle.SOLID_FOREGROUND);
     headerCellStyle.setAlignment(CellStyle.ALIGN_CENTER);
     headerCellStyle.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
     headerCellStyle.setWrapText(true);
