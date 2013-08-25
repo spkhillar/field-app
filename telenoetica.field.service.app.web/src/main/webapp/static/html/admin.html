@@ -8,64 +8,97 @@
 </script>
 <body>
 <p><b>Admin page (Administration -> User Management)</b></p>
-<p>This page is accessible only for users with admin role and it provides functionality to 
-create/maintain users for Helios Field Application.On this page user can see the list of users with all the information other than password.
-Sorting is implemented on all the columns and user can also provide number of records he want to see per page from drop down given at bottom of page.
-Other buttons(functions) at the bottom of page are:</p>
-<div id="ClickMeAdmin1_Head" onClick="OpenClose('ClickMeAdmin1')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+	<p>This page is accessible only for users with admin role and it
+		provides functionality to create/maintain users for Helios Field
+		Application. On this page user can see the list of users with all the
+		information other than password. Sorting is implemented on all the
+		columns and user can also provide number of records he want to see per
+		page from drop down given at bottom of page. Other buttons (functions)
+		at the bottom of page are:</p>
+	<div id="ClickMeAdmin1_Head" onClick="OpenClose('ClickMeAdmin1')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Filter</b> 
 </div>
-<div id="ClickMeAdmin1_Body" style="display:none; margin-left:20px">
-<p><b>Filter allows you to manage the list of information on grid. To create a filter:</b></p>
-<p>		1.	Click the filter button in your page. A window that allows you to specify your search criteria will appear.</p>
-<p>		2.	Enter your search criteria. If you want to check that your search worked correctly, click the Find button..</p>
-<p>		3.	You can provide multiple search criteria by using (+) sign appears in the pop-up. Click the Find button and refined list based on your search criteria will appear in grid.</p>
-<p>		4.	If you want to remove a search criteria then use (-) sign appearing next to criteria</p>
-<p>		5.	Use Reset to remove all search criteria.</p></div>
+	<div id="ClickMeAdmin1_Body" style="display: none; margin-left: 20px">
+		<p>
+			<b>Filter allows you to manage the list of information on grid.
+				To create a filter:</b>
+		</p>
+		<p>1. Click the filter button in your page. A window that allows
+			you to specify your search criteria will appear.</p>
+		<p>2. Enter your search criteria. If you want to check that your
+			search worked correctly, click the Find button.</p>
+		<p>3. You can provide multiple search criteria by using (+) sign
+			appears in the pop-up. Click the Find button and refined list based
+			on your search criteria will appear in grid.</p>
+		<p>4. If you want to remove a search criteria then use (-) sign
+			appearing next to criteria.</p>
+		<p>5. Use Reset to remove all search criteria.</p>
+	</div>
 
-<div id="ClickMeAdmin2_Head" onClick="OpenClose('ClickMeAdmin2')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+	<div id="ClickMeAdmin2_Head" onClick="OpenClose('ClickMeAdmin2')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Refresh</b> 
 </div>
-<div id="ClickMeAdmin2_Body" style="display:none; margin-left:20px">
-<p><b>A refresh or reload will cause the browser to re-check with the web server to make sure it has the latest copy of the web page you are viewing.To refresh the grid:</b></p>
-<p>		1.	Click the Refresh button in your page. Grid data will be reloaded from the server to ensure that you are viewing the latest copy.</p>
-</div>
+	<div id="ClickMeAdmin2_Body" style="display: none; margin-left: 20px">
+		<p>
+			<b>A refresh or reload will cause the browser to re-check with
+				the web server to make sure it has the latest copy of the web page
+				you are viewing. To refresh the grid:</b>
+		</p>
+		<p>1. Click the Refresh button in your page. Grid data will be
+			reloaded from the server to ensure that you are viewing the latest
+			copy.</p>
+	</div>
 
-<div id="ClickMeAdmin3_Head" onClick="OpenClose('ClickMeAdmin3')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+	<div id="ClickMeAdmin3_Head" onClick="OpenClose('ClickMeAdmin3')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Add</b> 
 </div>
-<div id="ClickMeAdmin3_Body" style="display:none; margin-left:20px">
-<p><b>Add allow you to add more users to use the application.To add a user:</b></p>
-<p>		1.	Click the add button in your page. A window that allows you to provide user information will appear.</p>
-<p>		2.	Enter Username,Password,Firstname, Lastname, Phone, Email, Enable and Role information.</p>
-<p>		3.	Click Submit, a new user is created and now he can use the application. </p>
-<p>		4.	To cross check verify if user name appears in the grid.</p>
-<p>		5.	Username should be unique for each user.</p></div>
+	<div id="ClickMeAdmin3_Body" style="display: none; margin-left: 20px">
+		<p>
+			<b>Add allow you to add more users to use the application. To add
+				a user:</b>
+		</p>
+		<p>1. Click the add button in your page. A window that allows you
+			to provide user information will appear.</p>
+		<p>2. Enter Username, Password, First name, Last name, Phone,
+			Email, Enable and Role information.</p>
+		<p>3. Click Submit - a new user is created and now he can use the
+			application.</p>
+		<p>4. To crosscheck, verify if user name appears in the grid.</p>
+		<p>5. User name should be unique for each user.</p>
+	</div>
 
-<div id="ClickMeAdmin4_Head" onClick="OpenClose('ClickMeAdmin4')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+	<div id="ClickMeAdmin4_Head" onClick="OpenClose('ClickMeAdmin4')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Edit</b> 
 </div>
-<div id="ClickMeAdmin4_Body" style="display:none; margin-left:20px">
-<p><b>Edit allow you to edit user information. To edit a user:</b></p>
-<p>		1.	Select the user first from the grid and click the edit button in your page. A window that allows you to edit user information will appear.This window will have all existing information</p>
-<p>		2.	Override one or multiple information i.e. Password,First Name, Last name, phone, email, enable or role.</p>
-<p>		3.	Click Submit, user information is edited now.</p>
-<p>		4.	To Cross check verify from the grid.Other than password all the information can be seen here.</p></div>
+	<div id="ClickMeAdmin4_Body" style="display: none; margin-left: 20px">
+		<p>
+			<b>Edit allow you to edit user information. To edit a user:</b>
+		</p>
+		<p>1. Select the user first from the grid and click the edit
+			button in your page. A window that allows you to edit user
+			information will appear. This window will have all existing
+			information.</p>
+		<p>2. Override one or multiple information i.e. Password, First
+			name, Last name, Phone, Email, Enable or Role.</p>
+		<p>3. Click Submit - user information is edited now.</p>
+		<p>4. To crosscheck verify from the grid. Other than password all
+			the information can be seen here.</p>
+	</div>
 
-<div id="ClickMeAdmin5_Head" onClick="OpenClose('ClickMeAdmin5')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
+	<div id="ClickMeAdmin5_Head" onClick="OpenClose('ClickMeAdmin5')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Delete</b> 
 </div>
 <div id="ClickMeAdmin5_Body" style="display:none; margin-left:20px">
-<p><b>Delete allow you to delete user from the system, to delete a user</b></p>
-<p>		1.	Select the user first from the grid and click the delete button in your page. A confirmation window will appear.</p>
-<p>		2.	Based on your selection user will be permanently deleted from the system.</p></div>
+<p><b>Delete allows you to delete users from the system. To delete a user:</b></p>
+<p>		1. Select the user first from the grid and click the delete button in your page. A confirmation window will appear.</p>
+<p>		2. Based on your selection user will be permanently deleted from the system.</p></div>
 
 <div id="ClickMeAdmin6_Head" onClick="OpenClose('ClickMeAdmin6')" onMouseOver="this.style.cursor='pointer';" style="color: #000099;">
 <b>+ Export</b> 
 </div>
 <div id="ClickMeAdmin6_Body" style="display:none; margin-left:20px">
-<p><b>Export allow you to export the data in Excel format on user system. If filter is applied then only filtered record from the screen will be exported to excel. To export:</b></p>
-<p>		1.	Click the export button in your page. A window will appear to save or open in the Excel.</p>
-<p>		2.	Based on your selection file will be saved or opened on the system.</p></div>
+<p><b>Export allow you to export the data in Excel format on user system. If filter is applied then only filtered records from the screen will be exported to excel. To export:</b></p>
+<p>1. Click the export button in your page. A window will appear to save or open in Excel.</p>
+<p>2. Based on your selection file will be saved on system.</p></div>
 </body>
 </html>
