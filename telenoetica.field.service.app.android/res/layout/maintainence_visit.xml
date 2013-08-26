@@ -104,7 +104,7 @@
 
                 <TextView
                     android:id="@+id/tv3_mv"
-                    android:text="Category Of Maintainence"
+                    android:text="Category Of Maintenance"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <Spinner
